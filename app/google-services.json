@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "62820884284",
-    "firebase_url": "https://testapp-66830.firebaseio.com",
-    "project_id": "testapp-66830",
-    "storage_bucket": "testapp-66830.appspot.com"
+    "project_number": "881570462874",
+    "project_id": "rashnanthi",
+    "storage_bucket": "rashnanthi.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:62820884284:android:6a36e5f60a793def524839",
+        "mobilesdk_app_id": "1:881570462874:android:2cbfc27929af3b9542b323",
         "android_client_info": {
-          "package_name": "com.master.design.blackeye"
+          "package_name": "com.master.design.rashnanthi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "62820884284-tmrfi73ebrj3ocvg4nojkvtrotc4nh4b.apps.googleusercontent.com",
+          "client_id": "881570462874-rb1j9l93pcnjlfb6j3cqua1392vfnnri.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwWr-Jk6-M3B44uaAlCLVpRl5_ovAXElQ"
+          "current_key": "AIzaSyB-KQOQogqUMJesaB--urTdifLami9Hev4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "62820884284-tmrfi73ebrj3ocvg4nojkvtrotc4nh4b.apps.googleusercontent.com",
+              "client_id": "881570462874-rb1j9l93pcnjlfb6j3cqua1392vfnnri.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "62820884284-435h2kjh3usp4jnijj2a2t49mfpsroqa.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.designmaster.chattest"
-              }
             }
           ]
         }
