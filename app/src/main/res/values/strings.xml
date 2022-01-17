@@ -1,7 +1,31 @@
 <resources>
-    <string name="app_name">Black Eye</string>
+    <string name="app_name">Rashnanthi</string>
     <string name="ok">Ok</string>
-    <string name="email">Email</string>
+    <string name="login">LOGIN</string>
+    <string name="mobile">Mobile</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget password</string>
+    <string name="new_user">NEW USER?</string>
+    <string name="register_now">REGISTER NOW</string>
+    <string name="register">REGISTER</string>
+    <string name="please_select_account_type_and_fill_data">Please select account type and fill data</string>
+    <string name="events_creater">Events Creater</string>
+    <string name="coach">Coach</string>
+    <string name="verification">Verification</string>
+    <string name="verification_pin">4 - Digit PIN has been sent to your Registered Mobile Number. Enter it below to continue</string>
+    <string name="resend_otp_timer">Resend in 00:59</string>
+    <string name="submit">SUBMIT</string>
+    <string name="edit_number">EDIT NUMBER</string>
+
+
+
+
+
+
+
+
+
+    <string name="email">Email Address(Optional)</string>
     <string name="search">Search</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="sign_in_or_sign_up">Sign In Or Sign Up</string>
@@ -13,7 +37,7 @@
     <string name="gues">Continue as a guest</string>
     <string name="terms">Terms and condition</string>
 
-    <string name="Name">Full Name</string>
+    <string name="name">Name</string>
     <string name="lastName">Last Name</string>
     <string name="Mobile">Mobile</string>
     <string name="confirm_password">Confirm Password</string>

@@ -1,9 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/marginLeft"
+    android:layout_marginRight="@dimen/marginRight"
     tools:context=".Activity.VerifyActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/marginLeft"
+        android:layout_marginRight="@dimen/marginRight"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:src="@drawable/check_circle_regular"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/verification"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_title"
+
+            android:text="@string/verification_pin">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/otpdigit_1_ET"
+                android:background="@drawable/circle_white"
+                android:gravity="center"
+                android:layout_margin="@dimen/margin"
+                android:text="4"
+                android:inputType="number"
+                android:textSize="@dimen/text_size_title">
+
+            </EditText>
+
+            <EditText
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="@dimen/margin"
+                android:inputType="number"
+                android:id="@+id/otpdigit_2_ET"
+                android:background="@drawable/circle_white"
+                android:gravity="center"
+                android:text="4"
+                android:textSize="@dimen/text_size_title">
+
+            </EditText>
+
+            <EditText
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/circle_white"
+                android:gravity="center"
+                android:text="4"
+                android:layout_margin="@dimen/margin"
+                android:inputType="number"
+                android:id="@+id/otpdigit_3_ET"
+
+                android:textSize="@dimen/text_size_title">
+
+            </EditText>
+
+            <EditText
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/circle_white"
+                android:gravity="center"
+                android:text="4"
+                android:id="@+id/otpdigit_4_ET"
+
+                android:inputType="number"
+                android:layout_margin="@dimen/margin"
+                android:textSize="@dimen/text_size_title">
+
+            </EditText>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/resend_otpTxt"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_title"
+            android:layout_margin="@dimen/marginTop"
+            android:text="@string/resend_otp_timer"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:layout_margin="20dp"
+                android:id="@+id/submit_otpBtn"
+                android:textSize="@dimen/text_size_title"
+                android:background="@drawable/button_rounded_primary_color_selector"
+                android:text="@string/submit"
+                android:textColor="@color/white"></Button>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_weight="10"
+                android:layout_margin="20dp"
+                android:layout_height="wrap_content"
+                 android:textSize="@dimen/text_size_title"
+                android:id="@+id/edit_numberBtn"
+                android:background="@drawable/button_rounded_primary_color_selector"
+                android:text="@string/edit_number"
+                android:textColor="@color/white"></Button>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
