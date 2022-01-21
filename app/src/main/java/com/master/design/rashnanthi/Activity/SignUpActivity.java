@@ -18,6 +18,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -29,6 +30,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.SignUpDM;
 import com.master.design.rashnanthi.DataModel.VideoDM;
+import com.master.design.rashnanthi.Fragments.Menu_1_Fragment;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -136,11 +138,22 @@ public class SignUpActivity extends AppCompatActivity  {
 //            Log.e("String",e.toString());
 //        }
 //    }
+ImageView backlogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        backlogin=findViewById(R.id.backlogin);
+
+        backlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
         ButterKnife.bind(this);
         dialogUtil = new DialogUtil();

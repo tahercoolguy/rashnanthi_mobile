@@ -1,7 +1,5 @@
 package com.master.design.rashnanthi.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -10,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.master.design.rashnanthi.Models.User;
@@ -25,7 +25,8 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        user=new User(SplashScreen.this);
+        user = new User(SplashScreen.this);
+
 
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("Android Token", "Refreshed token: " + refreshedToken);
@@ -55,9 +56,9 @@ public class SplashScreen extends AppCompatActivity {
 //
 //            }
         } catch (PackageManager.NameNotFoundException e) {
-            Log.d("Exception NameNotFound","hurray");
+            Log.d("Exception NameNotFound", "hurray");
         } catch (NoSuchAlgorithmException e) {
-            Log.d("Exception NoSuction","hurray");
+            Log.d("Exception NoSuction", "hurray");
 
         }
         int secondsDelayed = 2;
@@ -72,10 +73,14 @@ public class SplashScreen extends AppCompatActivity {
 //                    startActivity(new Intent(SplashScreen.this, AdvertiseSelector.class));
 //                    finish();
 //                }
-                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                    finish();
+                startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                finish();
+
             }
         }, secondsDelayed * 1000);
+
+
     }
+
 
 }

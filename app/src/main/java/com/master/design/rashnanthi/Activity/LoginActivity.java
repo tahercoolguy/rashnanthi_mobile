@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.login.Login;
-import com.google.android.material.textfield.TextInputEditText;
+//import com.google.android.material.textfield.TextInputEditText;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.SignUpDM;
 import com.master.design.rashnanthi.Helper.DialogUtil;
@@ -26,6 +26,7 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.List;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
     ConnectionDetector connectionDetector;
     User user;
 //    DialogUtil dialogUtil;
+
+    Button registerBtn;
 
 
     @BindView(R.id.countryImg)
@@ -63,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.new_UserTxt)
     Button New_UserTxt;
 
-    @BindView(R.id.registerBtn)
-    Button registerBtn;
+//    @BindView(R.id.registerBtn)
+//    Button registerBtn;
 
 
 //
@@ -74,11 +77,11 @@ public class LoginActivity extends AppCompatActivity {
 //       startActivity(new Intent(LoginActivity.this,MainActivity.class));
 //    }
 
-    @OnClick(R.id.registerBtn)
-    public void registerBtnVoid()
-    {
-        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
-    }
+//    @OnClick(R.id.registerBtn)
+//    public void RegisterBtn()
+//    {
+//        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+//    }
 
 
 //    @NotEmpty
@@ -141,19 +144,26 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        ButterKnife.bind(LoginActivity.this);
+        ButterKnife.bind(this);
 //        dialogUtil = new DialogUtil();
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(LoginActivity.this);
 //        validator=new Validator(this);
 //        validator.setValidationListener(this);
-            registerBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
+        registerBtn=findViewById(R.id.registerBtn);
+
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+                finish();
+             }
+        });
+
+
     }
 
 //    @Override

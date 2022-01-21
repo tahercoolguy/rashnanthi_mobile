@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/instaRL"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginTop="130dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_corner_white"
+            android:elevation="@dimen/elevation">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="300dp"
+                android:src="@drawable/insta_logo">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/instagram"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/whatsappRl"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_corner_white"
+            android:elevation="@dimen/elevation">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:layout_marginLeft="5dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="300dp"
+                android:src="@drawable/ic_whastapp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/whastapp"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/twitterRL"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_corner_white"
+            android:elevation="@dimen/elevation">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:layout_marginLeft="5dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="300dp"
+                android:src="@drawable/ic_twitter">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/twitter"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/snapchatRl"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_corner_white"
+            android:elevation="@dimen/elevation">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:layout_marginLeft="5dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="300dp"
+                android:src="@drawable/snapchat">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/snapchat"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/youtubeRL"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="30dp"
+
+            android:background="@drawable/rounded_corner_white"
+            android:elevation="@dimen/elevation">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:layout_marginLeft="5dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="300dp"
+                android:src="@drawable/ic_youtube">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/youtube"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tiktokRl"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_corner_white"
+            android:elevation="@dimen/elevation">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:layout_marginLeft="5dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="300dp"
+                android:src="@drawable/ic_tiktok">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+
+                android:text="@string/tiktok"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/telegramRL"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_corner_white"
+            android:elevation="@dimen/elevation">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:layout_marginLeft="5dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="300dp"
+                android:src="@drawable/ic_telegram">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/telegram"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/social_media_bar_drawer" />
+</RelativeLayout>

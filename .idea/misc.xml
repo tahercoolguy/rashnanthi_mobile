@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/black_transparent_gradient.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/button_rectangle_primary_color_selector.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/button_rounded_grey_color_selector.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/button_rounded_primary_color_selector.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/circle_color_accent_light.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/circle_primary.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/circle_tab_black_selector.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/circle_tab_white_selector.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/circle_white.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/radio_button_selector.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/rectangle_transparent_black_border.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/rectangle_white_grey_border.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/rectangle_white_grey_dark_border.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/rounded_corner_gradient_bg.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable-v24/rounded_rectangle_white_alpha.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/country_spinner.xml" value="0.146875" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/full_rounded_grad_with_transparent_background.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/ic_calendar_regular_black.xml" value="0.146875" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/ic_calendar_regular_red.xml" value="0.146875" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/ic_social_media_black.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/notification_red.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/rounded_corner_guest.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/rounded_corner_white.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/search_black.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/search_red.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/second_gradient_black.xml" value="0.18076923076923077" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/social_media_black.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/social_media_red.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/toggle_calender.xml" value="0.146875" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/toggle_notification.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/toggle_search.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/toggle_social-media.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/drawable/toggle_social.xml" value="0.1451388888888889" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/about_app_bar_drawer.xml" value="1.1" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/about_app_fragment_layout.xml" value="0.18" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_calender.xml" value="0.13490437158469945" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_main_bar_drawer.xml" value="0.33" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_sign_up.xml" value="0.67" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_splash_screen.xml" value="0.18" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_verify.xml" value="0.14" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/app_bar_drawer.xml" value="0.12952898550724637" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/calender_fragment_layout.xml" value="0.18" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/chl.xml" value="0.12773224043715847" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/custom_item_for_menu.xml" value="0.12952898550724637" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/default_fragment_layout.xml" value="0.12952898550724637" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/dialog_progress.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/fragment_login.xml" value="0.12952898550724637" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/home_bar_drawer.xml" value="0.13148907103825136" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/login_page_bar_drawer.xml" value="0.22" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/menu_1_bar_drawer.xml" value="0.12773224043715847" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/menu_1_fragment_layout.xml" value="0.18" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/menu_2_bar_drawer.xml" value="0.12773224043715847" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/menu_2_fragment_layout.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/register_page_bar_drawer.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/social_media_bar_drawer.xml" value="0.13148907103825136" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/social_media_fragment_layout.xml" value="0.16" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.master.design.rashnanthi.Activity.LoginActivity">
 
@@ -16,9 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_margin="@dimen/margin"
-            android:layout_marginTop="@dimen/marginTop"
-            android:layout_marginLeft="@dimen/marginLeft"
-            android:layout_marginRight="@dimen/marginRight"
+
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -64,7 +63,7 @@
                     android:id="@+id/cameraImg"
                     android:layout_marginLeft="78dp"
                     android:layout_marginTop="68dp"
-                    android:src="@drawable/camera_pic">
+                    android:src="@drawable/ic_camera_dp">
 
                 </ImageView>
 
@@ -72,7 +71,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/marginRight"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_height="match_parent">
+                <LinearLayout
+                android:layout_width="match_parent"
                 android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
 
                 android:layout_height="wrap_content">
 
@@ -85,8 +92,9 @@
                     android:id="@+id/event_createrET"
                     android:layout_margin="@dimen/margin"
                     android:text="@string/events_creater"
-                    android:padding="15dp"
-                    android:elevation="11dp"
+                    android:padding="10dp"
+                     android:elevation="11dp"
+                    android:textSize="15sp"
                     android:background="@drawable/rounded_corner_white">
 
                 </EditText>
@@ -100,9 +108,10 @@
                     android:layout_margin="@dimen/margin"
                     android:text="@string/coach"
                     android:gravity="center"
+                    android:textSize="15sp"
                     android:elevation="@dimen/elevation"
                     android:layout_marginLeft="@dimen/marginLeft"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:background="@drawable/rounded_corner_white">
                 </EditText>
 
@@ -113,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
 
                 android:textSize="@dimen/text_size_title"
                 android:text="@string/name">
@@ -128,7 +137,7 @@
                 android:layout_marginLeft="30dp"
                 android:id="@+id/nameET"
                 android:background="@drawable/rounded_corner_white"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:elevation="@dimen/elevation">
 
             </EditText>
@@ -138,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/emailET"
                 android:textSize="@dimen/text_size_title"
                 android:text="@string/email">
@@ -151,7 +160,7 @@
                 android:layout_marginRight="@dimen/marginRight"
                 android:layout_marginLeft="30dp"
                 android:background="@drawable/rounded_corner_white"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:layout_marginTop="5dp"
 
                 android:elevation="@dimen/elevation">
@@ -162,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
 
                 android:textSize="@dimen/text_size_title"
                 android:text="@string/password">
@@ -175,7 +184,7 @@
                 android:layout_marginRight="@dimen/marginRight"
                 android:layout_marginLeft="30dp"
                 android:background="@drawable/rounded_corner_white"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:layout_marginTop="5dp"
                 android:id="@+id/passwordET"
                 android:elevation="@dimen/elevation">
@@ -186,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:textSize="@dimen/text_size_title"
                 android:text="@string/confirm_password">
 
@@ -200,13 +209,22 @@
                 android:layout_marginTop="5dp"
                 android:id="@+id/confirm_passwordET"
                 android:background="@drawable/rounded_corner_white"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:elevation="@dimen/elevation">
             </EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/text_size_title"
+                android:text="@string/mobile">
+
+            </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/marginTop"
                 android:layout_marginLeft="@dimen/marginLeft"
                 android:layout_marginRight="@dimen/marginRight"
@@ -215,7 +233,7 @@
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_weight="10"
+                    android:layout_weight="1"
                     android:id="@+id/countryImg"
                     android:layout_gravity="center"
                     android:elevation="@dimen/elevation"
@@ -228,7 +246,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="10"
-                    android:padding="15dp"
+                    android:padding="10dp"
+                    android:textSize="15sp"
                     android:id="@+id/countrycodeET"
                     android:elevation="11dp"
                     android:background="@drawable/rounded_corner_white"
@@ -244,7 +263,8 @@
                     android:id="@+id/mobileET"
                     android:elevation="@dimen/elevation"
                     android:layout_marginLeft="@dimen/marginLeft"
-                    android:padding="15dp"
+                    android:padding="10dp"
+                    android:textSize="15sp"
                     android:background="@drawable/rounded_corner_white"
                     android:text="66683688">
 
@@ -260,11 +280,16 @@
                 android:layout_marginTop="20dp"
                 android:id="@+id/register_NowBtn"
                 android:textSize="@dimen/text_size_title"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/button_rounded_primary_color_selector"
                 android:text="@string/register"
                 android:textColor="@color/white"></Button>
 
         </LinearLayout>
+
+            </LinearLayout>
+
+
     </ScrollView>
 
 </LinearLayout>

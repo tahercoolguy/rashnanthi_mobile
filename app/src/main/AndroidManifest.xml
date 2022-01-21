@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.master.design.rashnanthi">
+    package="com.master.design.rashnanthi" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -17,7 +17,7 @@
         android:required="false" />
 
     <application
-        android:name="com.master.design.rashnanthi.Controller.AppController"
+        android:name=".Controller.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,10 +25,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name="com.master.design.rashnanthi.Activity.CameraHandling"></activity>
-        <activity android:name="com.master.design.rashnanthi.Activity.ImagePickerActivity" />
-        <activity android:name="com.master.design.rashnanthi.Activity.LoginActivity" />
+        android:usesCleartextTraffic="true" >
+        <activity android:name=".Activity.CameraHandling" />
+        <activity android:name=".Activity.ImagePickerActivity" />
+        <activity android:name=".Activity.LoginActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
@@ -46,24 +46,24 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="com.master.design.rashnanthi.Activity.MainActivity" />
-        <activity android:name="com.master.design.rashnanthi.Activity.SplashScreen">
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.master.design.rashnanthi.Activity.AdvertiseSelector" />
-        <activity android:name="com.master.design.rashnanthi.Activity.AddressSelector" />
-        <activity android:name="com.master.design.rashnanthi.Activity.SignUpActivity" />
-        <activity android:name="com.master.design.rashnanthi.Activity.VerifyActivity" />
+        <activity android:name=".Activity.AdvertiseSelector" />
+        <activity android:name=".Activity.AddressSelector" />
+        <activity android:name=".Activity.SignUpActivity" />
+        <activity android:name=".Activity.VerifyActivity" />
     </application>
 
 </manifest>
