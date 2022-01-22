@@ -19,7 +19,7 @@
     <string name="calender">CALENDER</string>
     <string name="social_media">SOCIAL MEDIA</string>
     <string name="notification">NOTIFICATION</string>
-     <string name="instagram">Instagram</string>
+    <string name="instagram">Instagram</string>
     <string name="whastapp">Whatsapp</string>
     <string name="twitter">Twitter</string>
     <string name="snapchat">Snapchat</string>
@@ -37,24 +37,23 @@
     <string name="logout">Logout</string>
     <string name="about_appp">ABOUT APP</string>
 
+    <string name="united_arab_emirates">United Arab Emirates</string>
+    <string name="kuwait">Kuwait</string>
+    <string name="bahrain">Bahrain</string>
+    <string name="oman">Oman</string>
+    <string name="qatar">Qatar</string>
+    <string name="saudi_arabia">Saudi Arabia</string>
+    <string name="country">Country</string>
+    <string name="rizana_cader">  RIZANA CADER</string>
+    <string name="iamdavid">iamdavid@gmail.com</string>
+    <string name="change_pass"> Change Password</string>
+    <string name="add_new_event">Add New Event</string>
+    <string name="view_event">View Event</string>
+
+    <string name="edit_pro">Edit Profile</string>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="my_aaccount">MY ACCOUNT</string>
 
 
     <string name="email">Email Address(Optional)</string>

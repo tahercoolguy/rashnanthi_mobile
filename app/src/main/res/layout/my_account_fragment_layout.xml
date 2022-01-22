@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:animateLayoutChanges="true">
+
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/splash_screen_logo">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/rizana_cader"
+                android:textColor="@color/black"
+                android:textSize="@dimen/login"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/iamdavid">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/add_new_event_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_calenderr">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/add_new_event"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/view_event_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_flag_regular">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/view_event"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/change_password_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_lockkk">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/change_pass"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/edit_profile_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_lockkk">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/edit_pro"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/my_account_bar_drawer" />
+</RelativeLayout>

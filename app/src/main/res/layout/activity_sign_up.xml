@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.master.design.rashnanthi.Activity.LoginActivity">
+    tools:context="com.master.design.rashnanthi.Activity.SignUpActivity">
 
     <include layout="@layout/register_page_bar_drawer" />
 
@@ -83,41 +83,87 @@
 
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="10"
-                    android:gravity="center"
-                    android:id="@+id/event_createrET"
-                    android:layout_margin="@dimen/margin"
-                    android:text="@string/events_creater"
-                    android:padding="10dp"
-                     android:elevation="11dp"
-                    android:textSize="15sp"
-                    android:background="@drawable/rounded_corner_white">
+<!--                <ToggleButton-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="10"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textOn=""-->
+<!--                    android:textOff=""-->
 
-                </EditText>
+<!--                    android:onClick="onEventCreator"-->
+<!--                    android:id="@+id/event_createrET"-->
+<!--                    android:layout_margin="@dimen/margin"-->
+<!--                    android:text="@string/events_creater"-->
+<!--                    android:padding="10dp"-->
+<!--                     android:elevation="11dp"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:background="@drawable/toggle_event_creator">-->
 
-                <EditText
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="10"
-                    android:id="@+id/coachET"
-                    android:layout_margin="@dimen/margin"
-                    android:text="@string/coach"
-                    android:gravity="center"
-                    android:textSize="15sp"
-                    android:elevation="@dimen/elevation"
-                    android:layout_marginLeft="@dimen/marginLeft"
-                    android:padding="10dp"
-                    android:background="@drawable/rounded_corner_white">
-                </EditText>
+<!--                </ToggleButton>-->
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="10"
+                        android:elevation="@dimen/elevation"
+                        android:gravity="center"
+                        android:id="@+id/eventTxt"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/rounded_corner_white"
+
+                        android:text="@string/events_creater" />
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:id="@+id/coachTxt"
+
+                        android:layout_weight="10"
+                        android:elevation="@dimen/elevation"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_corner_white"
+
+                        android:text="@string/coach" />
+<!--                <EditText-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="10"-->
+<!--                    android:id="@+id/coachET"-->
+<!--                    android:layout_margin="@dimen/margin"-->
+<!--                    android:text="@string/coach"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:elevation="@dimen/elevation"-->
+<!--                    android:layout_marginLeft="@dimen/marginLeft"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:background="@drawable/rounded_corner_white">-->
+<!--                </EditText>-->
 
 
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/testing"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Testing One"
+                    android:layout_height="wrap_content"></TextView>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/marginRight"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/name1ET"
+                    android:background="@drawable/rounded_corner_white"
+                    android:padding="10dp"
+                    android:elevation="@dimen/elevation"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

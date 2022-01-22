@@ -22,14 +22,12 @@ import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
-public class about_app_Fragment extends Fragment {
+public class My_Account_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-    ImageView about_appp_menu;
-    ImageView back_menu;
-
-
+    ImageView my_accountImg;
+    RelativeLayout add_new_event_RL,view_event_RL,change_password_RL,edit_profile_RL;
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
@@ -56,32 +54,52 @@ public class about_app_Fragment extends Fragment {
 
 
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.about_app_fragment_layout, container, false);
+            rootView = inflater.inflate(R.layout.my_account_fragment_layout, container, false);
             ButterKnife.bind(this,rootView);
-//            idMapping();
-//
-//            setClickListeners();
-//            setDetails();
-            about_appp_menu=rootView.findViewById(R.id.about_appp_menu);
-            back_menu=rootView.findViewById(R.id.back_menu);
+            my_accountImg=rootView.findViewById(R.id.my_accountImg);
 
-            back_menu.setOnClickListener(new View.OnClickListener() {
+            add_new_event_RL=rootView.findViewById(R.id.add_new_event_RL);
+            view_event_RL=rootView.findViewById(R.id.view_event_RL);
+            change_password_RL=rootView.findViewById(R.id.change_password_RL);
+            edit_profile_RL=rootView.findViewById(R.id.edit_profile_RL);
+
+            add_new_event_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+
+                }
+            });
+            view_event_RL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            change_password_RL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            edit_profile_RL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
                 }
             });
 
-            about_appp_menu.setOnClickListener(new View.OnClickListener() {
+
+            my_accountImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     ((MainActivity) context).addFragment(new Menu_2_Fragment(), false);
 
                 }
             });
-
+//            idMapping();
+//
+//            setClickListeners();
+//            setDetails();
 
         }
         return rootView;

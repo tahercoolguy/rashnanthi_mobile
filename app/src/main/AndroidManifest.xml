@@ -63,6 +63,8 @@
         <activity android:name=".Activity.AdvertiseSelector" />
         <activity android:name=".Activity.AddressSelector" />
         <activity android:name=".Activity.SignUpActivity" />
+        <activity android:name=".Activity.SignUpActivity2" />
+
         <activity android:name=".Activity.VerifyActivity" />
     </application>
 

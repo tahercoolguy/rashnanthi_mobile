@@ -48,23 +48,23 @@ public class LoginActivity extends AppCompatActivity {
     Button registerBtn;
 
 
-    @BindView(R.id.countryImg)
-    ImageView CountryImg;
-
-    @BindView(R.id.countrycodeET)
-    EditText CountrycodeET;
-
-    @BindView(R.id.mobileET)
-    EditText MobileET;
-
-    @BindView(R.id.forget_PasswordTxt)
-    TextView Forget_PasswordTxt;
-
-    @BindView(R.id.loginBtn)
-    Button LoginBtn;
-
-    @BindView(R.id.new_UserTxt)
-    Button New_UserTxt;
+//    @BindView(R.id.countryImg)
+//    ImageView CountryImg;
+//
+//    @BindView(R.id.countrycodeET)
+//    EditText CountrycodeET;
+//
+//    @BindView(R.id.mobileET)
+//    EditText MobileET;
+//
+//    @BindView(R.id.forget_PasswordTxt)
+//    TextView Forget_PasswordTxt;
+//
+//    @BindView(R.id.loginBtn)
+//    Button LoginBtn;
+//
+//    @BindView(R.id.new_UserTxt)
+//    Button New_UserTxt;
 
 //    @BindView(R.id.registerBtn)
 //    Button registerBtn;
@@ -165,6 +165,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
 //    @Override
 //    public void onValidationSucceeded() {

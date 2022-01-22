@@ -104,6 +104,7 @@ public class Menu_2_Fragment extends Fragment {
             myaccount_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
 
                 }
             });
