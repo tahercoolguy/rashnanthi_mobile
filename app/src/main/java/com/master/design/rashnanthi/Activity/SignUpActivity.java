@@ -1,65 +1,23 @@
 package com.master.design.rashnanthi.Activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.master.design.rashnanthi.Controller.AppController;
-import com.master.design.rashnanthi.DataModel.SignUpDM;
-import com.master.design.rashnanthi.DataModel.VideoDM;
-import com.master.design.rashnanthi.Fragments.Menu_1_Fragment;
-import com.master.design.rashnanthi.Fragments.Menu_2_Fragment;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
-import com.master.design.rashnanthi.Utils.Helper;
-import com.mobsandgeeks.saripaar.ValidationError;
-import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
-import com.mobsandgeeks.saripaar.annotation.Email;
-import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Password;
 
-import java.io.File;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.mime.MultipartTypedOutput;
-import retrofit.mime.TypedFile;
-import retrofit.mime.TypedString;
-
-public class SignUpActivity extends AppCompatActivity  {
+public class SignUpActivity extends AppCompatActivity {
     AppController appController;
     private static final int IMAGE_PICKER_SELECT = 1;
     private static final int IMAGE_PICKER_SELECT1 = 2;
@@ -72,9 +30,7 @@ public class SignUpActivity extends AppCompatActivity  {
     DialogUtil dialogUtil;
 
 
-
-
-//    @NotEmpty
+    //    @NotEmpty
 //    @BindView(R.id.firstNameET)
 //    EditText firstNameET;
 //
@@ -141,18 +97,22 @@ public class SignUpActivity extends AppCompatActivity  {
 //            Log.e("String",e.toString());
 //        }
 //    }
-ImageView backlogin;
+    ImageView backlogin;
 
-LinearLayout testing;
-TextView event,coach;
+    LinearLayout testing,testing1;
+    TextView event, coach;
+    Button register_NowBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        backlogin=findViewById(R.id.backlogin);
+        backlogin = findViewById(R.id.backlogin);
         testing = findViewById(R.id.testing);
+        testing1=findViewById(R.id.testing1);
         event = findViewById(R.id.eventTxt);
         coach = findViewById(R.id.coachTxt);
+        register_NowBtn=findViewById(R.id.register_NowBtn);
 
         VisibilityFunction();
 
@@ -162,8 +122,9 @@ TextView event,coach;
 
 //                Intent i = new Intent(getApplicationContext(),Menu_1_Fragment.class);
 //                startActivity(i);
-             }
+            }
         });
+
 
 
 //        ButterKnife.bind(this);
@@ -171,10 +132,11 @@ TextView event,coach;
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(SignUpActivity.this);
+
         coach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifCoach=true;
+                ifCoach = true;
 
                 VisibilityFunction();
             }
@@ -183,42 +145,77 @@ TextView event,coach;
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifCoach=false;
+                ifCoach = false;
 
                 VisibilityFunction();
-            }
+             }
         });
 //        validator=new Validator(this);
 //        validator.setValidationListener(this);
+        register_NowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignUpActivity.this,VerifyActivity.class));
+            }
+        });
 
     }
 
-boolean ifCoach=false;
-    public void VisibilityFunction()
-    {
-        if(ifCoach)
-        {
+    boolean ifCoach = false;
+
+    public void VisibilityFunction() {
+        if (ifCoach) {
             coach.setBackground(getDrawable(R.drawable.rounded_corner_black_border));
             event.setBackground(getDrawable(R.drawable.rounded_corner_white));
 
             testing.setVisibility(View.VISIBLE);
-        }else
-        {
+            testing1.setVisibility(View.VISIBLE);
+        } else {
             event.setBackground(getDrawable(R.drawable.rounded_corner_black_border));
             coach.setBackground(getDrawable(R.drawable.rounded_corner_white));
 
             testing.setVisibility(View.GONE);
+            testing1.setVisibility(View.GONE);
         }
     }
 
-    public void onCustomToggleClick_5(View view) {
-//        startActivity(new Intent(SignUpActivity.this,SignUpActivity2.class));
-//        finish();
-        VisibilityFunction();
+//    boolean ifcoachselected =false;
+//
+//    public  void VisibilityFunction1(){
+//        if(ifcoachselected){
+//            register_NowBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    startActivity(new Intent(SignUpActivity.this,VerifyActivity.class));
+//                 }
+//            });
+//
+//
+//
+//        }else{
+//            register_NowBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    startActivity(new Intent(SignUpActivity.this,VerifyActivity.class));
+//                }
+//            });
+//
+//        }
+//    }
 
-        ifCoach=true;
 
-    }
+
+
+
+
+//    public void onCustomToggleClick_5(View view) {
+////        startActivity(new Intent(SignUpActivity.this,SignUpActivity2.class));
+////        finish();
+//        VisibilityFunction();
+//
+//        ifCoach = true;
+//
+//    }
 }
 
 //    @Override

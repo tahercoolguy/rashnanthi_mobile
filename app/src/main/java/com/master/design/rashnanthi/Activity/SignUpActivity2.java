@@ -127,16 +127,16 @@ ImageView backlogin;
     }
 
 
-    public void onCustomToggleClick_7(View view) {
-        startActivity(new Intent(SignUpActivity2.this,SignUpActivity.class));
-        finish();
-
-    }
-
-    public void onCustomToggleClick_6(View view) {
-        startActivity(new Intent(SignUpActivity2.this,SignUpActivity.class));
-        finish();
-    }
+//    public void onCustomToggleClick_7(View view) {
+//        startActivity(new Intent(SignUpActivity2.this,SignUpActivity.class));
+//        finish();
+//
+//    }
+//
+//    public void onCustomToggleClick_6(View view) {
+//        startActivity(new Intent(SignUpActivity2.this,SignUpActivity.class));
+//        finish();
+//    }
 }
 
 //    @Override

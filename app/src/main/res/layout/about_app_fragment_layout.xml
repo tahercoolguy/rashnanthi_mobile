@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:animateLayoutChanges="true"
+android:background="@color/white">
+
+<LinearLayout
+    android:id="@+id/layout_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
+    android:layout_marginTop="60dp"
+    android:gravity="center"
+    android:layout_marginBottom="65dp"
+    android:orientation="vertical">
 
-    android:background="@color/colorAppBG">
-
-    <ScrollView
-        android:id="@+id/layout_parent"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+         android:layout_marginLeft="20dp"
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="@dimen/marginLeft"
-             android:gravity="center"
             android:layout_marginRight="@dimen/marginRight"
-            android:textSize="@dimen/text_size_normal"
-            android:text="@string/about_appp"
+            android:textSize="17dp"
+            android:text="@string/about_appp1"
             android:layout_height="wrap_content">
 
         </TextView>
 
-    </ScrollView>
+    </LinearLayout>
 
-    <include layout="@layout/about_app_bar_drawer" />
+
+
+</LinearLayout>
+
+<include layout="@layout/about_app_bar_drawer" />
 </RelativeLayout>

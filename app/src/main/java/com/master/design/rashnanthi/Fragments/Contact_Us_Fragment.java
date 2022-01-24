@@ -2,7 +2,6 @@ package com.master.design.rashnanthi.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,9 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.master.design.rashnanthi.Activity.LoginActivity;
 import com.master.design.rashnanthi.Activity.MainActivity;
-import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
@@ -25,17 +22,12 @@ import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
-public class Menu_1_Fragment extends Fragment {
+public class Contact_Us_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-    ImageView menu_1_menu;
-    RelativeLayout languageRL;
-    RelativeLayout aboutapp_RL;
-    RelativeLayout registerRL;
-    RelativeLayout contact_usRl;
-    RelativeLayout loginRL;
 
+    ImageView contact_menu1;
 
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
@@ -63,78 +55,21 @@ public class Menu_1_Fragment extends Fragment {
 
 
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.menu_1_fragment_layout, container, false);
+            rootView = inflater.inflate(R.layout.contact_us_fragment_layout, container, false);
             ButterKnife.bind(this,rootView);
+            contact_menu1=rootView.findViewById(R.id.contact_menu1);
+
+            contact_menu1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+
+                }
+            });
 //            idMapping();
 //
 //            setClickListeners();
 //            setDetails();
-            menu_1_menu=rootView.findViewById(R.id.menu_1_menu);
-
-            languageRL=rootView.findViewById(R.id.languageRL);
-
-            aboutapp_RL=rootView.findViewById(R.id.aboutapp_RL);
-
-            registerRL=rootView.findViewById(R.id.registerRL);
-
-            loginRL=rootView.findViewById(R.id.loginRL);
-            contact_usRl=rootView.findViewById(R.id.contact_usRl);
-
-
-
-
-
-            menu_1_menu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Menu_2_Fragment(), false);
-                }
-            });
-
-            registerRL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(((MainActivity) context) ,SignUpActivity.class);
-                    startActivity(intent);
-
-                 }
-            });
-
-            languageRL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-            aboutapp_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new about_app_Fragment(), false);
-
-
-                }
-            });
-
-
-            loginRL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(((MainActivity) context) ,LoginActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            contact_usRl.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    ((MainActivity) context).addFragment(new Contact_Us_Fragment(), false);
-
-
-                }
-            });
-
-
         }
         return rootView;
     }

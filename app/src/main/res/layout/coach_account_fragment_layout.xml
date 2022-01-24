@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimary">
+
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/profileImg"
+                        android:layout_width="108dp"
+                        android:layout_height="108dp"
+                        android:src="@drawable/profile_img">
+
+                    </ImageView>
+
+                    <ImageView
+                        android:id="@+id/cameraImg"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginLeft="75dp"
+                        android:layout_marginTop="68dp"
+                        android:src="@drawable/ic_edit_profile">
+
+                    </ImageView>
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/ic__5k_likes"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="290dp"
+                    android:layout_marginTop="33dp"
+                    android:text="25K Likes"
+                    android:textColor="@color/white">
+
+                </TextView>
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/rizana_cader"
+                android:textColor="@color/black"
+                android:textSize="@dimen/login"
+                android:textStyle="bold"></TextView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/add_new_event_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_calenderr">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/add_new_event"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/view_event_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_flag_regular">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/view_event"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/change_password_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_lockkk">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/change_pass"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/edit_profile_RL"
+                    android:layout_width="154dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_weight="5"
+                    android:background="@drawable/event_rounded_corner_white"
+                    android:elevation="@dimen/elevation">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:src="@drawable/ic_lockkk">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/edit_pro"
+                        android:textColor="@color/black"
+                        android:textSize="17dp">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/coach_account_bar_drawer" />
+</RelativeLayout>

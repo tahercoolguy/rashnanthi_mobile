@@ -8,7 +8,6 @@
     android:orientation="vertical">
 
 
-
     <RelativeLayout
         android:id="@+id/main_view"
         android:layout_width="match_parent"
@@ -22,230 +21,39 @@
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAppBG" />
+            android:background="@color/white" />
 
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:elevation="11dp"
-            android:outlineProvider="bounds"
-            android:layout_alignParentBottom="true">
+            app:menu="@menu/navigation_item"
+            android:elevation="@dimen/elevation"
+            android:layout_alignBottom="@id/content_frame"
+            android:layout_height="wrap_content"
+            app:itemTextColor="@color/iemm_color"
+            android:backgroundTint="@color/iemm_color"
 
-            <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bottom_app_bar"
-                style="@style/Widget.MaterialComponents.BottomAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                app:fabAlignmentMode="center">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/CalenderLL"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+            >
 
 
-                        <ToggleButton
-                            android:id="@+id/calender"
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/toggle_calender"
-                            android:onClick="onCustomToggleClick_1"
-                            android:textOff=""
-                            android:textOn="" />
+<!--        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:elevation="11dp"-->
 
-                        <!--                        <ImageView-->
-                        <!--                            android:id="@+id/calender"-->
-                        <!--                            android:layout_width="40dp"-->
-                        <!--                                                   android:layout_height="25dp"
-                        -->
-                        <!--                            android:src="@drawable/calendar_regular" />-->
+<!--            android:outlineProvider="bounds">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/calender"
-                            android:textSize="9dp">
+<!--            <com.google.android.material.bottomappbar.BottomAppBar-->
+<!--                android:id="@+id/bottom_app_bar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="80dp"-->
+<!--                 app:menu="@menu/navigation_item">-->
 
-                        </TextView>
+<!--            </com.google.android.material.bottomappbar.BottomAppBar>-->
+<!--        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/SearchLL"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-
-
-                        android:orientation="vertical">
-
-                        <ToggleButton
-                            android:id="@+id/search"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/toggle_search"
-                            android:onClick="onCustomToggleClick_2"
-                            android:textOff=""
-                            android:textOn="" />
-
-                        <!--                        <ImageView-->
-                        <!--                            android:id="@+id/search"-->
-                        <!--                            android:layout_width="40dp"-->
-                        <!--                                                   android:layout_height="25dp"
-                        -->
-
-                        <!--                            android:src="@drawable/search" />-->
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/search"
-
-
-                            android:textSize="9dp">
-
-                        </TextView>
-
-                    </LinearLayout>
-
-                    <!--                <LinearLayout-->
-                    <!--                    android:layout_width="wrap_content"-->
-                    <!--                    android:layout_height="wrap_content"-->
-                    <!--                    android:layout_weight="1"></LinearLayout>-->
-
-                    <LinearLayout
-                        android:id="@+id/SocialMediaLL"
-
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-
-                        android:orientation="vertical">
-
-                        <ToggleButton
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/toggle_social"
-                            android:onClick="onCustomToggleClick_3"
-                            android:textOff=""
-                            android:textOn="" />
-
-                        <!--                        <ImageView-->
-                        <!--                            android:id="@+id/social_media"-->
-                        <!--                            android:layout_width="40dp"-->
-                        <!--                                                   android:layout_height="25dp"
-                        -->
-
-                        <!--                            android:src="@drawable/social" />-->
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:text="@string/social_media"
-                            android:textSize="9dp">
-
-                        </TextView>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/NotificationLL"
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-
-                        android:layout_weight="1"
-                        android:gravity="center"
-
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-
-                            android:layout_height="wrap_content">
-
-
-                            <!--                            <ImageView-->
-                            <!--                                android:id="@+id/notification"-->
-                            <!--                                android:layout_width="40dp"-->
-                            <!--                                                       android:layout_height="25dp"
-                            -->
-                            <!--                                android:src="@drawable/notification" />-->
-
-                            <RelativeLayout
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:background="@drawable/toggle_notification">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:src="@drawable/elipse_431">
-
-                                </ImageView>
-
-                                <TextView
-                                    android:id="@+id/notification_count"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="19dp"
-                                    android:layout_marginTop="6dp"
-                                    android:gravity="center"
-                                    android:text="10"
-                                    android:textColor="@color/white"
-                                    android:textSize="10dp"
-                                    android:textStyle="bold"></TextView>
-                            </RelativeLayout>
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:text="@string/notification"
-                            android:textSize="9dp">
-
-                        </TextView>
-
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.bottomappbar.BottomAppBar>
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-        <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-        <!--            android:id="@+id/fab"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:src="@drawable/ic_menu_barcode"-->
-        <!--            android:elevation="0dp"-->
-        <!--            app:fabSize="normal"-->
-        <!--            app:maxImageSize="59dp"-->
-        <!--            android:layout_margin="5dp"-->
-        <!--            app:layout_anchor="@id/bottom_app_bar"-->
-        <!--            app:backgroundTint="@color/colorAppBG"-->
-        <!--            />-->
 
     </RelativeLayout>
 

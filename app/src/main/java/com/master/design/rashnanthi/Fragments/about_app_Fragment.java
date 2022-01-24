@@ -57,7 +57,7 @@ public class about_app_Fragment extends Fragment {
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.about_app_fragment_layout, container, false);
-            ButterKnife.bind(this,rootView);
+//            ButterKnife.bind(this,rootView);
 //            idMapping();
 //
 //            setClickListeners();
@@ -135,9 +135,9 @@ public class about_app_Fragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.action_back).setVisible(false);
-    }
+//    @Override
+//    public void onPrepareOptionsMenu(Menu menu) {
+//        super.onPrepareOptionsMenu(menu);
+//        menu.findItem(R.id.action_back).setVisible(false);
+//    }
 }

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    tools:context=".Activity.Thank_you">
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/marginRight"
+            android:background="@drawable/rounded_rectangle_whitee"
+            android:elevation="@dimen/elevation"
+            android:text="@string/thank_you"
+            android:textColor="@color/black"
+            android:textSize="25sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/summary"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/post_price_qatar"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/post_price_qatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/KWD4"
+                android:textColor="@color/black"></TextView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="80dp"
+                android:text="@string/post_price_kuwait"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/post_price_kuwait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="80dp"
+                android:text="@string/free"
+                android:textColor="@color/black"></TextView>
+
+            <LinearLayout
+                android:layout_width="288dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginTop="108dp"
+                android:layout_marginRight="@dimen/marginRight"
+                android:background="@color/blackend"
+                android:gravity="center"
+
+                ></LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="115dp"
+                android:text="@string/total"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/total_price_kwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="115dp"
+                android:text="@string/KWD8"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="204dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="@dimen/marginRight"
+            android:background="@drawable/rounded_rectangle_whitee"
+            android:elevation="@dimen/elevation"
+            android:textColor="@color/black"
+            android:textSize="25sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/payment_method"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="50dp">
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="@string/knet">
+
+                </RadioButton>
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+
+                    android:text="@string/my_fatoorah">
+
+                </RadioButton>
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+
+                    android:text="@string/visa_mastercard">
+
+                </RadioButton>
+
+
+            </RadioGroup>
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_rounded_primary_color_selector"
+
+            android:text="@string/pay_now"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_title"></Button>
+    </LinearLayout>
+
+    <include layout="@layout/add_event_bar_drawer" />
+</RelativeLayout>
+
+

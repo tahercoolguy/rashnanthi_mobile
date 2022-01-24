@@ -118,6 +118,9 @@ public class Menu_2_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    ((MainActivity) context).addFragment(new Contact_Us_Fragment(), false);
+
+
                 }
             });
 

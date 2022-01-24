@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    tools:context=".Activity.Thank_you">
+
+        <LinearLayout
+            android:id="@+id/layout_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+             android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="78dp"
+                android:layout_height="78dp"
+                android:src="@drawable/splash_screen_logo">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="118dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/thank_you"
+                android:textColor="@color/black"
+                android:textSize="25sp">
+
+            </TextView>
+        </LinearLayout>
+
+        <include layout="@layout/thank_you_bar_drawer" />
+    </RelativeLayout>
+
+

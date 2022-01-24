@@ -108,7 +108,6 @@
                         android:layout_margin="@dimen/margin"
                         android:layout_weight="10"
                         android:background="@drawable/toggle_event_creator"
-                        android:onClick="onCustomToggleClick_6"
                         android:textOff="@string/events_creater"
                         android:textOn="@string/events_creater" />
 
@@ -118,7 +117,6 @@
                         android:layout_margin="@dimen/margin"
                         android:layout_weight="10"
                         android:background="@drawable/toggle_event_creator"
-                        android:onClick="onCustomToggleClick_7"
                         android:text="@string/coach"
                         android:textOff="@string/coach"
                         android:textOn="@string/coach" />
@@ -302,7 +300,7 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginLeft="4dp"
-                         android:src="@drawable/snapchat">
+                        android:src="@drawable/snapchat">
 
                     </ImageView>
 
@@ -372,7 +370,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                     android:layout_marginTop="@dimen/marginTop"
+                    android:layout_marginTop="@dimen/marginTop"
                     android:layout_marginRight="@dimen/marginRight"
                     android:orientation="horizontal">
 
@@ -434,7 +432,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                     android:layout_marginTop="@dimen/marginTop"
+                    android:layout_marginTop="@dimen/marginTop"
                     android:layout_marginRight="@dimen/marginRight"
                     android:orientation="horizontal">
 
@@ -444,7 +442,7 @@
                         android:layout_height="70dp"
                         android:layout_gravity="center"
                         android:layout_weight="10"
-                          android:elevation="@dimen/elevation"
+                        android:elevation="@dimen/elevation"
                         android:src="@drawable/country_img1938">
 
                     </ImageView>
@@ -454,9 +452,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                         android:background="@drawable/rounded_corner_white"
-                        android:elevation="11dp"
                         android:layout_weight="6"
+                        android:background="@drawable/rounded_corner_white"
+                        android:elevation="11dp"
                         android:hint="+965"
                         android:padding="10dp"
                         android:textSize="15sp">

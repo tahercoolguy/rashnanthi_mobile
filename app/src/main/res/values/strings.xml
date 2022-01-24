@@ -36,6 +36,11 @@
     <string name="my_account">My Account</string>
     <string name="logout">Logout</string>
     <string name="about_appp">ABOUT APP</string>
+    <string name="about_appp1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
 
     <string name="united_arab_emirates">United Arab Emirates</string>
     <string name="kuwait">Kuwait</string>
@@ -86,6 +91,53 @@
     <string name="terms_and_condition">Accept Terms and Condition and the details must be as per the Civil Id</string>
     <string name="info_txt">The details must be as per the Civil Id</string>
     <string name="have_you">Have an account?</string>
+    <string name="term_and_condition">TERM AND CONDITION</string>
+    <string name="privacy_policy">PRIVACY POLICY</string>
+
+    <string name="title">Title</string>
+
+    <string name="today_6_pm">Today 6:00 pm</string>
+
+    <string name="noticication_messege">The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps.</string>
+
+    <string name="notificationn">NOTIFICATION</string>
+
+    <string name="thank_you">Thank you</string>
+    <string name="coach_account">COACH ACCOUNT</string>
+    25K Likes
+
+    <string name="likes_25k">25K Likes</string>
+
+
+
 
     <string name="cancel">Cancel</string>
+    <string name="add_event">ADD EVENT</string>
+    <string name="pay_now">PAY NOW</string>
+    <string name="summary">Summary</string>
+    <string name="post_price_qatar">Post Price Qatar</string>
+    <string name="post_price_kuwait">Post Price Kuwait</string>
+    <string name="total">Total</string>
+    <string name="KWD4">4.000 KWD</string>
+    <string name="free">Free</string>
+    <string name="KWD8">8.000 KWD</string>
+    <string name="knet">KNET</string>
+    <string name="my_fatoorah">My fatoorah</string>
+    <string name="visa_mastercard">Visa /Mastercard</string>
+
+    <string name="payment_method">Payment Method</string>
+    <string name="date">Date</string>
+    <string name="ddmmyy">Date  (dd/mm/yyyy)</string>
+    <string name="website">Website</string>
+    <string name="story_photo_video">Story Photo/Video</string>
+    <string name="even_photo_video">Event  Photo/Video</string>
+    <string name="add_more_event">ADD MORE EVENT</string>
+    <string name="i_accept_term_and_condition">I accept Terms and Condition</string>
+    <string name="post_for_free_now">Post for Free now</string>
+    <string name="your_post_will_be_uploaded_within_24_hours">Your Post will be uploaded within 24 hours
+</string>
+    <string name="continuee">CONTINUE</string>
+
+
+
 </resources>
