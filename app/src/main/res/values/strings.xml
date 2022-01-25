@@ -19,6 +19,8 @@
     <string name="calender">CALENDER</string>
     <string name="social_media">SOCIAL MEDIA</string>
     <string name="notification">NOTIFICATION</string>
+    <string name="notifications">NOTIFICATIONS</string>
+    <string name="coach_capital">COACH</string>
     <string name="instagram">Instagram</string>
     <string name="whastapp">Whatsapp</string>
     <string name="twitter">Twitter</string>
@@ -109,6 +111,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="likes_25k">25K Likes</string>
 
 
+    <string name="add_new_post">ADD NEW POST</string>
 
 
     <string name="cancel">Cancel</string>

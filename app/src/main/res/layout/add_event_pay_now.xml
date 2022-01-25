@@ -85,7 +85,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="115dp"
                 android:text="@string/total"
@@ -129,45 +129,150 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"></TextView>
 
-            <RadioGroup
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:orientation="vertical"
                 android:layout_marginTop="50dp">
 
-                <RadioButton
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:text="@string/knet">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                </RadioButton>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/knet_circle"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/toggle_payment_caard_selecter"></TextView>
 
-                <RadioButton
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:src="@drawable/toggle_calender">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="23"
+                        android:text="@string/knet"
+                        android:textColor="@color/black">
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-                    android:text="@string/my_fatoorah">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/my_fatoorah_circle"
 
-                </RadioButton>
+                        android:background="@drawable/ic_unselected_circle"></TextView>
 
-                <RadioButton
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:src="@drawable/toggle_calender">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="23"
+                        android:text="@string/my_fatoorah"
+                        android:textColor="@color/black">
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-                    android:text="@string/visa_mastercard">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/visa_mastercard_circle"
+                        android:background="@drawable/ic_unselected_circle"></TextView>
 
-                </RadioButton>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:src="@drawable/toggle_calender">
+                    </ImageView>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:src="@drawable/toggle_calender">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="23"
+                        android:text="@string/visa_mastercard"
+                        android:textColor="@color/black">
+
+                    </TextView>
+
+                </LinearLayout>
 
 
-            </RadioGroup>
+                <!--                <RadioButton-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="30dp"-->
+                <!--                    android:text="@string/knet">-->
+
+                <!--                </RadioButton>-->
+
+                <!--                <RadioButton-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20dp"-->
+
+                <!--                    android:text="@string/my_fatoorah">-->
+
+                <!--                </RadioButton>-->
+
+                <!--                <RadioButton-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20dp"-->
+
+                <!--                    android:text="@string/visa_mastercard">-->
+
+                <!--                </RadioButton>-->
+
+
+            </LinearLayout>
 
 
         </RelativeLayout>
 
         <Button
-            android:id="@+id/loginBtn"
+            android:id="@+id/add_event_pay_now"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

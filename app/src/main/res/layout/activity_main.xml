@@ -4,7 +4,6 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
 
@@ -12,7 +11,6 @@
         android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
         android:clickable="true"
         android:focusable="true">
 
@@ -23,37 +21,196 @@
             android:layout_height="match_parent"
             android:background="@color/white" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            app:menu="@menu/navigation_item"
-            android:elevation="@dimen/elevation"
-            android:layout_alignBottom="@id/content_frame"
-            android:layout_height="wrap_content"
-            app:itemTextColor="@color/iemm_color"
-            android:backgroundTint="@color/iemm_color"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:elevation="11dp"
+            android:outlineProvider="bounds">
 
-            >
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottom_app_bar"
+                 android:layout_width="match_parent"
+                android:layout_height="80dp"
+
+                   app:fabAlignmentMode="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                     android:gravity="center"
+                     android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/CalenderLL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
 
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+                        <TextView
+                            android:id="@+id/calenderTxt"
 
-<!--        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:elevation="11dp"-->
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/toggle_calender"
+                            android:onClick="onCustomToggleClick_1"
+                              />
 
-<!--            android:outlineProvider="bounds">-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/calender"-->
+                        <!--                            android:layout_width="40dp"-->
+                        <!--                                                   android:layout_height="25dp"
+                        -->
+                        <!--                            android:src="@drawable/calendar_regular" />-->
 
-<!--            <com.google.android.material.bottomappbar.BottomAppBar-->
-<!--                android:id="@+id/bottom_app_bar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="80dp"-->
-<!--                 app:menu="@menu/navigation_item">-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/calender"
+                            android:layout_marginTop="5dp"
 
-<!--            </com.google.android.material.bottomappbar.BottomAppBar>-->
-<!--        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+                            android:textSize="9dp">
 
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/SearchLL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/coachTxt"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/toggle_search" />
+
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/search"-->
+                        <!--                            android:layout_width="40dp"-->
+                        <!--                                                   android:layout_height="25dp"
+                        -->
+
+                        <!--                            android:src="@drawable/search" />-->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/coach_capital"
+
+
+                            android:textSize="9dp">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <!--                <LinearLayout-->
+                    <!--                    android:layout_width="wrap_content"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_weight="1"></LinearLayout>-->
+
+                    <LinearLayout
+                        android:id="@+id/SocialMediaLL"
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/social_mediaTxt"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginBottom="5dp"
+
+                            android:background="@drawable/toggle_social" />
+
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/social_media"-->
+                        <!--                            android:layout_width="40dp"-->
+                        <!--                                                   android:layout_height="25dp"
+                        -->
+
+                        <!--                            android:src="@drawable/social" />-->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/social_media"
+                            android:textSize="9dp">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/NotificationLL"
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/notificationTxt"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/toggle_notification" />
+
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/social_media"-->
+                        <!--                            android:layout_width="40dp"-->
+                        <!--                                                   android:layout_height="25dp"
+                        -->
+
+                        <!--                            android:src="@drawable/social" />-->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+
+                            android:text="@string/notifications"
+                            android:textSize="9sp">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.bottomappbar.BottomAppBar>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+        <!--            android:id="@+id/fab"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:src="@drawable/ic_menu_barcode"-->
+        <!--            android:elevation="0dp"-->
+        <!--            app:fabSize="normal"-->
+        <!--            app:maxImageSize="59dp"-->
+        <!--            android:layout_margin="5dp"-->
+        <!--            app:layout_anchor="@id/bottom_app_bar"-->
+        <!--            app:backgroundTint="@color/colorAppBG"-->
+        <!--            />-->
 
     </RelativeLayout>
 

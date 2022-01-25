@@ -1,6 +1,8 @@
 package com.master.design.rashnanthi.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +22,8 @@ public class Thank_you extends AppCompatActivity {
         thank_you_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                startActivity(new Intent(Thank_you.this,Add_Event_Bill.class));
 
             }
         });

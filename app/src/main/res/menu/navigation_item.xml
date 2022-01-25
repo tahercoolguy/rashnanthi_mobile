@@ -4,19 +4,19 @@
 
     <item
         android:id="@+id/calender"
-        android:icon="@drawable/ic_calendar_regular_black"
-        android:title="@string/calender" />
+        android:icon="@drawable/toggle_calender"
+         android:title="@string/calender" />
 
     <item
         android:id="@+id/searchh"
-        android:icon="@drawable/search_black"
-        android:title="@string/search" />
+        android:icon="@drawable/toggle_search"
+         android:title="@string/search" />
     <item
         android:id="@+id/social_media"
-        android:icon="@drawable/social_media_black"
+        android:icon="@drawable/toggle_social"
         android:title="@string/social_media" />
     <item
         android:id="@+id/notifi"
-        android:icon="@drawable/ic_calendar_regular_black"
+        android:icon="@drawable/toggle_notification"
         android:title="@string/notification" />
 </menu>

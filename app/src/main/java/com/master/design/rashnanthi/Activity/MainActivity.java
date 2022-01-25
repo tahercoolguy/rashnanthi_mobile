@@ -4,6 +4,7 @@ package com.master.design.rashnanthi.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -21,10 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     private User user;
 
-    View calender;
-    View searchh;
-    View social_media;
-    View notifi;
+
+    TextView calenderTxt, coachTxt, social_mediaTxt, notificationTxt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,77 +33,74 @@ public class MainActivity extends AppCompatActivity {
         user = new User(this);
         addFragment(new Calender_Fragment(), false);
 
-        calender = findViewById(R.id.calender);
-        searchh = findViewById(R.id.searchh);
-        social_media = findViewById(R.id.social_media);
-        notifi = findViewById(R.id.notifi);
+        calenderTxt = findViewById(R.id.calenderTxt);
+        coachTxt = findViewById(R.id.coachTxt);
+        social_mediaTxt = findViewById(R.id.social_mediaTxt);
+        notificationTxt = findViewById(R.id.notificationTxt);
 
         boolean ifcoachselected = false;
 
 
-            if (ifcoachselected) {
-                Intent intent = getIntent();
-                String op = intent.getStringExtra("something");
-                if (op != null) {
+        if (ifcoachselected) {
+            Intent intent = getIntent();
+            String op = intent.getStringExtra("something");
+            if (op != null) {
 
-                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                            new My_Account_Fragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                        new Coach_Account_Fragment()).addToBackStack(null).commit();
 
-                }
-
-
-            } else {
-                Intent intentt = getIntent();
-                String opp = intentt.getStringExtra("chirag");
-                if (opp != null) {
-
-                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                            new Coach_Account_Fragment()).addToBackStack(null).commit();
-
-                }
             }
 
 
+        } else {
+            Intent intentt = getIntent();
+            String opp = intentt.getStringExtra("chirag");
+            if (opp != null) {
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                        new Coach_Account_Fragment()).addToBackStack(null).commit();
+
+            }
+        }
 
 
-
-        calender.setOnClickListener(new View.OnClickListener() {
+        calenderTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                ifCalender = true;
+                ifCalenderClicked = true;
+
                 addFragment(new Calender_Fragment(), false);
-//                VisibilityFunction();
+                CalenderVisibilityFunction();
 
             }
         });
 
-        searchh.setOnClickListener(new View.OnClickListener() {
+        coachTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                ifSearch = true;
+                ifSearchClicked = true;
+                SearchVisibilityFunction();
 
-//                addFragment(new Calender_Fragment(), false);
-//                VisibilityFunction();
 
             }
         });
 
-        social_media.setOnClickListener(new View.OnClickListener() {
+        social_mediaTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                ifSocial = true;
+                ifSocialMedia = true;
+                SocialVisibilityFunction();
                 addFragment(new Social_Media_Fragment(), false);
-//                VisibilityFunction();
 
             }
         });
 
-        notifi.setOnClickListener(new View.OnClickListener() {
+        notificationTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                ifNotification = true;
-////
-////
+                ifNotification = true;
+                NotificationVisibilityFunction();
+//
 
             }
         });
@@ -111,6 +108,66 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    boolean ifCalenderClicked = false;
+    boolean ifSearchClicked = false;
+    boolean ifSocialMedia = false;
+    boolean ifNotification = false;
+
+    public void CalenderVisibilityFunction() {
+
+        if (ifCalenderClicked) {
+
+            calenderTxt.setBackground(getDrawable(R.drawable.ic_calendar_regular_red));
+            coachTxt.setBackground(getDrawable(R.drawable.search_black));
+            social_mediaTxt.setBackground(getDrawable(R.drawable.social_media_black));
+            notificationTxt.setBackground(getDrawable(R.drawable.notification_black));
+            addFragment(new Calender_Fragment(), false);
+
+
+        }
+
+    }
+
+    public void SearchVisibilityFunction() {
+
+        if (ifSearchClicked) {
+
+            calenderTxt.setBackground(getDrawable(R.drawable.ic_calendar_regular_black));
+            coachTxt.setBackground(getDrawable(R.drawable.search_red));
+            social_mediaTxt.setBackground(getDrawable(R.drawable.social_media_black));
+            notificationTxt.setBackground(getDrawable(R.drawable.notification_black));
+
+        }
+
+    }
+
+    public void SocialVisibilityFunction() {
+
+        if (ifSocialMedia) {
+
+            calenderTxt.setBackground(getDrawable(R.drawable.ic_calendar_regular_black));
+            coachTxt.setBackground(getDrawable(R.drawable.search_black));
+            social_mediaTxt.setBackground(getDrawable(R.drawable.social_media_red));
+            notificationTxt.setBackground(getDrawable(R.drawable.notification_black));
+            addFragment(new Social_Media_Fragment(), false);
+
+
+        }
+
+    }
+
+    public void NotificationVisibilityFunction() {
+
+        if (ifNotification) {
+
+            calenderTxt.setBackground(getDrawable(R.drawable.ic_calendar_regular_black));
+            coachTxt.setBackground(getDrawable(R.drawable.search_black));
+            social_mediaTxt.setBackground(getDrawable(R.drawable.social_media_black));
+            notificationTxt.setBackground(getDrawable(R.drawable.notification_red));
+
+        }
+
+    }
 
 
 //    private class DrawerItemClickListener implements ListView.OnItemClickListener {

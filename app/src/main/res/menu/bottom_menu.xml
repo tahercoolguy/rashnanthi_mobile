@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/calender"
+         android:icon="@drawable/toggle_calender"
+        android:title="@string/calender"
+           />
+
+    <item android:id="@+id/search"
+        android:icon="@drawable/toggle_search"
+          android:title="@string/search"/>
+
+    <item android:id="@+id/social_media"
+        android:icon="@drawable/toggle_social"
+        android:title="@string/social_media"/>
+
+    <item android:id="@+id/notification"
+        android:icon="@drawable/toggle_notification"
+        android:title="@string/notification"/>
+</menu>

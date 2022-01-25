@@ -16,15 +16,17 @@
 
 
             <ImageView
-                android:layout_width="78dp"
-                android:layout_height="78dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/splash_screen_logo">
 
             </ImageView>
 
             <TextView
-                android:layout_width="118dp"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginTop="30dp"
                 android:text="@string/thank_you"
                 android:textColor="@color/black"
