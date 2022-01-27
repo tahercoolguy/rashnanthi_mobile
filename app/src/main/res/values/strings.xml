@@ -98,6 +98,17 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
     <string name="title">Title</string>
 
+    <string name="march_3_2022"> 3 March 2022</string>
+    3 March 2022
+    <string name="event">EVENT</string>
+    <string name="my_event">MY EVENT</string>
+
+    <string name="coachh">COACH</string>
+
+
+    <string name="change_password">Change Password</string>
+
+
     <string name="today_6_pm">Today 6:00 pm</string>
 
     <string name="noticication_messege">The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps.</string>

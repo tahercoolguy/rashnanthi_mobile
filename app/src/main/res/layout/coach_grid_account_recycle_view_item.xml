@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp"
+
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/coach_grid_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/profile_img">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/like_coach_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="55dp"
+                android:src="@drawable/toggle_like_red_black"></ImageView>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_margin="5dp"
+                 android:src="@drawable/ic_whastapp"></ImageView>
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_margin="5dp"
+
+                android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>
+
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_margin="5dp"
+
+                android:src="@drawable/snapchat"></ImageView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

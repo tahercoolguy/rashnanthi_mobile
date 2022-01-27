@@ -2,19 +2,18 @@ package com.master.design.rashnanthi.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.master.design.rashnanthi.Activity.Add_new_post_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.R;
@@ -23,11 +22,13 @@ import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
-public class Coach_Account_Fragment extends Fragment {
+public class event_small_image_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-     RelativeLayout add_new_event_RL,view_event_RL,change_password_RL,edit_profile_RL;
+
+    ImageView even_back_Img,menu_1_menu;
+
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
@@ -54,45 +55,24 @@ public class Coach_Account_Fragment extends Fragment {
 
 
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.coach_account_fragment_layout, container, false);
+            rootView = inflater.inflate(R.layout.event_small_image_fragment_layout, container, false);
             ButterKnife.bind(this,rootView);
+            even_back_Img=rootView.findViewById(R.id.even_back_Img);
+            menu_1_menu=rootView.findViewById(R.id.menu_1_menu);
 
-            add_new_event_RL=rootView.findViewById(R.id.add_new_event_RL);
-            view_event_RL=rootView.findViewById(R.id.view_event_RL);
-            change_password_RL=rootView.findViewById(R.id.change_password_RL);
-            edit_profile_RL=rootView.findViewById(R.id.edit_profile_RL);
-
-            add_new_event_RL.setOnClickListener(new View.OnClickListener() {
+            even_back_Img.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(((MainActivity) context), Add_new_post_1.class));
-
-
-                }
-            });
-            view_event_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    ((MainActivity) context).addFragment(new My_Event_1_Fragment() , false);
-
-                }
-            });
-            change_password_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-            edit_profile_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
 
                 }
             });
 
+            menu_1_menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-
+                }
+            });
 
 //            idMapping();
 //

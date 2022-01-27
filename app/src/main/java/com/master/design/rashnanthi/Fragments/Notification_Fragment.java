@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -17,9 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Adapter.Adapter_Notification;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.NotificationDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
@@ -30,14 +36,14 @@ public class Notification_Fragment extends Fragment {
     private Context context;
     RecyclerView notification_Rcv;
     ImageView notification_back;
-    RelativeLayout notificatiom_messege_RL;
+    LinearLayoutManager layoutManager;
+
+    private ArrayList<NotificationDM> notificationDMArrayList;
+     RelativeLayout notificatiom_messege_RL;
+    Adapter adapter;
 
 
 
-//    @BindView(R.id.progress_bar) ProgressBar progress_bar;
-//    @BindView(R.id.txt_error) TextView txt_error;
-
-//    @BindView(R.id.layout_parent) LinearLayout layout_parent;
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -66,26 +72,44 @@ public class Notification_Fragment extends Fragment {
             notification_back=rootView.findViewById(R.id.notification_back);
             notificatiom_messege_RL=rootView.findViewById(R.id.notificatiom_messege_RL);
 
+            notification_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+
+                }
+            });
+
+            notificationDMArrayList = new ArrayList<>();
+            notification_Rcv = rootView.findViewById(R.id.notification_Rcv);
+
+
+            ArrayList<NotificationDM>notificationDMArrayList =new ArrayList<>();
+
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
+
             notification_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-//            notification_Rcv.setAdapter(new Adapter_Notificaion());
+            notification_Rcv.setAdapter(new Adapter_Notification(((MainActivity) context), notificationDMArrayList));
 
 
-//            idMapping();
-//
-//            setClickListeners();
-//            setDetails();
         }
         return rootView;
     }
-//
-//    private void idMapping() {
-//
-//
-//    }
-//
-//    private void setClickListeners() {
-//
-//    }
+
+
 //
 //    @Override
 //    public void onResume() {

@@ -2,37 +2,45 @@ package com.master.design.rashnanthi.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.master.design.rashnanthi.Activity.Add_new_post_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Adapter.Adapter_Coach;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CoachDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
-public class Coach_Account_Fragment extends Fragment {
+public class Coach_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-     RelativeLayout add_new_event_RL,view_event_RL,change_password_RL,edit_profile_RL;
+    private ArrayList<CoachDM> coachDMArrayList;
+
+    RecyclerView coach_Rcv;
+    ImageView coach_menu;
+
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
 
-//    @BindView(R.id.layout_parent) LinearLayout layout_parent;
+    //    @BindView(R.id.layout_parent) LinearLayout layout_parent;
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -54,63 +62,34 @@ public class Coach_Account_Fragment extends Fragment {
 
 
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.coach_account_fragment_layout, container, false);
-            ButterKnife.bind(this,rootView);
+            rootView = inflater.inflate(R.layout.coach, container, false);
+            ButterKnife.bind(this, rootView);
+            coach_Rcv = rootView.findViewById(R.id.coach_Rcv);
+            coach_menu = rootView.findViewById(R.id.coach_menu);
 
-            add_new_event_RL=rootView.findViewById(R.id.add_new_event_RL);
-            view_event_RL=rootView.findViewById(R.id.view_event_RL);
-            change_password_RL=rootView.findViewById(R.id.change_password_RL);
-            edit_profile_RL=rootView.findViewById(R.id.edit_profile_RL);
 
-            add_new_event_RL.setOnClickListener(new View.OnClickListener() {
+            coach_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(((MainActivity) context), Add_new_post_1.class));
-
-
-                }
-            });
-            view_event_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    ((MainActivity) context).addFragment(new My_Event_1_Fragment() , false);
-
-                }
-            });
-            change_password_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-            edit_profile_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
 
                 }
             });
 
+            coachDMArrayList = new ArrayList<>();
 
 
+            ArrayList<CoachDM> coachDMArrayList = new ArrayList<>();
 
-//            idMapping();
-//
-//            setClickListeners();
-//            setDetails();
+            coachDMArrayList.add(new CoachDM(""));
+
+            coach_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
+            coach_Rcv.setAdapter(new Adapter_Coach(((MainActivity) context), coachDMArrayList));
+
 
         }
         return rootView;
     }
-//
-//    private void idMapping() {
-//
-//
-//    }
-//
-//    private void setClickListeners() {
-//
-//    }
+
 //
 //    @Override
 //    public void onResume() {

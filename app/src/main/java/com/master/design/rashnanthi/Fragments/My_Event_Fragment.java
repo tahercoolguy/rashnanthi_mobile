@@ -2,37 +2,44 @@ package com.master.design.rashnanthi.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.master.design.rashnanthi.Activity.Add_new_post_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Adapter.Adapter_My_Event;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.My_Event_DM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
-public class Coach_Account_Fragment extends Fragment {
+public class My_Event_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-     RelativeLayout add_new_event_RL,view_event_RL,change_password_RL,edit_profile_RL;
+    ImageView back_my_event;
+    RecyclerView my_event_Rcv;
+    private ArrayList<My_Event_DM> my_event_dmArrayList;
+
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
 
-//    @BindView(R.id.layout_parent) LinearLayout layout_parent;
+    //    @BindView(R.id.layout_parent) LinearLayout layout_parent;
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -53,64 +60,48 @@ public class Coach_Account_Fragment extends Fragment {
         ((MainActivity) context).setTitle(getString(R.string.home));
 
 
+
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.coach_account_fragment_layout, container, false);
-            ButterKnife.bind(this,rootView);
+            rootView = inflater.inflate(R.layout.my_event_fragment_layout, container, false);
 
-            add_new_event_RL=rootView.findViewById(R.id.add_new_event_RL);
-            view_event_RL=rootView.findViewById(R.id.view_event_RL);
-            change_password_RL=rootView.findViewById(R.id.change_password_RL);
-            edit_profile_RL=rootView.findViewById(R.id.edit_profile_RL);
+            back_my_event = rootView.findViewById(R.id.back_my_event);
 
-            add_new_event_RL.setOnClickListener(new View.OnClickListener() {
+            my_event_Rcv = rootView.findViewById(R.id.my_event_Rcv);
+            back_my_event.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(((MainActivity) context), Add_new_post_1.class));
-
-
-                }
-            });
-            view_event_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    ((MainActivity) context).addFragment(new My_Event_1_Fragment() , false);
-
-                }
-            });
-            change_password_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-            edit_profile_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
 
                 }
             });
 
+            my_event_dmArrayList = new ArrayList<>();
+            my_event_Rcv = rootView.findViewById(R.id.my_event_Rcv);
 
 
+            ArrayList<My_Event_DM> my_event_dmArrayList = new ArrayList<>();
 
-//            idMapping();
-//
-//            setClickListeners();
-//            setDetails();
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+
+
+            my_event_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
+            my_event_Rcv.setAdapter(new Adapter_My_Event(((MainActivity) context), my_event_dmArrayList));
+
 
         }
         return rootView;
     }
-//
-//    private void idMapping() {
-//
-//
-//    }
-//
-//    private void setClickListeners() {
-//
-//    }
+
 //
 //    @Override
 //    public void onResume() {
@@ -149,7 +140,6 @@ public class Coach_Account_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
     }
 
     @Override

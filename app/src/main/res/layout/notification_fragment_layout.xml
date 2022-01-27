@@ -10,10 +10,11 @@
     <LinearLayout
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
-
         android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="90dp"
 
         android:orientation="vertical">
 
@@ -23,18 +24,15 @@
             android:layout_marginTop="60dp"
             android:orientation="horizontal">
 
-           <androidx.recyclerview.widget.RecyclerView
-               android:layout_width="match_parent"
-               android:id="@+id/notification_Rcv"
-               android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notification_Rcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-           </androidx.recyclerview.widget.RecyclerView>
-
-
+            </androidx.recyclerview.widget.RecyclerView>
 
 
         </LinearLayout>
-
 
 
     </LinearLayout>

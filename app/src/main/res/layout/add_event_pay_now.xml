@@ -148,10 +148,11 @@
                         android:background="@drawable/toggle_payment_caard_selecter"></TextView>
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="31dp"
+                        android:layout_height="22dp"
                         android:layout_weight="3"
-                        android:src="@drawable/toggle_calender">
+                        android:layout_gravity="center"
+                        android:src="@drawable/knet">
 
                     </ImageView>
 
@@ -181,10 +182,11 @@
                         android:background="@drawable/ic_unselected_circle"></TextView>
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="21dp"
+                        android:layout_height="21dp"
                         android:layout_weight="3"
-                        android:src="@drawable/toggle_calender">
+                        android:layout_gravity="center"
+                        android:src="@drawable/my_fatoora">
 
                     </ImageView>
 
@@ -213,17 +215,17 @@
                         android:background="@drawable/ic_unselected_circle"></TextView>
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="34dp"
+                        android:layout_height="24dp"
                         android:layout_weight="3"
-                        android:src="@drawable/toggle_calender">
+                        android:src="@drawable/visa">
                     </ImageView>
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="39dp"
+                        android:layout_height="26dp"
                         android:layout_weight="3"
-                        android:src="@drawable/toggle_calender">
+                        android:src="@drawable/mastercard">
 
                     </ImageView>
 

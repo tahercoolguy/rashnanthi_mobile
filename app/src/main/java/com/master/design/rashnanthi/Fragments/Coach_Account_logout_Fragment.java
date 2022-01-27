@@ -23,11 +23,12 @@ import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
-public class Coach_Account_Fragment extends Fragment {
+public class Coach_Account_logout_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-     RelativeLayout add_new_event_RL,view_event_RL,change_password_RL,edit_profile_RL;
+
+    RelativeLayout change_password_RL,logout_RL;
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
@@ -54,44 +55,24 @@ public class Coach_Account_Fragment extends Fragment {
 
 
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.coach_account_fragment_layout, container, false);
+            rootView = inflater.inflate(R.layout.coach_account_logout_fragment_layout, container, false);
             ButterKnife.bind(this,rootView);
-
-            add_new_event_RL=rootView.findViewById(R.id.add_new_event_RL);
-            view_event_RL=rootView.findViewById(R.id.view_event_RL);
             change_password_RL=rootView.findViewById(R.id.change_password_RL);
-            edit_profile_RL=rootView.findViewById(R.id.edit_profile_RL);
+            logout_RL=rootView.findViewById(R.id.logout_RL);
 
-            add_new_event_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(((MainActivity) context), Add_new_post_1.class));
-
-
-                }
-            });
-            view_event_RL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    ((MainActivity) context).addFragment(new My_Event_1_Fragment() , false);
-
-                }
-            });
             change_password_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
 
                 }
             });
-            edit_profile_RL.setOnClickListener(new View.OnClickListener() {
+
+            logout_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
 
                 }
             });
-
-
 
 
 //            idMapping();
