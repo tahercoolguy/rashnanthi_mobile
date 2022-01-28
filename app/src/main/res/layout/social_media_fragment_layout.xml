@@ -30,7 +30,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="300dp"
-                android:src="@drawable/insta_logo">
+                android:src="@drawable/ic_instaaaaaaaaaaaaaa">
 
             </ImageView>
 

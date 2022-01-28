@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,6 +64,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         viewHolder.img_1.setImageResource(my_event_1DMS.get(position).getImageview1());
 
         viewHolder.img_2.setImageResource(my_event_1DMS.get(position).getImageview2());
+
+
 
 
         viewHolder.img_1.setOnClickListener(new View.OnClickListener() {

@@ -93,6 +93,9 @@ public class Coach_Fragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
+                    ((MainActivity) context).addFragment(new coach_grid_account_Fragment() , false);
+
+
                 }
             });
 

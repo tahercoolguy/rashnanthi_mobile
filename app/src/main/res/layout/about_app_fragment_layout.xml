@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:animateLayoutChanges="true"
-android:background="@color/white">
-
-<LinearLayout
-    android:id="@+id/layout_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="60dp"
-    android:gravity="center"
-    android:layout_marginBottom="65dp"
-    android:orientation="vertical">
+    android:animateLayoutChanges="true"
+    android:background="@color/white">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/layout_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="20dp"
-         android:layout_marginLeft="20dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="65dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="@dimen/marginLeft"
-            android:layout_marginRight="@dimen/marginRight"
-            android:textSize="17dp"
-            android:text="@string/about_appp1"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
 
-        </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/marginRight"
+                android:text="@string/about_appp1"
+                android:textSize="19dp">
 
-    </LinearLayout>
+            </TextView>
+
+        </LinearLayout>
 
 
+    </ScrollView>
 
-</LinearLayout>
-
-<include layout="@layout/about_app_bar_drawer" />
+    <include layout="@layout/about_app_bar_drawer" />
 </RelativeLayout>

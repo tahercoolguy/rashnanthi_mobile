@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.master.design.rashnanthi.Fragments.Calender_Fragment;
 import com.master.design.rashnanthi.Fragments.Coach_Account_Fragment;
+import com.master.design.rashnanthi.Fragments.Coach_Fragment;
 import com.master.design.rashnanthi.Fragments.My_Account_Fragment;
 import com.master.design.rashnanthi.Fragments.Notification_Fragment;
 import com.master.design.rashnanthi.Fragments.Social_Media_Fragment;
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifSearchClicked = true;
                 SearchVisibilityFunction();
+               addFragment(new Coach_Fragment(), false);
+
 
 
             }
@@ -139,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
             coachTxt.setBackground(getDrawable(R.drawable.search_red));
             social_mediaTxt.setBackground(getDrawable(R.drawable.social_media_black));
             notificationTxt.setBackground(getDrawable(R.drawable.notification_black));
+            addFragment(new Coach_Fragment(), false);
+
 
         }
 

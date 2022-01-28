@@ -5,27 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.DataModel.CoachDM;
+import com.master.design.rashnanthi.DataModel.My_Event_DM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 
 import java.util.ArrayList;
 
-public class Adapter_Coach extends RecyclerView.Adapter<Adapter_Coach.ViewHolder> {
+public class Adapter_Coach_Fgmt extends RecyclerView.Adapter<Adapter_Coach_Fgmt.ViewHolder> {
     private Context context;
-    private ArrayList<CoachDM> coachDMS;
-    User user;
+    private ArrayList<CoachDM> coachDMArrayList;
+     User user;
 
 
     int selectedPosition = 0;
 
-    public Adapter_Coach(Context context, ArrayList<CoachDM> coachDMS) {
+    public Adapter_Coach_Fgmt(Context context, ArrayList<CoachDM> coachDMArrayList) {
         this.context = context;
-        this.coachDMS = coachDMS;
+        this.coachDMArrayList = coachDMArrayList;
         user = new User(context);
 
     }
@@ -33,15 +35,15 @@ public class Adapter_Coach extends RecyclerView.Adapter<Adapter_Coach.ViewHolder
 
     @NonNull
     @Override
-    public Adapter_Coach.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Adapter_Coach_Fgmt.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.coach_recycle_view_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        Adapter_Coach.ViewHolder vh = new Adapter_Coach.ViewHolder(v);
+        Adapter_Coach_Fgmt.ViewHolder vh = new Adapter_Coach_Fgmt.ViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter_Coach.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Adapter_Coach_Fgmt.ViewHolder holder, int position) {
         setDetails(holder, position);
     }
 
@@ -52,34 +54,36 @@ public class Adapter_Coach extends RecyclerView.Adapter<Adapter_Coach.ViewHolder
 
     @Override
     public int getItemCount() {
-        return coachDMS.size();
+        return coachDMArrayList.size();
     }
 
 
-    private void setDetails(Adapter_Coach.ViewHolder viewHolder, int position) {
-//         viewHolder.coach_Img.setImageResource(coachDMS.get(position).get());
+    private void setDetails(Adapter_Coach_Fgmt.ViewHolder viewHolder, int position) {
 
-        viewHolder.coach_Img.setOnClickListener(new View.OnClickListener() {
+
+
+        viewHolder.imgview.setImageResource(coachDMArrayList.get(position).getCoach_Image());
+
+        viewHolder.imgview.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
             }
         });
-
-
-
     }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView coach_Img;
+         ImageView imgview;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            coach_Img = itemView.findViewById(R.id.coach_img);
+
+            imgview = itemView.findViewById(R.id.coach_img);
 
 
+            //          
         }
     }
 }

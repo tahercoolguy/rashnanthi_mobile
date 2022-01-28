@@ -12,22 +12,29 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
+ import com.master.design.rashnanthi.Adapter.Adapter_Coach__grid_Fgmt;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CoachGridDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
-import butterknife.ButterKnife;
+import java.util.ArrayList;
+
 import it.sephiroth.android.library.widget.HListView;
 
 public class coach_grid_account_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-    ImageView coach_menu;
-    RecyclerView my_account_grid_Rcv;
+     RecyclerView my_account_grid_Rcv;
+     ImageView coach_menu;
+    private ArrayList<CoachGridDM> coachGridDMArrayList;
 
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
@@ -52,26 +59,79 @@ public class coach_grid_account_Fragment extends Fragment {
 //        progressDialog.setIndeterminate(true);
 //        progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
+//        coach_menu =rootView.findViewById(R.id.coach_menu);
+//
+//        coach_menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity) context).addFragment(new Menu_1_Fragment() , false);
+//
+//            }
+//        });
 
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.coach_grid_account_fragment_layout, container, false);
-            ButterKnife.bind(this, rootView);
 
-            coach_menu = rootView.findViewById(R.id.coach_menu);
-            my_account_grid_Rcv=rootView.findViewById(R.id.my_account_grid_Rcv);
+             my_account_grid_Rcv = rootView.findViewById(R.id.my_account_grid_Rcv);
+
+            coachGridDMArrayList = new ArrayList<>();
 
 
-            coach_menu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                }
-            });
+            ArrayList<CoachGridDM> coachGridDMArrayList = new ArrayList<>();
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.lady,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.girl,R.drawable.toggle_like_red_black));
+            coachGridDMArrayList.add(new CoachGridDM(R.drawable.boy,R.drawable.toggle_like_red_black));
+
+            int numberOfColumns = 3;
+            my_account_grid_Rcv.setLayoutManager(new GridLayoutManager(((MainActivity) context), numberOfColumns));
+
+            my_account_grid_Rcv.setAdapter(new Adapter_Coach__grid_Fgmt(((MainActivity) context), coachGridDMArrayList));
+
+
+//            my_account_grid_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
+//            my_account_grid_Rcv.setAdapter(new Adapter_Coach_Grid_Fgmt(((MainActivity) context), coachGridDMArrayList));
+
+
 
 
         }
         return rootView;
     }
+
 
 //
 //    private void setDetails() {

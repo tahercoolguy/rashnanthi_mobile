@@ -16,4 +16,8 @@
         <item name="android:fontFamily">@font/avenir_demi</item>
     </style>
 
+    <style name="red_hat_regular">
+        <item name="android:fontFamily">@font/red_hat_display_regular</item>
+    </style>
+
 </resources>

@@ -77,7 +77,7 @@ public class about_app_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    ((MainActivity) context).addFragment(new Coach_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
 
                 }
             });
