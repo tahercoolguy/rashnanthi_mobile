@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
-import com.master.design.rashnanthi.Adapter.Adapter_Coach;
+import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
 import com.master.design.rashnanthi.R;
@@ -34,7 +34,7 @@ public class Coach_Fragment extends Fragment {
     private ArrayList<CoachDM> coachDMArrayList;
 
     RecyclerView coach_Rcv;
-    ImageView coach_menu;
+    ImageView coach_grid_account;
 
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
@@ -65,25 +65,63 @@ public class Coach_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.coach, container, false);
             ButterKnife.bind(this, rootView);
             coach_Rcv = rootView.findViewById(R.id.coach_Rcv);
-            coach_menu = rootView.findViewById(R.id.coach_menu);
+//            coach_menu = rootView.findViewById(R.id.coach_menu);
+            coach_grid_account = rootView.findViewById(R.id.coach_grid_account);
+//            whatsapp_IMg=rootView.findViewById(R.id.whatsapp_IMg);
 
+//            whatsapp_IMg.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
 
-            coach_menu.setOnClickListener(new View.OnClickListener() {
+//            insta_img.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+//            snapchaht_Img.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+
+            coach_grid_account.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
             });
 
+
+//            coach_menu.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+
             coachDMArrayList = new ArrayList<>();
 
 
             ArrayList<CoachDM> coachDMArrayList = new ArrayList<>();
 
-            coachDMArrayList.add(new CoachDM(""));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
+            coachDMArrayList.add(new CoachDM(R.drawable.images));
 
             coach_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-            coach_Rcv.setAdapter(new Adapter_Coach(((MainActivity) context), coachDMArrayList));
+            coach_Rcv.setAdapter(new Adapter_Coach_Fgmt(((MainActivity) context), coachDMArrayList));
 
 
         }

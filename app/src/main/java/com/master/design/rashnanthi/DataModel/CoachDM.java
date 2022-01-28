@@ -2,17 +2,17 @@ package com.master.design.rashnanthi.DataModel;
 
 public class CoachDM {
 
-    String Coach_Image;
+    int Coach_Image;
 
-    public CoachDM(String coach_Image) {
+    public CoachDM(int coach_Image) {
         Coach_Image = coach_Image;
     }
 
-    public String getCoach_Image() {
+    public int getCoach_Image() {
         return Coach_Image;
     }
 
-    public void setCoach_Image(String coach_Image) {
+    public void setCoach_Image(int coach_Image) {
         Coach_Image = coach_Image;
     }
 }
