@@ -121,6 +121,76 @@ public class Calender_Fragment extends Fragment {
 //
 //                }
 //            });
+
+
+
+//            Spinner spinner = (Spinner) rootView.findViewById(R.id.calender_page_country_spinner);
+//// Create an ArrayAdapter using the string array and a default spinner layout
+//            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+//                    R.array.planets_array, android.R.layout.simple_dropdown_item_1line);
+//// Specify the layout to use when the list of choices appears
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//// Apply the adapter to the spinner
+//            spinner.setAdapter(adapter);
+
+
+
+
+            ArrayList<County_ItemDM> county_itemDMS;
+
+
+
+
+            county_itemDMS = new ArrayList<>();
+//            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.ic_oman));
+//            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.ic_oman));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia",R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("Qatar",R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Bahrain",R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates",R.drawable.ic_united_arab_emirates));
+
+//            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.ic_oman));
+//            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.ic_oman));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia",R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("Qatar",R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Bahrain",R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates",R.drawable.ic_united_arab_emirates));
+
+
+
+
+
+
+            Adapter_Country_Spinner adapter_country_spinner;
+
+            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
+
+
+
+
+
+             calender_page_country_spinner.setAdapter(adapter_country_spinner);
+
+
+//            calender_page_country_spinner.setOnItemSelectedListener(
+//                    new AdapterView.OnItemSelectedListener() {
+//                        @Override
+//                        public void onItemSelected(AdapterView<?> parent,
+//                                                   View view, int position, long id)
+//                        {
+//
+//                            // It returns the clicked item.
+//                            County_ItemDM clickedItem = (County_ItemDM)
+//                                    parent.getItemAtPosition(position);
+//                            String name = clickedItem.getMcountryName();
+////                            Toast.makeText(MainActivity.this, name + " selected", Toast.LENGTH_SHORT).show();
+//                        }
+//                        @Override
+//                        public void onNothingSelected(AdapterView<?> parent)
+//                        {
+//                        }
+//                    });
+
         }
         return rootView;
     }

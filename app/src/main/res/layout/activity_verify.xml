@@ -108,20 +108,22 @@
 <!--            </EditText>-->
 
 <!--        </LinearLayout>-->
-<!--        <in.aabhasjindal.otptextview.OtpTextView-->
-<!--            android:id="@+id/otp_view"-->
-<!--            android:layout_width="204dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textColor="#ffffff"-->
-<!--            app:bar_enabled="true"-->
-<!--            app:bar_height="2dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            app:height="40dp"-->
-<!--            app:length="4"-->
-<!--            app:otp="1234"-->
-<!--            app:otp_text_size="24dp"-->
-<!--            app:width="40dp"-->
-<!--            tools:ignore="MissingClass" />-->
+        <in.aabhasjindal.otptextview.OtpTextView
+            android:id="@+id/otp_view"
+            android:layout_marginTop="20dp"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+             app:bar_height="40dp"
+            android:layout_gravity="center"
+            app:otp_box_background="@drawable/rounded_rectangle_whitee"
+            app:height="40dp"
+             app:length="4"
+            android:layout_marginBottom="20dp"
+            android:elevation="3dp"
+            app:otp="1234"
+            app:otp_text_size="24dp"
+            app:width="40dp" />
         <TextView
             android:id="@+id/resend_otpTxt"
             android:layout_width="match_parent"

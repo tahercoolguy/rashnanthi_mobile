@@ -18,8 +18,7 @@ import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
-import butterknife.ButterKnife;
-import it.sephiroth.android.library.widget.HListView;
+ import it.sephiroth.android.library.widget.HListView;
 
 public class Term_And_Condition_Fragment extends Fragment {
 
@@ -54,7 +53,6 @@ public class Term_And_Condition_Fragment extends Fragment {
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.term_and_condition_fragment_layout, container, false);
-            ButterKnife.bind(this,rootView);
 
 //            idMapping();
 //

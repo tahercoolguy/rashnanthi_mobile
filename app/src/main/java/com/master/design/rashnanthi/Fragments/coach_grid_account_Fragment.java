@@ -33,7 +33,7 @@ public class coach_grid_account_Fragment extends Fragment {
     private View rootView;
     private Context context;
      RecyclerView my_account_grid_Rcv;
-     ImageView coach_menu;
+//     ImageView coach_menu,like_coach_grid;
     private ArrayList<CoachGridDM> coachGridDMArrayList;
 
 
@@ -69,6 +69,8 @@ public class coach_grid_account_Fragment extends Fragment {
 //            }
 //        });
 
+
+//        like_coach_grid=rootView.findViewById(R.id.like_coach_grid);
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.coach_grid_account_fragment_layout, container, false);
@@ -131,6 +133,7 @@ public class coach_grid_account_Fragment extends Fragment {
         }
         return rootView;
     }
+
 
 
 //

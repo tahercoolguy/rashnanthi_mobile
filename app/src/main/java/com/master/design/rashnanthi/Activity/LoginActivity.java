@@ -44,12 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     ConnectionDetector connectionDetector;
     User user;
 //    DialogUtil dialogUtil;
+//
+//    Button registerBtn;
 
-    Button registerBtn;
 
-
-//    @BindView(R.id.countryImg)
-//    ImageView CountryImg;
+    @BindView(R.id.register_now_Btn)
+    Button register_now_Btn;
 //
 //    @BindView(R.id.countrycodeET)
 //    EditText CountrycodeET;
@@ -82,13 +82,13 @@ public class LoginActivity extends AppCompatActivity {
 //    {
 //        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
 //    }
-
-
+//
+//
 //    @NotEmpty
 //    @Email
 //    @BindView(R.id.emailET)
 //    EditText EmailET;
-//
+
 //    @NotEmpty
 //    @BindView(R.id.passwordET)
 //    EditText passwordET;
@@ -127,12 +127,12 @@ public class LoginActivity extends AppCompatActivity {
 //
 //    }
 //
-//    @OnClick(R.id.signUpBtn)
-//    public void signUpBtn()
-//    {
-//        Intent intent=new Intent(LoginActivity.this,SignUpActivity.class);
-//        startActivity(intent);
-//    }
+    @OnClick(R.id.register_now_Btn)
+    public void RegisterBtn()
+    {
+        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+                finish();
+    }
 //
 //    @OnClick(R.id.guestBtn)
 //    public void guestBtn()
@@ -152,16 +152,16 @@ public class LoginActivity extends AppCompatActivity {
 //        validator=new Validator(this);
 //        validator.setValidationListener(this);
 
-        registerBtn=findViewById(R.id.registerBtn);
-
-
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
-                finish();
-             }
-        });
+//        registerBtn=findViewById(R.id.registerBtn);
+//
+//
+//        registerBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+//                finish();
+//             }
+//        });
 
 
     }

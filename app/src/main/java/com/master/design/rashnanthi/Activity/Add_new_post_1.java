@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +16,11 @@ import com.master.design.rashnanthi.R;
 public class Add_new_post_1 extends AppCompatActivity {
 
     ImageView add_new_post_pay_back;
-    Button pay_now_Btn;
+    RadioButton term_conditionRB;
+    Button pay_now_Btn,continue_Btn;
+    EditText post_for_free_nowET,add_more_eventET;
+    TextView you_will_be_uploaded_withon_24_hours;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

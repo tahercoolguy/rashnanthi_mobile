@@ -17,16 +17,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
             android:layout_margin="20dp"
+            android:layout_marginRight="10dp"
 
-             android:orientation="vertical">
+            android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginTop="@dimen/marginTop"
                 android:layout_marginRight="@dimen/marginRight"
                 android:orientation="vertical">
 
@@ -42,6 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="@dimen/marginRight"
                     android:layout_weight="10"
                     android:orientation="horizontal">
@@ -99,6 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="@dimen/marginRight"
                     android:text="@string/whastapp"></TextView>
 
@@ -111,13 +113,11 @@
 
                     <ImageView
                         android:id="@+id/whatsapp_IMg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/margin"
-                        android:elevation="3dp"
                         android:hint="Date"
-                        android:padding="10dp"
                         android:src="@drawable/ic_whastapp"
                         android:textSize="15sp">
 
@@ -176,11 +176,12 @@
                     android:layout_marginLeft="23dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:elevation="@dimen/elevation"
+                    android:padding="5dp">
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="4dp"
                         android:src="@drawable/snapchat">
 
@@ -205,15 +206,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="23dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:elevation="@dimen/elevation"
+                    android:padding="5dp">
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="4dp"
-                        android:src="@drawable/insta_logo">
+                        android:src="@drawable/ic_instaaaaaaaaaaaaaa">
 
                     </ImageView>
 
@@ -245,13 +248,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="23dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:elevation="@dimen/elevation"
+                    android:padding="5dp">
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="4dp"
                         android:src="@drawable/ic_web">
 
@@ -263,6 +268,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/country"
                     android:textSize="@dimen/text_size_title">
 
@@ -328,17 +334,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp">
 
                     <RelativeLayout
-                        android:layout_width="140dp"
+                        android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_weight="10"
                         android:background="@drawable/rounded_rectangle_whitee"
-                        android:elevation="3dp"
+                        android:elevation="1dp"
                         android:gravity="center"
                         android:text="@string/story_photo_video">
 
@@ -352,13 +358,13 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="140dp"
+                        android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/margin"
                         android:layout_weight="10"
                         android:background="@drawable/rounded_rectangle_whitee"
-                        android:elevation="3dp"
+                        android:elevation="1dp"
                         android:gravity="center"
                         android:text="@string/even_photo_video">
 
@@ -403,7 +409,7 @@
                         android:layout_height="70dp"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:elevation="@dimen/elevation"
+                        android:elevation="1dp"
                         android:src="@drawable/country_img1938">
 
                     </ImageView>
@@ -415,7 +421,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="10"
                         android:background="@drawable/rounded_corner_white"
-                        android:elevation="3dp"
+                        android:elevation="1dp"
                         android:hint="Kuwait"
                         android:padding="10dp"
                         android:textSize="15sp">
@@ -453,12 +459,12 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
-                        android:layout_width="140dp"
+                        android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_weight="10"
                         android:background="@drawable/rounded_rectangle_whitee"
-                        android:elevation="3dp"
+                        android:elevation="1dp"
                         android:gravity="center"
                         android:text="@string/story_photo_video">
 
@@ -472,13 +478,13 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="140dp"
+                        android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/margin"
                         android:layout_weight="10"
                         android:background="@drawable/rounded_rectangle_whitee"
-                        android:elevation="3dp"
+                        android:elevation="1dp"
                         android:gravity="center"
                         android:text="@string/even_photo_video">
 
@@ -501,32 +507,30 @@
                     android:text="@string/ddmmyy"></TextView>
 
 
-
                 <EditText
                     android:id="@+id/add_more_eventET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="@string/add_more_event"
-                     android:textColor="@color/colorPrimary"
                     android:layout_marginRight="@dimen/marginRight"
                     android:background="@drawable/rounded_corner_red_border"
                     android:elevation="@dimen/elevation"
-                    android:padding="15dp">
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/add_more_event"
+                    android:textColor="@color/colorPrimary">
 
                 </EditText>
 
 
-
-
                 <TextView
+                    android:id="@+id/you_will_be_uploaded_withon_24_hours"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="40dp"
-                     android:gravity="center"
+                    android:gravity="center"
 
                     android:text="@string/your_post_will_be_uploaded_within_24_hours"
                     android:textSize="@dimen/text_size_title">
@@ -534,12 +538,13 @@
                 </TextView>
 
                 <RadioButton
+                    android:id="@+id/term_conditionRB"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/i_accept_term_and_condition"
 
-                    android:layout_height="wrap_content">
+                    android:text="@string/i_accept_term_and_condition">
 
                 </RadioButton>
 
@@ -548,9 +553,9 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
-                     android:background="@drawable/button_rounded_primary_color_selector"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/button_rounded_primary_color_selector"
 
                     android:text="@string/pay_now"
                     android:textColor="@color/white"
@@ -582,7 +587,7 @@
 
                     android:elevation="@dimen/elevation"
                     android:gravity="center"
-                    android:padding="15dp"
+                    android:padding="5dp"
                     android:text="@string/post_for_free_now"
                     android:textColor="@color/colorPrimary">
 

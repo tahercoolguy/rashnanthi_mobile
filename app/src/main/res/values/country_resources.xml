@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="planets_array">
+        <item>@string/kuwait</item>
+        <item>@string/bahrain</item>
+        <item>@string/oman</item>
+        <item>@string/qatar</item>
+        <item>@string/saudi_arabia</item>
+        <item>@string/united_arab_emirates</item>
+        <item>@string/kuwait</item>
+        <item>@string/bahrain</item>
+        <item>@string/oman</item>
+        <item>@string/qatar</item>
+        <item>@string/saudi_arabia</item>
+        <item>@string/united_arab_emirates</item>
+
+
+    </string-array>
+</resources>
