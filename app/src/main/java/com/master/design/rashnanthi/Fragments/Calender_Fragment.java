@@ -8,22 +8,23 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
-import com.master.design.rashnanthi.Adapter.Country_Adapter;
+import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
 import com.master.design.rashnanthi.Controller.AppController;
-import com.master.design.rashnanthi.DataModel.County_Item;
+import com.master.design.rashnanthi.DataModel.County_ItemDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
@@ -33,8 +34,8 @@ public class Calender_Fragment extends Fragment {
     private View rootView;
     private Context context;
     ImageView home_menu;
-    private ArrayList<County_Item> county_items;
-    private Country_Adapter country_adapter;
+    private ArrayList<County_ItemDM> county_itemDMS;
+    Spinner calender_page_country_spinner;
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
@@ -71,65 +72,60 @@ public class Calender_Fragment extends Fragment {
 
                 }
             });
-//            idMapping();
-            initList();
-
-            Spinner spinnercountries =rootView.findViewById(R.id.country_spinner);
-
-            country_adapter =new Country_Adapter( ((MainActivity) context),county_items);
-            spinnercountries.setAdapter(country_adapter);
-
-           spinnercountries.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-               @Override
-               public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                   County_Item clickedItem = (County_Item) adapterView.getAdapter();
-//                   String clickedCountryName=clickedItem.getMcountryName();
-//                   int clickedCountryImage=clickedItem.getMcountryImage();
-//                   Toast.makeText((MainActivity)context,clickedCountryName+"Selected",Toast.LENGTH_SHORT);
-//                   Toast.makeText((MainActivity)context,clickedCountryImage+"Selected",Toast.LENGTH_SHORT);
 
 
-               }
+            calender_page_country_spinner=rootView.findViewById(R.id.calender_page_country_spinner);
 
-               @Override
-               public void onNothingSelected(AdapterView<?> adapterView) {
+            county_itemDMS = new ArrayList<>();
+            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.ic_united_arab_emirates));
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.ic_oman));
+            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
 
-               }
-           });
+            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.ic_united_arab_emirates));
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.ic_oman));
+            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
+
+
+
+//            Adapter_Country_Spinner adapter = new Adapter_Country_Spinner(this, R.layout.country_spinner_calender_row, county_itemDMS);
+//            adapter.setDropDownViewResource(R.layout.country_spinner_calender_row);
+//            county_itemDMS.setAdapter(adapter);
+
+
+
+
+
+
 //
-//            setClickListeners();
-//            setDetails();
+//            ArrayAdapter<String> arrayAdapter =new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, Collections.emptyList());
+//
+//            arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//            calender_page_country_spinner.setAdapter(arrayAdapter);
+
+//
+//            calender_page_country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                @Override
+//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                    calender_page_country_spinner.setSelection(position);
+//                    calender_page_country_spinner
+//                }
+//
+//                @Override
+//                public void onNothingSelected(AdapterView<?> parent) {
+//
+//                }
+//            });
         }
         return rootView;
     }
 
-    private void initList() {
 
-        county_items = new ArrayList<>();
-        county_items.add(new County_Item("Kuwait", R.drawable.ic_united_arab_emirates));
-        county_items.add(new County_Item("Bahrain", R.drawable.ic_bahrain));
-        county_items.add(new County_Item("Oman", R.drawable.ic_oman));
-        county_items.add(new County_Item("Qatar", R.drawable.ic_qatar));
-        county_items.add(new County_Item("Saudi Arabia", R.drawable.ic_saudi_arabia));
-        county_items.add(new County_Item("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-
-        county_items.add(new County_Item("Kuwait", R.drawable.ic_united_arab_emirates));
-        county_items.add(new County_Item("Bahrain", R.drawable.ic_bahrain));
-        county_items.add(new County_Item("Oman", R.drawable.ic_oman));
-        county_items.add(new County_Item("Qatar", R.drawable.ic_qatar));
-        county_items.add(new County_Item("Saudi Arabia", R.drawable.ic_saudi_arabia));
-        county_items.add(new County_Item("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-
-    }
-//
-//    private void idMapping() {
-//
-//
-//    }
-//
-//    private void setClickListeners() {
-//
-//    }
 //
 //    @Override
 //    public void onResume() {

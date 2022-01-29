@@ -1,10 +1,10 @@
 package com.master.design.rashnanthi.DataModel;
 
-public class County_Item {
+public class County_ItemDM {
     private  String mcountryName;
     private  int mcountryImage;
 
-    public County_Item(String mcountryName, int mcountryImage) {
+    public County_ItemDM(String mcountryName, int mcountryImage) {
         this.mcountryName = mcountryName;
         this.mcountryImage = mcountryImage;
     }
