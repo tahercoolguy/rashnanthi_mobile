@@ -292,7 +292,7 @@
 
                     <RelativeLayout
                         android:id="@+id/snap__RL"
-                        android:layout_width="385dp"
+                        android:layout_width="355dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="38dp"
                         android:background="@drawable/rounded_corner_white"
@@ -320,7 +320,7 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="45dp"
                         android:layout_marginTop="10dp"
@@ -331,7 +331,7 @@
 
                     <RelativeLayout
                         android:id="@+id/insta_RL"
-                        android:layout_width="385dp"
+                        android:layout_width="355dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:background="@drawable/rounded_corner_white"
