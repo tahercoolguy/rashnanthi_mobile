@@ -14,15 +14,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.denzcoskun.imageslider.ImageSlider;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
+import com.master.design.rashnanthi.Adapter.Slider_Adapter;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
+import com.master.design.rashnanthi.Models.SliderModel;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
@@ -33,8 +39,13 @@ public class Coach_Fragment extends Fragment {
     private Context context;
     private ArrayList<CoachDM> coachDMArrayList;
 
+
+    SliderView sliderView;
+
     RecyclerView coach_Rcv;
     ImageView coach_grid_account;
+
+
 
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
@@ -67,6 +78,13 @@ public class Coach_Fragment extends Fragment {
             coach_Rcv = rootView.findViewById(R.id.coach_Rcv);
 //            coach_menu = rootView.findViewById(R.id.coach_menu);
             coach_grid_account = rootView.findViewById(R.id.coach_grid_account);
+
+
+
+
+
+
+
 //            whatsapp_IMg=rootView.findViewById(R.id.whatsapp_IMg);
 
 //            whatsapp_IMg.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +111,7 @@ public class Coach_Fragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    ((MainActivity) context).addFragment(new coach_grid_account_Fragment() , false);
+                    ((MainActivity) context).addFragment(new coach_grid_account_Fragment(), false);
 
 
                 }
@@ -131,39 +149,7 @@ public class Coach_Fragment extends Fragment {
         return rootView;
     }
 
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//    }
-//
-//    private void setDetails() {
-//       ShowProgress();
-//        rootView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//               DismissProgress();
-//            }
-//        }, 1500);
-//
-//
-//
 
-//    }
-
-//    public void ShowProgress()
-//    {
-//        progress_bar.setVisibility(View.VISIBLE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.GONE);
-//    }
-//
-//    public void DismissProgress()
-//    {
-//        progress_bar.setVisibility(View.GONE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.VISIBLE);
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

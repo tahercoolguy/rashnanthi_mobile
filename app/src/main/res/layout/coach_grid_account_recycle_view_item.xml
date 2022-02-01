@@ -18,21 +18,30 @@
 
             android:layout_height="match_parent">
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:id="@+id/coach_grid_img"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="120dp"-->
+
+<!--                android:src="@drawable/profile_img">-->
+
+<!--            </ImageView>-->
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/coach_grid_img"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-
-                android:src="@drawable/profile_img">
-
-            </ImageView>
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_youtube"
+                app:civ_border_width="3dp"
+                app:civ_border_color="#FFFFFF"/>
 
             <ImageView
                 android:id="@+id/like_coach_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="75dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="65dp"
                 android:src="@drawable/toggle_like_red_black"></ImageView>
 
 

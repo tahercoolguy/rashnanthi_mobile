@@ -21,6 +21,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/story_viewer"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginLeft="40dp"
@@ -41,6 +42,7 @@
                 <Spinner
                     android:id="@+id/calender_page_country_spinner"
                     android:layout_width="180dp"
+                    style="@style/spinner_style"
                     android:layout_marginLeft="10dp"
                     android:layout_height="55dp">
                 </Spinner>

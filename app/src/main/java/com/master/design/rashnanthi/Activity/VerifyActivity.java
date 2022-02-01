@@ -12,10 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.R;
 
+import butterknife.BindView;
+
 public class VerifyActivity extends AppCompatActivity {
     private Context context;
     AppController appController;
     Button submit_otpBtn, edit_numberBtn;
+
 
 
     @Override
@@ -51,6 +54,9 @@ public class VerifyActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
 
 }

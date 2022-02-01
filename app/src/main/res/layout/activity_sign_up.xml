@@ -23,18 +23,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="25dp"
+
 
                 android:layout_height="match_parent"
-                android:layout_marginRight="25dp"
-                android:orientation="vertical">
+                 android:orientation="vertical">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/register"
+                     android:text="@string/register"
 
                     android:textColor="@color/black"
                     android:textSize="@dimen/login"
@@ -45,7 +47,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
 
                     android:layout_marginTop="3dp"
                     android:text="@string/please_select_account_type_and_fill_data"
@@ -59,8 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center">
+                     android:gravity="center">
 
                     <ImageView
                         android:id="@+id/profileImg"
@@ -85,10 +85,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/marginLeft"
-                    android:layout_marginRight="@dimen/marginRight"
-                    android:orientation="vertical">
+                      android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -137,7 +134,7 @@
                     <LinearLayout
                         android:id="@+id/testing"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                          android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
@@ -152,8 +149,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/marginLeft"
-                            android:layout_marginTop="@dimen/marginTop"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                             android:layout_marginTop="@dimen/marginTop"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -161,7 +159,7 @@
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_gravity="center"
-                                android:layout_weight="1"
+
                                 android:elevation="@dimen/elevation"
                                 android:src="@drawable/country_img1938">
 
@@ -169,14 +167,14 @@
 
                             <EditText
                                 android:id="@+id/country_codeET"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_weight="10"
-                                android:background="@drawable/rounded_corner_white"
+                                 android:background="@drawable/rounded_corner_white"
                                 android:elevation="3dp"
+
                                 android:hint="Kuwait"
-                                android:padding="15dp"
+                                android:padding="10dp"
                                 android:textSize="15sp">
 
                             </EditText>
@@ -282,13 +280,15 @@
                     <LinearLayout
                         android:id="@+id/testing1"
                         android:layout_width="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="45dp"
+                            android:layout_marginLeft="35dp"
                             android:layout_marginTop="10dp"
                             android:text="@string/snapchat"
                             android:textSize="@dimen/text_size_title">
@@ -297,9 +297,10 @@
 
                         <RelativeLayout
                             android:id="@+id/snap__RL"
-                            android:layout_width="355dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="38dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
                             android:background="@drawable/rounded_corner_white"
                             android:elevation="@dimen/elevation">
 
@@ -315,7 +316,7 @@
                             <EditText
                                 android:id="@+id/snap_id_ET"
 
-                                android:layout_width="320dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="50dp"
                                 android:background="@drawable/rounded_rectangle_whitee"
@@ -327,7 +328,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="45dp"
+                            android:layout_marginLeft="35dp"
                             android:layout_marginTop="10dp"
                             android:text="@string/instagram"
                             android:textSize="@dimen/text_size_title">
@@ -336,9 +337,10 @@
 
                         <RelativeLayout
                             android:id="@+id/insta_RL"
-                            android:layout_width="355dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="35dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
                             android:background="@drawable/rounded_corner_white"
                             android:elevation="@dimen/elevation">
 
@@ -354,7 +356,7 @@
                             <EditText
                                 android:id="@+id/insta_id_ET"
 
-                                android:layout_width="320dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="50dp"
                                 android:background="@drawable/rounded_rectangle_whitee"
@@ -362,15 +364,6 @@
 
                             </EditText>
 
-                            <!--                    <EditText-->
-                            <!--                        android:layout_width="wrap_content"-->
-                            <!--                        android:layout_height="wrap_content"-->
-                            <!--                        android:layout_marginLeft="70dp"-->
-                            <!--                        android:layout_marginTop="15dp"-->
-                            <!--                        android:gravity="center"-->
-                            <!--                        android:text="@string/snapchat"-->
-                            <!--                        android:textColor="@color/black"-->
-                            <!--                        android:textSize="15sp"></EditText>-->
 
                         </RelativeLayout>
 
@@ -378,7 +371,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="45dp"
+                            android:layout_marginLeft="35dp"
                             android:layout_marginTop="10dp"
                             android:text="@string/whastapp"
                             android:textSize="@dimen/text_size_title">
@@ -387,19 +380,19 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginLeft="25dp"
+                            android:layout_height="70dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_marginTop="@dimen/marginTop"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:id="@+id/country__Img"
-                                android:layout_width="45dp"
-                                android:layout_height="45dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginLeft="20dp"
-                                android:layout_marginTop="2dp"
-                                android:elevation="@dimen/elevation"
-                                android:src="@drawable/ic_whastapp">
+                                  android:src="@drawable/ic_whastapp">
 
                             </ImageView>
 
@@ -408,19 +401,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginLeft="40dp"
-                                android:background="@drawable/rounded_corner_white"
+                                android:layout_marginLeft="15dp"
+                                 android:background="@drawable/rounded_corner_white"
                                 android:elevation="3dp"
                                 android:hint="+965"
                                 android:inputType="number"
-                                android:padding="15dp"
+                                android:padding="10dp"
                                 android:textSize="15sp">
 
                             </EditText>
 
                             <EditText
                                 android:id="@+id/mobile__ET"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="15dp"
@@ -428,7 +421,7 @@
                                 android:elevation="@dimen/elevation"
                                 android:hint="66683688"
                                 android:inputType="number"
-                                android:padding="15dp"
+                                android:padding="10dp"
 
                                 android:textSize="15sp">
 
@@ -445,25 +438,26 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="10dp"
-                        android:text="@string/mobile"
+                         android:text="@string/mobile"
                         android:textSize="@dimen/text_size_title">
 
                     </TextView>
 
                     <LinearLayout
-                        android:layout_width="420dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="10dp"
+                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:orientation="horizontal">
+                         android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/countryImg"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="15dp"
-                            android:elevation="@dimen/elevation"
-                            android:src="@drawable/country_img1938">
+                             android:layout_marginLeft="15dp"
+                             android:src="@drawable/country_img1938">
 
                         </ImageView>
 
@@ -472,19 +466,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="30dp"
-                            android:background="@drawable/rounded_corner_white"
+                             android:background="@drawable/rounded_corner_white"
                             android:elevation="3dp"
                             android:hint="+965"
                             android:inputType="number"
-                            android:padding="15dp"
+                            android:padding="10dp"
                             android:textSize="15sp">
 
                         </EditText>
 
                         <EditText
                             android:id="@+id/mobileET"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="15dp"
@@ -493,7 +486,7 @@
                             android:hint="66683688"
 
                             android:inputType="number"
-                            android:padding="15dp"
+                            android:padding="10dp"
                             android:textSize="15sp">
 
                         </EditText>
@@ -503,10 +496,13 @@
 
                     <Button
                         android:id="@+id/register_NowBtn"
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="50dp"
                         android:background="@drawable/button_rounded_primary_color_selector"

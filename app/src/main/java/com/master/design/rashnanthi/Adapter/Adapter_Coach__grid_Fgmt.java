@@ -1,6 +1,7 @@
 package com.master.design.rashnanthi.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,14 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.master.design.rashnanthi.Activity.Story_activity;
 import com.master.design.rashnanthi.DataModel.CoachGridDM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 
 import java.util.ArrayList;
 
- public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach__grid_Fgmt.ViewHolder> {
+public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach__grid_Fgmt.ViewHolder> {
     private Context context;
     private ArrayList<CoachGridDM> coachGridDMArrayList;
     User user;
@@ -61,6 +63,47 @@ import java.util.ArrayList;
 
         viewHolder.imgview.setImageResource(coachGridDMArrayList.get(position).getCoach_Image());
         viewHolder.imageView1.setImageResource(coachGridDMArrayList.get(position).getLike_img());
+
+        viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
+                liked = true;
+                unliked =true;
+                LikedUnliked();
+ //                Intent i = new Intent(context, Story_activity.class);
+//                context.startActivity(i);
+            }
+
+            boolean liked = false;
+            boolean unliked =false;
+
+            public void LikedUnliked() {
+
+                if (liked) {
+                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_red);
+                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
+
+                }  if (unliked){
+                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
+                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_red);
+
+                }
+            }
+
+        });
+
+
+        viewHolder.imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context, Story_activity.class);
+                context.startActivity(i);
+            }
+
+        });
 
 
     }

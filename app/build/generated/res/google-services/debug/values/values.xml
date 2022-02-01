@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">881570462874-rb1j9l93pcnjlfb6j3cqua1392vfnnri.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">881570462874</string>
+    <string name="google_api_key" translatable="false">AIzaSyB-KQOQogqUMJesaB--urTdifLami9Hev4</string>
+    <string name="google_app_id" translatable="false">1:881570462874:android:2cbfc27929af3b9542b323</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB-KQOQogqUMJesaB--urTdifLami9Hev4</string>
+    <string name="google_storage_bucket" translatable="false">rashnanthi.appspot.com</string>
+    <string name="project_id" translatable="false">rashnanthi</string>
+</resources>

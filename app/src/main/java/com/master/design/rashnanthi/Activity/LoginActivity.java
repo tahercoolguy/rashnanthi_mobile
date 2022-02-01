@@ -1,46 +1,26 @@
 package com.master.design.rashnanthi.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Spinner;
 
-import com.facebook.login.Login;
-//import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.master.design.rashnanthi.Controller.AppController;
-import com.master.design.rashnanthi.DataModel.SignUpDM;
-import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
-import com.master.design.rashnanthi.Utils.Helper;
-import com.mobsandgeeks.saripaar.ValidationError;
-import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.Email;
-import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-
-import java.util.List;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.mime.MultipartTypedOutput;
-import retrofit.mime.TypedString;
 
 public class LoginActivity extends AppCompatActivity {
     AppController appController;
 
-//    Dialog progress;
+    //    Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
 //    DialogUtil dialogUtil;
@@ -50,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.register_now_Btn)
     Button register_now_Btn;
+
+    Spinner coutry_code_spinner;
 //
 //    @BindView(R.id.countrycodeET)
 //    EditText CountrycodeET;
@@ -89,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 //    @BindView(R.id.emailET)
 //    EditText EmailET;
 
-//    @NotEmpty
+    //    @NotEmpty
 //    @BindView(R.id.passwordET)
 //    EditText passwordET;
 //
@@ -128,10 +110,9 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 //
     @OnClick(R.id.register_now_Btn)
-    public void RegisterBtn()
-    {
-        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
-                finish();
+    public void RegisterBtn() {
+        startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+        finish();
     }
 //
 //    @OnClick(R.id.guestBtn)
@@ -149,6 +130,16 @@ public class LoginActivity extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(LoginActivity.this);
+
+//        coutry_code_spinner= findViewById(R.id.coutry_code_spinner);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.countryCodes, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        coutry_code_spinner.setAdapter(adapter);
+
+
+
+
+
 //        validator=new Validator(this);
 //        validator.setValidationListener(this);
 
@@ -165,8 +156,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
 //    @Override

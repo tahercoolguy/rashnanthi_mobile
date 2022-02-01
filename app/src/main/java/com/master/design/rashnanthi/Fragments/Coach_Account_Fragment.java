@@ -74,7 +74,7 @@ public class Coach_Account_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    ((MainActivity) context).addFragment(new My_Event_1_Fragment() , false);
+                    ((MainActivity) context).addFragment(new My_Event_Fragment() , false);
 
                 }
             });
@@ -94,24 +94,11 @@ public class Coach_Account_Fragment extends Fragment {
 
 
 
-//            idMapping();
-//
-//            setClickListeners();
-//            setDetails();
 
         }
         return rootView;
     }
-//
-//    private void idMapping() {
-//
-//
-//    }
-//
-//    private void setClickListeners() {
-//
-//    }
-//
+
 //    @Override
 //    public void onResume() {
 //        super.onResume();

@@ -70,6 +70,9 @@
         <activity android:name=".Activity.Add_new_post_1" />
         <activity android:name=".Activity.Add_Event_Pay_Now" />
         <activity android:name=".Activity.Add_Event_Bill" />
+        <activity android:name=".Activity.Activity_Add_Event_1" />
+        <activity android:name=".Activity.Story_activity" />
+
 
 
     </application>

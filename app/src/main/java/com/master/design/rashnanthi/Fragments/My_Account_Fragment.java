@@ -8,14 +8,18 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.master.design.rashnanthi.Activity.Add_new_post_1;
+import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.R;
@@ -29,16 +33,21 @@ public class My_Account_Fragment extends Fragment {
     private View rootView;
     private Context context;
     ImageView my_accountImg;
-    RelativeLayout add_new_event_RL,view_event_RL,change_password_RL,edit_profile_RL;
+    RelativeLayout add_new_event_RL, view_event_RL, change_password_RL, edit_profile_RL;
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
 
-//    @BindView(R.id.layout_parent) LinearLayout layout_parent;
+    //    @BindView(R.id.layout_parent) LinearLayout layout_parent;
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
+    LinearLayout ad_more_eventtLL, website_LL;
+    Button add_more_eventBtn;
+    TextView your_post_will_beTXt;
+    RadioButton radioBtn_Term_condition;
+    Button pay_now_Btn, continue_Btn;
 
     @Nullable
     @Override
@@ -57,24 +66,30 @@ public class My_Account_Fragment extends Fragment {
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.my_account_fragment_layout, container, false);
-            ButterKnife.bind(this,rootView);
-            my_accountImg=rootView.findViewById(R.id.my_accountImg);
+            ButterKnife.bind(this, rootView);
+            my_accountImg = rootView.findViewById(R.id.my_accountImg);
 
-            add_new_event_RL=rootView.findViewById(R.id.add_new_event_RL);
-            view_event_RL=rootView.findViewById(R.id.view_event_RL);
-            change_password_RL=rootView.findViewById(R.id.change_password_RL);
-            edit_profile_RL=rootView.findViewById(R.id.edit_profile_RL);
+            add_new_event_RL = rootView.findViewById(R.id.add_new_event_RL);
+            view_event_RL = rootView.findViewById(R.id.view_event_RL);
+            change_password_RL = rootView.findViewById(R.id.change_password_RL);
+            edit_profile_RL = rootView.findViewById(R.id.edit_profile_RL);
+
+
+
+
 
             add_new_event_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(((MainActivity) context), Add_new_post_1.class));
+                    startActivity(new Intent(((MainActivity) context), Activity_Add_Event_1.class));
 
                 }
             });
             view_event_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new My_Event_1_Fragment(), false);
+
 
                 }
             });
@@ -104,9 +119,14 @@ public class My_Account_Fragment extends Fragment {
 //            setClickListeners();
 //            setDetails();
 
+
         }
         return rootView;
+
+
     }
+
+
 //
 //    private void idMapping() {
 //
@@ -136,7 +156,7 @@ public class My_Account_Fragment extends Fragment {
 
 //    }
 
-//    public void ShowProgress()
+    //    public void ShowProgress()
 //    {
 //        progress_bar.setVisibility(View.VISIBLE);
 //        txt_error.setVisibility(View.GONE);
@@ -161,4 +181,6 @@ public class My_Account_Fragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_back).setVisible(false);
     }
+
 }
+

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.Fragments.Menu_1_Fragment;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -31,7 +32,10 @@ public class SignUpActivity extends AppCompatActivity {
     DialogUtil dialogUtil;
 
 
-    ImageView backlogin,profileImg,cameraImg;
+
+    ImageView profileImg,cameraImg;
+
+//    ImageView back_from_register_page;
 
     LinearLayout testing, testing1;
     TextView event, coach,nameET,emailET,passwordET,confirm_passwordET;
@@ -42,7 +46,20 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        backlogin = findViewById(R.id.backlogin);
+
+
+//        back_from_register_page=findViewById(R.id.back_from_register_page);
+//
+//        back_from_register_page.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent i = new Intent(getApplicationContext(), Menu_1_Fragment.class);
+//                startActivity(i);
+//
+//            }
+//        });
+
         testing = findViewById(R.id.testing);
         testing1 = findViewById(R.id.testing1);
         event = findViewById(R.id.eventTxt);
@@ -60,16 +77,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         VisibilityFunction();
 
-        backlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
 
 //                Intent i = new Intent(getApplicationContext(),Menu_1_Fragment.class);
-//                startActivity(i);
-            }
-        });
-
-
+//
 //        ButterKnife.bind(this);
         dialogUtil = new DialogUtil();
         appController = (AppController) getApplicationContext();
@@ -102,6 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
+
 
     boolean ifCoach = false;
 
