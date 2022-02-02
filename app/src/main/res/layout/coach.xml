@@ -37,11 +37,21 @@
                 android:backgroundTint="@color/grey_light"
                 android:elevation="80dp">
 
+<!--                <Spinner-->
+<!--                    android:id="@+id/coach_page_country_spinner"-->
+<!--                    android:layout_width="180dp"-->
+<!--                    android:layout_height="55dp"-->
+<!--                    android:layout_marginLeft="10dp"></Spinner>-->
+
+
+
                 <Spinner
-                    android:id="@+id/country_spinner"
-                    android:layout_width="170dp"
+                    android:id="@+id/calender_page_country_spinner"
+                    style="@style/spinner_style"
+
+                    android:layout_width="180dp"
                     android:layout_height="55dp"
-                    android:gravity="center"></Spinner>
+                    android:layout_marginLeft="10dp"></Spinner>
 
             </RelativeLayout>
 

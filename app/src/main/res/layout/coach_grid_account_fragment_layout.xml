@@ -11,26 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="35dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="90dp"
+          android:layout_marginBottom="90dp"
          android:orientation="vertical">
 
 
         <RelativeLayout
             android:layout_width="193dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="225dp"
+            android:layout_marginLeft="222dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/ic_spinner_rectangle_bg"
             android:backgroundTint="@color/grey_light"
             android:elevation="80dp">
 
+<!--            <Spinner-->
+<!--                android:id="@+id/country_spinner"-->
+<!--                android:layout_width="170dp"-->
+<!--                android:layout_height="55dp">-->
+<!--            </Spinner>-->
+
             <Spinner
-                android:id="@+id/country_spinner"
-                android:layout_width="170dp"
-                android:layout_height="55dp">
-            </Spinner>
+                android:id="@+id/calender_page_country_spinner"
+                style="@style/spinner_style"
+
+                android:layout_width="180dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="10dp"></Spinner>
+
 
         </RelativeLayout>
 
@@ -38,8 +45,8 @@
             android:id="@+id/my_account_grid_Rcv"
             android:layout_width="match_parent"
              android:layout_marginTop="10dp"
-             android:layout_height="wrap_content"
-           >
+            android:layout_marginLeft="20dp"
+             android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>
 

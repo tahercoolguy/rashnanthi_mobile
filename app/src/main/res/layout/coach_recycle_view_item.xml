@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
@@ -20,18 +21,30 @@
         android:id="@+id/coach_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/rectangle_img_shape"
+         android:scaleType="fitXY"
         android:src="@drawable/images"
-        app:auto_cycle="true"
-        app:corner_radius="30"
-        app:delay="0"
-
-        app:period="1000"
-        app:sliderIndicatorRadius="2dp"
-        app:sliderIndicatorSelectedColor="@color/colorPrimary"
-        app:sliderIndicatorUnselectedColor="@color/grey">
+         app:corner_radius="30"
+        android:elevation="80dp">
 
     </ImageView>
+
+<!--    <com.smarteist.autoimageslider.SliderView-->
+<!--        android:id="@+id/slider"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="350dp"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        app:sliderAnimationDuration="600"-->
+<!--        app:sliderAutoCycleDirection="back_and_forth"-->
+<!--        app:sliderIndicatorAnimationDuration="600"-->
+<!--        app:sliderIndicatorEnabled="true"-->
+<!--        app:sliderIndicatorGravity="center_horizontal|bottom"-->
+<!--        app:sliderIndicatorMargin="15dp"-->
+<!--        app:sliderIndicatorOrientation="horizontal"-->
+<!--        app:sliderIndicatorPadding="3dp"-->
+<!--        app:sliderIndicatorRadius="2dp"-->
+<!--        app:sliderIndicatorSelectedColor="@color/colorPrimary"-->
+<!--        app:sliderIndicatorUnselectedColor="@color/greyDark"-->
+<!--        app:sliderScrollTimeInSec="1" />-->
 
 
     <LinearLayout
@@ -39,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@color/white"
 
         android:orientation="horizontal">
 

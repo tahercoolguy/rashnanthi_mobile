@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
  import com.master.design.rashnanthi.Adapter.Adapter_Coach__grid_Fgmt;
+import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachGridDM;
+import com.master.design.rashnanthi.DataModel.County_ItemDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
@@ -35,6 +38,8 @@ public class coach_grid_account_Fragment extends Fragment {
      RecyclerView my_account_grid_Rcv;
 //     ImageView coach_menu,like_coach_grid;
     private ArrayList<CoachGridDM> coachGridDMArrayList;
+    private ArrayList<County_ItemDM> county_itemDMS;
+    Spinner calender_page_country_spinner;
 
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
@@ -76,6 +81,41 @@ public class coach_grid_account_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.coach_grid_account_fragment_layout, container, false);
 
              my_account_grid_Rcv = rootView.findViewById(R.id.my_account_grid_Rcv);
+
+
+
+            calender_page_country_spinner = rootView.findViewById(R.id.calender_page_country_spinner);
+
+
+            ArrayList<County_ItemDM> county_itemDMS;
+
+
+            county_itemDMS = new ArrayList<>();
+            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
+            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
+
+
+
+
+            Adapter_Country_Spinner adapter_country_spinner;
+
+            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
+
+
+            calender_page_country_spinner.setAdapter(adapter_country_spinner);
+
+
+
 
             coachGridDMArrayList = new ArrayList<>();
 

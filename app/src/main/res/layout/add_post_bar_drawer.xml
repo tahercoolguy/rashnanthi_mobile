@@ -31,22 +31,24 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
-                    android:text="@string/coach"
+                    android:text="@string/add_post"
                     android:gravity="center"
                     android:textAllCaps="true"
                      android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 
-<!--                <ImageView-->
-<!--                    android:layout_width="40dp"-->
-<!--                    android:layout_height="30dp"-->
-<!--                    android:id="@+id/coach_accountImg"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:src="@drawable/chevron_circle_left_regular"></ImageView>-->
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/add_event_pay_back"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_cheveron"></ImageView>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+

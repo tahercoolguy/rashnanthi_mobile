@@ -8,27 +8,27 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import com.denzcoskun.imageslider.ImageSlider;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
-import com.master.design.rashnanthi.Adapter.Slider_Adapter;
+import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
+import com.master.design.rashnanthi.Adapter.SliderAdapter;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
-import com.master.design.rashnanthi.Models.SliderModel;
+import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.DataModel.SliderData;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
@@ -37,15 +37,17 @@ public class Coach_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-    private ArrayList<CoachDM> coachDMArrayList;
+    public ArrayList<CoachDM> coachDMArrayList;
+    //    public ArrayList<County_ItemDM> county_itemDMS;
+//    Spinner calender_page_country_spinner;
+    private ArrayList<County_ItemDM> county_itemDMS;
+    Spinner calender_page_country_spinner;
 
 
     SliderView sliderView;
 
     RecyclerView coach_Rcv;
     ImageView coach_grid_account;
-
-
 
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
@@ -79,9 +81,35 @@ public class Coach_Fragment extends Fragment {
 //            coach_menu = rootView.findViewById(R.id.coach_menu);
             coach_grid_account = rootView.findViewById(R.id.coach_grid_account);
 
+            calender_page_country_spinner = rootView.findViewById(R.id.calender_page_country_spinner);
+
+
+            ArrayList<County_ItemDM> county_itemDMS;
+
+
+            county_itemDMS = new ArrayList<>();
+            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
+            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
 
 
 
+
+            Adapter_Country_Spinner adapter_country_spinner;
+
+            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
+
+
+            calender_page_country_spinner.setAdapter(adapter_country_spinner);
 
 
 
@@ -133,22 +161,66 @@ public class Coach_Fragment extends Fragment {
             coachDMArrayList.add(new CoachDM(R.drawable.images));
             coachDMArrayList.add(new CoachDM(R.drawable.images));
             coachDMArrayList.add(new CoachDM(R.drawable.images));
+
             coachDMArrayList.add(new CoachDM(R.drawable.images));
             coachDMArrayList.add(new CoachDM(R.drawable.images));
             coachDMArrayList.add(new CoachDM(R.drawable.images));
+
             coachDMArrayList.add(new CoachDM(R.drawable.images));
             coachDMArrayList.add(new CoachDM(R.drawable.images));
             coachDMArrayList.add(new CoachDM(R.drawable.images));
-            coachDMArrayList.add(new CoachDM(R.drawable.images));
+
 
             coach_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
             coach_Rcv.setAdapter(new Adapter_Coach_Fgmt(((MainActivity) context), coachDMArrayList));
 
 
+//            Adapter_Country_Spinner adapter_country_spinner;
+//
+//            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
+//
+//
+//            calender_page_country_spinner.setAdapter(adapter_country_spinner);
+
+
+
+//
+//
+//            // we are creating array list for storing our image urls.
+//            ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+//
+//            // initializing the slider view.
+//            SliderView sliderView = rootView.findViewById(R.id.slider);
+//
+//            // adding the urls inside array list
+//            sliderDataArrayList.add(new SliderData(R.drawable.images));
+//            sliderDataArrayList.add(new SliderData(R.drawable.images));
+//            sliderDataArrayList.add(new SliderData(R.drawable.images));
+//            // passing this array list inside our adapter class.
+//            SliderAdapter adapter = new SliderAdapter(context, sliderDataArrayList);
+//
+//            // below method is used to set auto cycle direction in left to
+//            // right direction you can change according to requirement.
+//            sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+//
+//            // below method is used to
+//            // setadapter to sliderview.
+//            sliderView.setSliderAdapter(adapter);
+//
+//            // below method is use to set
+//            // scroll time in seconds.
+//            sliderView.setScrollTimeInSec(3);
+//
+//            // to set it scrollable automatically
+//            // we use below method.
+//            sliderView.setAutoCycle(true);
+//
+//            // to start autocycle below method is used.
+//            sliderView.startAutoCycle();
+
         }
         return rootView;
     }
-
 
 
     @Override

@@ -5,16 +5,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.master.design.rashnanthi.Adapter.Adapter_Country_Code_Only_Spinner;
+import com.master.design.rashnanthi.Adapter.Adapter_Country_Name_Spinner;
+import com.master.design.rashnanthi.DataModel.Country_CodeDM;
+import com.master.design.rashnanthi.DataModel.Country_NameDM;
 import com.master.design.rashnanthi.R;
+
+import java.util.ArrayList;
 
 public class Activity_Add_Event_1 extends AppCompatActivity {
 
@@ -23,8 +31,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     TextView your_post_will_beTXt;
     RadioButton radioBtn_Term_condition;
     Button pay_now_Btn, continue_Btn, post_for_free_nowBtn;
-
+    private ArrayList<Country_CodeDM> country_codeDMS;
+    private ArrayList<Country_NameDM> countryNameDMS;
     RelativeLayout add_img_video_1_RL, add_img_video_2_RL, add_img_video_3_RL, add_img_video_4_RL;
+
+    Spinner country_code_Sp,country_Name_SP2,country_Name_Sp;
 
 
 
@@ -56,6 +67,76 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         add_img_video_2_RL = findViewById(R.id.add_img_video_2_RL);
 
         add_img_video_4_RL = findViewById(R.id.add_img_video_4_RL);
+
+        country_code_Sp = findViewById(R.id.country_code_Sp);
+
+        country_Name_Sp=findViewById(R.id.country_Name_Sp);
+
+        country_Name_SP2 =findViewById(R.id.country_Name_SP2);
+
+        ArrayList<Country_NameDM> countryNameDMS;
+
+
+        countryNameDMS = new ArrayList<>();
+        countryNameDMS.add(new Country_NameDM("Kuwait"));
+        countryNameDMS.add(new Country_NameDM("Oman"));
+        countryNameDMS.add(new Country_NameDM("Saudi Arabia"));
+        countryNameDMS.add(new Country_NameDM("Qatar"));
+        countryNameDMS.add(new Country_NameDM("Bahrain"));
+
+
+        Adapter_Country_Name_Spinner adapter_country_name_spinner;
+
+        adapter_country_name_spinner = new Adapter_Country_Name_Spinner( this,countryNameDMS);
+
+
+        country_Name_SP2.setAdapter(adapter_country_name_spinner);
+        country_Name_Sp.setAdapter(adapter_country_name_spinner);
+
+
+        country_code_Sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        country_Name_SP2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        ArrayList<Country_CodeDM> country_codeDMS;
+        country_codeDMS = new ArrayList<>();
+        country_codeDMS.add(new Country_CodeDM("+965"));
+        country_codeDMS.add(new Country_CodeDM("+968"));
+        country_codeDMS.add(new Country_CodeDM("+966"));
+        country_codeDMS.add(new Country_CodeDM("+974"));
+        country_codeDMS.add(new Country_CodeDM("+973"));
+
+        Adapter_Country_Code_Only_Spinner adapter_country_code_only_spinner;
+
+        adapter_country_code_only_spinner = new Adapter_Country_Code_Only_Spinner( this,country_codeDMS);
+
+
+        country_code_Sp.setAdapter(adapter_country_code_only_spinner);
+
+
+
+
 
         add_img_video_1_RL.setOnClickListener(new View.OnClickListener() {
             @Override

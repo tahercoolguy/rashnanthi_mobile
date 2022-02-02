@@ -65,7 +65,7 @@
 
 
 
-    <style name="spinner_style">
+    <style name="spinner_style" parent="DialogAnimation">
         <item name="android:paddingLeft">0dp</item>
         <item name="android:dropDownWidth">200dp</item>
           <item name="android:dividerHeight">300dp</item>

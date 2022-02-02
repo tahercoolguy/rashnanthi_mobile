@@ -50,34 +50,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
-             android:orientation="horizontal">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <ImageView
                     android:id="@+id/img_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/my_event_1_img">
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                     android:elevation="80dp"
+
+                     android:src="@drawable/my_event_1_img">
 
                 </ImageView>
 
-                <LinearLayout
-                    android:layout_width="10dp"
 
-                    android:layout_height="match_parent">
 
-                </LinearLayout>
                 <ImageView
                     android:id="@+id/img_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:layout_weight="1"
+                    android:elevation="80dp"
+                    android:scaleType="fitXY"
+
                     android:src="@drawable/my_event_img_2">
 
                 </ImageView>

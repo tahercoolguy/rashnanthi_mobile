@@ -36,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:gravity="center"
                 android:fontFamily="@font/avenir_medium"
+                android:gravity="center"
                 android:text="@string/login"
                 android:textColor="@color/black"
                 android:textSize="@dimen/login"
@@ -48,7 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:orientation="vertical">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/marginRight"
-                 android:orientation="horizontal">
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/countryImg"
@@ -73,26 +73,24 @@
                     android:layout_height="70dp"
 
                     android:layout_gravity="center"
-                     android:elevation="@dimen/elevation"
+                    android:elevation="@dimen/elevation"
                     android:src="@drawable/country_img1938">
 
                 </ImageView>
 
 
-
                 <Spinner
-                    android:id="@+id/coutry_code_spinner"
+                    android:id="@+id/code_spinner"
                     android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@drawable/rounded_corner_white"
                     android:elevation="3dp"
-                      android:background="@drawable/rounded_corner_white"
-                     android:hint="+965"
+                    android:hint="+965"
                     android:padding="10dp"
                     android:textSize="15sp">
 
                 </Spinner>
-
 
 
                 <EditText
@@ -100,12 +98,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:inputType="number"
                     android:layout_marginLeft="@dimen/marginLeft"
                     android:layout_weight="10"
                     android:background="@drawable/rounded_corner_white"
                     android:elevation="@dimen/elevation"
                     android:hint="66683688"
+                    android:inputType="number"
 
                     android:padding="10dp"
                     android:textSize="15sp">
@@ -117,13 +115,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:orientation="vertical">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                     android:text="@string/password"
+                    android:text="@string/password"
 
                     android:textSize="@dimen/text_size_title">
 
@@ -169,8 +167,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:fontFamily="@font/avenir_medium"
                 android:background="@drawable/button_rounded_primary_color_selector"
+                android:fontFamily="@font/avenir_medium"
 
                 android:text="@string/login"
                 android:textColor="@color/white"
@@ -183,11 +181,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
+                android:fontFamily="@font/avenir_medium"
                 android:gravity="center"
                 android:text="@string/new_user"
-                android:fontFamily="@font/avenir_medium"
                 android:textColor="@color/black"
-                android:textSize="@dimen/login"
+                android:textSize="18sp"
                 android:textStyle="bold"></TextView>
         </LinearLayout>
 
@@ -195,14 +193,14 @@
             android:id="@+id/register_now_Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:layout_marginTop="40dp"
-             android:layout_gravity="center"
-             android:background="@drawable/rectangle_8790"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/rectangle_8790"
             android:text="@string/register_now"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp"></Button>
+            android:textSize="18sp"></Button>
     </LinearLayout>
 
 

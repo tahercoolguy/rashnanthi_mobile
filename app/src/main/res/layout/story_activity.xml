@@ -42,6 +42,15 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/story_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="360dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_story_back_btn"
+        android:layout_height="wrap_content">
+
+    </ImageView>
     <!--below widget is use to create indicator for our stories at top-->
     <jp.shts.android.storiesprogressview.StoriesProgressView
         android:id="@+id/stories"

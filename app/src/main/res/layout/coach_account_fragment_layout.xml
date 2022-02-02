@@ -51,7 +51,7 @@
                         android:id="@+id/profile_image"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:src="@drawable/ic_my_account"
+                         android:src="@drawable/lady"
                         app:civ_border_width="3dp"
                         app:civ_border_color="#FFFFFF"/>
 
@@ -60,8 +60,8 @@
                         android:id="@+id/cameraImg"
                         android:layout_width="23dp"
                         android:layout_height="23dp"
-                        android:layout_marginLeft="75dp"
-                        android:layout_marginTop="68dp"
+                        android:layout_marginLeft="65dp"
+                        android:layout_marginTop="60dp"
                         android:src="@drawable/ic_edit_profile">
 
                     </ImageView>

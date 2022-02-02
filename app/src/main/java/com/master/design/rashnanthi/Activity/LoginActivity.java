@@ -2,16 +2,19 @@ package com.master.design.rashnanthi.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.master.design.rashnanthi.Adapter.Adapter_Country_Code_Only_Spinner;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.Country_CodeDM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,10 +26,11 @@ public class LoginActivity extends AppCompatActivity {
     //    Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
-//    DialogUtil dialogUtil;
+    //    DialogUtil dialogUtil;
 //
 //    Button registerBtn;
-
+    private ArrayList<Country_CodeDM> country_codeDMS;
+    Spinner code_spinner;
 
     @BindView(R.id.register_now_Btn)
     Button register_now_Btn;
@@ -131,14 +135,24 @@ public class LoginActivity extends AppCompatActivity {
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(LoginActivity.this);
 
-//        coutry_code_spinner= findViewById(R.id.coutry_code_spinner);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.countryCodes, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        coutry_code_spinner.setAdapter(adapter);
+
+        code_spinner=findViewById(R.id.code_spinner);
 
 
+        ArrayList<Country_CodeDM> country_codeDMS;
+        country_codeDMS = new ArrayList<>();
+        country_codeDMS.add(new Country_CodeDM("+965"));
+        country_codeDMS.add(new Country_CodeDM("+968"));
+        country_codeDMS.add(new Country_CodeDM("+966"));
+        country_codeDMS.add(new Country_CodeDM("+974"));
+        country_codeDMS.add(new Country_CodeDM("+973"));
+
+        Adapter_Country_Code_Only_Spinner adapter_country_code_only_spinner;
+
+        adapter_country_code_only_spinner = new Adapter_Country_Code_Only_Spinner( this,country_codeDMS);
 
 
+        code_spinner.setAdapter(adapter_country_code_only_spinner);
 
 //        validator=new Validator(this);
 //        validator.setValidationListener(this);

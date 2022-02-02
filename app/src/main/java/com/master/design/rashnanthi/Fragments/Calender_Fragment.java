@@ -1,8 +1,11 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,11 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.Story_activity;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
@@ -23,7 +30,10 @@ import com.master.design.rashnanthi.DataModel.County_ItemDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
@@ -36,6 +46,13 @@ public class Calender_Fragment extends Fragment {
     ImageView story_viewer;
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
+
+
+    CompactCalendarView compactCalendar;
+    ImageView backmonthImg, aheadamonthImg;
+    TextView moth_year_txt;
+
+
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
@@ -59,11 +76,32 @@ public class Calender_Fragment extends Fragment {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
+
+
+
+
+
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
-
+            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
+            backmonthImg = rootView.findViewById(R.id.aheadamonthImg);
+            aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
             story_viewer=rootView.findViewById(R.id.story_viewer);
+
+            backmonthImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+            aheadamonthImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
 
             story_viewer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,19 +128,20 @@ public class Calender_Fragment extends Fragment {
 
 
             county_itemDMS = new ArrayList<>();
-//            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.ic_oman));
-//            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.ic_oman));
+            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
+            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
+            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
+            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
             county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
             county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
             county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
             county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
 
-//            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.ic_oman));
-//            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.ic_oman));
-            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
-            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
-            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
-            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
+
 
 
             Adapter_Country_Spinner adapter_country_spinner;
@@ -131,6 +170,59 @@ public class Calender_Fragment extends Fragment {
 //                        {
 //                        }
 //                    });
+
+
+            compactCalendar = (CompactCalendarView) rootView.findViewById(R.id.compactcalendar_view);
+            compactCalendar.setUseThreeLetterAbbreviation(true);
+
+//        compactCalendar.setEventIndicatorStyle(R.drawable.event_date_bg);
+//        compactCalendar.setCurrentSelectedDayBackgroundColor(Color.RED);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
+            Date date = new Date();
+            moth_year_txt.setText(formatter.format(date));
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE,1);
+
+
+
+            Event ev1 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
+            compactCalendar.addEvent(ev1);
+
+
+            compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+                @Override
+                public void onDayClick(Date dateClicked) {
+                    Context context = getApplicationContext();
+
+                    if (dateClicked.toString().compareTo("Thu Feb 03 4:11:16 GMT") == 0) {
+
+//                        Toast.makeText(context, "Event day", Toast.LENGTH_SHORT).show();
+                    } else {
+//                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }
+
+                @NonNull
+                @Override
+                public String toString() {
+                    moth_year_txt.setText(formatter.format(compactCalendar));
+
+                    return super.toString();
+                }
+
+                @Override
+                public void onMonthScroll(Date firstDayOfNewMonth) {
+//                moth_year_txt.setText(formatter.format(date));
+
+//                actionBar.setTitle(formatter.format(firstDayOfNewMonth));
+
+                }
+            });
+
 
 
         }

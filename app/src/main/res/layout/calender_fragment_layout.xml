@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:animateLayoutChanges="true"
 
 
@@ -26,7 +27,7 @@
                 android:layout_height="90dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/splash_screen_logo">
+                android:src="@drawable/ic_home_logo">
 
             </ImageView>
 
@@ -41,11 +42,11 @@
 
                 <Spinner
                     android:id="@+id/calender_page_country_spinner"
-                    android:layout_width="180dp"
                     style="@style/spinner_style"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="55dp">
-                </Spinner>
+
+                    android:layout_width="180dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="10dp"></Spinner>
 
             </RelativeLayout>
 
@@ -54,14 +55,74 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/backmonthImg"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_right_calender">
+
+            </ImageView>
+
+
+            <TextView
+                android:id="@+id/moth_year_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="FEBRUARY 2022"
+                android:textColor="#D51010"
+                android:textSize="21sp">
+
+            </TextView>
+
+
+            <ImageView
+                android:id="@+id/aheadamonthImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_left_calnder">
+
+            </ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity=""
             android:orientation="vertical">
 
-            <CalendarView
-                android:id="@+id/calender_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"></CalendarView>
+<!--                        <CalendarView-->
+<!--                            android:id="@+id/calender_view"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="20dp"></CalendarView>-->
+
+
+                        <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/compactcalendar_view"
+                            android:layout_width="fill_parent"
+                            android:layout_height="250dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="30dp"
+
+                            android:layout_marginRight="20dp"
+                            app:compactCalendarEventIndicatorStyle="small_indicator"
+                            app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
+                            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorAccent"
+                            app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
+                            app:compactCalendarTargetHeight="250dp"
+                            app:compactCalendarTextColor="#000000"
+                            app:compactCalendarTextSize="15sp" />
 
         </LinearLayout>
 

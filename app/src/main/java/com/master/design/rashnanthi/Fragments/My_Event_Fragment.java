@@ -80,18 +80,11 @@ public class My_Event_Fragment extends Fragment {
 
             ArrayList<My_Event_DM> my_event_dmArrayList = new ArrayList<>();
 
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
-            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.images, R.drawable.images));
+            my_event_dmArrayList.add(new My_Event_DM("3 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
+            my_event_dmArrayList.add(new My_Event_DM("6 March 2022", R.drawable.my_event_1_img, R.drawable.my_event_img_2));
+            my_event_dmArrayList.add(new My_Event_DM("9 March 2022", R.drawable.my_event_img_2, R.drawable.my_event_img_1));
+            my_event_dmArrayList.add(new My_Event_DM("12 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
+
 
 
             my_event_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));

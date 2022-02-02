@@ -51,8 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/margin"
-                        android:elevation="3dp"
+                         android:elevation="3dp"
                         android:hint="Date"
                         android:padding="10dp"
                         android:src="@drawable/country_img1938"
@@ -60,8 +59,8 @@
 
                     </ImageView>
 
-                    <EditText
-                        android:id="@+id/country_code_ET"
+                    <Spinner
+                        android:id="@+id/Mobile_code_Sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -70,11 +69,10 @@
 
                         android:background="@drawable/rounded_corner_white"
                         android:elevation="3dp"
-                        android:hint="+965"
-                        android:padding="10dp"
+                         android:padding="10dp"
                         android:textSize="15sp">
 
-                    </EditText>
+                    </Spinner>
 
                     <EditText
                         android:id="@+id/mobile_number_ET"
@@ -109,6 +107,7 @@
                     android:layout_marginLeft="@dimen/marginLeft"
                     android:layout_marginTop="@dimen/marginTop"
                     android:layout_marginRight="@dimen/marginRight"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -117,13 +116,14 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:layout_marginBottom="5dp"
                         android:elevation="@dimen/elevation"
                         android:src="@drawable/country_img1938">
 
                     </ImageView>
 
-                    <EditText
-                        android:id="@+id/country_codeET"
+                    <Spinner
+                        android:id="@+id/country_nname_Sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -131,10 +131,11 @@
                         android:background="@drawable/rounded_corner_white"
                         android:elevation="3dp"
                         android:hint="Kuwait"
+                        android:layout_marginBottom="5dp"
                         android:padding="10dp"
                         android:textSize="15sp">
 
-                    </EditText>
+                    </Spinner>
                 </LinearLayout>
 
                 <TextView
@@ -166,8 +167,8 @@
 
                     </ImageView>
 
-                    <EditText
-                        android:id="@+id/wtsap_code_ET"
+                    <Spinner
+                        android:id="@+id/wtsap_code_Sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -180,7 +181,7 @@
                         android:padding="10dp"
                         android:textSize="15sp">
 
-                    </EditText>
+                    </Spinner>
 
                     <EditText
                         android:id="@+id/wtsap_number_ET"
@@ -285,7 +286,7 @@
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        android:layout_height="wrap_content">
 
 
                     <LinearLayout
@@ -293,6 +294,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:orientation="horizontal"
                         android:weightSum="1">
 

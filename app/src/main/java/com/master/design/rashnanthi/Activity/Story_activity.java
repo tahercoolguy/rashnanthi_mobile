@@ -38,7 +38,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     // on below line we are creating variables for
     // our progress bar view and image view .
     private StoriesProgressView storiesProgressView;
-    private ImageView image;
+    private ImageView image,story_back_btn;
 
     // on below line we are creating a counter
     // for keeping count of our stories.
@@ -81,7 +81,16 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_activity);
         user = new User(this);
+        story_back_btn=findViewById(R.id.story_back_btn);
 
+        story_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+        });
 
         // inside in create method below line is use to make a full screen.
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
