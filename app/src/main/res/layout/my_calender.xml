@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="250dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/month_backImg"
+                android:onClick="month_back_Img"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="February 2022"
+                android:id="@+id/Month_year_Txt"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="#E11A1A"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/month_forward_Img"
+                android:onClick="month_forward_Img"
+                android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+            </ImageView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Sun"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Mon"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Tue"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Wed"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Thu"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Fri"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Sat"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="#A8A0A0"
+            android:layout_height="2dp">
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="30dp"
+
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/Calender_Recycler_View"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

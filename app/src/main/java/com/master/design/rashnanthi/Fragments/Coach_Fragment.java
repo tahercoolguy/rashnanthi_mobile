@@ -58,6 +58,7 @@ public class Coach_Fragment extends Fragment {
     AppController appController;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
+    ImageView coach_menu_Back;
 
     @Nullable
     @Override
@@ -71,7 +72,7 @@ public class Coach_Fragment extends Fragment {
 //        progressDialog.setMessage(getResources().getString(R.string.please_wait));
 //        progressDialog.setIndeterminate(true);
 //        progressDialog.setCancelable(false);
-        ((MainActivity) context).setTitle(getString(R.string.home));
+//        ((MainActivity) context).setTitle(getString(R.string.home));
 
 
         if (rootView == null) {
@@ -83,6 +84,14 @@ public class Coach_Fragment extends Fragment {
 
             calender_page_country_spinner = rootView.findViewById(R.id.calender_page_country_spinner);
 
+            coach_menu_Back=rootView.findViewById(R.id.coach_menu_Back);
+
+            coach_menu_Back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)context).addFragment(new Menu_1_Fragment(),false);
+                }
+            });
 
             ArrayList<County_ItemDM> county_itemDMS;
 

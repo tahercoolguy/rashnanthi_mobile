@@ -2,6 +2,7 @@ package com.master.design.rashnanthi.Fragments;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,16 +31,23 @@ import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
 public class Calender_Fragment extends Fragment {
+
 
     private View rootView;
     private Context context;
@@ -84,8 +93,8 @@ public class Calender_Fragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
-            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
-            backmonthImg = rootView.findViewById(R.id.aheadamonthImg);
+//            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
+            backmonthImg = rootView.findViewById(R.id.backmonthImg);
             aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
             story_viewer=rootView.findViewById(R.id.story_viewer);
 
@@ -93,12 +102,15 @@ public class Calender_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    compactCalendar.scrollLeft();
+
                 }
             });
 
             aheadamonthImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    compactCalendar.scrollRight();
 
                 }
             });
@@ -175,34 +187,52 @@ public class Calender_Fragment extends Fragment {
             compactCalendar = (CompactCalendarView) rootView.findViewById(R.id.compactcalendar_view);
             compactCalendar.setUseThreeLetterAbbreviation(true);
 
-//        compactCalendar.setEventIndicatorStyle(R.drawable.event_date_bg);
-//        compactCalendar.setCurrentSelectedDayBackgroundColor(Color.RED);
+//         compactCalendar.setCurrentSelectedDayBackgroundColor(Color.RED);
 
             SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
             Date date = new Date();
-            moth_year_txt.setText(formatter.format(date));
+//            moth_year_txt.setText(formatter.format(date));
 
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DATE,1);
+
+            compactCalendar.setUseThreeLetterAbbreviation(false);
+             compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
+             compactCalendar.setCurrentSelectedDayBackgroundColor(View.getDefaultSize(10,2));
+
+
+             compactCalendar.displayOtherMonthDays(false);
+
+
+
+            moth_year_txt= rootView.findViewById(R.id.moth_year_txt);
+            Calendar cal=Calendar.getInstance();
+            SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
+            String ma=month_date.format(cal.getTime());
+            moth_year_txt.setText(ma);
+
 
 
 
             Event ev1 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
             compactCalendar.addEvent(ev1);
 
+            compactCalendar.setTargetHeight(700);
 
             compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
                 @Override
                 public void onDayClick(Date dateClicked) {
                     Context context = getApplicationContext();
 
-                    if (dateClicked.toString().compareTo("Thu Feb 03 4:11:16 GMT") == 0) {
+//                    if (calendar.getTimeInMillis()!= 0) {
+//
+////                        Toast.makeText(context, "Event day", Toast.LENGTH_SHORT).show();
+//                    } else {
+////                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+//
+//                    }
 
-//                        Toast.makeText(context, "Event day", Toast.LENGTH_SHORT).show();
-                    } else {
-//                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
 
-                    }
 
                 }
 
@@ -220,6 +250,7 @@ public class Calender_Fragment extends Fragment {
 
 //                actionBar.setTitle(formatter.format(firstDayOfNewMonth));
 
+
                 }
             });
 
@@ -230,39 +261,6 @@ public class Calender_Fragment extends Fragment {
     }
 
 
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//    }
-//
-//    private void setDetails() {
-//       ShowProgress();
-//        rootView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//               DismissProgress();
-//            }
-//        }, 1500);
-//
-//
-//
-
-//    }
-
-//    public void ShowProgress()
-//    {
-//        progress_bar.setVisibility(View.VISIBLE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.GONE);
-//    }
-//
-//    public void DismissProgress()
-//    {
-//        progress_bar.setVisibility(View.GONE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.VISIBLE);
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

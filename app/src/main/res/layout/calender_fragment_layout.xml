@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:animateLayoutChanges="true"
+     android:animateLayoutChanges="true"
 
 
     android:background="@color/white">
@@ -101,28 +101,30 @@
             android:gravity=""
             android:orientation="vertical">
 
-<!--                        <CalendarView-->
-<!--                            android:id="@+id/calender_view"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="20dp"></CalendarView>-->
+            <!--                        <CalendarView-->
+            <!--                            android:id="@+id/calender_view"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginTop="20dp"></CalendarView>-->
 
 
-                        <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/compactcalendar_view"
-                            android:layout_width="fill_parent"
-                            android:layout_height="250dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="30dp"
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/compactcalendar_view"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
 
-                            android:layout_marginRight="20dp"
-                            app:compactCalendarEventIndicatorStyle="small_indicator"
-                            app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
-                            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorAccent"
-                            app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
-                            app:compactCalendarTargetHeight="250dp"
-                            app:compactCalendarTextColor="#000000"
-                            app:compactCalendarTextSize="15sp" />
+                app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
+                app:compactCalendarCurrentDayTextColor="@color/white"
+                 app:compactCalendarEventIndicatorStyle="small_indicator"
+                app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
+                app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
+                app:compactCalendarTargetHeight="250dp"
+                app:compactCalendarTextColor="#000000"
+                app:compactCalendarTextSize="15sp" />
 
         </LinearLayout>
 

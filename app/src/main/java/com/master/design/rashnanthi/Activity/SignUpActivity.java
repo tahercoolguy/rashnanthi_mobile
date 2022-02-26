@@ -1,6 +1,7 @@
 package com.master.design.rashnanthi.Activity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,9 @@ import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.Country_CodeDM;
 import com.master.design.rashnanthi.DataModel.Country_NameDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.Fragments.Coach_Account_Fragment;
 import com.master.design.rashnanthi.Fragments.Menu_1_Fragment;
+import com.master.design.rashnanthi.Fragments.My_Event_1_Fragment;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 
 public class SignUpActivity extends AppCompatActivity {
     AppController appController;
+    Context context;
     private static final int IMAGE_PICKER_SELECT = 1;
     private static final int IMAGE_PICKER_SELECT1 = 2;
     private static final int FILE_PICKER_SELECT = 3;
@@ -47,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-    ImageView profileImg,cameraImg;
+    ImageView profileImg,cameraImg,back_from_register_page;
 
 //    ImageView back_from_register_page;
 
@@ -63,18 +67,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         country_name_spinner=findViewById(R.id.country_name_spinner);
 
+        back_from_register_page=findViewById(R.id.back_from_register_page);
 
-//        back_from_register_page=findViewById(R.id.back_from_register_page);
-//
-//        back_from_register_page.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent i = new Intent(getApplicationContext(), Menu_1_Fragment.class);
-//                startActivity(i);
-//
-//            }
-//        });
+        back_from_register_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(SignUpActivity.this,Menu_1_Fragment.class));
+
+                }
+        });
+
+
+
+
 
         testing = findViewById(R.id.testing);
         testing1 = findViewById(R.id.testing1);
@@ -155,6 +160,12 @@ public class SignUpActivity extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(SignUpActivity.this);
+
+
+ //        progressDialog = new ProgressDialog(getActivity());
+//        progressDialog.setMessage(getResources().getString(R.string.please_wait));
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setCancelable(false);
 
         coach.setOnClickListener(new View.OnClickListener() {
             @Override

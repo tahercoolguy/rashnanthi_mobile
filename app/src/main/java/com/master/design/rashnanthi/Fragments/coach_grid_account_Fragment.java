@@ -41,6 +41,8 @@ public class coach_grid_account_Fragment extends Fragment {
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
 
+    ImageView coach_menu_Back;
+
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
@@ -63,8 +65,7 @@ public class coach_grid_account_Fragment extends Fragment {
 //        progressDialog.setMessage(getResources().getString(R.string.please_wait));
 //        progressDialog.setIndeterminate(true);
 //        progressDialog.setCancelable(false);
-        ((MainActivity) context).setTitle(getString(R.string.home));
-//        coach_menu =rootView.findViewById(R.id.coach_menu);
+ //        coach_menu =rootView.findViewById(R.id.coach_menu);
 //
 //        coach_menu.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -81,6 +82,14 @@ public class coach_grid_account_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.coach_grid_account_fragment_layout, container, false);
 
              my_account_grid_Rcv = rootView.findViewById(R.id.my_account_grid_Rcv);
+            coach_menu_Back=rootView.findViewById(R.id.coach_menu_Back);
+
+            coach_menu_Back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)context).addFragment(new Menu_1_Fragment(),false);
+                }
+            });
 
 
 

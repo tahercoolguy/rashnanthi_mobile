@@ -31,20 +31,20 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
-                    android:text="@string/coach"
                     android:gravity="center"
+                    android:text="@string/coachh"
                     android:textAllCaps="true"
-                     android:textColor="@color/white"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 
-<!--                <ImageView-->
-<!--                    android:layout_width="40dp"-->
-<!--                    android:layout_height="30dp"-->
-<!--                    android:id="@+id/coach_accountImg"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:src="@drawable/chevron_circle_left_regular"></ImageView>-->
+                <ImageView
+                    android:id="@+id/coach_menu_Back"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/menu_filled"></ImageView>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
