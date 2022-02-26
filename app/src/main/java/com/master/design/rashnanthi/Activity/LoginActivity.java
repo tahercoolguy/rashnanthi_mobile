@@ -3,6 +3,7 @@ package com.master.design.rashnanthi.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,20 @@ public class LoginActivity extends AppCompatActivity {
     Button register_now_Btn;
 
     Spinner coutry_code_spinner;
+
+
+    @BindView(R.id.backlogin)
+    ImageView backlogin;
+
+
+    @OnClick(R.id.backlogin)
+    public void Back()
+    {
+        finish();
+     }
+
+
+
 //
 //    @BindView(R.id.countrycodeET)
 //    EditText CountrycodeET;

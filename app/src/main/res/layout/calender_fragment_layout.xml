@@ -18,16 +18,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+             android:layout_marginTop="60dp"
             android:orientation="horizontal">
+
 
             <ImageView
                 android:id="@+id/story_viewer"
                 android:layout_width="90dp"
-                android:layout_height="90dp"
+                 android:layout_height="90dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_home_logo">
+                android:src="@drawable/ic_r_log">
 
             </ImageView>
 
@@ -108,20 +109,21 @@
             <!--                            android:layout_marginTop="20dp"></CalendarView>-->
 
 
-            <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
                 android:id="@+id/compactcalendar_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
 
                 app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
                 app:compactCalendarCurrentDayTextColor="@color/white"
-                 app:compactCalendarEventIndicatorStyle="small_indicator"
                 app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
-                app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
+                app:compactCalendarEventIndicatorStyle="small_indicator"
+                app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
+                 app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
                 app:compactCalendarTargetHeight="250dp"
                 app:compactCalendarTextColor="#000000"
                 app:compactCalendarTextSize="15sp" />

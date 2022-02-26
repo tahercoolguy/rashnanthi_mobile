@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.master.design.rashnanthi.Activity.SignUpActivity2">
+    tools:context="com.master.design.rashnanthi.Activity.Add_new_post_1">
 
     <include layout="@layout/add_new_post_bar_drawer" />
 

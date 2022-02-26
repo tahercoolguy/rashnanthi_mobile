@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,38 +16,70 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Code_Only_Spinner;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Name_Spinner;
+import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.Country_CodeDM;
 import com.master.design.rashnanthi.DataModel.Country_NameDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class Add_new_post_1 extends AppCompatActivity {
 
-    ImageView add_new_post_pay_back;
+
+    Dialog progress;
+    ConnectionDetector connectionDetector;
+    User user;
+    DialogUtil dialogUtil;
+    AppController appController;
+
+    @NotEmpty
+    @BindView(R.id.add_new_post_pay_back)
+    ImageView Back;
+
+
+    @OnClick(R.id.add_new_post_pay_back)
+    public void Back() {
+        finish();
+    }
+
+
     RadioButton term_conditionRB;
-    Button pay_now_Btn,continue_Btn;
-    EditText post_for_free_nowET,add_more_eventET;
+    Button pay_now_Btn, continue_Btn;
+    EditText post_for_free_nowET, add_more_eventET;
     TextView you_will_be_uploaded_withon_24_hours;
     private ArrayList<Country_NameDM> countryNameDMS;
     private ArrayList<Country_CodeDM> country_codeDMS;
-    Spinner Mobile_code_Sp,wtsap_code_Sp,country_nname_Sp;
+    Spinner Mobile_code_Sp, wtsap_code_Sp, country_nname_Sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_post_1);
-        add_new_post_pay_back = findViewById(R.id.add_new_post_pay_back);
-        pay_now_Btn=findViewById(R.id.pay_now_Btn);
+
+        ButterKnife.bind(this);
+
+        dialogUtil = new DialogUtil();
+        appController = (AppController) getApplicationContext();
+        connectionDetector = new ConnectionDetector(getApplicationContext());
+        user = new User(Add_new_post_1.this);
 
 
-
-        Mobile_code_Sp=findViewById(R.id.Mobile_code_Sp);
-        wtsap_code_Sp=findViewById(R.id.wtsap_code_Sp);
+        pay_now_Btn = findViewById(R.id.pay_now_Btn);
 
 
+        Mobile_code_Sp = findViewById(R.id.Mobile_code_Sp);
+        wtsap_code_Sp = findViewById(R.id.wtsap_code_Sp);
 
-        country_nname_Sp =findViewById(R.id.country_nname_Sp);
+
+        country_nname_Sp = findViewById(R.id.country_nname_Sp);
 
         ArrayList<Country_NameDM> countryNameDMS;
 
@@ -61,11 +94,10 @@ public class Add_new_post_1 extends AppCompatActivity {
 
         Adapter_Country_Name_Spinner adapter_country_name_spinner;
 
-        adapter_country_name_spinner = new Adapter_Country_Name_Spinner( this,countryNameDMS);
+        adapter_country_name_spinner = new Adapter_Country_Name_Spinner(this, countryNameDMS);
 
 
         country_nname_Sp.setAdapter(adapter_country_name_spinner);
-
 
 
         ArrayList<Country_CodeDM> country_codeDMS;
@@ -78,30 +110,21 @@ public class Add_new_post_1 extends AppCompatActivity {
 
         Adapter_Country_Code_Only_Spinner adapter_country_code_only_spinner;
 
-        adapter_country_code_only_spinner = new Adapter_Country_Code_Only_Spinner( this,country_codeDMS);
+        adapter_country_code_only_spinner = new Adapter_Country_Code_Only_Spinner(this, country_codeDMS);
 
 
         Mobile_code_Sp.setAdapter(adapter_country_code_only_spinner);
         wtsap_code_Sp.setAdapter(adapter_country_code_only_spinner);
 
 
-
         pay_now_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Add_new_post_1.this,Add_Event_Pay_Now.class));
+                startActivity(new Intent(Add_new_post_1.this, Add_Event_Pay_Now.class));
                 finish();
             }
         });
 
-
-        add_new_post_pay_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
 
     }
 

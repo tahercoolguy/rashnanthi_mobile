@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:alertDialogTheme">@style/AppAlertTheme</item>
         <item name="android:dialogTheme">@style/AppDialogTheme</item>
-        <item name="android:fontFamily">@font/red_hat_display_regular</item>
+         <item name="android:fontFamily">@font/red_hat_display_regular</item>
     </style>
     <style name="AppThemeFragment" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->

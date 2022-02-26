@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.master.design.rashnanthi.Activity.SignUpActivity2">
+    tools:context="com.master.design.rashnanthi.Activity.Activity_Add_Event_1">
 
     <include layout="@layout/add_event_bar_drawer" />
 

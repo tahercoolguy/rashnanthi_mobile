@@ -72,7 +72,8 @@ public class SignUpActivity extends AppCompatActivity {
         back_from_register_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(SignUpActivity.this,Menu_1_Fragment.class));
+
+                finish();
 
                 }
         });

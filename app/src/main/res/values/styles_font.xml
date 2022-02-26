@@ -20,4 +20,9 @@
         <item name="android:fontFamily">@font/red_hat_display_regular</item>
     </style>
 
+    <style name="red_hat_bold">
+        <item name="android:fontFamily">@font/red_hat_isplay_bold</item>
+    </style>
+
+
 </resources>

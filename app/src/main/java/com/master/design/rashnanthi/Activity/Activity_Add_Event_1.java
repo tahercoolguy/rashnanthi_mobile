@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -18,13 +20,40 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Code_Only_Spinner;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Name_Spinner;
+import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.Country_CodeDM;
 import com.master.design.rashnanthi.DataModel.Country_NameDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class Activity_Add_Event_1 extends AppCompatActivity {
+
+    Dialog progress;
+    ConnectionDetector connectionDetector;
+    User user;
+    DialogUtil dialogUtil;
+    AppController appController;
+
+//    @NotEmpty
+//    @BindView(R.id.add_event_pay_back)
+//    ImageView Back;
+//
+//
+//    @OnClick(R.id.add_event_pay_back)
+//    public void Back() {
+//        finish();
+//    }
+
+
 
     LinearLayout ad_more_eventtLL, website_LL;
     Button add_more_eventBtn;
@@ -43,6 +72,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event_1);
+        ButterKnife.bind(this);
+
+        dialogUtil = new DialogUtil();
+        appController = (AppController) getApplicationContext();
+        connectionDetector = new ConnectionDetector(getApplicationContext());
+        user = new User(Activity_Add_Event_1.this);
 
         ad_more_eventtLL = findViewById(R.id.ad_more_eventtLL);
 

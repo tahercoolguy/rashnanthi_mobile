@@ -2,6 +2,7 @@ package com.master.design.rashnanthi.Fragments;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -62,7 +63,6 @@ public class Calender_Fragment extends Fragment {
     TextView moth_year_txt;
 
 
-
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
 
@@ -87,16 +87,13 @@ public class Calender_Fragment extends Fragment {
         ((MainActivity) context).setTitle(getString(R.string.home));
 
 
-
-
-
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
 //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
             backmonthImg = rootView.findViewById(R.id.backmonthImg);
             aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
-            story_viewer=rootView.findViewById(R.id.story_viewer);
+            story_viewer = rootView.findViewById(R.id.story_viewer);
 
             backmonthImg.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,20 +137,18 @@ public class Calender_Fragment extends Fragment {
 
 
             county_itemDMS = new ArrayList<>();
-            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
-            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
+            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
             county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
             county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
             county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
             county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-            county_itemDMS.add(new County_ItemDM("Kuwait",R.drawable.kuwait_flag));
-            county_itemDMS.add(new County_ItemDM("Oman",R.drawable.oman_flag));
+            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
             county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
             county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
             county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
             county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-
-
 
 
             Adapter_Country_Spinner adapter_country_spinner;
@@ -194,24 +189,21 @@ public class Calender_Fragment extends Fragment {
 //            moth_year_txt.setText(formatter.format(date));
 
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.DATE,1);
+            calendar.add(Calendar.DATE, 1);
 
             compactCalendar.setUseThreeLetterAbbreviation(false);
-             compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
-             compactCalendar.setCurrentSelectedDayBackgroundColor(View.getDefaultSize(10,2));
+            compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
+            compactCalendar.setCurrentSelectedDayBackgroundColor(View.getDefaultSize(10, 2));
 
 
-             compactCalendar.displayOtherMonthDays(false);
+            compactCalendar.displayOtherMonthDays(false);
 
 
-
-            moth_year_txt= rootView.findViewById(R.id.moth_year_txt);
-            Calendar cal=Calendar.getInstance();
+            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
+            Calendar cal = Calendar.getInstance();
             SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
-            String ma=month_date.format(cal.getTime());
+            String ma = month_date.format(cal.getTime());
             moth_year_txt.setText(ma);
-
-
 
 
             Event ev1 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
@@ -219,47 +211,38 @@ public class Calender_Fragment extends Fragment {
 
             compactCalendar.setTargetHeight(700);
 
+
             compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
                 @Override
                 public void onDayClick(Date dateClicked) {
                     Context context = getApplicationContext();
-
-//                    if (calendar.getTimeInMillis()!= 0) {
 //
-////                        Toast.makeText(context, "Event day", Toast.LENGTH_SHORT).show();
+//                    if (calendar.getTimeInMillis() != 0) {
+//
+//                         //                        Toast.makeText(context, "Event day", Toast.LENGTH_SHORT).show();
 //                    } else {
-////                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
 //
 //                    }
-
-
-
                 }
 
                 @NonNull
                 @Override
                 public String toString() {
                     moth_year_txt.setText(formatter.format(compactCalendar));
-
                     return super.toString();
                 }
 
                 @Override
                 public void onMonthScroll(Date firstDayOfNewMonth) {
-//                moth_year_txt.setText(formatter.format(date));
-
-//                actionBar.setTitle(formatter.format(firstDayOfNewMonth));
-
-
+                    moth_year_txt.setText(formatter.format(firstDayOfNewMonth));
                 }
             });
-
 
 
         }
         return rootView;
     }
-
 
 
     @Override
