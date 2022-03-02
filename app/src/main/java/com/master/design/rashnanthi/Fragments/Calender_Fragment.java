@@ -137,13 +137,13 @@ public class Calender_Fragment extends Fragment {
 
 
             county_itemDMS = new ArrayList<>();
-            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwaitttttt));
             county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
             county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
             county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
             county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
             county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwait_flag));
+            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwaitttttt));
             county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
             county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
             county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));

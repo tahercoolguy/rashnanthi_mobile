@@ -48,9 +48,9 @@
 
 
                 <ImageView
+                    android:id="@+id/my_event_menu_1_back"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:id="@+id/my_event_menu_1_back"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_cheveron"></ImageView>

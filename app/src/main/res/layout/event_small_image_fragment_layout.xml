@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/login_page">
+            android:scaleType="fitXY"
+            android:src="@drawable/man_img">
 
         </ImageView>
 
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="100dp"
             android:gravity="center"
 
             android:orientation="horizontal">
@@ -50,7 +51,7 @@
                 android:layout_height="43dp"
 
                 android:layout_margin="10dp"
-                android:src="@drawable/insta_logo"></ImageView>
+                android:src="@drawable/websiteeeee"></ImageView>
 
             <ImageView
                 android:layout_width="43dp"

@@ -58,6 +58,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     LinearLayout ad_more_eventtLL, website_LL;
     Button add_more_eventBtn;
     TextView your_post_will_beTXt;
+    ImageView add_event_pay_back;
     RadioButton radioBtn_Term_condition;
     Button pay_now_Btn, continue_Btn, post_for_free_nowBtn;
     private ArrayList<Country_CodeDM> country_codeDMS;
@@ -108,6 +109,29 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         country_Name_Sp=findViewById(R.id.country_Name_Sp);
 
         country_Name_SP2 =findViewById(R.id.country_Name_SP2);
+        add_event_pay_back=findViewById(R.id.add_event_pay_back);
+
+        add_event_pay_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        pay_now_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Add_Event_1.this,Add_Event_Pay_Now.class));
+            }
+        });
+
+        continue_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Add_Event_1.this,Add_Event_Pay_Now.class));
+
+            }
+        });
 
         ArrayList<Country_NameDM> countryNameDMS;
 

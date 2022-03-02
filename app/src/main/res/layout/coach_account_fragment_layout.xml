@@ -39,22 +39,26 @@
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
-<!--                    <ImageView-->
-<!--                        android:id="@+id/profileImg"-->
-<!--                        android:layout_width="108dp"-->
-<!--                        android:layout_height="108dp"-->
-<!--                        android:src="@drawable/profile_img">-->
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/profileImg"-->
+                    <!--                        android:layout_width="108dp"-->
+                    <!--                        android:layout_height="108dp"-->
+                    <!--                        android:src="@drawable/profile_img">-->
 
-<!--                    </ImageView>-->
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/profile_image"
+                    <!--                    </ImageView>-->
+<!--                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                        android:id="@+id/profile_image"-->
+<!--                        android:layout_width="96dp"-->
+<!--                        android:layout_height="96dp"-->
+<!--                        android:src="@drawable/lady"-->
+<!--                        app:civ_border_color="#FFFFFF"-->
+<!--                        app:civ_border_width="3dp" />-->
+
+                    <ImageView
                         android:layout_width="96dp"
+                        android:scaleType="fitXY"
                         android:layout_height="96dp"
-                         android:src="@drawable/lady"
-                        app:civ_border_width="3dp"
-                        app:civ_border_color="#FFFFFF"/>
-
+                        android:src="@drawable/lady" />
 
                     <ImageView
                         android:id="@+id/cameraImg"
@@ -129,9 +133,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_marginTop="50dp"
-                        android:text="@string/add_new_event"
+                        android:text="@string/add_new_post"
                         android:textColor="@color/black"
-                        android:textSize="17dp">
+                        android:textSize="17sp">
 
                     </TextView>
 
@@ -160,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="50dp"
-                        android:text="@string/view_event"
+                        android:text="@string/view_post"
                         android:textColor="@color/black"
                         android:textSize="17dp">
 

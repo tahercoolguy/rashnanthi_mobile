@@ -70,6 +70,7 @@ public class My_Event_Fragment extends Fragment {
             back_my_event.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ((MainActivity) context).addFragment(new Coach_Account_Fragment() , false);
 
                 }
             });

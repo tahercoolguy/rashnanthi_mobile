@@ -39,9 +39,9 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/even_back_Img"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:id="@+id/even_back_Img"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_cheveron"></ImageView>

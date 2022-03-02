@@ -40,10 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop"
             android:gravity="center"
-            android:text="@string/verification_pin"
 
-            android:textSize="@dimen/text_size_title">
-
+            android:text="@string/verification_pin">
         </TextView>
 
 
@@ -58,14 +56,16 @@
              app:bar_height="40dp"
              app:otp_box_background="@drawable/otp_rounded_rectangle_whitee"
             app:height="60dp"
+            app:box_margin="10dp"
+            android:elevation="0.5dp"
              app:length="4"
             android:layout_marginBottom="20dp"
-            android:elevation="3dp"
-             app:otp_text_size="24dp"
+              app:otp_text_size="24dp"
             app:width="60dp" />
         <TextView
             android:id="@+id/resend_otpTxt"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/marginTop"
@@ -89,8 +89,7 @@
                 android:layout_weight="10"
                 android:background="@drawable/button_rounded_primary_color_selector"
                 android:text="@string/submit"
-                android:textStyle="bold"
-                android:textColor="@color/white"
+                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_title"></Button>
 
 
@@ -100,8 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="10"
-                android:textStyle="bold"
-                android:background="@drawable/button_rounded_primary_color_selector"
+                 android:background="@drawable/button_rounded_primary_color_selector"
                 android:text="@string/edit_number"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_title"></Button>

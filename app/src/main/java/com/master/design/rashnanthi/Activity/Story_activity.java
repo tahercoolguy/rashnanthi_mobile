@@ -20,8 +20,7 @@ import jp.shts.android.storiesprogressview.StoriesProgressView;
 
 public class Story_activity extends AppCompatActivity implements StoriesProgressView.StoriesListener {
     private User user;
-
-    // on below line we are creating a int array
+     // on below line we are creating a int array
     // in which we are storing all our image ids.
     private final int[] resources = new int[]{
             R.drawable.story_img_1,
@@ -38,7 +37,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     // on below line we are creating variables for
     // our progress bar view and image view .
     private StoriesProgressView storiesProgressView;
-    private ImageView image,story_back_btn;
+  ImageView image,story_back_btn;
 
     // on below line we are creating a counter
     // for keeping count of our stories.
@@ -76,6 +75,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,9 +86,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         story_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
+                finish();
             }
         });
 
@@ -174,8 +172,8 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     public void onComplete() {
         // when the stories are completed this method is called.
         // in this method we are moving back to initial main activity.
-        Intent i = new Intent(Story_activity.this, MainActivity.class);
-        startActivity(i);
+//        Intent i = new Intent(Story_activity.this, MainActivity.class);
+//        startActivity(i);
         finish();
     }
 

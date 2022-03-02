@@ -24,6 +24,7 @@ import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
@@ -40,6 +41,10 @@ public class My_Event_1_Fragment extends Fragment {
 //    @BindView(R.id.txt_error) TextView txt_error;
 
     //    @BindView(R.id.layout_parent) LinearLayout layout_parent;
+
+
+//        @BindView(R.id.my_event_menu_1_back) ImageView back;
+
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -66,14 +71,24 @@ public class My_Event_1_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.my_event_1_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
 
+            my_event_menu_1=rootView.findViewById(R.id.my_event_menu_1);
+            my_event_menu_1_back=rootView.findViewById(R.id.my_event_menu_1_back);
 
-//
-//            my_event_menu_1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
+
+            my_event_menu_1_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)context).finish();
+                  }
+            });
+
+
+            my_event_menu_1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)context).addFragment(new Menu_1_Fragment(),false);
+                 }
+            });
 
             my_event_1DMArrayList = new ArrayList<>();
             my_event_Rcv = rootView.findViewById(R.id.my_event_Rcv);

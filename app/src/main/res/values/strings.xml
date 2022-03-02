@@ -56,8 +56,10 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="rizana_cader">  RIZANA CADER</string>
     <string name="iamdavid">iamdavid@gmail.com</string>
     <string name="change_pass"> Change Password</string>
-    <string name="add_new_event">Add New Post</string>
-    <string name="view_event">View Post</string>
+
+    <string name="add_new_event">Add New Event</string>
+     <string name="view_post">View Post</string>
+    <string name="view_event">View Event</string>
 
     <string name="edit_pro">Edit Profile</string>
 
@@ -104,6 +106,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     3 March 2022
     <string name="event">EVENT</string>
     <string name="my_event">MY EVENT</string>
+    <string name="my_post">MY POST</string>
+
 
     <string name="coachh">COACH</string>
 
@@ -126,7 +130,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="likes_25k">25K Likes</string>
 
 
-    <string name="add_new_post">ADD NEW POST</string>
+    <string name="add_new_post">Add New Post</string>
 
 
     <string name="cancel">Cancel</string>

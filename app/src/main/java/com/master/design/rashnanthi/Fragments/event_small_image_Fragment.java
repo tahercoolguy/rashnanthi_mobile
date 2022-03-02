@@ -63,6 +63,7 @@ public class event_small_image_Fragment extends Fragment {
             even_back_Img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ((MainActivity)context).finish();
 
                 }
             });
@@ -70,7 +71,7 @@ public class event_small_image_Fragment extends Fragment {
             menu_1_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    ((MainActivity) context).addFragment(new event_small_image_Fragment(),false);
                 }
             });
 
