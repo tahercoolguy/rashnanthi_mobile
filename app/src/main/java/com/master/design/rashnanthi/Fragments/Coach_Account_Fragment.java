@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@ public class Coach_Account_Fragment extends Fragment {
 //    @BindView(R.id.layout_parent) LinearLayout layout_parent;
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
+    ImageView coach_menu_Back;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
 
@@ -61,7 +63,14 @@ public class Coach_Account_Fragment extends Fragment {
             view_event_RL=rootView.findViewById(R.id.view_event_RL);
             change_password_RL=rootView.findViewById(R.id.change_password_RL);
             edit_profile_RL=rootView.findViewById(R.id.edit_profile_RL);
+            coach_menu_Back=rootView.findViewById(R.id.coach_menu_Back);
 
+            coach_menu_Back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity)context).addFragment(new Menu_1_Fragment(),false);
+                }
+            });
             add_new_event_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
