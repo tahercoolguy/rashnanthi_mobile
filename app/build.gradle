@@ -100,7 +100,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.11.3'
 //    implementation 'it.sysdata.mobile:htmlspanner:1.0.0'
     implementation 'net.sourceforge.htmlcleaner:htmlcleaner:2.16'
-    implementation 'com.github.MikeOrtiz:TouchImageView:1.4.0'
+//    implementation 'com.github.MikeOrtiz:TouchImageView:1.4.0'
     implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.1'
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:3.0.3'
     implementation 'com.github.ome450901:SimpleRatingBar:1.4.2'
