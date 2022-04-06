@@ -16,9 +16,9 @@
 
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/splash_screen_logo">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tq_page_logo">
 
         </ImageView>
 
@@ -28,8 +28,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:text="@string/thank_you"
+            android:fontFamily="@font/avenir_medium"
+             android:text="@string/thank_you"
             android:textColor="@color/black"
             android:textSize="26sp">
 

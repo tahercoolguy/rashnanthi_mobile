@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/white">
+    android:background="@color/app_bg_color">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/avenir_light"
+                android:gravity="center"
+                android:text="@string/coachh"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/coach_menu_Back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_menu_filled"></ImageView>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -18,15 +58,14 @@
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="60dp"
-        android:layout_marginRight="20dp"
         android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
 
 
@@ -34,90 +73,91 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <!--                    <ImageView-->
-                    <!--                        android:id="@+id/profileImg"-->
-                    <!--                        android:layout_width="108dp"-->
-                    <!--                        android:layout_height="108dp"-->
-                    <!--                        android:src="@drawable/profile_img">-->
-
-                    <!--                    </ImageView>-->
-<!--                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                        android:id="@+id/profile_image"-->
-<!--                        android:layout_width="96dp"-->
-<!--                        android:layout_height="96dp"-->
-<!--                        android:src="@drawable/lady"-->
-<!--                        app:civ_border_color="#FFFFFF"-->
-<!--                        app:civ_border_width="3dp" />-->
-
-                    <ImageView
-                        android:layout_width="96dp"
-                        android:scaleType="fitXY"
-                        android:layout_height="96dp"
-                        android:src="@drawable/lady" />
-
-                    <ImageView
-                        android:id="@+id/cameraImg"
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
-                        android:layout_marginLeft="65dp"
-                        android:layout_marginTop="60dp"
-                        android:src="@drawable/ic_edit_profile">
-
-                    </ImageView>
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/lady" />
 
 
-                </RelativeLayout>
+
+
+
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                 android:layout_marginTop="-95dp"
+                android:layout_marginLeft="120dp"
+                android:orientation="horizontal">
+
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="250dp"
-                    android:layout_marginTop="25dp"
+
                     android:src="@drawable/ic__5k_likes"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="290dp"
-                    android:layout_marginTop="33dp"
+
                     android:text="25K Likes"
                     android:textColor="@color/white">
 
                 </TextView>
-            </RelativeLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                 android:layout_marginLeft="35dp"
+
+                android:src="@drawable/ic_edit_profile"></ImageView>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/red_hat_isplay_bold"
                 android:gravity="center"
                 android:text="@string/rizana_cader"
                 android:textColor="@color/black"
                 android:textSize="@dimen/login"
-                android:textStyle="bold"></TextView>
+                ></TextView>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/add_new_event_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="@dimen/margin"
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+
+
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -131,11 +171,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="50dp"
                         android:text="@string/add_new_post"
                         android:textColor="@color/black"
-                        android:textSize="17sp">
+                        android:textSize="17dp">
 
                     </TextView>
 
@@ -143,12 +183,14 @@
 
                 <RelativeLayout
                     android:id="@+id/view_event_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_margin="@dimen/margin"
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -162,7 +204,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="50dp"
                         android:text="@string/view_post"
                         android:textColor="@color/black"
@@ -178,18 +220,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginTop="20dp"
 
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/change_password_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="@dimen/margin"
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -215,12 +261,13 @@
 
                 <RelativeLayout
                     android:id="@+id/edit_profile_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:layout_margin="@dimen/margin"
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -234,7 +281,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="50dp"
                         android:text="@string/edit_pro"
                         android:textColor="@color/black"
@@ -249,5 +296,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/coach_account_bar_drawer" />
+    <include layout="@layout/layout_error" />
 </RelativeLayout>

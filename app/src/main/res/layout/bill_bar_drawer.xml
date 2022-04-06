@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/bill"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_chevron_regular"></ImageView>

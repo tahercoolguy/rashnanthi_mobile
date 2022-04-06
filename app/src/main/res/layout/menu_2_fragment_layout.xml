@@ -2,9 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:animateLayoutChanges="true"
 
-    android:background="@color/white">
+    android:background="@color/app_bg_color">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/avenir_light"
+                android:gravity="center"
+                android:text="@string/menu"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/menu_2_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_menu_filled"></ImageView>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
 
     <LinearLayout
         android:id="@+id/layout_parent"
@@ -13,22 +54,24 @@
         android:layout_marginTop="35dp"
         android:orientation="vertical">
 
+
         <RelativeLayout
+            android:id="@+id/languageRL"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="35dp"
-            android:id="@+id/languageRL"
-            android:elevation="@dimen/elevation"
             android:layout_marginTop="80dp"
             android:layout_marginRight="35dp"
-            android:background="@drawable/rounded_corner_white">
+            android:background="@drawable/menu_bg"
+            android:elevation="4dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
-                 android:layout_marginRight="300dp"
                 android:src="@drawable/ic_language">
 
             </ImageView>
@@ -36,8 +79,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="13dp"
                 android:gravity="center"
                 android:text="@string/language"
                 android:textColor="@color/black"
@@ -46,22 +90,21 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
             android:id="@+id/aboutapp_RL"
-            android:elevation="@dimen/elevation"
-
-            android:layout_marginLeft="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="25dp"
+            android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:background="@drawable/rounded_corner_white">
-
+            android:background="@drawable/menu_bg"
+            android:elevation="4dp">
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="300dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
                 android:src="@drawable/ic_about_app">
 
             </ImageView>
@@ -70,7 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="13dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
                 android:gravity="center"
                 android:text="@string/about_app"
                 android:textColor="@color/black"
@@ -79,22 +123,22 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/myaccount_RL"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="35dp"
-            android:id="@+id/myaccount_RL"
-            android:elevation="@dimen/elevation"
-
             android:layout_marginTop="25dp"
             android:layout_marginRight="35dp"
-            android:background="@drawable/rounded_corner_white">
+            android:background="@drawable/menu_bg"
+            android:elevation="4dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="300dp"
                 android:src="@drawable/ic_my_account">
 
             </ImageView>
@@ -102,8 +146,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="13dp"
                 android:gravity="center"
                 android:text="@string/my_account"
                 android:textColor="@color/black"
@@ -112,22 +157,21 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="35dp"
-            android:elevation="@dimen/elevation"
-
-            android:layout_marginTop="25dp"
             android:id="@+id/contact_uRL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:background="@drawable/rounded_corner_white">
-
+            android:background="@drawable/menu_bg"
+            android:elevation="4dp">
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="300dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
                 android:src="@drawable/ic_ccontact">
 
             </ImageView>
@@ -136,7 +180,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="13dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
                 android:gravity="center"
                 android:text="@string/contact_us"
                 android:textColor="@color/black"
@@ -144,31 +189,33 @@
 
         </RelativeLayout>
 
+
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
             android:id="@+id/logout_Rl"
-            android:elevation="@dimen/elevation"
-
-            android:layout_marginLeft="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="25dp"
+            android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:background="@drawable/rounded_corner_white">
-
+            android:background="@drawable/menu_bg"
+            android:elevation="4dp">
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="300dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
                 android:src="@drawable/ic_logout">
 
             </ImageView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="13dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
                 android:gravity="center"
                 android:text="@string/logout"
                 android:textColor="@color/black"
@@ -176,7 +223,9 @@
 
         </RelativeLayout>
 
+
+
     </LinearLayout>
 
-    <include layout="@layout/menu_2_bar_drawer" />
+    <include layout="@layout/layout_error" />
 </RelativeLayout>

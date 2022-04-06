@@ -1,12 +1,15 @@
 
 package com.master.design.rashnanthi.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -16,8 +19,12 @@ import com.master.design.rashnanthi.Fragments.Coach_Fragment;
 import com.master.design.rashnanthi.Fragments.My_Account_Fragment;
 import com.master.design.rashnanthi.Fragments.Notification_Fragment;
 import com.master.design.rashnanthi.Fragments.Social_Media_Fragment;
+import com.master.design.rashnanthi.Helper.ContextWrapper;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -180,8 +187,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
+//
+//
 //    private class DrawerItemClickListener implements ListView.OnItemClickListener {
 //        @Override
 //        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -222,17 +229,17 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }
 //    }
-//
-//    private void exitDialog() {
-//        DialogUtil.showDialogTwoButton(this, R.drawable.app_icon, getString(R.string.app_name), getString(R.string.are_you_sure_you_want_to_exit_the_app), getString(R.string.ok), getString(R.string.cancel), new DialogUtil.CallBack() {
-//            @Override
-//            public void onDismiss(boolean isPressedOK) {
-//                if (isPressedOK) {
-//                    MainActivity.this.finish();
-//                }
-//            }
-//        });
-//    }
+
+    private void exitDialog() {
+        DialogUtil.showDialogTwoButton(this, R.drawable.app_icon, getString(R.string.app_name), getString(R.string.are_you_sure_you_want_to_exit_the_app), getString(R.string.ok), getString(R.string.cancel), new DialogUtil.CallBack() {
+            @Override
+            public void onDismiss(boolean isPressedOK) {
+                if (isPressedOK) {
+                    MainActivity.this.finish();
+                }
+            }
+        });
+    }
 
 
     public void addFragment(Fragment fragment, boolean addToStack) {
@@ -244,34 +251,34 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commitAllowingStateLoss();
     }
 
-//
-//    @Override
-//    protected void attachBaseContext(Context newBase) {
-//        super.attachBaseContext(ContextWrapper.wrap(newBase, new Locale(new User(newBase).getLanguageCode())));
-//    }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_back:
-//                onBackPressed();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-//
-//    public void setElevation(boolean isElevate) {
-//        if (isElevate) {
-//            ViewCompat.setElevation(findViewById(R.id.app_bar), getResources().getDimension(R.dimen.elevation));
-//        } else {
-//            ViewCompat.setElevation(findViewById(R.id.app_bar), 0f);
-//        }
-//    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ContextWrapper.wrap(newBase, new Locale(new User(newBase).getLanguageCode())));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_back:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void setElevation(boolean isElevate) {
+        if (isElevate) {
+            ViewCompat.setElevation(findViewById(R.id.app_bar), getResources().getDimension(R.dimen.elevation));
+        } else {
+            ViewCompat.setElevation(findViewById(R.id.app_bar), 0f);
+        }
+    }
 }

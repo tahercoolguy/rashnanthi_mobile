@@ -8,6 +8,10 @@
     <color name="next_button">#E5686F</color>
     <color name="blackstart">#414141</color>
     <color name="blackend">#858585</color>
+    <color name="app_bg_color">#F8F8F8</color>
+
+
+
 
     <color name="colorAccentLight">#F4E8B2</color>
 

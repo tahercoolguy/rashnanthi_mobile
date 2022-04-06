@@ -56,7 +56,7 @@ public class Fragment_Default extends Fragment {
             ButterKnife.bind(this,rootView);
             idMapping();
 
-            setClickListeners();
+             setClickListeners();
             setDetails();
         }
         return rootView;

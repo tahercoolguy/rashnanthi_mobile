@@ -2,12 +2,66 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="90dp"
     android:animateLayoutChanges="true"
-    android:background="@color/white">
+    android:background="@color/app_bg_color">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_regular"></ImageView>
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/avenir_light"
+                android:gravity="center"
+                android:text="@string/about_appp"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/about_appp_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_menu_filled"></ImageView>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+
+
+
 
     <ScrollView
-        android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
@@ -18,17 +72,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
-            android:layout_marginLeft="20dp"
-            android:orientation="vertical">
+             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/marginRight"
+                 android:layout_marginTop="20dp"
+                 android:textSize="@dimen/text_size_normal"
                 android:text="@string/about_appp1"
-                android:textSize="19dp">
+               >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/text_size_normal"
+                android:text="@string/about_appp1"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/text_size_normal"
+                android:text="@string/about_appp1"
+                >
 
             </TextView>
 
@@ -36,6 +108,7 @@
 
 
     </ScrollView>
+    </LinearLayout>
 
-    <include layout="@layout/about_app_bar_drawer" />
+    <include layout="@layout/layout_error" />
 </RelativeLayout>

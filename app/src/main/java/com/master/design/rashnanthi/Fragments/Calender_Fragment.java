@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
@@ -63,10 +66,15 @@ public class Calender_Fragment extends Fragment {
     TextView moth_year_txt;
 
 
-//    @BindView(R.id.progress_bar) ProgressBar progress_bar;
-//    @BindView(R.id.txt_error) TextView txt_error;
+    @BindView(R.id.progress_bar)
+    ProgressBar progress_bar;
+    @BindView(R.id.txt_error)
+    TextView txt_error;
 
-    //    @BindView(R.id.layout_parent) LinearLayout layout_parent;
+    @BindView(R.id.layout_parent)
+    LinearLayout layout_parent;
+
+
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -137,6 +145,8 @@ public class Calender_Fragment extends Fragment {
 
 
             county_itemDMS = new ArrayList<>();
+            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
+
             county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwaitttttt));
             county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
             county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
@@ -235,11 +245,56 @@ public class Calender_Fragment extends Fragment {
                     moth_year_txt.setText(formatter.format(firstDayOfNewMonth));
                 }
             });
+            setDetails();
+            setClickListeners();
 
 
         }
         return rootView;
     }
+
+    private void idMapping() {
+
+
+    }
+
+    private void setClickListeners() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    private void setDetails() {
+        ShowProgress();
+        rootView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                DismissProgress();
+            }
+        }, 1500);
+
+
+
+
+    }
+
+    public void ShowProgress()
+    {
+        progress_bar.setVisibility(View.VISIBLE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.GONE);
+    }
+
+    public void DismissProgress()
+    {
+        progress_bar.setVisibility(View.GONE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.VISIBLE);
+    }
+
 
 
     @Override

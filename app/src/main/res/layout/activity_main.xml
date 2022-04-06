@@ -4,6 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_bg_color"
     android:orientation="vertical">
 
 
@@ -31,16 +32,16 @@
 
             <com.google.android.material.bottomappbar.BottomAppBar
                 android:id="@+id/bottom_app_bar"
-                 android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="80dp"
 
-                   app:fabAlignmentMode="center">
+                app:fabAlignmentMode="center">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                     android:gravity="center"
-                     android:orientation="horizontal">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/CalenderLL"
@@ -57,8 +58,7 @@
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:background="@drawable/toggle_calender"
-                            android:onClick="onCustomToggleClick_1"
-                              />
+                            android:onClick="onCustomToggleClick_1" />
 
                         <!--                        <ImageView-->
                         <!--                            android:id="@+id/calender"-->
@@ -70,8 +70,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/calender"
                             android:layout_marginTop="5dp"
+                            android:text="@string/calender"
 
                             android:textSize="9dp">
 

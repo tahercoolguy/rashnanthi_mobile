@@ -3,10 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:animateLayoutChanges="true"
+    android:animateLayoutChanges="true"
 
 
     android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:gravity="center"
+
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/avenir_light"
+                android:gravity="center"
+                android:text="@string/home"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/home_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_menu_filled"></ImageView>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/layout_parent"
@@ -15,44 +54,47 @@
 
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:orientation="horizontal">
 
 
             <ImageView
                 android:id="@+id/story_viewer"
-                android:layout_width="90dp"
-                 android:layout_height="90dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="25dp"
                 android:src="@drawable/ic_r_log">
 
             </ImageView>
 
-            <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="85dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/ic_spinner_rectangle_bg"
-                android:backgroundTint="@color/grey_light"
-                android:elevation="80dp">
 
-                <Spinner
-                    android:id="@+id/calender_page_country_spinner"
-                    style="@style/spinner_style"
+            <Spinner
+                android:id="@+id/calender_page_country_spinner"
+                style="@style/spinner_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
 
-                    android:layout_width="180dp"
-                    android:layout_height="55dp"
-                    android:layout_marginLeft="10dp"></Spinner>
+                android:layout_centerInParent="true"
+                android:background="@drawable/spineer_bg"
+                android:pointerIcon="arrow"
+                android:popupBackground="@drawable/spineer_popup_bg"></Spinner>
 
-            </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                 android:background="@drawable/ic_down_arrow_spinner"></ImageView>
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,11 +118,11 @@
                 android:id="@+id/moth_year_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
                 android:text="FEBRUARY 2022"
                 android:textColor="#D51010"
-                android:textSize="21sp">
+                android:textSize="18sp">
 
             </TextView>
 
@@ -97,7 +139,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity=""
             android:orientation="vertical">
@@ -111,7 +153,7 @@
 
             <com.github.sundeepk.compactcalendarview.CompactCalendarView
                 android:id="@+id/compactcalendar_view"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
@@ -122,15 +164,17 @@
                 app:compactCalendarCurrentDayTextColor="@color/white"
                 app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
                 app:compactCalendarEventIndicatorStyle="small_indicator"
+                app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
                 app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
-                 app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
                 app:compactCalendarTargetHeight="250dp"
                 app:compactCalendarTextColor="#000000"
-                app:compactCalendarTextSize="15sp" />
+                app:compactCalendarTextSize="14sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <include layout="@layout/home_bar_drawer" />
+    <include
+        layout="@layout/layout_error"
+        android:layout_height="match_parent" />
 </RelativeLayout>

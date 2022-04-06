@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/red_hat_isplay_bold"
             android:text="@string/verification"
             android:textColor="@color/black"
@@ -38,11 +39,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/avenir_roman"
             android:gravity="center"
 
             android:text="@string/verification_pin">
         </TextView>
+
+
 
 
 
@@ -57,7 +61,7 @@
              app:otp_box_background="@drawable/otp_rounded_rectangle_whitee"
             app:height="60dp"
             app:box_margin="10dp"
-            android:elevation="0.5dp"
+            android:elevation="4dp"
              app:length="4"
             android:layout_marginBottom="20dp"
               app:otp_text_size="24dp"
@@ -65,8 +69,7 @@
         <TextView
             android:id="@+id/resend_otpTxt"
             android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
+             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/marginTop"
             android:gravity="center"

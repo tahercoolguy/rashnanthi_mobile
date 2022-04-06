@@ -15,6 +15,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             android:visibility="visible"
@@ -22,6 +24,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -31,10 +35,10 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
-                    android:text="@string/social_media"
                     android:gravity="center"
+                    android:text="@string/social_media"
                     android:textAllCaps="true"
-                     android:textColor="@color/white"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 

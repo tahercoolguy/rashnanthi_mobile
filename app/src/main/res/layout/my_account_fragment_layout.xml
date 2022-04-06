@@ -1,31 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:background="@color/app_bg_color">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/avenir_light"
+                android:gravity="center"
+                android:text="@string/my_account"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/my_accountImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_chevron_regular"></ImageView>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <LinearLayout
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
+         android:layout_marginTop="60dp"
          android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/splash_screen_logo">
+                android:layout_marginTop="30dp"
+                android:src="@drawable/tq_page_logo">
 
             </ImageView>
 
@@ -33,8 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/red_hat_isplay_bold"
                 android:layout_marginTop="14dp"
+                android:fontFamily="@font/red_hat_isplay_bold"
                 android:gravity="center"
                 android:text="@string/rizana_cader"
                 android:textColor="@color/black"
@@ -45,26 +83,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="15dp"
-                android:text="@string/iamdavid">
+                android:fontFamily="@font/avenir_demi"
+                android:text="@string/iamdavid"
+                android:textSize="15dp">
 
             </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="40dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/add_new_event_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="@dimen/margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
 
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -78,7 +121,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="50dp"
                         android:text="@string/add_new_event"
                         android:textColor="@color/black"
@@ -90,13 +133,14 @@
 
                 <RelativeLayout
                     android:id="@+id/view_event_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
 
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -110,7 +154,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="50dp"
                         android:text="@string/view_event"
                         android:textColor="@color/black"
@@ -126,18 +170,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
 
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/change_password_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="@dimen/margin"
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -163,12 +211,13 @@
 
                 <RelativeLayout
                     android:id="@+id/edit_profile_RL"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_margin="@dimen/margin"
-                    android:layout_weight="5"
-                    android:background="@drawable/event_rounded_corner_white"
-                    android:elevation="@dimen/elevation">
+                    android:layout_weight="1"
+                    android:background="@drawable/my_account_bg"
+                    android:elevation="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -182,7 +231,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="50dp"
                         android:text="@string/edit_pro"
                         android:textColor="@color/black"
@@ -197,5 +246,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/my_account_bar_drawer" />
+    <include layout="@layout/layout_error" />
 </RelativeLayout>

@@ -50,93 +50,11 @@ public class LoginActivity extends AppCompatActivity {
      }
 
 
-
-//
-//    @BindView(R.id.countrycodeET)
-//    EditText CountrycodeET;
-//
-//    @BindView(R.id.mobileET)
-//    EditText MobileET;
-//
-//    @BindView(R.id.forget_PasswordTxt)
-//    TextView Forget_PasswordTxt;
-//
-//    @BindView(R.id.loginBtn)
-//    Button LoginBtn;
-//
-//    @BindView(R.id.new_UserTxt)
-//    Button New_UserTxt;
-
-//    @BindView(R.id.registerBtn)
-//    Button registerBtn;
-
-
-//
-//    @OnClick(R.id.loginBtn)
-//    public void LoginBtn()
-//    {
-//       startActivity(new Intent(LoginActivity.this,MainActivity.class));
-//    }
-
-//    @OnClick(R.id.registerBtn)
-//    public void RegisterBtn()
-//    {
-//        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
-//    }
-//
-//
-//    @NotEmpty
-//    @Email
-//    @BindView(R.id.emailET)
-//    EditText EmailET;
-
-    //    @NotEmpty
-//    @BindView(R.id.passwordET)
-//    EditText passwordET;
-//
-//    @OnClick(R.id.signInBtn)
-//    public void SignIn()
-//    {
-//        try {
-//            if (connectionDetector.isConnectingToInternet()) {
-//                isValid();
-//                if (o) {
-//                    MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-//
-//                    multipartTypedOutput.addPart("email",new TypedString(EmailET.getText().toString()));
-//                    multipartTypedOutput.addPart("password",new TypedString(passwordET.getText().toString()));
-//
-//                    appController.paServices.SignUp(multipartTypedOutput, new Callback<SignUpDM>() {
-//                        @Override
-//                        public void success(SignUpDM signUpDM, Response response) {
-//                            Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-//                            startActivity(intent);
-//                        }
-//
-//                        @Override
-//                        public void failure(RetrofitError error) {
-//
-//                        }
-//                    });
-//                }
-//            } else
-//                Helper.showToast(LoginActivity.this, getString(R.string.no_internet_connection));
-//        }catch (Exception e)
-//        {
-//
-//        }
-//
-//    }
-//
     @OnClick(R.id.register_now_Btn)
     public void RegisterBtn() {
         startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
         finish();
     }
-//
-//    @OnClick(R.id.guestBtn)
-//    public void guestBtn()
-//    {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

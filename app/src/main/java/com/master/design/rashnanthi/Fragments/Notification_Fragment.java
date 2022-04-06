@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +30,7 @@ import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
 
@@ -42,6 +46,13 @@ public class Notification_Fragment extends Fragment {
      RelativeLayout notificatiom_messege_RL;
     Adapter adapter;
 
+    @BindView(R.id.progress_bar)
+    ProgressBar progress_bar;
+    @BindView(R.id.txt_error)
+    TextView txt_error;
+
+    @BindView(R.id.layout_parent)
+    LinearLayout layout_parent;
 
 
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
@@ -104,45 +115,46 @@ public class Notification_Fragment extends Fragment {
             notification_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
             notification_Rcv.setAdapter(new Adapter_Notification(((MainActivity) context), notificationDMArrayList));
 
+            setDetails();
 
         }
         return rootView;
     }
 
 
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//    }
-//
-//    private void setDetails() {
-//       ShowProgress();
-//        rootView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//               DismissProgress();
-//            }
-//        }, 1500);
-//
-//
-//
 
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
-//    public void ShowProgress()
-//    {
-//        progress_bar.setVisibility(View.VISIBLE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.GONE);
-//    }
-//
-//    public void DismissProgress()
-//    {
-//        progress_bar.setVisibility(View.GONE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.VISIBLE);
-//    }
+    private void setDetails() {
+       ShowProgress();
+        rootView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               DismissProgress();
+            }
+        }, 1500);
+
+
+
+
+    }
+
+    public void ShowProgress()
+    {
+        progress_bar.setVisibility(View.VISIBLE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.GONE);
+    }
+
+    public void DismissProgress()
+    {
+        progress_bar.setVisibility(View.GONE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
