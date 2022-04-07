@@ -176,5 +176,7 @@
 
     <include
         layout="@layout/layout_error"
-        android:layout_height="match_parent" />
+        />
+
+<!--    android:layout_height="match_parent"-->
 </RelativeLayout>

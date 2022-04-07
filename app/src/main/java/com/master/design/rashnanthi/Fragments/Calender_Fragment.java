@@ -85,7 +85,6 @@ public class Calender_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         context = getActivity();
-        appController = (AppController) getActivity().getApplicationContext();
 
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
@@ -222,15 +221,17 @@ public class Calender_Fragment extends Fragment {
             compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
                 @Override
                 public void onDayClick(Date dateClicked) {
-                    Context context = getApplicationContext();
-//
-//                    if (calendar.getTimeInMillis() != 0) {
-//
-//                         //                        Toast.makeText(context, "Event day", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
-//
-//                    }
+                    appController = (AppController) getActivity().getApplicationContext();
+                    if (calendar.getTimeInMillis() != 0) {
+
+                        ((MainActivity) context).addFragment(new Event_Small_Image_Fragment(), true);
+
+                    } else {
+                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+
                 }
 
                 @NonNull
@@ -277,24 +278,19 @@ public class Calender_Fragment extends Fragment {
         }, 1500);
 
 
-
-
     }
 
-    public void ShowProgress()
-    {
+    public void ShowProgress() {
         progress_bar.setVisibility(View.VISIBLE);
         txt_error.setVisibility(View.GONE);
         layout_parent.setVisibility(View.GONE);
     }
 
-    public void DismissProgress()
-    {
+    public void DismissProgress() {
         progress_bar.setVisibility(View.GONE);
         txt_error.setVisibility(View.GONE);
         layout_parent.setVisibility(View.VISIBLE);
     }
-
 
 
     @Override

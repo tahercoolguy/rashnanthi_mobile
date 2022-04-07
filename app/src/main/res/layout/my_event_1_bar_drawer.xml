@@ -39,18 +39,18 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
                     android:id="@+id/my_event_menu_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/menu_filled"></ImageView>
+                    android:src="@drawable/ic_menu_filled"></ImageView>
 
 
                 <ImageView
                     android:id="@+id/my_event_menu_1_back"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_cheveron"></ImageView>

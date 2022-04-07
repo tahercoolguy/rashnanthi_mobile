@@ -5,11 +5,13 @@
     android:orientation="vertical">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/notificatiom_messege_RL"
         android:layout_width="match_parent"
-        android:layout_height="124dp"
-        android:layout_margin="@dimen/margin"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+
+        android:orientation="vertical"
 
         android:background="@drawable/notification_bg"
         android:elevation="1000dp">
@@ -46,21 +48,33 @@
             </TextView>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/notificatiom_messege_Txt"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/noticication_messege"
-            android:textColor="@color/black">
+            <TextView
+                android:id="@+id/notificatiom_messege_Txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:lines="3"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/noticication_messege"
+                android:textColor="@color/black">
 
 
-        </TextView>
-    </RelativeLayout>
+            </TextView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>

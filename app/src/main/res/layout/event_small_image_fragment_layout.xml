@@ -1,11 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
 
 
-    android:background="@color/white">
+    android:background="@color/app_bg_color">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="@dimen/elevation">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:visibility="visible"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginRight="20dp">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/avenir_light"
+                    android:gravity="center"
+                    android:text="@string/event"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/even_back_Img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_cheveron"></ImageView>
+
+                <ImageView
+                    android:id="@+id/menu_1_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_menu_filled"></ImageView>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/layout_parent"
@@ -15,53 +74,92 @@
 
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            >
-
-        </ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_marginTop="100dp"
-            android:gravity="center"
+            android:orientation="vertical">
 
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_whastapp"></ImageView>
 
             <ImageView
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/eveent_man_img">
 
-                android:src="@drawable/insta_logo"></ImageView>
+            </ImageView>
 
-            <ImageView
-                android:layout_width="43dp"
-                android:layout_height="43dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                android:layout_margin="10dp"
-               ></ImageView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/small_unselect"
+                    android:layout_margin="10dp"></ImageView>
 
-            <ImageView
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_margin="10dp"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/big_unselector"
 
-                android:src="@drawable/snapchat"></ImageView>
+                    android:layout_margin="10dp"></ImageView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/small_unselect"
+                    android:layout_height="wrap_content"
+
+                    android:layout_margin="10dp"></ImageView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_whastapp"></ImageView>
+
+                <ImageView
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:layout_margin="10dp"
+
+                    android:src="@drawable/insta_logo"></ImageView>
+
+                <ImageView
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:layout_margin="10dp"
+
+                    android:src="@drawable/ic_web"></ImageView>
+
+                <ImageView
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:layout_margin="10dp"
+
+                    android:src="@drawable/snapchat"></ImageView>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
 
-    <include layout="@layout/event_small_image_bar_drawer" />
+    <include layout="@layout/layout_error" />
 </RelativeLayout>

@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,13 +40,17 @@ public class My_Event_1_Fragment extends Fragment {
     private ArrayList<My_Event_1DM> my_event_1DMArrayList;
 
 
-//    @BindView(R.id.progress_bar) ProgressBar progress_bar;
-//    @BindView(R.id.txt_error) TextView txt_error;
+    @BindView(R.id.progress_bar)
+    ProgressBar progress_bar;
+    @BindView(R.id.txt_error)
+    TextView txt_error;
 
-    //    @BindView(R.id.layout_parent) LinearLayout layout_parent;
+    @BindView(R.id.layout_parent)
+    LinearLayout layout_parent;
 
 
-//        @BindView(R.id.my_event_menu_1_back) ImageView back;
+    @BindView(R.id.my_event_menu_1_back)
+    ImageView back;
 
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
@@ -58,10 +65,10 @@ public class My_Event_1_Fragment extends Fragment {
         appController = (AppController) getActivity().getApplicationContext();
 
         connectionDetector = new ConnectionDetector(getActivity());
-//        progressDialog = new ProgressDialog(getActivity());
-//        progressDialog.setMessage(getResources().getString(R.string.please_wait));
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setCancelable(false);
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage(getResources().getString(R.string.please_wait));
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
 //        my_event_menu_1=rootView.findViewById(R.id.my_event_menu_1);
 //
@@ -71,23 +78,23 @@ public class My_Event_1_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.my_event_1_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
 
-            my_event_menu_1=rootView.findViewById(R.id.my_event_menu_1);
-            my_event_menu_1_back=rootView.findViewById(R.id.my_event_menu_1_back);
+            my_event_menu_1 = rootView.findViewById(R.id.my_event_menu_1);
+            my_event_menu_1_back = rootView.findViewById(R.id.my_event_menu_1_back);
 
 
             my_event_menu_1_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MainActivity)context).finish();
-                  }
+                    ((MainActivity) context).finish();
+                }
             });
 
 
             my_event_menu_1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MainActivity)context).addFragment(new Menu_1_Fragment(),false);
-                 }
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+                }
             });
 
             my_event_1DMArrayList = new ArrayList<>();
@@ -107,43 +114,45 @@ public class My_Event_1_Fragment extends Fragment {
             my_event_Rcv.setAdapter(new Adapter_MY_Event_1(((MainActivity) context), my_event_1DMArrayList));
 
 
+            setDetails();
+
         }
         return rootView;
     }
 
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//    }
-//
-//    private void setDetails() {
-//       ShowProgress();
-//        rootView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//               DismissProgress();
-//            }
-//        }, 1500);
-//
-//
-//
 
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
-//    public void ShowProgress()
-//    {
-//        progress_bar.setVisibility(View.VISIBLE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.GONE);
-//    }
-//
-//    public void DismissProgress()
-//    {
-//        progress_bar.setVisibility(View.GONE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.VISIBLE);
-//    }
+    private void setDetails() {
+       ShowProgress();
+        rootView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               DismissProgress();
+            }
+        }, 1500);
+
+
+
+
+    }
+
+    public void ShowProgress()
+    {
+        progress_bar.setVisibility(View.VISIBLE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.GONE);
+    }
+
+    public void DismissProgress()
+    {
+        progress_bar.setVisibility(View.GONE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

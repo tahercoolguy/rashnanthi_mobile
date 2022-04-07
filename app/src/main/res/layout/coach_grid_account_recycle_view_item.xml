@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
        android:orientation="vertical">
@@ -8,6 +9,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+
 
         android:orientation="vertical">
 
@@ -28,20 +32,21 @@
 <!--            </ImageView>-->
 
             <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/coach_grid_img"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:src="@drawable/ic_youtube"
-                app:civ_border_width="3dp"
-                app:civ_border_color="#FFFFFF"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                 android:src="@drawable/lady"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="3dp" />
 
             <ImageView
                 android:id="@+id/like_coach_grid"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="65dp"
+                android:layout_alignParentEnd="true"
+                 android:layout_marginTop="65dp"
+                 android:scaleType="fitXY"
                 android:src="@drawable/toggle_like_red_black"></ImageView>
 
 
@@ -54,23 +59,26 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
-                 android:src="@drawable/ic_whastapp"></ImageView>
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                   android:src="@drawable/ic_whastapp"></ImageView>
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
+                android:layout_width="25dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="25dp"
+
 
                 android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>
 
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+
 
                 android:src="@drawable/snapchat"></ImageView>
         </LinearLayout>

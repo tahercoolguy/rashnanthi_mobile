@@ -22,7 +22,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+
+                android:layout_marginRight="20dp">
 
                 <TextView
                     android:id="@+id/txt_title"
@@ -31,28 +33,29 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
-                    android:text="@string/event"
                     android:gravity="center"
+                    android:text="@string/event"
                     android:textAllCaps="true"
-                     android:textColor="@color/white"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/even_back_Img"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_cheveron"></ImageView>
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
                     android:id="@+id/menu_1_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/menu_filled"></ImageView>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_menu_filled"></ImageView>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 

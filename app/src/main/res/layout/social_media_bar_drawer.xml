@@ -43,9 +43,9 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/social_media_menu"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:id="@+id/social_media_menu"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/menu_filled"></ImageView>
