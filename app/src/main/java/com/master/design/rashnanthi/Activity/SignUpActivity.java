@@ -47,27 +47,26 @@ public class SignUpActivity extends AppCompatActivity {
     private ArrayList<Country_NameDM> countryNameDMS;
     private ArrayList<Country_CodeDM> country_codeDMS;
 
-     Spinner country_name_spinner,mobile_countrycode_Sp,wtsap_countrycode_Sp;
+    Spinner country_name_spinner, mobile_countrycode_Sp, wtsap_countrycode_Sp;
 
 
-
-    ImageView profileImg,cameraImg,back_from_register_page;
+    ImageView profileImg, cameraImg, back_from_register_page;
 
 //    ImageView back_from_register_page;
 
     LinearLayout testing, testing1;
-    TextView event, coach,nameET,emailET,passwordET,confirm_passwordET;
+    TextView event, coach, nameET, emailET, passwordET, confirm_passwordET;
     Button register_NowBtn;
-    EditText snap_id_ET,insta_id_ET;
+    EditText snap_id_ET, insta_id_ET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        country_name_spinner=findViewById(R.id.country_name_spinner);
+        country_name_spinner = findViewById(R.id.country_name_spinner);
 
-        back_from_register_page=findViewById(R.id.back_from_register_page);
+        back_from_register_page = findViewById(R.id.back_from_register_page);
 
         back_from_register_page.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,29 +74,25 @@ public class SignUpActivity extends AppCompatActivity {
 
                 finish();
 
-                }
+            }
         });
-
-
-
-
-
+        
         testing = findViewById(R.id.testing);
         testing1 = findViewById(R.id.testing1);
         event = findViewById(R.id.eventTxt);
         coach = findViewById(R.id.coachTxt);
         register_NowBtn = findViewById(R.id.register_NowBtn);
-        profileImg=findViewById(R.id.profileImg);
-        cameraImg=findViewById(R.id.cameraImg);
-        nameET=findViewById(R.id.nameET);
-        emailET=findViewById(R.id.emailET);
-        passwordET=findViewById(R.id.passwordET);
-        confirm_passwordET=findViewById(R.id.confirm_passwordET);
-        snap_id_ET=findViewById(R.id.snap_id_ET);
-        insta_id_ET=findViewById(R.id.insta_id_ET);
+        profileImg = findViewById(R.id.profileImg);
+        cameraImg = findViewById(R.id.cameraImg);
+        nameET = findViewById(R.id.nameET);
+        emailET = findViewById(R.id.emailET);
+        passwordET = findViewById(R.id.passwordET);
+        confirm_passwordET = findViewById(R.id.confirm_passwordET);
+        snap_id_ET = findViewById(R.id.snap_id_ET);
+        insta_id_ET = findViewById(R.id.insta_id_ET);
 
-        mobile_countrycode_Sp=findViewById(R.id.mobile_countrycode_Sp);
-        wtsap_countrycode_Sp=findViewById(R.id.wtsap_countrycode_Sp);
+        mobile_countrycode_Sp = findViewById(R.id.mobile_countrycode_Sp);
+        wtsap_countrycode_Sp = findViewById(R.id.wtsap_countrycode_Sp);
 
         ArrayList<Country_CodeDM> country_codeDMS;
         country_codeDMS = new ArrayList<>();
@@ -109,14 +104,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         Adapter_Country_Code_Only_Spinner adapter_country_code_only_spinner;
 
-        adapter_country_code_only_spinner = new Adapter_Country_Code_Only_Spinner( this,country_codeDMS);
+        adapter_country_code_only_spinner = new Adapter_Country_Code_Only_Spinner(this, country_codeDMS);
 
 
         mobile_countrycode_Sp.setAdapter(adapter_country_code_only_spinner);
         wtsap_countrycode_Sp.setAdapter(adapter_country_code_only_spinner);
-
-
-
 
 
         ArrayList<Country_NameDM> countryNameDMS;
@@ -132,7 +124,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         Adapter_Country_Name_Spinner adapter_country_name_spinner;
 
-        adapter_country_name_spinner = new Adapter_Country_Name_Spinner( this,countryNameDMS);
+        adapter_country_name_spinner = new Adapter_Country_Name_Spinner(this, countryNameDMS);
 
 
         country_name_spinner.setAdapter(adapter_country_name_spinner);
@@ -153,7 +145,6 @@ public class SignUpActivity extends AppCompatActivity {
         VisibilityFunction();
 
 
-
 //                Intent i = new Intent(getApplicationContext(),Menu_1_Fragment.class);
 //
 //        ButterKnife.bind(this);
@@ -163,7 +154,7 @@ public class SignUpActivity extends AppCompatActivity {
         user = new User(SignUpActivity.this);
 
 
- //        progressDialog = new ProgressDialog(getActivity());
+        //        progressDialog = new ProgressDialog(getActivity());
 //        progressDialog.setMessage(getResources().getString(R.string.please_wait));
 //        progressDialog.setIndeterminate(true);
 //        progressDialog.setCancelable(false);

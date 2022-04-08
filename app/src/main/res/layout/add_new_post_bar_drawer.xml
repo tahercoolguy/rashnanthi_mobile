@@ -22,6 +22,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -31,20 +32,20 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
-                    android:text="@string/add_new_post"
                     android:gravity="center"
+                    android:text="@string/add_new_post"
                     android:textAllCaps="true"
-                     android:textColor="@color/white"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/add_new_post_pay_back"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_chevron_regular"></ImageView>
+                     android:src="@drawable/ic_chevron_regular"></ImageView>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 

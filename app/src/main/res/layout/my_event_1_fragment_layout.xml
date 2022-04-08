@@ -57,7 +57,7 @@
                     android:id="@+id/my_event_menu_1_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_cheveron"></ImageView>
             </RelativeLayout>
