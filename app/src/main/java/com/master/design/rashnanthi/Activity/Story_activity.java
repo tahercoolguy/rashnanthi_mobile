@@ -25,7 +25,9 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     private final int[] resources = new int[]{
             R.drawable.story_img_1,
             R.drawable.story_img_2,
-            R.drawable.story_img_3,
+            R.drawable.story_img_3, R.drawable.story_img_1,
+             R.drawable.story_img_2,
+             R.drawable.story_img_3
 
     };
 
@@ -154,6 +156,9 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     public void onNext() {
         // this method is called when we move
         // to next progress view of story.
+
+        if ((counter + 1) < 0) return;
+
         image.setImageResource(resources[++counter]);
     }
 
