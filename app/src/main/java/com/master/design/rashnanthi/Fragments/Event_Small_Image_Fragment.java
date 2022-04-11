@@ -114,7 +114,7 @@ public class Event_Small_Image_Fragment extends Fragment {
             public void run() {
                DismissProgress();
             }
-        }, 1500);
+        }, 100);
 
 
 

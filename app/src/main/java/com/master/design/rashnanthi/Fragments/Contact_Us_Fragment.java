@@ -102,7 +102,7 @@ public class Contact_Us_Fragment extends Fragment {
             public void run() {
                DismissProgress();
             }
-        }, 1500);
+        }, 100);
 
 
 

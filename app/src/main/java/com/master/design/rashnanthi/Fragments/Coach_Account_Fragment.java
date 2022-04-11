@@ -126,7 +126,7 @@ public class Coach_Account_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 1500);
+        }, 100);
 
 
     }

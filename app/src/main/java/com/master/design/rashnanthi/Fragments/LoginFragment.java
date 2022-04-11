@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 1500);
+        }, 100);
 
 
 
