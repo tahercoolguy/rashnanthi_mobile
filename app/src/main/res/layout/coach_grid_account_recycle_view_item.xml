@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-       android:orientation="vertical">
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -17,36 +17,37 @@
 
         <RelativeLayout
             android:id="@+id/grid_item_RL"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
 
-            android:layout_height="match_parent">
+            android:layout_gravity="center">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/coach_grid_img"-->
-<!--                android:layout_width="120dp"-->
-<!--                android:layout_height="120dp"-->
+            <!--            <ImageView-->
+            <!--                android:id="@+id/coach_grid_img"-->
+            <!--                android:layout_width="120dp"-->
+            <!--                android:layout_height="120dp"-->
 
-<!--                android:src="@drawable/profile_img">-->
+            <!--                android:src="@drawable/profile_img">-->
 
-<!--            </ImageView>-->
+            <!--            </ImageView>-->
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/coach_grid_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                 android:src="@drawable/lady"
+                android:src="@drawable/lady"
                 app:civ_border_color="#FFFFFF"
-                app:civ_border_width="3dp" />
+                app:civ_border_width="0.1dp" />
 
             <ImageView
                 android:id="@+id/like_coach_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                 android:layout_marginTop="65dp"
-                 android:scaleType="fitXY"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="2dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/toggle_like_red_black"></ImageView>
 
 
@@ -54,7 +55,10 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
 
             android:orientation="horizontal">
 
@@ -62,14 +66,14 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_weight="1"
-                   android:src="@drawable/ic_whastapp"></ImageView>
+                android:src="@drawable/ic_whastapp"></ImageView>
 
             <ImageView
                 android:layout_width="25dp"
-                android:layout_weight="1"
+                android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_height="25dp"
+                android:layout_weight="1"
 
 
                 android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>

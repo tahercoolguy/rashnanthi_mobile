@@ -20,31 +20,31 @@
     <ImageView
         android:id="@+id/coach_img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         android:scaleType="fitXY"
+        android:layout_height="387dp"
+        android:elevation="80dp"
+        android:scaleType="fitXY"
         android:src="@drawable/coach_slider_img"
-         app:corner_radius="30"
-        android:elevation="80dp">
+        app:corner_radius="30">
 
     </ImageView>
 
-<!--    <com.smarteist.autoimageslider.SliderView-->
-<!--        android:id="@+id/slider"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="350dp"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        app:sliderAnimationDuration="600"-->
-<!--        app:sliderAutoCycleDirection="back_and_forth"-->
-<!--        app:sliderIndicatorAnimationDuration="600"-->
-<!--        app:sliderIndicatorEnabled="true"-->
-<!--        app:sliderIndicatorGravity="center_horizontal|bottom"-->
-<!--        app:sliderIndicatorMargin="15dp"-->
-<!--        app:sliderIndicatorOrientation="horizontal"-->
-<!--        app:sliderIndicatorPadding="3dp"-->
-<!--        app:sliderIndicatorRadius="2dp"-->
-<!--        app:sliderIndicatorSelectedColor="@color/colorPrimary"-->
-<!--        app:sliderIndicatorUnselectedColor="@color/greyDark"-->
-<!--        app:sliderScrollTimeInSec="1" />-->
+    <!--    <com.smarteist.autoimageslider.SliderView-->
+    <!--        android:id="@+id/slider"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="350dp"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        app:sliderAnimationDuration="600"-->
+    <!--        app:sliderAutoCycleDirection="back_and_forth"-->
+    <!--        app:sliderIndicatorAnimationDuration="600"-->
+    <!--        app:sliderIndicatorEnabled="true"-->
+    <!--        app:sliderIndicatorGravity="center_horizontal|bottom"-->
+    <!--        app:sliderIndicatorMargin="15dp"-->
+    <!--        app:sliderIndicatorOrientation="horizontal"-->
+    <!--        app:sliderIndicatorPadding="3dp"-->
+    <!--        app:sliderIndicatorRadius="2dp"-->
+    <!--        app:sliderIndicatorSelectedColor="@color/colorPrimary"-->
+    <!--        app:sliderIndicatorUnselectedColor="@color/greyDark"-->
+    <!--        app:sliderScrollTimeInSec="1" />-->
 
 
     <LinearLayout
@@ -52,8 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="-10dp"
-        android:gravity="center"
+        android:layout_marginBottom="20dp"
         android:background="@color/white"
+        android:gravity="center"
 
         android:orientation="horizontal">
 

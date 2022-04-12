@@ -61,7 +61,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
     private void setDetails(Adapter_Coach__grid_Fgmt.ViewHolder viewHolder, int position) {
 
 
-        viewHolder.imgview.setImageResource(coachGridDMArrayList.get(position).getCoach_Image());
+        viewHolder.circle_imgview.setImageResource(coachGridDMArrayList.get(position).getCoach_Image());
         viewHolder.imageView1.setImageResource(coachGridDMArrayList.get(position).getLike_img());
 
         viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
         });
 
 
-        viewHolder.imgview.setOnClickListener(new View.OnClickListener() {
+        viewHolder.circle_imgview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -111,12 +111,14 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgview, imageView1;
+        ImageView  imageView1;
+
+        de.hdodenhof.circleimageview.CircleImageView circle_imgview;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            imgview = itemView.findViewById(R.id.coach_grid_img);
+            circle_imgview = itemView.findViewById(R.id.coach_grid_img);
             imageView1 = itemView.findViewById(R.id.like_coach_grid);
 
 

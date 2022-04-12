@@ -11,17 +11,17 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:gravity="center"
-
         android:layout_height="?attr/actionBarSize"
+
         android:background="@color/colorPrimary"
+        android:gravity="center"
         android:visibility="visible"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp">
 
             <TextView
                 android:id="@+id/txt_title"
@@ -79,19 +79,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-
                 android:layout_centerInParent="true"
                 android:background="@drawable/spineer_bg"
                 android:pointerIcon="arrow"
                 android:popupBackground="@drawable/spineer_popup_bg"></Spinner>
 
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                 android:background="@drawable/ic_down_arrow_spinner"></ImageView>
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_down_arrow_spinner"></ImageView>
 
 
         </RelativeLayout>
@@ -149,34 +149,46 @@
             <!--                            android:layout_width="match_parent"-->
             <!--                            android:layout_height="wrap_content"-->
             <!--                            android:layout_marginTop="20dp"></CalendarView>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                    android:id="@+id/compactcalendar_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
+                    app:compactCalendarCurrentDayTextColor="@color/white"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
+                    app:compactCalendarEventIndicatorStyle="small_indicator"
+                    app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
+                    app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
+                    app:compactCalendarTargetHeight="250dp"
+                    app:compactCalendarTextColor="#000000"
+                    app:compactCalendarTextSize="14sp" />
 
 
-            <com.github.sundeepk.compactcalendarview.CompactCalendarView
-                android:id="@+id/compactcalendar_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
+            </RelativeLayout>
 
-                app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
-                app:compactCalendarCurrentDayTextColor="@color/white"
-                app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
-                app:compactCalendarEventIndicatorStyle="small_indicator"
-                app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
-                app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
-                app:compactCalendarTargetHeight="250dp"
-                app:compactCalendarTextColor="#000000"
-                app:compactCalendarTextSize="14sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <include
-        layout="@layout/layout_error"
-        />
+    <include layout="@layout/layout_error" />
 
-<!--    android:layout_height="match_parent"-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="278dp"
+        android:backgroundTint="@color/grey_light"
+        android:src="#989898"></ImageView>
+
+
 </RelativeLayout>
