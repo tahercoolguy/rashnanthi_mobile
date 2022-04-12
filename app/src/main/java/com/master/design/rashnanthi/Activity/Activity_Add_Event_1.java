@@ -59,7 +59,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     Button add_more_eventBtn;
     TextView your_post_will_beTXt;
     ImageView add_event_pay_back;
-    RadioButton radioBtn_Term_condition;
+    LinearLayout radioBtn_Term_condition;
     Button pay_now_Btn, continue_Btn, post_for_free_nowBtn;
     private ArrayList<Country_CodeDM> country_codeDMS;
     private ArrayList<Country_NameDM> countryNameDMS;
