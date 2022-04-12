@@ -60,15 +60,15 @@
 
         <ImageView
             android:id="@+id/whatsapp_IMg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="10dp"
             android:src="@drawable/ic_whastapp"></ImageView>
 
         <ImageView
             android:id="@+id/insta_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="10dp"
 
             android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>
@@ -76,8 +76,8 @@
 
         <ImageView
             android:id="@+id/snapchaht_Img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="10dp"
 
             android:src="@drawable/snapchat"></ImageView>

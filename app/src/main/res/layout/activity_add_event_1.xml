@@ -711,7 +711,11 @@
 
                         </ImageView>
                     </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content">
 
+                    </LinearLayout>
                     <RelativeLayout
                         android:id="@+id/add_img_video_2_RL"
                         android:layout_width="wrap_content"
@@ -914,6 +918,12 @@
 
             </ImageView>
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/add_img_video_4_RL"
