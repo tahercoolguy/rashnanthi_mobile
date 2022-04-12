@@ -171,7 +171,15 @@
                     app:compactCalendarTextColor="#000000"
                     app:compactCalendarTextSize="14sp" />
 
-
+                <!--                <ImageView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="1dp"-->
+                <!--                    android:layout_centerVertical="true"-->
+                <!--                    android:layout_alignParentTop="true"-->
+                <!--                    android:layout_marginTop="60dp"-->
+                <!--                     android:layout_marginHorizontal="35dp"-->
+                <!--                     android:backgroundTint="@color/grey_light"-->
+                <!--                    android:src="#989898"></ImageView>-->
             </RelativeLayout>
 
 
@@ -180,15 +188,6 @@
     </LinearLayout>
 
     <include layout="@layout/layout_error" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="278dp"
-        android:backgroundTint="@color/grey_light"
-        android:src="#989898"></ImageView>
 
 
 </RelativeLayout>
