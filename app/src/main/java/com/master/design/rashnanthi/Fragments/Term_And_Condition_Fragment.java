@@ -3,11 +3,14 @@ package com.master.design.rashnanthi.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +18,17 @@ import androidx.fragment.app.Fragment;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 
- import it.sephiroth.android.library.widget.HListView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Term_And_Condition_Fragment extends Fragment {
 
@@ -35,6 +45,70 @@ public class Term_And_Condition_Fragment extends Fragment {
     AppController appController;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
+
+
+
+    @BindView(R.id.terms_conditionTxt)
+    TextView Terms;
+
+    public void TermsAndConditions () {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            appController.paServices.TermsAndCondition(new Callback<AboutUsDM>() {
+                @Override
+
+                public void success(AboutUsDM aboutUsDM, Response response) {
+                    if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
+
+                        Terms.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+
+                        //termAndCondition.setText(dataTerm.getItem().getDescription());
+
+                    else
+                        Helper.showToast(context,aboutUsDM.getOutput().getSuccess());
+                }
+
+                @Override
+                public void failure( RetrofitError retrofitError) {
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(context, getString(R.string.no_internet_connection));
+    }
+
+
+
+//    @BindView(R.id.terms_conditionTxt)
+//    TextView TermsConditionn;
+
+//    public void TermsAndCondition () {
+//        if (connectionDetector.isConnectingToInternet()) {
+//
+//            appController.paServices.TermsAndCondition(new Callback<AboutUsDM>() {
+//                @Override
+//
+//                public void success(AboutUsDM aboutUsDM, Response response) {
+//                    if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
+//
+//                        TermsConditionn.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+//
+//                        //termAndCondition.setText(dataTerm.getItem().getDescription());
+//
+//                    else
+//                        Helper.showToast(context,aboutUsDM.getOutput().getSuccess());
+//                }
+//
+//                @Override
+//                public void failure( RetrofitError retrofitError) {
+//                    Log.e("error", retrofitError.toString());
+//
+//                }
+//            });
+//        } else
+//            Helper.showToast(context, getString(R.string.no_internet_connection));
+//    }
 
     @Nullable
     @Override
@@ -53,7 +127,10 @@ public class Term_And_Condition_Fragment extends Fragment {
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.term_and_condition_fragment_layout, container, false);
+            ButterKnife.bind(this,rootView);
 
+            TermsAndConditions();
+//            TermsAndCondition();
 //            idMapping();
 //
 //            setClickListeners();

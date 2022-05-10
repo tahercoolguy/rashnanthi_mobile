@@ -49,6 +49,13 @@ public class Menu_1_Fragment extends Fragment {
     @BindView(R.id.layout_parent)
     LinearLayout layout_parent;
 
+    @BindView(R.id.term_conditionRL)
+    RelativeLayout term_conditionRL;
+
+    @BindView(R.id.privacy_policy_RL)
+    RelativeLayout privacy_policy_RL;
+
+
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -133,6 +140,26 @@ public class Menu_1_Fragment extends Fragment {
                 public void onClick(View view) {
 
                     ((MainActivity) context).addFragment(new Contact_Us_Fragment(), false);
+
+
+                }
+            });
+
+            term_conditionRL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    ((MainActivity) context).addFragment(new Term_And_Condition_Fragment(), false);
+
+
+                }
+            });
+
+            privacy_policy_RL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    ((MainActivity) context).addFragment(new Privacy_Policy_Fragment(), false);
 
 
                 }

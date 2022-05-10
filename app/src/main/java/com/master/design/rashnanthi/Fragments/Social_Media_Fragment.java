@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -20,12 +22,18 @@ import androidx.fragment.app.Fragment;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.AboutUsDM;
+import com.master.design.rashnanthi.DataModel.SocialMediaDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Social_Media_Fragment extends Fragment {
 
@@ -53,6 +61,36 @@ public class Social_Media_Fragment extends Fragment {
     AppController appController;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
+
+
+
+//    public void SocialMediaLink() {
+//        if (connectionDetector.isConnectingToInternet()) {
+//
+//            appController.paServices.SocialMedia(new Callback<SocialMediaDM>() {
+//                @Override
+//
+//                public void success(SocialMediaDM socialMediaDM, Response response) {
+//                    if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//
+//                        mobile__ET.setText((String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent())));
+//                        wtsap__ET.setText((String.valueOf(aboutUsDM.getOutput().getData().get(0).getContentar())));
+//
+//                        //termAndCondition.setText(dataTerm.getItem().getDescription());
+//                    }
+//                    else
+//                        Helper.showToast(context, socialMediaDM.getOutput().getSuccess()..getOutput().getSuccess());
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError retrofitError) {
+//                    Log.e("error", retrofitError.toString());
+//
+//                }
+//            });
+//        } else
+//            Helper.showToast(context, getString(R.string.no_internet_connection));
+//    }
 
     @Nullable
     @Override

@@ -3,6 +3,8 @@ package com.master.design.rashnanthi.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -19,12 +21,18 @@ import androidx.fragment.app.Fragment;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.AboutUsDM;
+import com.master.design.rashnanthi.DataModel.Data;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class About_App_Fragment extends Fragment {
 
@@ -49,6 +57,39 @@ public class About_App_Fragment extends Fragment {
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
 
+
+
+    @BindView(R.id.about_AppTxt)
+    TextView AboutAppTxt;
+
+    public void AboutUs () {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            appController.paServices.Aboutus(new Callback<AboutUsDM>() {
+                @Override
+
+                public void success(AboutUsDM aboutUsDM, Response response) {
+                    if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
+
+                        AboutAppTxt.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+
+                        //termAndCondition.setText(dataTerm.getItem().getDescription());
+
+                    else
+                        Helper.showToast(context,aboutUsDM.getOutput().getSuccess());
+                }
+
+                @Override
+                public void failure( RetrofitError retrofitError) {
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(context, getString(R.string.no_internet_connection));
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,6 +109,7 @@ public class About_App_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.about_app_fragment_layout, container, false);
             ButterKnife.bind(this,rootView);
             idMapping();
+            AboutUs();
 
             setClickListeners();
             setDetails();

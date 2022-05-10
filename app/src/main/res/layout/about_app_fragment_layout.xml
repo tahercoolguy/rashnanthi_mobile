@@ -75,33 +75,18 @@
              android:orientation="vertical">
 
             <TextView
+                android:id="@+id/about_AppTxt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                   android:textSize="@dimen/text_size_normal"
-                android:text="@string/about_appp1"
+                android:text="@string/about_app"
                >
 
             </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:textSize="@dimen/text_size_normal"
-                android:text="@string/about_appp1"
-                >
 
-            </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:textSize="@dimen/text_size_normal"
-                android:text="@string/about_appp1"
-                >
 
-            </TextView>
 
         </LinearLayout>
 

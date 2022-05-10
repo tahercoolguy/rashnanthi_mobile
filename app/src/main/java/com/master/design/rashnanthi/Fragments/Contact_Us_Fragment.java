@@ -3,6 +3,8 @@ package com.master.design.rashnanthi.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -19,12 +21,17 @@ import androidx.fragment.app.Fragment;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Contact_Us_Fragment extends Fragment {
 
@@ -46,6 +53,40 @@ public class Contact_Us_Fragment extends Fragment {
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
 
+    @BindView(R.id.mobile__ET)
+    TextView mobile__ET;
+
+    @BindView(R.id.wtsap__ET)
+    TextView wtsap__ET;
+
+    public void AboutUs() {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            appController.paServices.ContactUS(new Callback<AboutUsDM>() {
+                @Override
+
+                public void success(AboutUsDM aboutUsDM, Response response) {
+                    if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                        mobile__ET.setText((String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent())));
+                        wtsap__ET.setText((String.valueOf(aboutUsDM.getOutput().getData().get(0).getContentar())));
+
+                        //termAndCondition.setText(dataTerm.getItem().getDescription());
+                    }
+                    else
+                        Helper.showToast(context, aboutUsDM.getOutput().getSuccess());
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(context, getString(R.string.no_internet_connection));
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,8 +104,9 @@ public class Contact_Us_Fragment extends Fragment {
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.contact_us_fragment_layout, container, false);
-            ButterKnife.bind(this,rootView);
-            contact_menu1=rootView.findViewById(R.id.contact_menu1);
+            ButterKnife.bind(this, rootView);
+            AboutUs();
+            contact_menu1 = rootView.findViewById(R.id.contact_menu1);
 
             contact_menu1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,28 +138,24 @@ public class Contact_Us_Fragment extends Fragment {
     }
 
     private void setDetails() {
-       ShowProgress();
+        ShowProgress();
         rootView.postDelayed(new Runnable() {
             @Override
             public void run() {
-               DismissProgress();
+                DismissProgress();
             }
         }, 100);
 
 
-
-
     }
 
-    public void ShowProgress()
-    {
+    public void ShowProgress() {
         progress_bar.setVisibility(View.VISIBLE);
         txt_error.setVisibility(View.GONE);
         layout_parent.setVisibility(View.GONE);
     }
 
-    public void DismissProgress()
-    {
+    public void DismissProgress() {
         progress_bar.setVisibility(View.GONE);
         txt_error.setVisibility(View.GONE);
         layout_parent.setVisibility(View.VISIBLE);
