@@ -4,10 +4,29 @@ public class DataItem{
 	private String youtube;
 	private String snapchat;
 	private String twitter;
-	private String tiktok;
+ 	private String tiktok;
 	private String facebook;
 	private String telegram;
 	private String id;
+	private String instagram;
+
+	public String getWhatsapp() {
+		return whatsapp;
+	}
+
+	public void setWhatsapp(String whatsapp) {
+		this.whatsapp = whatsapp;
+	}
+
+	private String whatsapp;
+
+	public String getInstagram() {
+		return instagram;
+	}
+
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
+	}
 
 	public void setYoutube(String youtube){
 		this.youtube = youtube;

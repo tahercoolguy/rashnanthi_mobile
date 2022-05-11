@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Output{
 	private List<DataItem> data;
-	private int success;
+	private String success;
 
 	public void setData(List<DataItem> data){
 		this.data = data;
@@ -14,11 +14,11 @@ public class Output{
 		return data;
 	}
 
-	public void setSuccess(int success){
+	public void setSuccess(String success){
 		this.success = success;
 	}
 
-	public int getSuccess(){
+	public String getSuccess(){
 		return success;
 	}
 }

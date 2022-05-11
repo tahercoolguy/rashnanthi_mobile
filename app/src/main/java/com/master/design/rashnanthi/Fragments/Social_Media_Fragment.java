@@ -3,6 +3,7 @@ package com.master.design.rashnanthi.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -62,35 +63,168 @@ public class Social_Media_Fragment extends Fragment {
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
 
+    boolean ifinsta = false;
+    boolean ifwhatsapp = false;
+    boolean iftwitter = false;
+    boolean ifsnapchat = false;
+    boolean ifyoutube = false;
+    boolean iftiktok = false;
+    boolean iftelegram = false;
 
 
-//    public void SocialMediaLink() {
-//        if (connectionDetector.isConnectingToInternet()) {
+    public void SocialMediaLink() {
+
+        if (connectionDetector.isConnectingToInternet()) {
+
+            appController.paServices.SocialMedia(new Callback<SocialMediaDM>() {
+                @Override
+
+                public void success(SocialMediaDM socialMediaDM, Response response) {
+                    if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                        if (ifinsta) {
+                             if (socialMediaDM.getOutput().getData().get(0).getInstagram() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getInstagram();
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getInstagram()));
+                                 ifinsta =true;
+
+                                 String url = "https://www.google.com/";
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
+
+                        }   if (ifwhatsapp) {
+
+                            if (socialMediaDM.getOutput().getData().get(0).getWhatsapp() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getWhatsapp();
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getInstagram()));
+                                ifwhatsapp=true;
+
+                                String url = "https://www.google.com/";
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
 //
-//            appController.paServices.SocialMedia(new Callback<SocialMediaDM>() {
-//                @Override
-//
-//                public void success(SocialMediaDM socialMediaDM, Response response) {
-//                    if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//
-//                        mobile__ET.setText((String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent())));
-//                        wtsap__ET.setText((String.valueOf(aboutUsDM.getOutput().getData().get(0).getContentar())));
-//
-//                        //termAndCondition.setText(dataTerm.getItem().getDescription());
-//                    }
-//                    else
-//                        Helper.showToast(context, socialMediaDM.getOutput().getSuccess()..getOutput().getSuccess());
-//                }
-//
-//                @Override
-//                public void failure(RetrofitError retrofitError) {
-//                    Log.e("error", retrofitError.toString());
-//
-//                }
-//            });
-//        } else
-//            Helper.showToast(context, getString(R.string.no_internet_connection));
-//    }
+
+
+                        }   if (iftwitter) {
+
+                            if (socialMediaDM.getOutput().getData().get(0).getTwitter() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getTwitter() ;
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getTwitter()));
+                                iftwitter =true;
+
+                                String url = "https://www.google.com/";
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
+
+
+                        }   if (ifsnapchat) {
+                            if (socialMediaDM.getOutput().getData().get(0).getSnapchat() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getSnapchat();
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getSnapchat()));
+                                ifsnapchat =true;
+
+                                String url = "https://www.google.com/";
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
+
+
+                        }   if (ifyoutube) {
+                            if (socialMediaDM.getOutput().getData().get(0).getYoutube() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getYoutube();
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                              Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getYoutube()));
+                                ifyoutube =true;
+
+                                String url = "https://www.google.com/";
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
+
+                        }   if (iftiktok) {
+
+                            if (socialMediaDM.getOutput().getData().get(0).getTiktok() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getTiktok();
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                               Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getTiktok()));
+                                iftiktok =true;
+
+                                String url = "https://www.google.com/";
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
+
+
+
+
+                        }   if (iftelegram) {
+
+                            if (socialMediaDM.getOutput().getData().get(0).getTelegram() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getTelegram();
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                               Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getTelegram()));
+                                iftelegram=true;
+
+                                String url = "https://www.google.com/";
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
+
+                        }
+
+
+                    } else
+                        Helper.showToast(context, socialMediaDM.getOutput().
+
+                                getSuccess());
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(context,
+
+                    getString(R.string.no_internet_connection));
+    }
 
     @Nullable
     @Override
@@ -127,14 +261,14 @@ public class Social_Media_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
-
-
                 }
             });
 
             instaRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    ifinsta = true;
+                    SocialMediaLink();
 
                 }
             });
@@ -142,11 +276,19 @@ public class Social_Media_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    ifwhatsapp = true;
+                    SocialMediaLink();
+
+
+
                 }
             });
             twitterRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    iftwitter = true;
+                    SocialMediaLink();
 
                 }
             });
@@ -154,11 +296,19 @@ public class Social_Media_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    ifsnapchat = true;
+                    SocialMediaLink();
+
+
                 }
             });
             youtubeRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
+                    ifyoutube = true;
+                    SocialMediaLink();
 
                 }
             });
@@ -166,11 +316,19 @@ public class Social_Media_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+
+                    iftiktok = true;
+                    SocialMediaLink();
+
                 }
             });
             telegramRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    iftelegram = true;
+
+                    SocialMediaLink();
 
                 }
             });
