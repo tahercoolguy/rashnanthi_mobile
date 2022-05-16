@@ -194,7 +194,7 @@ public class ImagePickerActivity extends AppCompatActivity {
         options.setCompressionQuality(IMAGE_COMPRESSION);
         options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        options.setActiveWidgetColor(ContextCompat.getColor(this, R.color.colorPrimary));
+//        options.setActiveWidzgetColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
         if (lockAspectRatio)
             options.withAspectRatio(ASPECT_RATIO_X, ASPECT_RATIO_Y);

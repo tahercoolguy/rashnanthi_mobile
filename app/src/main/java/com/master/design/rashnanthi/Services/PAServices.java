@@ -5,58 +5,26 @@ package com.master.design.rashnanthi.Services;
 
 
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
-import com.master.design.rashnanthi.DataModel.BannerDM;
-import com.master.design.rashnanthi.DataModel.EventsDM;
-import com.master.design.rashnanthi.DataModel.NewsDM;
-import com.master.design.rashnanthi.DataModel.RestaurentDM;
-import com.master.design.rashnanthi.DataModel.ShopsDM;
-import com.master.design.rashnanthi.DataModel.SignUpDM;
+import com.master.design.rashnanthi.DataModel.CountryRootDM;
+import com.master.design.rashnanthi.DataModel.EventRegisterDM;
+import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
+import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
+import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.DataModel.OtpScrenRootDM;
 import com.master.design.rashnanthi.DataModel.SocialMediaDM;
-import com.master.design.rashnanthi.DataModel.VideoDM;
 
 import retrofit.Callback;
 import retrofit.http.Body;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Headers;
 import retrofit.http.POST;
 import retrofit.mime.MultipartTypedOutput;
 
-public interface PAServices {
-    @Headers("Cache-Control: no-cache;")
-    @POST("/auth/signin")
-    void SignUp(@Body MultipartTypedOutput multipartTypedOutput, Callback<SignUpDM> signUpDMCallback);
 
-    @Headers("Cache-Control: no-cache;")
-    @POST("/auth/record_video")
-    void RecordedVideo(@Body MultipartTypedOutput multipartTypedOutput, Callback<VideoDM> videoDMCallback);
-
-    @Headers("Cache-Control: no-cache;")
-    @POST("/auth/user_login")
-    void LoginIn(@Body MultipartTypedOutput multipartTypedOutput, Callback<SignUpDM> signUpDMCallback);
-
-    @Headers("Cache-Control: no-cache;")
-    @GET("/user/view_home_banner")
-    void Banner(Callback<BannerDM> bannerDMCallback);
-
-    @Headers("Cache-Control: no-cache;")
-    @GET("/user/view_news")
-    void News(Callback<NewsDM> newsDMCallback);
-
-    @Headers("Cache-Control: no-cache;")
-    @GET("/user/view_events")
-    void Events(Callback<EventsDM> eventsDMCallback);
-
-    @Headers("Cache-Control: no-cache;")
-    @GET("/user/view_restaurants")
-    void Restaurent(Callback<RestaurentDM> restaurentDMCallback);
-
-
-    @Headers("Cache-Control: no-cache;")
-    @GET("/user/view_shops")
-    void Shops(Callback<ShopsDM> shopsDMCallback);
-
-    //(01)
-// About us  10-05-2022
+public interface PAServices {  //(01)
+    // About us  10-05-2022
     @POST("/aboutus")
     void Aboutus(Callback<AboutUsDM> aboutUsDMCallback);
 
@@ -78,7 +46,92 @@ public interface PAServices {
     void ContactUS(Callback<AboutUsDM> aboutUsDMCallback);
 
     //(05)
-//Social Media DM 10-05-2022
+//Social Media DM 11-05-2022
     @POST("/socialnetworklinks")
     void SocialMedia(Callback<SocialMediaDM> socialMediaDMCallback);
+
+    //(06)
+//Countries DM 11-05-2022
+    @POST("/countries")
+    void CountriesAPI(Callback<CountryRootDM> countryRootDMCallback);
+
+    @Headers("Cache-Control: no-cache;")
+    @POST("/eventcreatorreg")
+    void EventCreatorReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
+
+    @Headers("Cache-Control: no-cache;")
+    @POST("/coachreg")
+    void CoachReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
+
+
+//    @Headers("Cache-Control: no-cache;")
+//    @POST("/forgotpassword")
+//    void ForgotPassword(@Body MultipartTypedOutput multipartTypedOutput, Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
+
+    @Headers("Cache-Control: no-cache;")
+    @POST("/getcoachsbycountry")
+    void GetCoachsByCountry(@Body MultipartTypedOutput multipartTypedOutput, Callback<GetCoachsByCountryRootDM> getCoachsByCountryRootDMCallback);
+
+
+    //    14-05-2022
+    @FormUrlEncoded
+    @POST("/otpscreen")
+    void OtpVerify(@Field("mobile") String mobile,
+                   @Field("otp") String otp,
+                   Callback<OtpScrenRootDM> otpScrenRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/login")
+    void Login(@Field("countrycode") String countrycode,
+               @Field("mobile") String mobile,
+               @Field("password") String password,
+               Callback<LoginRootDM> loginRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/forgotpassword")
+    void ForgotPassword(@Field("email") String email,
+               Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
+
+
+    @Headers("Cache-Control: no-cache;")
+    @GET("/countries")
+    void Countries(Callback<CountryRootDM> countryRootDMCallback);
+
+//    @Headers("Cache-Control: no-cache;")
+//    @POST("/auth/signin")
+//    void SignUp(@Body MultipartTypedOutput multipartTypedOutput, Callback<SignUpDM> signUpDMCallback);
+//
+//    @Headers("Cache-Control: no-cache;")
+//    @POST("/auth/record_video")
+//    void RecordedVideo(@Body MultipartTypedOutput multipartTypedOutput, Callback<VideoDM> videoDMCallback);
+//
+//    @Headers("Cache-Control: no-cache;")
+//    @POST("/auth/user_login")
+//    void LoginIn(@Body MultipartTypedOutput multipartTypedOutput, Callback<SignUpDM> signUpDMCallback);
+//
+//    @Headers("Cache-Control: no-cache;")
+//    @GET("/user/view_home_banner")
+//    void Banner(Callback<BannerDM> bannerDMCallback);
+//
+//    @Headers("Cache-Control: no-cache;")
+//    @GET("/user/view_news")
+//    void News(Callback<NewsDM> newsDMCallback);
+//
+//    @Headers("Cache-Control: no-cache;")
+//    @GET("/user/view_events")
+//    void Events(Callback<EventsDM> eventsDMCallback);
+//
+//    @Headers("Cache-Control: no-cache;")
+//    @GET("/user/view_restaurants")
+//    void Restaurent(Callback<RestaurentDM> restaurentDMCallback);
+//
+//
+//    @Headers("Cache-Control: no-cache;")
+//    @GET("/user/view_shops")
+//    void Shops(Callback<ShopsDM> shopsDMCallback);
+
+
 }
+
+
+

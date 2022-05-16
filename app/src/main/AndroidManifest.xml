@@ -31,10 +31,10 @@
             android:exported="false" />
         <activity android:name=".Activity.ImagePickerActivity" />
         <activity android:name=".Activity.LoginActivity" />
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.NoActionBar" /> <!-- <provider -->
+<!--        <activity-->
+<!--            android:name="com.yalantis.ucrop.UCropActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/Theme.Design.NoActionBar" /> &lt;!&ndash; <provider &ndash;&gt;-->
         <!-- android:name="androidx.core.content.FileProvider" -->
         <!-- android:authorities="${applicationId}.com.vansuita.pickimage.provider" -->
         <!-- android:exported="false" -->

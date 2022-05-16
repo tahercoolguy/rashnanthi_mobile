@@ -67,7 +67,7 @@
               app:otp_text_size="24dp"
             app:width="60dp" />
         <TextView
-            android:id="@+id/resend_otpTxt"
+            android:id="@+id/resend_otpTxtTimer"
             android:layout_width="wrap_content"
              android:layout_height="wrap_content"
             android:layout_gravity="center"

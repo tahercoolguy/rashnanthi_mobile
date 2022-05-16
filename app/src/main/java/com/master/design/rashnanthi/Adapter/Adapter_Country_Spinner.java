@@ -3,7 +3,10 @@
 
 package com.master.design.rashnanthi.Adapter;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,32 +16,56 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
+import com.master.design.rashnanthi.DataModel.CountryData;
+import com.master.design.rashnanthi.DataModel.County_ItemDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
 import com.master.design.rashnanthi.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 
 public class Adapter_Country_Spinner extends ArrayAdapter<County_ItemDM> {
 
+    LayoutInflater inflater;
+    CountryData data;   public Resources res;
 
-    public Adapter_Country_Spinner(Context context,
-                                   ArrayList<County_ItemDM> county_itemDMS) {
-        super(context, 0, county_itemDMS);
+//    public Adapter_Country_Spinner(Context context,
+//                                   ArrayList<CountryData> County_ItemDMS) {
+//        super(context, 0, County_ItemDMS);
+//    }
+
+    public Adapter_Country_Spinner(Context context,ArrayList<CountryData> data,
+            FragmentActivity activitySpinner,
+            int textViewResourceId,
+            ArrayList objects,
+            Resources resLocal)
+    {
+        super(activitySpinner, textViewResourceId, objects);
+
+        objects     = objects;
+        data =objects;
+        res      = resLocal;
+        inflater = (LayoutInflater) activitySpinner.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public Adapter_Country_Spinner(Context context, ArrayList<CountryData> data) {
+        super(context,data.size());
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable
             View convertView, @NonNull ViewGroup parent) {
-        return initView(position, convertView, parent);
+        return getCustomView(position, convertView, parent);
     }
 
     @Override
     public View getDropDownView(int position, @Nullable
             View convertView, @NonNull ViewGroup parent) {
-        return initView(position, convertView, parent);
+        return getCustomView(position, convertView, parent);
     }
 
     private View initView(int position, View convertView,
@@ -56,20 +83,44 @@ public class Adapter_Country_Spinner extends ArrayAdapter<County_ItemDM> {
 //        TextView country_name_Txt;
 
 
-        County_ItemDM county_itemDM = getItem(position);
+        County_ItemDM County_ItemDM = getItem(position);
 
 
 //        AlgorithmItem currentItem = getItem(position);
 
         // It is used the name to the TextView when the
         // current item is not null.
-        if (county_itemDM != null) {
-            country_name_Img.setImageResource(county_itemDM.getMcountryImage());
-            country_name_Txt.setText(county_itemDM.getMcountryName());
+        if (County_ItemDM != null) {
+            country_name_Img.setImageResource(Integer.parseInt(String.valueOf(County_ItemDM.getMcountryImage())));
+            country_name_Txt.setText(County_ItemDM.getMcountryName());
 
 
         }
         return convertView;
+    }
+
+    private View getCustomView(int position, View convertView, ViewGroup parent) {
+
+        View row = inflater.inflate(R.layout.country_spinner_calender_row, parent, false);
+
+        CountryData countryData = null;
+//        countryData = (CountryData) countryData.get(position);
+
+        TextView name = (TextView) row.findViewById(R.id.country_name);
+        ImageView img = (ImageView) row.findViewById(R.id.country_flag);
+
+        if (position == 0) {
+            name.setText("Kuwait");
+            img.setImageResource(R.drawable.kuwait_flag);
+//            line.setVisibility(View.GONE);
+        } else {
+            // Set values for spinner each row
+            name.setText(countryData.getTitle());
+//            Picasso.with(getContext()).load(countryData.get(position).getImage());
+        }
+
+
+        return row;
     }
 }
 
@@ -93,15 +144,15 @@ public class Adapter_Country_Spinner extends ArrayAdapter<County_ItemDM> {
 //
 //public class Adapter_Country_Spinner extends RecyclerView.Adapter<Adapter_Country_Spinner.ViewHolder> {
 //    private Context context;
-//    private ArrayList<County_ItemDM> county_itemDMArrayList;
+//    private ArrayList<County_ItemDM> County_ItemDMArrayList;
 //    User user;
 //
 //
 //    int selectedPosition = 0;
 //
-//    public Adapter_Country_Spinner(Context context, ArrayList<County_ItemDM> county_itemDMArrayList) {
+//    public Adapter_Country_Spinner(Context context, ArrayList<County_ItemDM> County_ItemDMArrayList) {
 //        this.context = context;
-//        this.county_itemDMArrayList = county_itemDMArrayList;
+//        this.County_ItemDMArrayList = County_ItemDMArrayList;
 //        user = new User(context);
 //
 //    }
@@ -128,15 +179,15 @@ public class Adapter_Country_Spinner extends ArrayAdapter<County_ItemDM> {
 //
 //    @Override
 //    public int getItemCount() {
-//        return county_itemDMArrayList.size();
+//        return County_ItemDMArrayList.size();
 //    }
 //
 //
 //    private void setDetails(Adapter_Country_Spinner.ViewHolder viewHolder, int position) {
 //
 //
-//        viewHolder.country_img.setImageResource(county_itemDMArrayList.get(position).getMcountryImage());
-//        viewHolder.country_name_Txt.setText(county_itemDMArrayList.get(position).getMcountryName());
+//        viewHolder.country_img.setImageResource(County_ItemDMArrayList.get(position).getMcountryImage());
+//        viewHolder.country_name_Txt.setText(County_ItemDMArrayList.get(position).getMcountryName());
 //
 //
 //    }

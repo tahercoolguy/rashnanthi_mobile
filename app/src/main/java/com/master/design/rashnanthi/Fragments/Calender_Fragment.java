@@ -1,19 +1,15 @@
 package com.master.design.rashnanthi.Fragments;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
-
-import android.Manifest;
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -29,26 +25,26 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.Story_activity;
-import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
+import com.master.design.rashnanthi.Adapter.KecamatanAdapter;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CountryData;
+import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Calender_Fragment extends Fragment {
 
@@ -85,7 +81,9 @@ public class Calender_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         context = getActivity();
+        appController = (AppController) getActivity().getApplicationContext();
 
+        connectionDetector = new ConnectionDetector(getActivity());
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -97,7 +95,9 @@ public class Calender_Fragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
-//            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
+
+            CountriesSpinnerApi();
+            //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
             backmonthImg = rootView.findViewById(R.id.backmonthImg);
             aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
             story_viewer = rootView.findViewById(R.id.story_viewer);
@@ -160,9 +160,9 @@ public class Calender_Fragment extends Fragment {
             county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
 
 
-            Adapter_Country_Spinner adapter_country_spinner;
-            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
-            calender_page_country_spinner.setAdapter(adapter_country_spinner);
+//            Adapter_Spin adapter_country_spinner;
+//            adapter_country_spinner = new Adapter_Spin(context, county_itemDMS);
+//            calender_page_country_spinner.setAdapter(adapter_country_spinner);
 
 
 //            calender_page_country_spinner.setOnItemSelectedListener(
@@ -253,6 +253,105 @@ public class Calender_Fragment extends Fragment {
         }
         return rootView;
     }
+
+
+    public void CountriesSpinnerApi() {
+
+        if (connectionDetector.isConnectingToInternet()) {
+            appController.paServices.CountriesAPI(new Callback<CountryRootDM>() {
+                @Override
+
+                public void success(CountryRootDM countryRootDM, Response response) {
+                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        ArrayList<CountryData> data;
+                        data = new ArrayList<>();
+
+
+                        for (CountryData v : data) {
+                            CountryData s = new CountryData();
+                            s.setImage(v.getImage());
+                            s.setTitle(v.getTitle());
+                            data.add(s);
+
+                        }
+
+
+//                         for (int k = 0; k < data.size(); k++) {
+//                            CountryData obj = new CountryData();
+//                            obj.setTitle(data.get(0).getTitle());
+//                            obj.setImage(data.get(0).getImage());
+//                            data.add(obj);
+//                        }
+
+                         calender_page_country_spinner.setAdapter(new KecamatanAdapter(context,R.layout.country_spinner_calender_row,R.id.country_name, data));
+
+//                        ArrayList<CountryData> countryData ;
+//                        countryData=new ArrayList<>();
+//
+//                        if (countryData != null && countryData.size() > 0) {
+//                            ArrayList<CountryData> countryDataArrayList = new ArrayList<>(countryData.size());
+//
+//                            for (int i = 0; i < countryDataArrayList.size(); i++) {
+//                                countryData.get(i).getImage();
+//                                countryDataArrayList.get(i).getTitle();
+//
+//                                Adapter_Spin adapter_country_spinner = new Adapter_Spin(context,countryDataArrayList);
+//                                calender_page_country_spinner.setAdapter(adapter_country_spinner);
+//
+//
+//                            }
+//                        }
+
+
+//                        if (data != null)
+//                            for (CountryData v : data) {
+//                                CountryData s = new CountryData();
+//                                s.setImage(v.getImage());
+//                                s.setTitle(v.getTitle());
+//                                data.add(s);
+//
+//                             }
+//
+//
+//                        Adapter_Spin adapter_country_spinner = new Adapter_Spin(context,data);
+//
+//                        calender_page_country_spinner.setAdapter(adapter_country_spinner);
+
+                    } else
+                        Helper.showToast(getActivity(), countryRootDM.getOutput().getSuccess());
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
+
+    }
+
+
+    // initialise the countriesSpinner
+//    public void Countries() {
+//        ArrayList<CountryData> data;
+//
+//        data = new ArrayList<>();
+//
+//        if (data != null)
+//            for (CountryData v : data) {
+//                CountryData s = new CountryData();
+//                s.setImage(v.getImage());
+//                s.setTitle(v.getTitle());
+//                data.add(s);
+//            }
+//
+//        Adapter_Country_Spinner adapter_country_spinner;
+//        adapter_country_spinner = new Adapter_Country_Spinner(context, data);
+//        calender_page_country_spinner.setAdapter(adapter_country_spinner);
+//
+//    }
 
     private void idMapping() {
 

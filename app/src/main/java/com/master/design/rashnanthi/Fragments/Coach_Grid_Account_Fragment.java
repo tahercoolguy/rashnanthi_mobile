@@ -124,12 +124,12 @@ public class Coach_Grid_Account_Fragment extends Fragment {
             county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
 
 
-            Adapter_Country_Spinner adapter_country_spinner;
-
-            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
-
-
-            calender_page_country_spinner.setAdapter(adapter_country_spinner);
+//            Adapter_Country_Spinner adapter_country_spinner;
+//
+//            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
+//
+//
+//            calender_page_country_spinner.setAdapter(adapter_country_spinner);
 
 
             coachGridDMArrayList = new ArrayList<>();

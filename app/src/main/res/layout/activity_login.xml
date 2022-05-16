@@ -121,27 +121,68 @@
 
                     </ImageView>
 
+                    <!--                    <RelativeLayout-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_gravity="center"-->
+                    <!--                        android:layout_marginLeft="20dp"-->
+                    <!--                        android:background="@drawable/country_code_bg"-->
+
+                    <!--                        android:elevation="4dp">-->
+
+                    <!--                        <Spinner-->
+                    <!--                            android:id="@+id/code_spinner"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_gravity="center"-->
+                    <!--                            android:layout_marginTop="5dp"-->
+                    <!--                            android:hint="+965"-->
+                    <!--                            android:textSize="15sp">-->
+
+                    <!--                        </Spinner>-->
+
+
+                    <!--                    </RelativeLayout>-->
+
                     <RelativeLayout
+                        android:id="@+id/spinnerBottomRL"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/country_code_bg"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="10"
+                        android:background="@drawable/mob_bg"
 
                         android:elevation="4dp">
 
-                        <Spinner
-                            android:id="@+id/code_spinner"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/ic_down_arrow_spinner"></ImageView>
+
+
+                        <EditText
+                            android:id="@+id/country_spinnerET"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
+                            android:background="@color/transparent"
+
                             android:hint="+965"
+
+
+                            android:inputType="number"
+                            android:lines="1"
+                            android:padding="15dp"
+
+                            android:textColor="@color/black"
                             android:textSize="15sp">
 
-                        </Spinner>
-
-
+                        </EditText>
                     </RelativeLayout>
 
 
@@ -149,18 +190,20 @@
                         android:id="@+id/mobileET"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:layout_gravity="center"
                         android:layout_marginLeft="15dp"
+
                         android:layout_marginRight="1dp"
+                        android:layout_weight="1"
                         android:background="@drawable/mob_bg"
-
                         android:elevation="4dp"
-                        android:hint="34324324"
 
+                        android:hint="34324324"
                         android:inputType="number"
+
                         android:lines="1"
                         android:padding="15dp"
+                        android:textColor="@color/black"
 
                         android:textSize="15sp">
 
@@ -172,8 +215,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
                     android:text="@string/password"
 
                     >
@@ -195,16 +238,16 @@
 
                     <EditText
                         android:id="@+id/passwordET"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-
                         android:hint="34234324"
+
                         android:lines="1"
-
-
                         android:padding="17dp"
+
+
+                        android:textColor="@color/black"
                         android:textSize="15sp">
 
                     </EditText>

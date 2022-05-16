@@ -5,5 +5,5 @@ package com.master.design.rashnanthi.Helper;
  */
 
 public interface ResponseListener {
-    void response(Object object);
+    void response(int position, Object object);
 }
