@@ -5,13 +5,19 @@ package com.master.design.rashnanthi.Services;
 
 
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
+import com.master.design.rashnanthi.DataModel.AddEventByCreatorRootDM;
+import com.master.design.rashnanthi.DataModel.ChangePasswordRootDM;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.EventRegisterDM;
 import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
+import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
 import com.master.design.rashnanthi.DataModel.OtpScrenRootDM;
 import com.master.design.rashnanthi.DataModel.SocialMediaDM;
+import com.master.design.rashnanthi.DataModel.SummaryForPaidEventRootDM;
+import com.master.design.rashnanthi.DataModel.UpdateProfileRootDM;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -68,10 +74,6 @@ public interface PAServices {  //(01)
 //    @POST("/forgotpassword")
 //    void ForgotPassword(@Body MultipartTypedOutput multipartTypedOutput, Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
 
-    @Headers("Cache-Control: no-cache;")
-    @POST("/getcoachsbycountry")
-    void GetCoachsByCountry(@Body MultipartTypedOutput multipartTypedOutput, Callback<GetCoachsByCountryRootDM> getCoachsByCountryRootDMCallback);
-
 
     //    14-05-2022
     @FormUrlEncoded
@@ -90,12 +92,67 @@ public interface PAServices {  //(01)
     @FormUrlEncoded
     @POST("/forgotpassword")
     void ForgotPassword(@Field("email") String email,
-               Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
+                        Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
 
 
     @Headers("Cache-Control: no-cache;")
     @GET("/countries")
     void Countries(Callback<CountryRootDM> countryRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/changepassword")
+    void ChangePassword(@Field("loginid") String loginid,
+                        @Field("oldpass") String oldpass,
+                        @Field("newpass") String newpass,
+                        @Field("retypepass") String retypepass,
+                        Callback<ChangePasswordRootDM> changePasswordRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/updateprofile")
+    void UpdateProfile(@Field("userid") String userid,
+                       @Field("name") String name,
+                       @Field("email") String email,
+                       @Field("mobile") String mobile,
+                       @Field("countrycode") String countrycode,
+                       Callback<UpdateProfileRootDM> updateProfileRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/myevents")
+    void MyEvents(@Field("userid") String userid,
+                  Callback<MyEventsRootDM> myEventsRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/myprofile")
+    void MyProfile(@Field("userid") String userid,
+                   Callback<MyProfileRootDM> myProfileRootDMCallback);
+
+
+    @FormUrlEncoded
+    @POST("/getcoachsbycountry")
+    void GetCoachsByCountry(@Field("countryid") String countryid,
+                            Callback<GetCoachsByCountryRootDM> myProfileRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/addeventbycreator")
+    void AddEventByCreator(@Field("eventdate") String eventdate,
+                           @Field("whatsapcountrycode") String whatsapcountrycode,
+                           @Field("whatsapnumber") String whatsapnumber,
+                           @Field("snapchat") String snapchat,
+                           @Field("instagram") String instagram,
+                           @Field("website") String website,
+                           @Field("countryid") String countryid,
+                           @Field("storyphotovideo") String storyphotovideo,
+                           @Field("eventphotovideo") String eventphotovideo,
+                           @Field("payorfree") String payorfree,
+                           @Field("postedby") String postedby,
+                           @Field("creatorcoach") String creatorcoach,
+                           Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
+
+
+    @FormUrlEncoded
+    @POST("/summaryforpaidevent")
+    void SummaryForPaidEvent(@Field("eventid") String eventid,
+                            Callback<SummaryForPaidEventRootDM> summaryForPaidEventRootDMCallback);
 
 //    @Headers("Cache-Control: no-cache;")
 //    @POST("/auth/signin")

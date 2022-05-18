@@ -10,24 +10,28 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.master.design.rashnanthi.Activity.Story_activity;
-import com.master.design.rashnanthi.DataModel.CoachGridDM;
+import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.GetCoachByCountryData;
+import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach__grid_Fgmt.ViewHolder> {
     private Context context;
-    private ArrayList<CoachGridDM> coachGridDMArrayList;
+    private ArrayList<GetCoachByCountryData> getCoachsByCountryRootDMArrayList;
     User user;
 
 
     int selectedPosition = 0;
 
-    public Adapter_Coach__grid_Fgmt(Context context, ArrayList<CoachGridDM> coachGridDMArrayList) {
+    public Adapter_Coach__grid_Fgmt(Context context, ArrayList<GetCoachByCountryData> GetCoachsByCountryRootDMArrayList) {
         this.context = context;
-        this.coachGridDMArrayList = coachGridDMArrayList;
+        this.getCoachsByCountryRootDMArrayList = GetCoachsByCountryRootDMArrayList;
         user = new User(context);
 
     }
@@ -54,15 +58,18 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
     @Override
     public int getItemCount() {
-        return coachGridDMArrayList.size();
+        return getCoachsByCountryRootDMArrayList.size();
     }
 
 
     private void setDetails(Adapter_Coach__grid_Fgmt.ViewHolder viewHolder, int position) {
 
 
-        viewHolder.circle_imgview.setImageResource(coachGridDMArrayList.get(position).getCoach_Image());
-        viewHolder.imageView1.setImageResource(coachGridDMArrayList.get(position).getLike_img());
+//        viewHolder.circle_imgview.setImageResource(Integer.parseInt(GetCoachsByCountryRootDMArrayList.get(0).getOutput().getData().get(0).getProfilepic()));
+
+//        Picasso.get().load(Integer.parseInt(getCoachsByCountryRootDMArrayList.get(position).getProfilepic())).into(viewHolder.circle_imgview);
+
+        Picasso.get().load(AppController.base_image_url +getCoachsByCountryRootDMArrayList.get(position).getProfilepic()).into(viewHolder.circle_imgview);
 
         viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +120,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
         ImageView  imageView1;
 
-        de.hdodenhof.circleimageview.CircleImageView circle_imgview;
+        RoundedImageView circle_imgview;
 
         public ViewHolder(View itemView) {
             super(itemView);

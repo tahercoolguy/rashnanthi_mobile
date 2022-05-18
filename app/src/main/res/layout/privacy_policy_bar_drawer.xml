@@ -39,9 +39,9 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/my_accountImg"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:id="@+id/privacy_policy"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_cheveron"></ImageView>

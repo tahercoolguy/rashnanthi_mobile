@@ -97,12 +97,14 @@ public class Coach_Account_Fragment extends Fragment {
             change_password_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new Change_Password_Fragment(), false);
 
                 }
             });
             edit_profile_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new Edit_Profile_Fragment(), false);
 
                 }
             });

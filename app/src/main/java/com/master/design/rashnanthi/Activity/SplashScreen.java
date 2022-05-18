@@ -64,16 +64,27 @@ public class SplashScreen extends AppCompatActivity {
         int secondsDelayed = 2;
         new Handler().postDelayed(new Runnable() {
             public void run() {
-//                String Id=user.getCountryId();
+                String Id=user.getCountryId();
 //                if(Id.equalsIgnoreCase("0"))
 //                {
-//                    startActivity(new Intent(SplashScreen.this, AddressSelector.class));
-//                    finish();
+//                     startActivity(new Intent(SplashScreen.this,MainActivity.class));
+//                     finish();
 //                }else {
-//                    startActivity(new Intent(SplashScreen.this, AdvertiseSelector.class));
+//                    startActivity(new Intent(SplashScreen.this,MainActivity.class));
 //                    finish();
 //                }
-                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+//                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+//                finish();
+
+
+                if(user.getId() == 0){
+
+                    startActivity(new Intent(SplashScreen.this,AdvertiseSelector.class));
+
+                }
+                else{
+                    startActivity(new Intent(SplashScreen.this,AdvertiseSelector.class));
+                }
                 finish();
 
             }

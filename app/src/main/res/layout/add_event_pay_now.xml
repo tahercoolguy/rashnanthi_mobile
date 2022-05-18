@@ -41,44 +41,55 @@
                 android:textSize="18dp"
                 android:textStyle="bold"></TextView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_alignParentStart="true"
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_paynow"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="55dp"
-                android:text="@string/post_price_qatar"
-                android:textColor="@color/black"></TextView>
-
-            <TextView
-                android:id="@+id/post_price_qatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="55dp"
-                android:layout_marginRight="20dp"
-                android:text="@string/KWD4"
-                android:textColor="@color/black"></TextView>
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="85dp"
-                android:text="@string/post_price_kuwait"
-                android:textColor="@color/black"></TextView>
 
-            <TextView
-                android:id="@+id/post_price_kuwait"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="85dp"
-                android:layout_marginRight="65dp"
-                android:text="@string/free"
-                android:textColor="@color/black"></TextView>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="55dp"-->
+<!--                android:text="@string/post_price_qatar"-->
+<!--                android:textColor="@color/black"></TextView>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/post_price_qatar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginTop="55dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:text="@string/KWD4"-->
+<!--                android:textColor="@color/black"></TextView>-->
+
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="85dp"-->
+<!--                android:text="@string/post_price_kuwait"-->
+<!--                android:textColor="@color/black"></TextView>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/post_price_kuwait"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginTop="85dp"-->
+<!--                android:layout_marginRight="65dp"-->
+<!--                android:text="@string/free"-->
+<!--                android:textColor="@color/black"></TextView>-->
 
             <LinearLayout
                 android:layout_width="match_parent"

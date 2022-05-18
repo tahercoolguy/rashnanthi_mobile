@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +31,12 @@ import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.Helper.BottomForAll;
+import com.master.design.rashnanthi.Helper.ResponseListener;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +45,7 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import it.sephiroth.android.library.widget.HListView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -56,6 +61,19 @@ public class Calender_Fragment extends Fragment {
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
 
+    @BindView(R.id.spinnerCountryBottomRL)
+    RelativeLayout spinnerCountryBottomRL;
+
+
+    @BindView(R.id.txt_error)
+    TextView txt_error;
+
+    @BindView(R.id.countryImg)
+    ImageView countryImg;
+
+    @BindView(R.id.country_spinner_Txt)
+    TextView country_spinner_Txt;
+
 
     CompactCalendarView compactCalendar;
     ImageView backmonthImg, aheadamonthImg;
@@ -64,8 +82,7 @@ public class Calender_Fragment extends Fragment {
 
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
-    @BindView(R.id.txt_error)
-    TextView txt_error;
+
 
     @BindView(R.id.layout_parent)
     LinearLayout layout_parent;
@@ -95,9 +112,9 @@ public class Calender_Fragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
+            Binding();
 
-            CountriesSpinnerApi();
-            //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
+             //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
             backmonthImg = rootView.findViewById(R.id.backmonthImg);
             aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
             story_viewer = rootView.findViewById(R.id.story_viewer);
@@ -137,7 +154,6 @@ public class Calender_Fragment extends Fragment {
             });
 
 
-            calender_page_country_spinner = rootView.findViewById(R.id.calender_page_country_spinner);
 
 
             ArrayList<County_ItemDM> county_itemDMS;
@@ -255,103 +271,69 @@ public class Calender_Fragment extends Fragment {
     }
 
 
-    public void CountriesSpinnerApi() {
 
-        if (connectionDetector.isConnectingToInternet()) {
-            appController.paServices.CountriesAPI(new Callback<CountryRootDM>() {
-                @Override
+    BottomForAll bottomForAll;
 
-                public void success(CountryRootDM countryRootDM, Response response) {
-                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        ArrayList<CountryData> data;
-                        data = new ArrayList<>();
+    ArrayList<CountryData> approvalOne = new ArrayList<>();
+    ArrayList<String> approvalTwo = new ArrayList<>();
 
 
-                        for (CountryData v : data) {
-                            CountryData s = new CountryData();
-                            s.setImage(v.getImage());
-                            s.setTitle(v.getTitle());
-                            data.add(s);
+    @OnClick(R.id.spinnerCountryBottomRL)
+    public void SpinnerCountry() {
 
-                        }
+        bottomForAll = new BottomForAll();
+        bottomForAll.arrayList = approvalOne;
 
+        bottomForAll.setResponseListener(new ResponseListener() {
+            @Override
+            public void response(int position, Object object) {
 
-//                         for (int k = 0; k < data.size(); k++) {
-//                            CountryData obj = new CountryData();
-//                            obj.setTitle(data.get(0).getTitle());
-//                            obj.setImage(data.get(0).getImage());
-//                            data.add(obj);
-//                        }
+                country_spinner_Txt.setText(data.get(position).getTitle());
+                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(countryImg);
 
-                         calender_page_country_spinner.setAdapter(new KecamatanAdapter(context,R.layout.country_spinner_calender_row,R.id.country_name, data));
-
-//                        ArrayList<CountryData> countryData ;
-//                        countryData=new ArrayList<>();
-//
-//                        if (countryData != null && countryData.size() > 0) {
-//                            ArrayList<CountryData> countryDataArrayList = new ArrayList<>(countryData.size());
-//
-//                            for (int i = 0; i < countryDataArrayList.size(); i++) {
-//                                countryData.get(i).getImage();
-//                                countryDataArrayList.get(i).getTitle();
-//
-//                                Adapter_Spin adapter_country_spinner = new Adapter_Spin(context,countryDataArrayList);
-//                                calender_page_country_spinner.setAdapter(adapter_country_spinner);
-//
-//
-//                            }
-//                        }
+//                countryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
+//                AreaID = data.get(selected).getId();
+//                for (CountryData s:data
+//                ) {
+//                    if(s.getCallingcode().equals((String) object))
+//                        AreaID = s.getId();
+//                }
 
 
-//                        if (data != null)
-//                            for (CountryData v : data) {
-//                                CountryData s = new CountryData();
-//                                s.setImage(v.getImage());
-//                                s.setTitle(v.getTitle());
-//                                data.add(s);
-//
-//                             }
-//
-//
-//                        Adapter_Spin adapter_country_spinner = new Adapter_Spin(context,data);
-//
-//                        calender_page_country_spinner.setAdapter(adapter_country_spinner);
+            }
+        });
 
-                    } else
-                        Helper.showToast(getActivity(), countryRootDM.getOutput().getSuccess());
-                }
 
-                @Override
-                public void failure(RetrofitError retrofitError) {
-                    Log.e("error", retrofitError.toString());
-
-                }
-            });
-        } else
-            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
-
+        bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
     }
 
 
-    // initialise the countriesSpinner
-//    public void Countries() {
-//        ArrayList<CountryData> data;
-//
-//        data = new ArrayList<>();
-//
-//        if (data != null)
-//            for (CountryData v : data) {
-//                CountryData s = new CountryData();
-//                s.setImage(v.getImage());
-//                s.setTitle(v.getTitle());
-//                data.add(s);
-//            }
-//
-//        Adapter_Country_Spinner adapter_country_spinner;
-//        adapter_country_spinner = new Adapter_Country_Spinner(context, data);
-//        calender_page_country_spinner.setAdapter(adapter_country_spinner);
-//
-//    }
+
+    ArrayList<CountryData> data = new ArrayList<>();
+
+    public void Binding() {
+        if (connectionDetector.isConnectingToInternet()) {
+            appController.paServices.Countries(new Callback<CountryRootDM>() {
+                @Override
+                public void success(CountryRootDM countryRootDM, Response response) {
+                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        data = countryRootDM.getOutput().getData();
+                        for (CountryData area : countryRootDM.getOutput().getData()
+                        ) {
+                            approvalOne.add(area);
+                        }
+                    } else
+                        Helper.showToast(getActivity(), "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("String", error.toString());
+                }
+            });
+        }
+    }
+
 
     private void idMapping() {
 

@@ -22,6 +22,7 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_My_Event;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.My_Event_DM;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
@@ -35,6 +36,7 @@ public class My_Event_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
+    User user;
     ImageView back_my_event;
     RecyclerView my_event_Rcv;
     private ArrayList<My_Event_DM> my_event_dmArrayList;
@@ -59,6 +61,7 @@ public class My_Event_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
+        user = new User(getActivity());
 
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());

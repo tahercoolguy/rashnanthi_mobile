@@ -3,6 +3,7 @@ package com.master.design.rashnanthi.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -21,19 +22,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.MyEventData;
+import com.master.design.rashnanthi.DataModel.MyEventImageData;
+import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class My_Event_1_Fragment extends Fragment {
 
     private View rootView;
+    User user;
     private Context context;
     ImageView my_event_menu_1, my_event_menu_1_back;
     RecyclerView my_event_Rcv;
@@ -63,6 +73,7 @@ public class My_Event_1_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
+        user = new User(getActivity());
 
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
@@ -85,8 +96,8 @@ public class My_Event_1_Fragment extends Fragment {
             my_event_menu_1_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MainActivity) context).finish();
-                }
+                    getActivity().finish();
+                 }
             });
 
 
@@ -101,23 +112,63 @@ public class My_Event_1_Fragment extends Fragment {
             my_event_Rcv = rootView.findViewById(R.id.my_event_Rcv);
 
 
-            ArrayList<My_Event_1DM> my_event_1DMArrayList = new ArrayList<>();
-
-            my_event_1DMArrayList.add(new My_Event_1DM("3 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
-            my_event_1DMArrayList.add(new My_Event_1DM("6 March 2022", R.drawable.my_event_1_img, R.drawable.my_event_img_1));
-            my_event_1DMArrayList.add(new My_Event_1DM("9 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
-            my_event_1DMArrayList.add(new My_Event_1DM("12 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
-            my_event_1DMArrayList.add(new My_Event_1DM("3 March 2022", R.drawable.my_event_img_2, R.drawable.my_event_img_1));
-
-
-            my_event_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-            my_event_Rcv.setAdapter(new Adapter_MY_Event_1(((MainActivity) context), my_event_1DMArrayList));
+            MyEventAPI();
+//            ArrayList<My_Event_1DM> my_event_1DMArrayList = new ArrayList<>();
+//
+//            my_event_1DMArrayList.add(new My_Event_1DM("3 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
+//            my_event_1DMArrayList.add(new My_Event_1DM("6 March 2022", R.drawable.my_event_1_img, R.drawable.my_event_img_1));
+//            my_event_1DMArrayList.add(new My_Event_1DM("9 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
+//            my_event_1DMArrayList.add(new My_Event_1DM("12 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
+//            my_event_1DMArrayList.add(new My_Event_1DM("3 March 2022", R.drawable.my_event_img_2, R.drawable.my_event_img_1));
+//
+//
+//            my_event_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
+//            my_event_Rcv.setAdapter(new Adapter_MY_Event_1(((MainActivity) context), my_event_1DMArrayList));
 
 
             setDetails();
 
         }
         return rootView;
+    }
+    ArrayList<MyEventData> myEventData;
+
+    public void MyEventAPI() {
+        if (connectionDetector.isConnectingToInternet()) {
+            //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            appController.paServices.MyEvents("56",new Callback<MyEventsRootDM>() {
+                @Override
+
+                public void success(MyEventsRootDM myEventsRootDM, Response response) {
+
+                    if (myEventsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+//                        if (myEventsRootDM != null)
+//                            for (MyEventImageData v : myEventsRootDM.getOutput().getData()) {
+//                                MyEventData s = new MyEventData();
+//                                s.setImage(v.getImage());
+//                                s.setDate(v.getDate());
+//                                myEventData.add(s);
+//
+//                             }
+                        Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getContext(),myEventsRootDM.getOutput().getData());
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+                        my_event_Rcv.setLayoutManager(linearLayoutManager);
+                        my_event_Rcv.setAdapter(adapter_my_event_1);
+
+
+                    } else
+                        Helper.showToast(getActivity(),"something wrong");
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
     }
 
 
@@ -127,28 +178,24 @@ public class My_Event_1_Fragment extends Fragment {
     }
 
     private void setDetails() {
-       ShowProgress();
+        ShowProgress();
         rootView.postDelayed(new Runnable() {
             @Override
             public void run() {
-               DismissProgress();
+                DismissProgress();
             }
         }, 100);
 
 
-
-
     }
 
-    public void ShowProgress()
-    {
+    public void ShowProgress() {
         progress_bar.setVisibility(View.VISIBLE);
         txt_error.setVisibility(View.GONE);
         layout_parent.setVisibility(View.GONE);
     }
 
-    public void DismissProgress()
-    {
+    public void DismissProgress() {
         progress_bar.setVisibility(View.GONE);
         txt_error.setVisibility(View.GONE);
         layout_parent.setVisibility(View.VISIBLE);

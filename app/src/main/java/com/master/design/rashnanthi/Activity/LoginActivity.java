@@ -1,9 +1,11 @@
 package com.master.design.rashnanthi.Activity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.Country_CodeDM;
 import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.Fragments.Menu_1_Fragment;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
@@ -41,10 +44,9 @@ public class LoginActivity extends AppCompatActivity {
     AppController appController;
     DialogUtil dialogUtil;
     Dialog progress;
-     ConnectionDetector connectionDetector;
+    ConnectionDetector connectionDetector;
     User user;
- //
-//    Button registerBtn;
+    Context context;
     private ArrayList<Country_CodeDM> country_codeDMS;
     Spinner code_spinner;
     String email;
@@ -59,11 +61,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText country_spinnerET;
 
 
-
     @BindView(R.id.spinnerBottomRL)
     RelativeLayout spinnerBottomRL;
-
-
 
 
     @BindView(R.id.passwordET)
@@ -81,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.forget_PasswordTxt)
     public void ForgotPassword() {
         ForgotPasswordAPI();
-     }
+    }
 
     @OnClick(R.id.loginBtn)
     public void LoginButton() {
@@ -89,80 +88,75 @@ public class LoginActivity extends AppCompatActivity {
         LogInAPI();
     }
 
-    public  void LogInAPI(){
-        if(connectionDetector.isConnectingToInternet())
-        {
-                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+    public void LogInAPI() {
+        if (connectionDetector.isConnectingToInternet()) {
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-                progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
+            progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
 
-                appController.paServices.Login("12", mobileET.getText().toString(),passwordET.getText().toString(), new Callback<LoginRootDM>() {
+            appController.paServices.Login(country_spinnerET.getText().toString(), mobileET.getText().toString(), passwordET.getText().toString(), new Callback<LoginRootDM>() {
 
-                    @Override
+                @Override
 
-                    public void success ( LoginRootDM loginRootDM, Response response ) {
-                        progress.dismiss();
-                        if (loginRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                public void success(LoginRootDM loginRootDM, Response response) {
+                    progress.dismiss();
+                    if (loginRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.shwToast(LoginActivity.this,customerRegisterDM.getMessage());
-                            user.setId(Integer.valueOf(loginRootDM.getOutput().getData().get(0).getId()));
+                        user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
+                        user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
 
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
 
-                        } else
-                            Helper.showToast(LoginActivity.this, loginRootDM.getOutput().getSuccess());
+                    } else
+                        Helper.showToast(LoginActivity.this, "entered mobile,password or country code incorrect");
 
-                    }
-                    @Override
-                    public void failure ( RetrofitError retrofitError ) {
-                        progress.dismiss();
+                }
 
-                        Log.e("error", retrofitError.toString());
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
 
-                    }
-                });
+                    Log.e("error", retrofitError.toString());
 
-        }else
-            Helper.showToast(LoginActivity.this,getString(R.string.no_internet_connection));
+                }
+            });
+
+        } else
+            Helper.showToast(LoginActivity.this, getString(R.string.no_internet_connection));
 
 
     }
 
 
+    public void ForgotPasswordAPI() {
+
+        if (connectionDetector.isConnectingToInternet()) {
+
+            progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
 
 
-    public void ForgotPasswordAPI(){
-
-        if(connectionDetector.isConnectingToInternet())
-        {
-
-            progress = dialogUtil.showProgressDialog(LoginActivity.this,getString(R.string.please_wait));
-
-
-
-            appController.paServices.ForgotPassword("fdsfd" , new Callback<ForgotPasswordRootDM>() {
+            appController.paServices.ForgotPassword("fdsfd", new Callback<ForgotPasswordRootDM>() {
                 @Override
 
-                public void success ( ForgotPasswordRootDM forgotPasswordRootDM, Response response )
-                {
+                public void success(ForgotPasswordRootDM forgotPasswordRootDM, Response response) {
                     progress.dismiss();
-                    if(forgotPasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1"))
-                    {
-                        Helper.showToast(LoginActivity.this,forgotPasswordRootDM.getOutput().getSuccess());
+                    if (forgotPasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        Helper.showToast(LoginActivity.this, "password sent on registered email");
 
-                    }else
-                        Helper.showToast(LoginActivity.this,forgotPasswordRootDM.getOutput().getSuccess());
+                    } else
+                        Helper.showToast(LoginActivity.this, "password did not sent on registered email");
                 }
 
                 @Override
-                public void failure ( RetrofitError retrofitError ) {
+                public void failure(RetrofitError retrofitError) {
                     progress.dismiss();
-                    Log.e("error",retrofitError.toString());
+                    Log.e("error", retrofitError.toString());
 
                 }
             });
-        }else
-            Helper.showToast(LoginActivity.this,getString(R.string.no_internet_connection));
+        } else
+            Helper.showToast(LoginActivity.this, getString(R.string.no_internet_connection));
 
     }
 
@@ -190,7 +184,6 @@ public class LoginActivity extends AppCompatActivity {
         user = new User(LoginActivity.this);
         dialogUtil = new DialogUtil();
         Binding();
-
 
 
 //        ArrayList<Country_CodeDM> country_codeDMS;
@@ -260,20 +253,16 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 
 
-
-
-
     BottomForAll bottomForAll;
 
-    ArrayList<CountryData> approvalOne=new ArrayList<>();
-    ArrayList<String> approvalTwo=new ArrayList<>();
-
+    ArrayList<CountryData> approvalOne = new ArrayList<>();
+    ArrayList<String> approvalTwo = new ArrayList<>();
 
 
     @OnClick(R.id.spinnerBottomRL)
     public void SpinnerCountry() {
-        bottomForAll= new BottomForAll();
-        bottomForAll.arrayList=approvalOne;
+        bottomForAll = new BottomForAll();
+        bottomForAll.arrayList = approvalOne;
 
         bottomForAll.setResponseListener(new ResponseListener() {
             @Override
@@ -296,34 +285,31 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     @OnClick(R.id.country_spinnerET)
-    public void OpenBottom()
-    {
+    public void OpenBottom() {
 
     }
-    ArrayList<CountryData> data=new ArrayList<>();
-    public void Binding()
-    {
-        if(connectionDetector.isConnectingToInternet())
-        {
+
+    ArrayList<CountryData> data = new ArrayList<>();
+
+    public void Binding() {
+        if (connectionDetector.isConnectingToInternet()) {
             appController.paServices.Countries(new Callback<CountryRootDM>() {
                 @Override
                 public void success(CountryRootDM countryRootDM, Response response) {
-                    if(countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1"))
-                    {
+                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         data = countryRootDM.getOutput().getData();
-                        for (CountryData area:countryRootDM.getOutput().getData()
+                        for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
                             approvalOne.add(area);
-                         }
-                    }else
-                        Helper.showToast(LoginActivity.this,"Some network happened ..");
+                        }
+                    } else
+                        Helper.showToast(LoginActivity.this, "Some network happened ..");
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Log.e("String",error.toString());
+                    Log.e("String", error.toString());
                 }
             });
         }

@@ -45,6 +45,7 @@ public class Privacy_Policy_Fragment extends Fragment {
     AppController appController;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
+    ImageView my_accountImg;
 
 
     @BindView(R.id.privacy_policyTxt)
@@ -102,6 +103,16 @@ public class Privacy_Policy_Fragment extends Fragment {
 //
 //            setClickListeners();
 //            setDetails();
+
+
+            my_accountImg = rootView.findViewById(R.id.my_accountImg);
+            my_accountImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+
+                }
+            });
         }
         return rootView;
     }

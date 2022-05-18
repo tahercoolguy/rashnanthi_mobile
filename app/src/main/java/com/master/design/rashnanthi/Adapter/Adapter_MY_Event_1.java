@@ -1,6 +1,7 @@
 package com.master.design.rashnanthi.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,25 +10,35 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.solver.SolverVariableValues;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.siyamed.shapeimageview.RoundedImageView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Activity.SignUpActivity;
+import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.MyEventData;
+import com.master.design.rashnanthi.DataModel.MyEventImageData;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 
 public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.ViewHolder> {
     private Context context;
-    private ArrayList<My_Event_1DM> my_event_1DMS;
+    private ArrayList<MyEventImageData> myEventData;
     User user;
 
 
     int selectedPosition = 0;
 
-    public Adapter_MY_Event_1(Context context, ArrayList<My_Event_1DM> my_event_1DMS) {
+    public Adapter_MY_Event_1(Context context, ArrayList<MyEventImageData> myEventData) {
         this.context = context;
-        this.my_event_1DMS = my_event_1DMS;
+        this.myEventData = myEventData;
         user = new User(context);
 
     }
@@ -54,19 +65,14 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
     @Override
     public int getItemCount() {
-        return my_event_1DMS.size();
+        return myEventData.size();
     }
 
 
     private void setDetails(Adapter_MY_Event_1.ViewHolder viewHolder, int position) {
-//        Picasso.with(context).load(arrayList.get(position).getImage_file()).into(viewHolder.img);
-        viewHolder.date_time.setText(my_event_1DMS.get(position).getTextview());
-        viewHolder.img_1.setImageResource(my_event_1DMS.get(position).getImageview1());
-
-        viewHolder.img_2.setImageResource(my_event_1DMS.get(position).getImageview2());
-
-
-
+        viewHolder.date_time.setText(myEventData.get(position).getDate());
+        Picasso.get().load(myEventData.get(position).getImage()).into(viewHolder.img_1);
+        Picasso.get().load(AppController.base_image_url +myEventData.get(position).getImage()).into(viewHolder.img_2);
 
         viewHolder.img_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +93,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
         private TextView date_time;
         private ImageView img_1, img_2;
+
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -17,8 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.master.design.rashnanthi.Activity.AdvertiseSelector;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
@@ -36,6 +38,7 @@ public class Menu_2_Fragment extends Fragment {
     RelativeLayout myaccount_RL;
     RelativeLayout logout_Rl;
     RelativeLayout contact_uRL;
+    User user;
 
 
     @BindView(R.id.progress_bar)
@@ -57,6 +60,7 @@ public class Menu_2_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
+        user = new User(getActivity());
 
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
@@ -86,10 +90,19 @@ public class Menu_2_Fragment extends Fragment {
             contact_uRL=rootView.findViewById(R.id.contact_uRL);
 
 
+            if(user.getId() == 0){
+                logout_Rl.setVisibility(View.GONE);
+                myaccount_RL.setVisibility(View.GONE);
+             }else{
+                logout_Rl.setVisibility(View.VISIBLE);
+                myaccount_RL.setVisibility(View.VISIBLE);
+            }
+
 
             menu_2_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
 
                 }
@@ -119,8 +132,9 @@ public class Menu_2_Fragment extends Fragment {
             logout_Rl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    user.setId(0);
                     ((MainActivity) context).addFragment(new Calender_Fragment(), false);
-                }
+                 }
             });
             contact_uRL.setOnClickListener(new View.OnClickListener() {
                 @Override

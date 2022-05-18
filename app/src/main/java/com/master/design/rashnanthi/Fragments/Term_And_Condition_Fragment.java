@@ -34,6 +34,7 @@ public class Term_And_Condition_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
+    ImageView my_accountImg;
 
 
 
@@ -135,6 +136,16 @@ public class Term_And_Condition_Fragment extends Fragment {
 //
 //            setClickListeners();
 //            setDetails();
+
+
+            my_accountImg = rootView.findViewById(R.id.my_accountImg);
+            my_accountImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+
+                }
+            });
         }
         return rootView;
     }

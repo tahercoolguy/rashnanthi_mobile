@@ -1,5 +1,8 @@
 package com.master.design.rashnanthi.Adapter;
 
+import static com.bumptech.glide.Glide.with;
+import static com.squareup.picasso.Picasso.*;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +13,13 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,7 +113,8 @@ public class Adapter_Bottom extends BaseAdapter implements Filterable {
         if (user.getLanguageCode().equalsIgnoreCase("en")) {
             viewHolder.country_code.setText(String.format("%s", data.getCallingcode()));
             viewHolder.CN.setText(arrayList.get(position).getTitle());
-        }
+            Picasso.get().load(AppController.base_image_url +arrayList.get(position).getImage()).into(viewHolder.country_Img);
+           }
         else {
             viewHolder.country_code.setText(String.format("%s", data));
         }
@@ -139,12 +146,13 @@ public class Adapter_Bottom extends BaseAdapter implements Filterable {
 
     private static class ViewHolder {
         private TextView country_code,CN;
-        private  ImageView  iv_selected;
+        private  ImageView  iv_selected,country_Img;
 
         private ViewHolder(View view) {
             country_code = view.findViewById(R.id.country_code);
             CN = view.findViewById(R.id.country_name);
             iv_selected = view.findViewById(R.id.iv_selected);
+            country_Img=view.findViewById(R.id.country_Img);
         }
     }
 }

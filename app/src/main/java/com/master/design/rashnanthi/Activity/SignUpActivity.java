@@ -66,6 +66,9 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.country_spinnerET)
     TextView country_spinnerET;
 
+  @BindView(R.id.country_Img)
+    ImageView country_Img;
+
 
 
     @BindView(R.id.spinnerBottomRL)
@@ -388,7 +391,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void success(EventRegisterDM eventRegisterDM, Response response) {
                         progress.dismiss();
                         if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                            user.setId(Integer.valueOf(eventRegisterDM.getOutput().getUserid()));
+                            user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
 
                             user.setEmail(emailET.getText().toString());
 
@@ -509,7 +512,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void response(int position, Object object) {
 
                 country_spinnerET.setText(data.get(position).getCallingcode());
-
+                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
 //                ) {

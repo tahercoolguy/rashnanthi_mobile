@@ -3,6 +3,7 @@ package com.master.design.rashnanthi.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -25,16 +26,26 @@ import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
+import com.master.design.rashnanthi.DataModel.CountryData;
+import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.Helper.BottomForAll;
+import com.master.design.rashnanthi.Helper.ResponseListener;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 import com.smarteist.autoimageslider.SliderView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Coach_Fragment extends Fragment {
 
@@ -53,8 +64,22 @@ public class Coach_Fragment extends Fragment {
     RelativeLayout coach_grid_account;
 
 
+    @BindView(R.id.spinnerCountryBottomRL)
+    RelativeLayout spinnerCountryBottomRL;
+
+
+
+    @BindView(R.id.countryImg)
+    ImageView countryImg;
+
+    @BindView(R.id.country_spinner_Txt)
+    TextView country_spinner_Txt;
+
+
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
+
+
     @BindView(R.id.txt_error)
     TextView txt_error;
 
@@ -79,6 +104,7 @@ public class Coach_Fragment extends Fragment {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
+        Binding();
 
 
         if (rootView == null) {
@@ -88,7 +114,6 @@ public class Coach_Fragment extends Fragment {
 //            coach_menu = rootView.findViewById(R.id.coach_menu);
             coach_grid_account = rootView.findViewById(R.id.coach_grid_account);
 
-            calender_page_country_spinner = rootView.findViewById(R.id.calender_page_country_spinner);
 
             coach_menu_Back=rootView.findViewById(R.id.coach_menu_Back);
 
@@ -239,6 +264,72 @@ public class Coach_Fragment extends Fragment {
         }
         return rootView;
     }
+
+
+    BottomForAll bottomForAll;
+
+    ArrayList<CountryData> approvalOne = new ArrayList<>();
+    ArrayList<String> approvalTwo = new ArrayList<>();
+
+
+    @OnClick(R.id.spinnerCountryBottomRL)
+    public void SpinnerCountry() {
+
+        bottomForAll = new BottomForAll();
+        bottomForAll.arrayList = approvalOne;
+
+        bottomForAll.setResponseListener(new ResponseListener() {
+            @Override
+            public void response(int position, Object object) {
+
+                country_spinner_Txt.setText(data.get(position).getTitle());
+                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(countryImg);
+
+//                countryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
+//                AreaID = data.get(selected).getId();
+//                for (CountryData s:data
+//                ) {
+//                    if(s.getCallingcode().equals((String) object))
+//                        AreaID = s.getId();
+//                }
+
+
+            }
+        });
+
+
+        bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
+    }
+
+
+
+    ArrayList<CountryData> data = new ArrayList<>();
+
+    public void Binding() {
+        if (connectionDetector.isConnectingToInternet()) {
+            appController.paServices.Countries(new Callback<CountryRootDM>() {
+                @Override
+                public void success(CountryRootDM countryRootDM, Response response) {
+                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        data = countryRootDM.getOutput().getData();
+                        for (CountryData area : countryRootDM.getOutput().getData()
+                        ) {
+                            approvalOne.add(area);
+                        }
+                    } else
+                        Helper.showToast(getActivity(), "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("String", error.toString());
+                }
+            });
+        }
+    }
+
+
+
 
 
     @Override

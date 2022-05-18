@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_marginBottom="20dp"
 
 
         android:orientation="vertical">
@@ -17,7 +16,8 @@
         <RelativeLayout
             android:id="@+id/grid_item_RL"
             android:layout_width="120dp"
-            android:layout_height="120dp"
+             android:layout_height="120dp"
+
 
             android:layout_gravity="center">
 
@@ -30,14 +30,21 @@
 
             <!--            </ImageView>-->
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/coach_grid_img"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/lady"
+                 android:src="@drawable/my_event_1_img"
+
                 app:civ_border_color="#FFFFFF"
-                app:civ_border_width="0.1dp" />
+                app:riv_corner_radius_bottom_right="100dp"
+                app:riv_corner_radius_bottom_left="100dp"
+                app:riv_corner_radius_top_left="100dp"
+                android:adjustViewBounds="true"
+                app:riv_corner_radius_top_right="100dp"
+                app:civ_border_width="1000dp"
+                app:riv_corner_radius="1000dp" />
 
             <ImageView
                 android:id="@+id/like_coach_grid"
@@ -50,43 +57,46 @@
                 android:src="@drawable/toggle_like_red_black"></ImageView>
 
 
+
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_whastapp"></ImageView>
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
 
 
-                android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+         android:layout_gravity="center"
+        android:layout_marginLeft="3dp"
+        android:gravity="center"
+
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_whastapp"></ImageView>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
 
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+            android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>
 
 
-                android:src="@drawable/snapchat"></ImageView>
-        </LinearLayout>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
 
 
+            android:src="@drawable/snapchat"></ImageView>
     </LinearLayout>
 
 

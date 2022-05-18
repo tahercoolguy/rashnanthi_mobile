@@ -18,10 +18,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.master.design.rashnanthi.Activity.AddressSelector;
+import com.master.design.rashnanthi.Activity.AdvertiseSelector;
 import com.master.design.rashnanthi.Activity.LoginActivity;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 
@@ -33,12 +36,15 @@ public class Menu_1_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-    ImageView menu_1_menu;
-    RelativeLayout languageRL;
+      RelativeLayout languageRL;
     RelativeLayout aboutapp_RL;
     RelativeLayout registerRL;
     RelativeLayout contact_usRl;
     RelativeLayout loginRL;
+     RelativeLayout myaccount_RL;
+    RelativeLayout logout_Rl;
+    RelativeLayout contact_uRL;
+    User user;
 
 
     @BindView(R.id.progress_bar)
@@ -67,6 +73,7 @@ public class Menu_1_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
+        user = new User(getActivity());
 
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
@@ -80,27 +87,45 @@ public class Menu_1_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.menu_1_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
             idMapping();
-
             setClickListeners();
             setDetails();
-            menu_1_menu = rootView.findViewById(R.id.menu_1_menu);
 
             languageRL = rootView.findViewById(R.id.languageRL);
-
             aboutapp_RL = rootView.findViewById(R.id.aboutapp_RL);
-
             registerRL = rootView.findViewById(R.id.registerRL);
-
             loginRL = rootView.findViewById(R.id.loginRL);
             contact_usRl = rootView.findViewById(R.id.contact_usRl);
+            myaccount_RL=rootView.findViewById(R.id.myaccount_RL);
+            logout_Rl=rootView.findViewById(R.id.logout_Rl);
 
 
-            menu_1_menu.setOnClickListener(new View.OnClickListener() {
+            if(user.getId() == 0){
+                registerRL.setVisibility(View.VISIBLE);
+                loginRL.setVisibility(View.VISIBLE);
+                myaccount_RL.setVisibility(View.GONE);
+                logout_Rl.setVisibility(View.GONE);
+            }else{
+                registerRL.setVisibility(View.GONE);
+                loginRL.setVisibility(View.GONE);
+             }
+
+            myaccount_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Menu_2_Fragment(), false);
+                    ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
+
                 }
             });
+            logout_Rl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    user.setId(0);
+                    ((MainActivity) context).addFragment(new Calender_Fragment(), false);
+                }
+            });
+
+
+
 
             registerRL.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -114,6 +139,8 @@ public class Menu_1_Fragment extends Fragment {
             languageRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent intent = new Intent(((MainActivity) context), AdvertiseSelector.class);
+                    startActivity(intent);
 
                 }
             });
@@ -132,7 +159,7 @@ public class Menu_1_Fragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(((MainActivity) context), LoginActivity.class);
                     startActivity(intent);
-                }
+                 }
             });
 
             contact_usRl.setOnClickListener(new View.OnClickListener() {
