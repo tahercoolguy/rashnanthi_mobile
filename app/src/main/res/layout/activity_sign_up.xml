@@ -144,7 +144,8 @@
                                 android:layout_width="150dp"
                                 android:layout_height="150dp"
                                 android:src="@drawable/r_logo"
-                                 app:civ_border_color="#FF000000"/>
+                                 app:civ_border_width="1dp"
+                                 app:civ_border_color="@color/white"/>
 
 
                         </RelativeLayout>
