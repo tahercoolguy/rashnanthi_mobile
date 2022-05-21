@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -103,7 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 //    Spinner country_name_spinner, mobile_countrycode_Sp, wtsap_countrycode_Sp;
-    com.makeramen.roundedimageview.RoundedImageView dp;
+    CircleImageView dp;
 
     ImageView profileImg, cameraImg, back_from_register_page;
 
@@ -552,6 +553,12 @@ public class SignUpActivity extends AppCompatActivity {
                         for (CountryData area:countryRootDM.getOutput().getData()
                         ) {
                             approvalOne.add(area);
+                            if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
+                                country_spinnerET.setText(data.get(0).getCallingcode());
+                                country_spinner_ET.setText(data.get(0).getCallingcode());
+                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(mobilecountryImg);
+                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
+                            }
                         }
                     }else
                         Helper.showToast(SignUpActivity.this,"Some network happened ..");

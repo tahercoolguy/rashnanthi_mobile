@@ -135,7 +135,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @NotEmpty
     @BindView(R.id.continue_Btn)
-     Button continue_Btn;
+    Button continue_Btn;
 
     @NotEmpty
     @BindView(R.id.post_for_free_nowBtn)
@@ -144,30 +144,28 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     String EventId;
 
 
-
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
-        startActivity(new Intent(Activity_Add_Event_1.this,Add_Event_Pay_Now.class));
+        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
 
     @OnClick(R.id.continue_Btn)
     public void Continue() {
-        startActivity(new Intent(Activity_Add_Event_1.this,Add_Event_Pay_Now.class));
+        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
 
     @OnClick(R.id.post_for_free_nowBtn)
     public void PostForFreeNow() {
         AddEventByCreatorAPI();
-     }
+    }
 
     LinearLayout ad_more_eventtLL, website_LL;
     Button add_more_eventBtn;
     TextView your_post_will_beTXt;
-     LinearLayout radioBtn_Term_condition;
-     private ArrayList<Country_CodeDM> country_codeDMS;
+    LinearLayout radioBtn_Term_condition;
+    private ArrayList<Country_CodeDM> country_codeDMS;
     private ArrayList<Country_NameDM> countryNameDMS;
     RelativeLayout add_img_video_1_RL, add_img_video_2_RL, add_img_video_3_RL, add_img_video_4_RL;
-
 
 
     @Override
@@ -360,35 +358,35 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
 
-            appController.paServices.AddEventByCreator(dateTxt.getText().toString(),wtspcodeTxt.getText().toString(),mobile__ET.getText().toString(),
-                    snap_ET.getText().toString(),insta_ET.getText().toString(),wesite_ET.getText().toString(),country_spinner_Txt.getText().toString()
-                    , String.valueOf(R.drawable.my_event_img_1), String.valueOf(R.drawable.my_event_img_2),"1",user.getName(),"1", new Callback<AddEventByCreatorRootDM>() {
+            appController.paServices.AddEventByCreator(dateTxt.getText().toString(), wtspcodeTxt.getText().toString(), mobile__ET.getText().toString(),
+                    snap_ET.getText().toString(), insta_ET.getText().toString(), wesite_ET.getText().toString(), country_spinner_Txt.getText().toString()
+                    , String.valueOf(R.drawable.my_event_img_1), String.valueOf(R.drawable.my_event_img_2), "1", user.getName(), "1", new Callback<AddEventByCreatorRootDM>() {
 
-                @Override
+                        @Override
 
-                public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
-                    progress.dismiss();
-                    if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
+                            progress.dismiss();
+                            if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.shwToast(Activity_Add_Event_1.this,customerRegisterDM.getMessage());
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
 
 
-                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-                        Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-                        intent.putExtra("eventid",addEventByCreatorRootDM.getOutput().getEventid());
-                        startActivity(intent);
-                    } else
-                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                                Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                                Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
+                                intent.putExtra("eventid", addEventByCreatorRootDM.getOutput().getEventid());
+                                startActivity(intent);
+                            } else
+                                Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
-                }
+                        }
 
-                @Override
-                public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
-                    Log.e("error", retrofitError.toString());
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            progress.dismiss();
+                            Log.e("error", retrofitError.toString());
 
-                }
-            });
+                        }
+                    });
 
         } else
             Helper.showToast(Activity_Add_Event_1.this, getString(R.string.no_internet_connection));
@@ -403,7 +401,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         CalenderDataPicker();
 
     }
-
 
 
     public void CalenderDataPicker() {
@@ -460,7 +457,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
 
-         bottomForAll = new BottomForAll();
+        bottomForAll = new BottomForAll();
         bottomForAll.arrayList = approvalOne;
 
         bottomForAll.setResponseListener(new ResponseListener() {
@@ -469,7 +466,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
                 wtspcodeTxt.setText(data.get(position).getCallingcode());
 //                wtspcountryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
-                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(wtspcountryImg);
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(wtspcountryImg);
 
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
@@ -498,7 +495,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
                 country_spinner_Txt.setText(data.get(position).getTitle());
 //                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
-                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(country_Img);
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img);
 
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
@@ -527,7 +524,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
                 country_spinner_Txt1.setText(data.get(position).getTitle());
 //                country_Img1.setImageResource(Integer.parseInt(data.get(position).getImage()));
-                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(country_Img1);
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img1);
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
 //                ) {
@@ -555,6 +552,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
                             approvalOne.add(area);
+                            wtspcodeTxt.setText(data.get(0).getCallingcode());
+                            Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(wtspcountryImg);
+                            country_spinner_Txt.setText(data.get(0).getTitle());
+                            Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
+                            country_spinner_Txt1.setText(data.get(0).getTitle());
+                            Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img1);
                         }
                     } else
                         Helper.showToast(Activity_Add_Event_1.this, "Some network happened ..");

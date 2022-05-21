@@ -327,6 +327,10 @@ public class Coach_Fragment extends Fragment {
                         for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
                             approvalOne.add(area);
+                            if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
+                                country_spinner_Txt.setText(data.get(0).getTitle());
+                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
+                            }
                         }
                     } else
                         Helper.showToast(getActivity(), "Some network happened ..");

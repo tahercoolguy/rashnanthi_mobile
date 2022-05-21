@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText mobileET;
 
     @BindView(R.id.country_spinnerET)
-    EditText country_spinnerET;
+    TextView country_spinnerET;
 
 
     @BindView(R.id.spinnerBottomRL)
@@ -308,6 +308,10 @@ public class LoginActivity extends AppCompatActivity {
                         for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
                             approvalOne.add(area);
+                            if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
+                                country_spinnerET.setText(data.get(0).getCallingcode());
+                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
+                            }
                         }
                     } else
                         Helper.showToast(LoginActivity.this, "Some network happened ..");

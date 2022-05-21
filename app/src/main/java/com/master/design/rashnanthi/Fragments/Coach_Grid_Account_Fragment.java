@@ -226,24 +226,31 @@ public class Coach_Grid_Account_Fragment extends Fragment {
     }
 
 
-    public void GetCoachsByCountry() {
+    public void GetCoachsByCountry(String Id) {
 
         if (connectionDetector.isConnectingToInternet()) {
 //            dialog = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
-            appController.paServices.GetCoachsByCountry(approvalOne.get(0).getId(), new Callback<GetCoachsByCountryRootDM>() {
+            appController.paServices.GetCoachsByCountry(Id, new Callback<GetCoachsByCountryRootDM>() {
                 @Override
                 public void success(GetCoachsByCountryRootDM getCoachsByCountryRootDM, Response response) {
 //                    dialog.dismiss();
                     if (getCoachsByCountryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
+                        if (Id != null) {
 
-                        Adapter_Coach__grid_Fgmt occasionAdapter = new Adapter_Coach__grid_Fgmt(getActivity(), getCoachsByCountryRootDM.getOutput().getData());
+                            my_account_grid_Rcv.setVisibility(View.VISIBLE);
+                            Adapter_Coach__grid_Fgmt occasionAdapter = new Adapter_Coach__grid_Fgmt(getActivity(), getCoachsByCountryRootDM.getOutput().getData());
+                            GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 3);
+                            my_account_grid_Rcv.setLayoutManager(linearLayoutManager);
+                            my_account_grid_Rcv.setAdapter(occasionAdapter);
+                        }
+                    } else {
+                        my_account_grid_Rcv.setVisibility(View.GONE);
+                        Helper.showToast(getActivity(), "coachs does not exist");
 
-                        GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 3);
-                        my_account_grid_Rcv.setLayoutManager(linearLayoutManager);
-                        my_account_grid_Rcv.setAdapter(occasionAdapter);
-                    } else
-                        Helper.showToast(getActivity(), "something wrong");
+                    }
+
+
                 }
 
                 @Override
@@ -257,7 +264,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
             Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
     }
 
-     BottomForAll bottomForAll;
+    BottomForAll bottomForAll;
     Adapter_Bottom adapter_bottom;
     ArrayList<CountryData> approvalOne = new ArrayList<>();
     ArrayList<String> approvalTwo = new ArrayList<>();
@@ -273,14 +280,14 @@ public class Coach_Grid_Account_Fragment extends Fragment {
             @Override
             public void response(int position, Object object) {
 
-                String Id= approvalOne.get(0).getId();
+                String Id = approvalOne.get(position).getId();
 
-                if(Id==data.get(position).getId()){
-                    my_account_grid_Rcv.setVisibility(View.VISIBLE);
-                    GetCoachsByCountry();
-                }else{
-                    Helper.showToast(context,"select country to load data");
-                    my_account_grid_Rcv.setVisibility(View.GONE);
+                if (Id == data.get(position).getId()) {
+                    GetCoachsByCountry(Id);
+
+                } else {
+                    Helper.showToast(context, "Country user does not exist ");
+//                    my_account_grid_Rcv.setVisibility(View.GONE);
                 }
                 country_spinner_Txt.setText(data.get(position).getTitle());
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
@@ -307,7 +314,15 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                         ) {
 
                             approvalOne.add(area);
+                            GetCoachsByCountry(approvalOne.get(0).getId());
+                            if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
+                                country_spinner_Txt.setText(data.get(0).getTitle());
+                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
+                            }
+
                         }
+
+
                     } else
                         Helper.showToast(getActivity(), "Some network happened ..");
                 }

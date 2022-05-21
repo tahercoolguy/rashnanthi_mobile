@@ -128,15 +128,23 @@
 
                             <!--                            </ImageView>-->
 
-                            <com.makeramen.roundedimageview.RoundedImageView
-                                android:id="@+id/profile_RoundedImgView"
+<!--                            <com.makeramen.roundedimageview.RoundedImageView-->
+<!--                                android:id="@+id/profile_RoundedImgView"-->
+<!--                                android:layout_width="150dp"-->
+<!--                                android:layout_height="150dp"-->
+
+<!--                                android:src="@drawable/lady"-->
+<!--                                app:riv_border_color="@color/white"-->
+<!--                                app:riv_corner_radius="1000dp"-->
+<!--                                app:riv_oval="false"></com.makeramen.roundedimageview.RoundedImageView>-->
+
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                 android:id="@+id/profile_RoundedImgView"
                                 android:layout_width="150dp"
                                 android:layout_height="150dp"
-
-                                android:src="@drawable/lady"
-                                app:riv_border_color="@color/white"
-                                app:riv_corner_radius="1000dp"
-                                app:riv_oval="false"></com.makeramen.roundedimageview.RoundedImageView>
+                                android:src="@drawable/r_logo"
+                                 app:civ_border_color="#FF000000"/>
 
 
                         </RelativeLayout>
@@ -273,8 +281,8 @@
 
                             <ImageView
                                 android:id="@+id/country_Img"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
 
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="15dp"
@@ -681,8 +689,9 @@
 
                             <ImageView
                                 android:id="@+id/wtsap_IMg"
-                                android:layout_width="45dp"
-                                android:layout_height="45dp"
+                                android:layout_width="50dp"
+                                android:layout_marginEnd="1dp"
+                                android:layout_height="50dp"
                                 android:layout_gravity="center"
 
                                 android:elevation="@dimen/elevation"
@@ -692,7 +701,7 @@
 
                             <RelativeLayout
                                 android:id="@+id/spinnerBottom_RL"
-                                android:layout_width="110dp"
+                                android:layout_width="105dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
 
@@ -711,7 +720,7 @@
                                     android:src="@drawable/ic_down_arrow_spinner"></ImageView>
 
 
-                                <EditText
+                                <TextView
                                     android:id="@+id/country_spinner_ET"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -729,7 +738,7 @@
                                     android:textColor="@color/black"
                                     android:textSize="15sp">
 
-                                </EditText>
+                                </TextView>
 
 
                             </RelativeLayout>
@@ -780,8 +789,8 @@
 
                         <ImageView
                             android:id="@+id/mobilecountryImg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
 
                             android:elevation="@dimen/elevation"
@@ -810,7 +819,7 @@
                                 android:src="@drawable/ic_down_arrow_spinner"></ImageView>
 
 
-                            <EditText
+                            <TextView
                                 android:id="@+id/country_spinnerET"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -828,7 +837,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="15sp">
 
-                            </EditText>
+                            </TextView>
 
 
                         </RelativeLayout>
