@@ -30,6 +30,7 @@ import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.backlogin)
     ImageView backlogin;
 
+    @BindView(R.id.countryImg)
+    ImageView countryImg;
+
     @BindView(R.id.loginBtn)
     Button loginBtn;
 
@@ -94,33 +98,33 @@ public class LoginActivity extends AppCompatActivity {
 
             progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
 
-            appController.paServices.Login(country_spinnerET.getText().toString(), mobileET.getText().toString(), passwordET.getText().toString(), new Callback<LoginRootDM>() {
-
-                @Override
-
-                public void success(LoginRootDM loginRootDM, Response response) {
-                    progress.dismiss();
-                    if (loginRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+            appController.paServices.Login(country_spinnerET.getText().toString(), mobileET.getText().toString(),
+                    passwordET.getText().toString(), new Callback<LoginRootDM>() {
+                        @Override
+                        public void success(LoginRootDM loginRootDM, Response response) {
+                            progress.dismiss();
+                            if (loginRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.shwToast(LoginActivity.this,customerRegisterDM.getMessage());
-                        user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
-                        user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
 
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+                                user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
+                                user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
 
-                    } else
-                        Helper.showToast(LoginActivity.this, "entered mobile,password or country code incorrect");
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
 
-                }
+                            } else
+                                Helper.showToast(LoginActivity.this, "entered mobile,password or country code incorrect");
 
-                @Override
-                public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
+                        }
 
-                    Log.e("error", retrofitError.toString());
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            progress.dismiss();
 
-                }
-            });
+                            Log.e("error", retrofitError.toString());
+
+                        }
+                    });
 
         } else
             Helper.showToast(LoginActivity.this, getString(R.string.no_internet_connection));
@@ -269,6 +273,8 @@ public class LoginActivity extends AppCompatActivity {
             public void response(int position, Object object) {
 
                 country_spinnerET.setText(data.get(position).getCallingcode());
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
+
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
 //                ) {

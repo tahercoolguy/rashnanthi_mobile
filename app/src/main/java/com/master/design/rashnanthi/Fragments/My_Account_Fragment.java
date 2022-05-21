@@ -104,9 +104,8 @@ public class My_Account_Fragment extends Fragment {
 
 
 
-
-
             my_accountImg = rootView.findViewById(R.id.my_accountImg);
+
             my_accountImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -217,7 +216,7 @@ public class My_Account_Fragment extends Fragment {
             public void run() {
                DismissProgress();
             }
-        }, 100);
+        }, 1500);
 
 
 

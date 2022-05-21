@@ -373,15 +373,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
 
 
-
+                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
                         Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
                         intent.putExtra("eventid",addEventByCreatorRootDM.getOutput().getEventid());
                         startActivity(intent);
-
-
-
-//                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-
                     } else
                         Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 

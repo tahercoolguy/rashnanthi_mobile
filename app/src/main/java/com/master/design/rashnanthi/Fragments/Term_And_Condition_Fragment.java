@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,13 @@ public class Term_And_Condition_Fragment extends Fragment {
     ImageView my_accountImg;
 
 
+    @BindView(R.id.progress_bar)
+    ProgressBar progress_bar;
+    @BindView(R.id.txt_error)
+    TextView txt_error;
+
+    @BindView(R.id.layout_parent)
+    LinearLayout layout_parent;
 
 //    @BindView(R.id.progress_bar) ProgressBar progress_bar;
 //    @BindView(R.id.txt_error) TextView txt_error;
@@ -66,7 +75,7 @@ public class Term_And_Condition_Fragment extends Fragment {
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
                     else
-                        Helper.showToast(context,aboutUsDM.getOutput().getSuccess());
+                        Helper.showToast(context,"Something wrong");
                 }
 
                 @Override
@@ -135,7 +144,7 @@ public class Term_And_Condition_Fragment extends Fragment {
 //            idMapping();
 //
 //            setClickListeners();
-//            setDetails();
+            setDetails();
 
 
             my_accountImg = rootView.findViewById(R.id.my_accountImg);
@@ -149,48 +158,48 @@ public class Term_And_Condition_Fragment extends Fragment {
         }
         return rootView;
     }
-//
-//    private void idMapping() {
-//
-//
-//    }
-//
-//    private void setClickListeners() {
-//
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//    }
-//
-//    private void setDetails() {
-//       ShowProgress();
-//        rootView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//               DismissProgress();
-//            }
-//        }, 1500);
-//
-//
-//
 
-//    }
+    private void idMapping() {
 
-//    public void ShowProgress()
-//    {
-//        progress_bar.setVisibility(View.VISIBLE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.GONE);
-//    }
-//
-//    public void DismissProgress()
-//    {
-//        progress_bar.setVisibility(View.GONE);
-//        txt_error.setVisibility(View.GONE);
-//        layout_parent.setVisibility(View.VISIBLE);
-//    }
+
+    }
+
+    private void setClickListeners() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    private void setDetails() {
+       ShowProgress();
+        rootView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               DismissProgress();
+            }
+        }, 1500);
+
+
+
+
+    }
+
+    public void ShowProgress()
+    {
+        progress_bar.setVisibility(View.VISIBLE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.GONE);
+    }
+
+    public void DismissProgress()
+    {
+        progress_bar.setVisibility(View.GONE);
+        txt_error.setVisibility(View.GONE);
+        layout_parent.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

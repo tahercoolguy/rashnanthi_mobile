@@ -143,16 +143,9 @@ public class My_Event_1_Fragment extends Fragment {
 
                     if (myEventsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-//                        if (myEventsRootDM != null)
-//                            for (MyEventImageData v : myEventsRootDM.getOutput().getData()) {
-//                                MyEventData s = new MyEventData();
-//                                s.setImage(v.getImage());
-//                                s.setDate(v.getDate());
-//                                myEventData.add(s);
 //
-//                             }
                         Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getContext(),myEventsRootDM.getOutput().getData());
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                         my_event_Rcv.setLayoutManager(linearLayoutManager);
                         my_event_Rcv.setAdapter(adapter_my_event_1);
 

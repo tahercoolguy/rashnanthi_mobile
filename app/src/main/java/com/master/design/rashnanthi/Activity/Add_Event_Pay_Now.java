@@ -55,10 +55,27 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     @BindView(R.id.add_event_pay_back)
     ImageView Back;
 
+    @NotEmpty
+    @BindView(R.id.post_price_country_Txt)
+    TextView post_price_country_Txt;
 
     @NotEmpty
-    @BindView(R.id.rcv_paynow)
-    RecyclerView rcv_paynow;
+    @BindView(R.id.post_price_kuwait_Txt)
+    TextView post_price_kuwait_Txt;
+  @NotEmpty
+    @BindView(R.id.qatar_price_Txt)
+    TextView qatar_price_Txt;
+
+    @NotEmpty
+    @BindView(R.id.kuwait_price__Txt)
+    TextView kuwait_price__Txt;
+
+    @NotEmpty
+    @BindView(R.id.total_price_kwd)
+    TextView total_price_kwd;
+
+
+
 
     @OnClick(R.id.add_event_pay_back)
     public void Back() {
@@ -77,6 +94,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(Add_Event_Pay_Now.this);
 
+        SummaryForPaidEvent();
 
         Intent intent = getIntent();
 
@@ -118,8 +136,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
         add_event_pay_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SummaryForPaidEvent();
-             }
+              }
         });
 
 
@@ -171,19 +188,15 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
 //                        Helper.shwToast(Add_Event_Pay_Now.this,customerRegisterDM.getMessage());
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
 
+                       //                        rcv_paynow.setAdapter(occasionAdapter);
 
-                        Adapter_Add_Event_Pay_Now occasionAdapter = new Adapter_Add_Event_Pay_Now(Add_Event_Pay_Now.this,summaryForPaidEventRootDM.getOutput().getData());
+                        post_price_country_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountry());
+                        post_price_kuwait_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountry());
+                        qatar_price_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountryvalue());
+                        kuwait_price__Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountryvalue());
+                        total_price_kwd.setText(summaryForPaidEventRootDM.getOutput().getData().getCountryvalue());
 
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Add_Event_Pay_Now.this);
-                        rcv_paynow.setLayoutManager(linearLayoutManager);
-                        rcv_paynow.setAdapter(occasionAdapter);
-
-
-
-
-
-
-                        startActivity(new Intent(Add_Event_Pay_Now.this,Add_Event_Bill.class));
+//                        startActivity(new Intent(Add_Event_Pay_Now.this,Add_Event_Bill.class));
 
                     } else
                         Helper.showToast(Add_Event_Pay_Now.this,"something wrong ");

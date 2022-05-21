@@ -76,7 +76,7 @@ public class About_App_Fragment extends Fragment {
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
                     else
-                        Helper.showToast(context,aboutUsDM.getOutput().getSuccess());
+                        Helper.showToast(context,"Something Wrong");
                 }
 
                 @Override
@@ -159,7 +159,7 @@ public class About_App_Fragment extends Fragment {
             public void run() {
                DismissProgress();
             }
-        }, 100);
+        }, 1500);
 
 
 

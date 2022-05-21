@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.Activity.LoginActivity;
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Adapter.Adapter_Bottom;
 import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
 import com.master.design.rashnanthi.Adapter.Adapter_Coach__grid_Fgmt;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
@@ -38,6 +39,8 @@ import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
+import com.master.design.rashnanthi.Helper.ResponseListener1;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -58,6 +61,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
     private View rootView;
     private Context context;
     RecyclerView my_account_grid_Rcv;
+    User user;
     //     ImageView coach_menu,like_coach_grid;
     private ArrayList<CoachGridDM> coachGridDMArrayList;
     private ArrayList<County_ItemDM> county_itemDMS;
@@ -102,7 +106,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
-
+        user = new User(getActivity());
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -137,8 +141,6 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                     ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
                 }
             });
-
-
 
 
             ArrayList<County_ItemDM> county_itemDMS;
@@ -218,7 +220,6 @@ public class Coach_Grid_Account_Fragment extends Fragment {
 //            my_account_grid_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
 //            my_account_grid_Rcv.setAdapter(new Adapter_Coach_Grid_Fgmt(((MainActivity) context), coachGridDMArrayList));
 
-            GetCoachsByCountry();
 
         }
         return rootView;
@@ -229,11 +230,12 @@ public class Coach_Grid_Account_Fragment extends Fragment {
 
         if (connectionDetector.isConnectingToInternet()) {
 //            dialog = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
-            appController.paServices.GetCoachsByCountry("1", new Callback<GetCoachsByCountryRootDM>() {
+            appController.paServices.GetCoachsByCountry(approvalOne.get(0).getId(), new Callback<GetCoachsByCountryRootDM>() {
                 @Override
                 public void success(GetCoachsByCountryRootDM getCoachsByCountryRootDM, Response response) {
 //                    dialog.dismiss();
                     if (getCoachsByCountryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
 
                         Adapter_Coach__grid_Fgmt occasionAdapter = new Adapter_Coach__grid_Fgmt(getActivity(), getCoachsByCountryRootDM.getOutput().getData());
 
@@ -241,7 +243,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                         my_account_grid_Rcv.setLayoutManager(linearLayoutManager);
                         my_account_grid_Rcv.setAdapter(occasionAdapter);
                     } else
-                        Helper.showToast(getActivity(), "someting wrong");
+                        Helper.showToast(getActivity(), "something wrong");
                 }
 
                 @Override
@@ -255,9 +257,8 @@ public class Coach_Grid_Account_Fragment extends Fragment {
             Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
     }
 
-
-    BottomForAll bottomForAll;
-
+     BottomForAll bottomForAll;
+    Adapter_Bottom adapter_bottom;
     ArrayList<CountryData> approvalOne = new ArrayList<>();
     ArrayList<String> approvalTwo = new ArrayList<>();
 
@@ -272,8 +273,17 @@ public class Coach_Grid_Account_Fragment extends Fragment {
             @Override
             public void response(int position, Object object) {
 
-                 country_spinner_Txt.setText(data.get(position).getTitle());
-                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(countryImg);
+                String Id= approvalOne.get(0).getId();
+
+                if(Id==data.get(position).getId()){
+                    my_account_grid_Rcv.setVisibility(View.VISIBLE);
+                    GetCoachsByCountry();
+                }else{
+                    Helper.showToast(context,"select country to load data");
+                    my_account_grid_Rcv.setVisibility(View.GONE);
+                }
+                country_spinner_Txt.setText(data.get(position).getTitle());
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
 
             }
         });
@@ -281,7 +291,6 @@ public class Coach_Grid_Account_Fragment extends Fragment {
 
         bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
     }
-
 
 
     ArrayList<CountryData> data = new ArrayList<>();
@@ -293,10 +302,11 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                 public void success(CountryRootDM countryRootDM, Response response) {
                     if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         data = countryRootDM.getOutput().getData();
+
                         for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
-                            approvalOne.add(area);
 
+                            approvalOne.add(area);
                         }
                     } else
                         Helper.showToast(getActivity(), "Some network happened ..");
@@ -318,7 +328,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 100);
+        }, 1500);
 
 
     }

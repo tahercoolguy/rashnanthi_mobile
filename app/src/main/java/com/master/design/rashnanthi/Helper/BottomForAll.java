@@ -3,6 +3,7 @@ package com.master.design.rashnanthi.Helper;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -21,6 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.master.design.rashnanthi.Adapter.Adapter_Bottom;
 import com.master.design.rashnanthi.DataModel.CountryData;
+import com.master.design.rashnanthi.Fragments.Coach_Grid_Account_Fragment;
 import com.master.design.rashnanthi.R;
 
 import java.util.ArrayList;
@@ -29,10 +31,10 @@ public class BottomForAll extends BottomSheetDialogFragment implements View.OnCl
 
     private Context context;
     private ListView listview;
-   public EditText search;
-    private TextView btn_cancel, btn_done, txt_error_message;
+//   public EditText search;
+    private TextView  txt_error_message;
     private ResponseListener responseListener;
-    private BottomSheetBehavior bottomSheetBehavior;
+     private BottomSheetBehavior bottomSheetBehavior;
     private ProgressBar progressBar;
     private RelativeLayout layout_top;
 
@@ -40,6 +42,7 @@ public class BottomForAll extends BottomSheetDialogFragment implements View.OnCl
     private CountryData selected;
     public ArrayList<CountryData> arrayList=new ArrayList<>(),tmp=new ArrayList<>();
     private Adapter_Bottom adapter;
+
 
    public boolean isSort=false;
 
@@ -121,48 +124,58 @@ public class BottomForAll extends BottomSheetDialogFragment implements View.OnCl
 
     private void mapping(View view) {
 
-        btn_done = view.findViewById(R.id.btn_done);
-        btn_cancel = view.findViewById(R.id.btn_cancel);
+//        btn_done = view.findViewById(R.id.btn_done);
+//        btn_cancel = view.findViewById(R.id.btn_cancel);
 
         listview = view.findViewById(R.id.list_view);
-        search = view.findViewById(R.id.searchET);
+//        search = view.findViewById(R.id.searchET);
         if(isSort)
-           search.setVisibility(View.GONE);
+//           search.setVisibility(View.GONE);
         listview.setVisibility(View.VISIBLE);
         progressBar = view.findViewById(R.id.progressBar);
         layout_top = view.findViewById(R.id.layout_top);
         txt_error_message = view.findViewById(R.id.txt_error_message);
 
-        btn_done.setOnClickListener(this);
-        btn_cancel.setOnClickListener(this);
+//        btn_done.setOnClickListener(this);
+//        btn_cancel.setOnClickListener(this);
         layout_top.setOnTouchListener(this);
 
-        search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                adapter.getFilter().filter(editable.toString());
-            }
-        });
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        search.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                adapter.getFilter().filter(editable.toString());
+//            }
+//        });
+         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selected = adapter.searchResults.get(i);
                 adapter.setSelected(selected);
                 adapter.setPosition(i);
                 adapter.notifyDataSetChanged();
+
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                if (responseListener != null && adapter != null) {
+                    try{
+                        responseListener.response(adapter.getPosition(),adapter.getSelected());
+                     }catch (Exception e)
+                    {
+
+                    }
+                }
             }
         });
+
     }
 
 
@@ -172,17 +185,17 @@ public class BottomForAll extends BottomSheetDialogFragment implements View.OnCl
             case R.id.btn_cancel:
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 break;
-            case R.id.btn_done:
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                if (responseListener != null && adapter != null) {
-                    try{
-                        responseListener.response(adapter.getPosition(),adapter.getSelected());
-                    }catch (Exception e)
-                    {
-
-                    }
-                }
-                break;
+//            case R.id.btn_done:
+//                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+//                if (responseListener != null && adapter != null) {
+//                    try{
+//                        responseListener.response(adapter.getPosition(),adapter.getSelected());
+//                     }catch (Exception e)
+//                    {
+//
+//                    }
+//                }
+//                break;
         }
     }
 
@@ -191,13 +204,15 @@ public class BottomForAll extends BottomSheetDialogFragment implements View.OnCl
         this.responseListener = responseListener;
     }
 
+
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-//        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//            isTopScroll = true;
-//        } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-//            isTopScroll = false;
-//        }
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            isTopScroll = true;
+        } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+            isTopScroll = false;
+        }
         return true;
     }
 

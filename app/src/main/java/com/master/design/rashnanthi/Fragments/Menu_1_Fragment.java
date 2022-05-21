@@ -139,8 +139,8 @@ public class Menu_1_Fragment extends Fragment {
             languageRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(((MainActivity) context), AdvertiseSelector.class);
-                    startActivity(intent);
+                    ((MainActivity) context).addFragment(new LanguageFragment(), false);
+
 
                 }
             });

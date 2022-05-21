@@ -36,6 +36,7 @@ import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,12 @@ public class SignUpActivity extends AppCompatActivity {
 
   @BindView(R.id.country_Img)
     ImageView country_Img;
+
+
+
+  @BindView(R.id.mobilecountryImg)
+    ImageView mobilecountryImg;
+
 
 
 
@@ -484,6 +491,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void response(int position, Object object) {
 
                 country_spinner_Txt.setText(data.get(position).getTitle());
+                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(country_Img);
 
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
@@ -512,7 +520,9 @@ public class SignUpActivity extends AppCompatActivity {
             public void response(int position, Object object) {
 
                 country_spinnerET.setText(data.get(position).getCallingcode());
-                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
+//                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
+                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(mobilecountryImg);
+
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
 //                ) {

@@ -26,7 +26,6 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.Story_activity;
-import com.master.design.rashnanthi.Adapter.KecamatanAdapter;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;

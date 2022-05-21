@@ -4,6 +4,7 @@ import static com.bumptech.glide.Glide.with;
 import static com.squareup.picasso.Picasso.*;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
+import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.squareup.picasso.Picasso;
@@ -23,12 +25,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter_Bottom extends BaseAdapter implements Filterable {
+public class Adapter_Bottom extends BaseAdapter  {
     private Context context;
     private ArrayList<CountryData> arrayList;
     private CountryData selected;
     private int position;
-    User user;
+     User user;
     public ArrayList<CountryData> searchResults;
 
     public Adapter_Bottom(Context context, ArrayList<CountryData> arrayList) {
@@ -69,44 +71,44 @@ public class Adapter_Bottom extends BaseAdapter implements Filterable {
         return convertView;
     }
 
-    @Override
-    public Filter getFilter() {
-        Filter filter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-
-                FilterResults filterResults = new FilterResults();
-                if (constraint == null || constraint.length() == 0) {
-                    filterResults.count = arrayList.size();
-                    filterResults.values = arrayList;
-
-                } else {
-                    List<CountryData> resultsModel = new ArrayList<>();
-                    String searchStr = constraint.toString().toLowerCase();
-
-                    for (CountryData itemsModel : arrayList) {
-                        if (itemsModel.getCurrencycode().toLowerCase().contains(searchStr)) {
-                            resultsModel.add(itemsModel);
-                        }
-                    }
-                    filterResults.count = resultsModel.size();
-                    filterResults.values = resultsModel;
-
-                }
-
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-
-                searchResults = (ArrayList<CountryData>) results.values;
-                notifyDataSetChanged();
-
-            }
-        };
-        return filter;
-    }
+//    @Override
+//    public Filter getFilter() {
+//        Filter filter = new Filter() {
+//            @Override
+//            protected FilterResults performFiltering(CharSequence constraint) {
+//
+//                FilterResults filterResults = new FilterResults();
+//                if (constraint == null || constraint.length() == 0) {
+//                    filterResults.count = arrayList.size();
+//                    filterResults.values = arrayList;
+//
+//                } else {
+//                    List<CountryData> resultsModel = new ArrayList<>();
+//                    String searchStr = constraint.toString().toLowerCase();
+//
+//                    for (CountryData itemsModel : arrayList) {
+//                        if (itemsModel.getCurrencycode().toLowerCase().contains(searchStr)) {
+//                            resultsModel.add(itemsModel);
+//                        }
+//                    }
+//                    filterResults.count = resultsModel.size();
+//                    filterResults.values = resultsModel;
+//
+//                }
+//
+//                return filterResults;
+//            }
+//
+//            @Override
+//            protected void publishResults(CharSequence constraint, FilterResults results) {
+//
+//                searchResults = (ArrayList<CountryData>) results.values;
+//                notifyDataSetChanged();
+//
+//            }
+//        };
+//        return filter;
+//    }
 
     private void setDetails(ViewHolder viewHolder, int position) {
         CountryData data = searchResults.get(position);
@@ -114,7 +116,9 @@ public class Adapter_Bottom extends BaseAdapter implements Filterable {
             viewHolder.country_code.setText(String.format("%s", data.getCallingcode()));
             viewHolder.CN.setText(arrayList.get(position).getTitle());
             Picasso.get().load(AppController.base_image_url +arrayList.get(position).getImage()).into(viewHolder.country_Img);
-           }
+            Bundle countryID = new Bundle();
+            countryID.putString("countryID", data.getId());
+            }
         else {
             viewHolder.country_code.setText(String.format("%s", data));
         }

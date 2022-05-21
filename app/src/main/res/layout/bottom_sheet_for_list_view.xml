@@ -21,65 +21,65 @@
         android:background="@drawable/gradient_bg"
         android:minHeight="43dp">
 
-        <TextView
-            android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:gravity="center"
-            android:minWidth="70dp"
-            android:minHeight="33dp"
-            android:padding="7dp"
-            android:text="@string/cancel"
-            android:textAllCaps="false"
-            android:textAppearance="@style/font_medium"
-            android:textColor="@color/white"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="@dimen/text_size_normal"
-            android:textStyle="bold" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/btn_cancel"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+        <!--            android:gravity="center"-->
+        <!--            android:minWidth="70dp"-->
+        <!--            android:minHeight="33dp"-->
+        <!--            android:padding="7dp"-->
+        <!--            android:text="@string/cancel"-->
+        <!--            android:textAllCaps="false"-->
+        <!--            android:textAppearance="@style/font_medium"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textColorHint="@color/colorPrimary"-->
+        <!--            android:textSize="@dimen/text_size_normal"-->
+        <!--            android:textStyle="bold" />-->
 
-        <TextView
-            android:id="@+id/btn_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:gravity="center"
-            android:minWidth="70dp"
-            android:minHeight="33dp"
-            android:padding="7dp"
-            android:text="@string/done"
-            android:textAllCaps="false"
-            android:textAppearance="@style/font_medium"
-            android:textColor="@color/white"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="@dimen/text_size_normal"
-            android:textStyle="bold" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/btn_done"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+        <!--            android:gravity="center"-->
+        <!--            android:minWidth="70dp"-->
+        <!--            android:minHeight="33dp"-->
+        <!--            android:padding="7dp"-->
+        <!--            android:text="@string/done"-->
+        <!--            android:textAllCaps="false"-->
+        <!--            android:textAppearance="@style/font_medium"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textColorHint="@color/colorPrimary"-->
+        <!--            android:textSize="@dimen/text_size_normal"-->
+        <!--            android:textStyle="bold" />-->
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/searchET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_top"
-        android:layout_marginStart="12dp"
-        android:textAllCaps="false"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="12dp"
-        android:hint="@string/search"
-        android:visibility="visible"></EditText>
+<!--    <EditText-->
+<!--        android:id="@+id/searchET"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/layout_top"-->
+<!--        android:layout_marginStart="12dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="12dp"-->
+<!--        android:hint="@string/search"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:visibility="visible"></EditText>-->
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@+id/searchET"
-        android:clipToPadding="false"
+        android:layout_height="370dp"
+         android:clipToPadding="false"
         android:divider="@color/grey"
         android:layout_marginBottom="30dp"
         android:dividerHeight="0.5dp"
+        android:layout_marginTop="50dp"
         android:drawSelectorOnTop="true"
         android:visibility="gone" />
 

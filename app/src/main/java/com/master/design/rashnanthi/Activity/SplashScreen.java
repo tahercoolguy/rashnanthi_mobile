@@ -79,11 +79,11 @@ public class SplashScreen extends AppCompatActivity {
 
                 if(user.getId() == 0){
 
-                    startActivity(new Intent(SplashScreen.this,AdvertiseSelector.class));
+                    startActivity(new Intent(SplashScreen.this,MainActivity.class));
 
                 }
                 else{
-                    startActivity(new Intent(SplashScreen.this,AdvertiseSelector.class));
+                    startActivity(new Intent(SplashScreen.this,MainActivity.class));
                 }
                 finish();
 
