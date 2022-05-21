@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -57,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT1 = 2;
     private static final int FILE_PICKER_SELECT = 3;
     private static final int IMAGE_VIDEO_ACTIVITY_PICKER = 4;
-
+    Uri uri;
     Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
@@ -159,56 +160,6 @@ public class SignUpActivity extends AppCompatActivity {
         dp = findViewById(R.id.profile_RoundedImgView);
         cameraImg = findViewById(R.id.cameraImg);
 //
-//        mobile_countrycode_Sp = findViewById(R.id.mobile_countrycode_Sp);
-//        wtsap_countrycode_Sp = findViewById(R.id.wtsap_countrycode_Sp);
-
-//        ArrayList<Country_CodeDM> country_codeDMS;
-//        country_codeDMS = new ArrayList<>();
-//        country_codeDMS.add(new Country_CodeDM("+965"));
-//        country_codeDMS.add(new Country_CodeDM("+968"));
-//        country_codeDMS.add(new Country_CodeDM("+966"));
-//        country_codeDMS.add(new Country_CodeDM("+974"));
-//        country_codeDMS.add(new Country_CodeDM("+973"));
-//
-//        Adapter_Country_Code_Only_Spinner adapter_country_code_only_spinner;
-//
-//        adapter_country_code_only_spinner = new Adapter_Country_Code_Only_Spinner(this, country_codeDMS);
-//
-//
-//        mobile_countrycode_Sp.setAdapter(adapter_country_code_only_spinner);
-//        wtsap_countrycode_Sp.setAdapter(adapter_country_code_only_spinner);
-
-
-//        ArrayList<Country_NameDM> countryNameDMS;
-//
-//
-//        countryNameDMS = new ArrayList<>();
-//        countryNameDMS.add(new Country_NameDM("Kuwait"));
-//        countryNameDMS.add(new Country_NameDM("Oman"));
-//        countryNameDMS.add(new Country_NameDM("Saudi Arabia"));
-//        countryNameDMS.add(new Country_NameDM("Qatar"));
-//        countryNameDMS.add(new Country_NameDM("Bahrain"));
-//
-//
-//        Adapter_Country_Name_Spinner adapter_country_name_spinner;
-//
-//        adapter_country_name_spinner = new Adapter_Country_Name_Spinner(this, countryNameDMS);
-//
-//
-//        country_name_spinner.setAdapter(adapter_country_name_spinner);
-//
-//
-//        country_name_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
 
         VisibilityFunction();
 
@@ -259,26 +210,36 @@ public class SignUpActivity extends AppCompatActivity {
         cameraImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SelectImageFromGallery();
-            }
+                ProfileImg();
+             }
         });
 
     }
 
-    public void SelectImageFromGallery() {
-        ImagePicker.with(this)
-//                .crop()	    			//Crop image(Optional), Check Customization for more option
-//                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-//                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-                .start();
+
+    public  void ProfileImg(){
+
+        Intent iGallery = new Intent(Intent.ACTION_PICK);
+        iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(iGallery,IMAGE_PICKER_SELECT);
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri uri = data.getData();
-        dp.setImageURI(uri);
+        if(resultCode==RESULT_OK){
+
+            if(requestCode==IMAGE_PICKER_SELECT){
+//                for gallery
+
+                dp.setImageURI(data.getData());
+
+            }
+        }
+
 
     }
 
@@ -324,7 +285,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("fullname", new TypedString(nameET.getText().toString()));
-            multipartTypedOutput.addPart("image", new TypedString("12"));
+            multipartTypedOutput.addPart("image", new TypedString("4324423"));
             multipartTypedOutput.addPart("email", new TypedString(emailET.getText().toString()));
             multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
             multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
@@ -571,6 +532,8 @@ public class SignUpActivity extends AppCompatActivity {
             });
         }
     }
+
+
 
 }
 

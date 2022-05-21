@@ -8,6 +8,8 @@ import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.DataModel.AddEventByCreatorRootDM;
 import com.master.design.rashnanthi.DataModel.ChangePasswordRootDM;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
+import com.master.design.rashnanthi.DataModel.DeleteEventOutput;
+import com.master.design.rashnanthi.DataModel.DeleteEventRootDM;
 import com.master.design.rashnanthi.DataModel.EventRegisterDM;
 import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
@@ -70,6 +72,12 @@ public interface PAServices {  //(01)
     void CoachReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
 
 
+    @Headers("Cache-Control: no-cache;")
+    @POST("/deletevent")
+    void DeletEvent(@Body MultipartTypedOutput multipartTypedOutput, Callback<DeleteEventRootDM> deleteEventRootDMCallback);
+
+
+
 //    @Headers("Cache-Control: no-cache;")
 //    @POST("/forgotpassword")
 //    void ForgotPassword(@Body MultipartTypedOutput multipartTypedOutput, Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
@@ -119,6 +127,7 @@ public interface PAServices {  //(01)
     @FormUrlEncoded
     @POST("/myevents")
     void MyEvents(@Field("userid") String userid,
+                  @Field("countryid") String countryid,
                   Callback<MyEventsRootDM> myEventsRootDMCallback);
 
     @FormUrlEncoded
@@ -132,21 +141,27 @@ public interface PAServices {  //(01)
     void GetCoachsByCountry(@Field("countryid") String countryid,
                             Callback<GetCoachsByCountryRootDM> myProfileRootDMCallback);
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
+//    @POST("/addeventbycreator")
+//    void AddEventByCreator(@Field("eventdate") String eventdate,
+//                           @Field("whatsapcountrycode") String whatsapcountrycode,
+//                           @Field("whatsapnumber") String whatsapnumber,
+//                           @Field("snapchat") String snapchat,
+//                           @Field("instagram") String instagram,
+//                           @Field("website") String website,
+//                           @Field("countryid") String countryid,
+//                           @Field("storyphotovideo") String storyphotovideo,
+//                           @Field("eventphotovideo") String eventphotovideo,
+//                           @Field("payorfree") String payorfree,
+//                           @Field("postedby") String postedby,
+//                           @Field("creatorcoach") String creatorcoach,
+//                           Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
+
+
+    @Headers("Cache-Control: no-cache;")
     @POST("/addeventbycreator")
-    void AddEventByCreator(@Field("eventdate") String eventdate,
-                           @Field("whatsapcountrycode") String whatsapcountrycode,
-                           @Field("whatsapnumber") String whatsapnumber,
-                           @Field("snapchat") String snapchat,
-                           @Field("instagram") String instagram,
-                           @Field("website") String website,
-                           @Field("countryid") String countryid,
-                           @Field("storyphotovideo") String storyphotovideo,
-                           @Field("eventphotovideo") String eventphotovideo,
-                           @Field("payorfree") String payorfree,
-                           @Field("postedby") String postedby,
-                           @Field("creatorcoach") String creatorcoach,
-                           Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
+    void AddEventByCreator(@Body MultipartTypedOutput multipartTypedOutput, Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
+
 
 
     @FormUrlEncoded

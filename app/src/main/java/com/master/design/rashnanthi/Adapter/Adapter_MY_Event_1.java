@@ -2,6 +2,7 @@ package com.master.design.rashnanthi.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,19 @@ import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.MyEventData;
 import com.master.design.rashnanthi.DataModel.MyEventImageData;
+import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.master.design.rashnanthi.Utils.Helper;
 import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.ViewHolder> {
     private Context context;
@@ -72,7 +79,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     private void setDetails(Adapter_MY_Event_1.ViewHolder viewHolder, int position) {
         viewHolder.date_time.setText(myEventData.get(position).getDate());
         Picasso.get().load(myEventData.get(position).getImage()).into(viewHolder.img_1);
-        Picasso.get().load(AppController.base_image_url +myEventData.get(position).getImage()).into(viewHolder.img_2);
+        Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
 
         viewHolder.img_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,22 +93,29 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
             }
         });
+
+
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView date_time;
-        private ImageView img_1, img_2;
 
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            date_time = itemView.findViewById(R.id.date_month_Txt);
-            img_1 = itemView.findViewById(R.id.img_1);
-            img_2 = itemView.findViewById(R.id.img_2);
 
-            //          
-        }
+
+
+public static class ViewHolder extends RecyclerView.ViewHolder {
+
+    private TextView date_time;
+    private ImageView img_1, img_2;
+
+
+    public ViewHolder(View itemView) {
+        super(itemView);
+        date_time = itemView.findViewById(R.id.date_month_Txt);
+        img_1 = itemView.findViewById(R.id.img_1);
+        img_2 = itemView.findViewById(R.id.img_2);
+
+        //
     }
+}
 }

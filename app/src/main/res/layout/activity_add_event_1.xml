@@ -105,10 +105,10 @@
                     <TextView
                         android:id="@+id/dateTxt"
                         android:layout_width="match_parent"
-                        android:layout_marginStart="20dp"
-
                         android:layout_height="match_parent"
+
                         android:layout_centerInParent="true"
+                        android:layout_marginStart="20dp"
                         android:background="@color/transparent"
                         android:lines="1"
                         android:textSize="15sp"></TextView>
@@ -669,7 +669,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
 
@@ -688,8 +688,21 @@
                         android:gravity="center"
                         android:text="@string/story_photo_video">
 
+
+                        <ImageView
+                            android:id="@+id/img1"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:background="@drawable/rounded_rectangle_whitee">
+
+                        </ImageView>
+                        
+                        
+                        
+
                         <ImageView
                             android:layout_width="24dp"
+                            android:layout_centerInParent="true"
                             android:layout_height="24dp"
 
                             android:src="@drawable/ic_image_gallery">
@@ -715,11 +728,31 @@
                         android:text="@string/even_photo_video">
 
                         <ImageView
+                            android:id="@+id/img2"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/rounded_rectangle_whitee"
+                            android:layout_height="130dp">
+
+                        </ImageView>
+
+
+
+
+                        <ImageView
                             android:layout_width="24dp"
+                            android:layout_centerInParent="true"
                             android:layout_height="24dp"
+
                             android:src="@drawable/ic_image_gallery">
 
                         </ImageView>
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:src="@drawable/ic_image_gallery">-->
+
+<!--                        </ImageView>-->
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -927,7 +960,19 @@
             android:text="@string/story_photo_video">
 
             <ImageView
+                android:id="@+id/img3"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_rectangle_whitee"
+                android:layout_height="130dp">
+
+            </ImageView>
+
+
+
+
+            <ImageView
                 android:layout_width="24dp"
+                android:layout_centerInParent="true"
                 android:layout_height="24dp"
 
                 android:src="@drawable/ic_image_gallery">
@@ -955,8 +1000,21 @@
             android:text="@string/even_photo_video">
 
             <ImageView
+                android:id="@+id/img4"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_rectangle_whitee"
+                android:layout_height="130dp">
+
+            </ImageView>
+
+
+
+
+            <ImageView
                 android:layout_width="24dp"
+                android:layout_centerInParent="true"
                 android:layout_height="24dp"
+
                 android:src="@drawable/ic_image_gallery">
 
             </ImageView>

@@ -136,7 +136,7 @@ public class My_Event_1_Fragment extends Fragment {
     public void MyEventAPI() {
         if (connectionDetector.isConnectingToInternet()) {
             //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            appController.paServices.MyEvents("56",new Callback<MyEventsRootDM>() {
+            appController.paServices.MyEvents("11","1",new Callback<MyEventsRootDM>() {
                 @Override
 
                 public void success(MyEventsRootDM myEventsRootDM, Response response) {
