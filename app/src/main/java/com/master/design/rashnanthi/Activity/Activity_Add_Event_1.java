@@ -86,6 +86,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
 
+    String CountryId;
 
     @NotEmpty
     @BindView(R.id.dateTxt)
@@ -118,11 +119,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @NotEmpty
     @BindView(R.id.wesite_ET)
-    TextView wesite_ET;
+    EditText wesite_ET;
 
     @NotEmpty
     @BindView(R.id.mobile__ET)
-    TextView mobile__ET;
+    EditText mobile__ET;
 
     @NotEmpty
     @BindView(R.id.country_Img)
@@ -188,16 +189,24 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
-        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
+        ifpaid = true;
+        AddEventByCreatorAPI();
+
+//        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
 
     @OnClick(R.id.continue_Btn)
     public void Continue() {
-        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
+
+        iffree = true;
+        AddEventByCreatorAPI();
+
+//        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
 
     @OnClick(R.id.post_for_free_nowBtn)
     public void PostForFreeNow() {
+        iffree = true;
         AddEventByCreatorAPI();
     }
 
@@ -393,12 +402,16 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     }
 
+    boolean iffree = false;
+    boolean ifpaid = false;
+
 
     public void AddEventByCreatorAPI() {
         if (connectionDetector.isConnectingToInternet()) {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-            String id = String.valueOf(user.getId());
+//            String id = String.valueOf(user.getId());
+
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
@@ -407,11 +420,21 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
             multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
-            multipartTypedOutput.addPart("countryid[]", new TypedString(country_spinner_Txt.getText().toString()));
-             multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-            multipartTypedOutput.addPart("postedby", new TypedString(id));
+            multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
+//            multipartTypedOutput.addPart("payorfree", new TypedString("1"));
+            multipartTypedOutput.addPart("postedby", new TypedString(user.getName()));
             multipartTypedOutput.addPart("creatorcoach", new TypedString("1"));
 
+//
+//            if (iffree) {
+//                iffree = true;
+//                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
+//            }
+//
+//            if (ifpaid) {
+//                ifpaid = true;
+//                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
+//            }
 
 
             try {
@@ -526,32 +549,39 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             appController.paServices.AddEventByCreator(multipartTypedOutput, new Callback<AddEventByCreatorRootDM>() {
 
-                        @Override
+                @Override
 
-                        public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
-                            progress.dismiss();
-                            if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
+                    progress.dismiss();
+                    if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.shwToast(Activity_Add_Event_1.this,customerRegisterDM.getMessage());
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
 
+                        EventId = addEventByCreatorRootDM.getOutput().getEventid();
 
-                                Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-//                                Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-//                                intent.putExtra("eventid", addEventByCreatorRootDM.getOutput().getEventid());
-//                                startActivity(intent);
+//                        if (post_for_free_nowBtn.callOnClick()) {
+//
+//                            Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+//
+//                        }   if (pay_now_Btn.callOnClick()) {
+//                            Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
+//                            intent.putExtra("eventid", EventId);
+//                            startActivity(intent);
+//                        }
 
-                            } else
-                                Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
-                        }
+                    } else
+                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
-                        @Override
-                        public void failure(RetrofitError retrofitError) {
-                            progress.dismiss();
-                            Log.e("error", retrofitError.toString());
+                }
 
-                        }
-                    });
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
 
         } else
             Helper.showToast(Activity_Add_Event_1.this, getString(R.string.no_internet_connection));
@@ -632,6 +662,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 wtspcodeTxt.setText(data.get(position).getCallingcode());
 //                wtspcountryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(wtspcountryImg);
+                CountryId = data.get(position).getId();
 
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
@@ -688,6 +719,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             public void response(int position, Object object) {
 
                 country_spinner_Txt1.setText(data.get(position).getTitle());
+
+
 //                country_Img1.setImageResource(Integer.parseInt(data.get(position).getImage()));
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img1);
 //                AreaID = data.get(selected).getId();
@@ -737,32 +770,30 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     }
 
     @OnClick(R.id.img1)
-    public void Image1Clicked()
-    {
-        imgClicked=1;
-        OpenImage();
-    }
-    @OnClick(R.id.img2)
-    public void Image1Clicked2()
-    {
-        imgClicked=2;
-        OpenImage();
-    }
-    @OnClick(R.id.img3)
-    public void Image1Clicked3()
-    {
-        imgClicked=3;
-        OpenImage();
-    }
-    @OnClick(R.id.img4)
-    public void Image1Clicked4()
-    {
-        imgClicked=4;
+    public void Image1Clicked() {
+        imgClicked = 1;
         OpenImage();
     }
 
-    public void OpenImage()
-    {
+    @OnClick(R.id.img2)
+    public void Image1Clicked2() {
+        imgClicked = 2;
+        OpenImage();
+    }
+
+    @OnClick(R.id.img3)
+    public void Image1Clicked3() {
+        imgClicked = 3;
+        OpenImage();
+    }
+
+    @OnClick(R.id.img4)
+    public void Image1Clicked4() {
+        imgClicked = 4;
+        OpenImage();
+    }
+
+    public void OpenImage() {
         Dexter.withActivity(Activity_Add_Event_1.this)
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
@@ -787,8 +818,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     int imgClicked;
 
 
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE) {
@@ -797,30 +826,20 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(Activity_Add_Event_1.this.getContentResolver(), uri);
-                    if(imgClicked==1)
-                    {
+                    if (imgClicked == 1) {
                         img1.setImageBitmap(bitmap);
-                        ifimg1=true;
-                    }else
-                    if(imgClicked==2)
-                    {
+                        ifimg1 = true;
+                    } else if (imgClicked == 2) {
                         img2.setImageBitmap(bitmap);
-                        ifimg2=true;
+                        ifimg2 = true;
 
-                    }
-
-                    else
-                    if(imgClicked==3)
-                    {
+                    } else if (imgClicked == 3) {
                         img3.setImageBitmap(bitmap);
-                        ifimg3=true;
+                        ifimg3 = true;
 
-                    }
-                    else
-                    if(imgClicked==4)
-                    {
+                    } else if (imgClicked == 4) {
                         img4.setImageBitmap(bitmap);
-                        ifimg3=true;
+                        ifimg3 = true;
                     }
                     // loading profile image from local cache
 
@@ -864,6 +883,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     }
 
     int REQUEST_IMAGE = 999;
+
     private void launchGalleryIntent() {
         Intent intent = new Intent(Activity_Add_Event_1.this, ImagePickerActivity.class);
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);

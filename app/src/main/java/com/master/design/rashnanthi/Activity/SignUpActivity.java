@@ -312,6 +312,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
                         intent.putExtra("EventCreator", eventRegisterDM.getOutput().getCreatorcoach());
+                        intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                         startActivity(intent);
 
 //                        startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));

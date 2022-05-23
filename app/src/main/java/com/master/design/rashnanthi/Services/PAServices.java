@@ -7,10 +7,13 @@ package com.master.design.rashnanthi.Services;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.DataModel.AddEventByCreatorRootDM;
 import com.master.design.rashnanthi.DataModel.ChangePasswordRootDM;
+import com.master.design.rashnanthi.DataModel.ConfirmEventRootDM;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.DeleteEventOutput;
 import com.master.design.rashnanthi.DataModel.DeleteEventRootDM;
+import com.master.design.rashnanthi.DataModel.EditEventRootDM;
 import com.master.design.rashnanthi.DataModel.EventRegisterDM;
+import com.master.design.rashnanthi.DataModel.EventsDetailsRootDM;
 import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
@@ -31,59 +34,44 @@ import retrofit.http.POST;
 import retrofit.mime.MultipartTypedOutput;
 
 
-public interface PAServices {  //(01)
-    // About us  10-05-2022
+public interface PAServices {
+
+
     @POST("/aboutus")
     void Aboutus(Callback<AboutUsDM> aboutUsDMCallback);
 
 
-    //(02)
-// Terms  10-05-2022
     @POST("/termsandcond")
     void TermsAndCondition(Callback<AboutUsDM> aboutUsDMCallback);
 
 
-    //(03)
-//Privacy policy  10-05-2022
     @POST("/privacypolicy")
     void PrivacyPolicy(Callback<AboutUsDM> aboutUsDMCallback);
 
-    //(04)
-//Contact us  10-05-2022
+
     @POST("/contactus")
     void ContactUS(Callback<AboutUsDM> aboutUsDMCallback);
 
-    //(05)
-//Social Media DM 11-05-2022
+
+    @Headers("Cache-Control: no-cache;")
+    @GET("/countries")
+    void Countries(Callback<CountryRootDM> countryRootDMCallback);
+
+
     @POST("/socialnetworklinks")
     void SocialMedia(Callback<SocialMediaDM> socialMediaDMCallback);
 
-    //(06)
-//Countries DM 11-05-2022
-    @POST("/countries")
-    void CountriesAPI(Callback<CountryRootDM> countryRootDMCallback);
 
     @Headers("Cache-Control: no-cache;")
     @POST("/eventcreatorreg")
     void EventCreatorReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
+
 
     @Headers("Cache-Control: no-cache;")
     @POST("/coachreg")
     void CoachReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
 
 
-    @Headers("Cache-Control: no-cache;")
-    @POST("/deletevent")
-    void DeletEvent(@Body MultipartTypedOutput multipartTypedOutput, Callback<DeleteEventRootDM> deleteEventRootDMCallback);
-
-
-
-//    @Headers("Cache-Control: no-cache;")
-//    @POST("/forgotpassword")
-//    void ForgotPassword(@Body MultipartTypedOutput multipartTypedOutput, Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
-
-
-    //    14-05-2022
     @FormUrlEncoded
     @POST("/otpscreen")
     void OtpVerify(@Field("mobile") String mobile,
@@ -102,10 +90,6 @@ public interface PAServices {  //(01)
     void ForgotPassword(@Field("email") String email,
                         Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
 
-
-    @Headers("Cache-Control: no-cache;")
-    @GET("/countries")
-    void Countries(Callback<CountryRootDM> countryRootDMCallback);
 
     @FormUrlEncoded
     @POST("/changepassword")
@@ -141,33 +125,38 @@ public interface PAServices {  //(01)
     void GetCoachsByCountry(@Field("countryid") String countryid,
                             Callback<GetCoachsByCountryRootDM> myProfileRootDMCallback);
 
-//    @FormUrlEncoded
-//    @POST("/addeventbycreator")
-//    void AddEventByCreator(@Field("eventdate") String eventdate,
-//                           @Field("whatsapcountrycode") String whatsapcountrycode,
-//                           @Field("whatsapnumber") String whatsapnumber,
-//                           @Field("snapchat") String snapchat,
-//                           @Field("instagram") String instagram,
-//                           @Field("website") String website,
-//                           @Field("countryid") String countryid,
-//                           @Field("storyphotovideo") String storyphotovideo,
-//                           @Field("eventphotovideo") String eventphotovideo,
-//                           @Field("payorfree") String payorfree,
-//                           @Field("postedby") String postedby,
-//                           @Field("creatorcoach") String creatorcoach,
-//                           Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
-
 
     @Headers("Cache-Control: no-cache;")
     @POST("/addeventbycreator")
     void AddEventByCreator(@Body MultipartTypedOutput multipartTypedOutput, Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
 
 
-
     @FormUrlEncoded
     @POST("/summaryforpaidevent")
     void SummaryForPaidEvent(@Field("eventid") String eventid,
-                            Callback<SummaryForPaidEventRootDM> summaryForPaidEventRootDMCallback);
+                             Callback<SummaryForPaidEventRootDM> summaryForPaidEventRootDMCallback);
+
+
+    @FormUrlEncoded
+    @POST("/editevent")
+    void EditEvent(@Body MultipartTypedOutput multipartTypedOutput, Callback<EditEventRootDM> editEventRootDMCallback);
+
+
+    @FormUrlEncoded
+    @POST("/eventdetails")
+    void EventDetails(@Field("eventid") String eventid,
+                      Callback<EventsDetailsRootDM> eventsDetailsRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/confirmevent")
+    void ConfirmEvent(@Field("eventid") String eventid,
+                      Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/deletevent")
+    void DeletEvent(@Field("eventid") String eventid,
+                    Callback<DeleteEventRootDM> deleteEventRootDMCallback);
+
 
 //    @Headers("Cache-Control: no-cache;")
 //    @POST("/auth/signin")

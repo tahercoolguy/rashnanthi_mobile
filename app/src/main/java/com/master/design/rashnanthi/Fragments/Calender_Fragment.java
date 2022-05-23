@@ -147,7 +147,7 @@ public class Calender_Fragment extends Fragment {
             home_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), true);
 
                 }
             });

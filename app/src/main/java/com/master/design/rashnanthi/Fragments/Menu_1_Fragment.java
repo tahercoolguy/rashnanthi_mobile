@@ -112,7 +112,7 @@ public class Menu_1_Fragment extends Fragment {
             myaccount_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
+                    ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
 
                 }
             });
@@ -139,7 +139,7 @@ public class Menu_1_Fragment extends Fragment {
             languageRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new LanguageFragment(), false);
+                    ((MainActivity) context).addFragment(new LanguageFragment(), true);
 
 
                 }
@@ -147,7 +147,7 @@ public class Menu_1_Fragment extends Fragment {
             aboutapp_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new About_App_Fragment(), false);
+                    ((MainActivity) context).addFragment(new About_App_Fragment(), true);
 
 
                 }
@@ -166,7 +166,7 @@ public class Menu_1_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    ((MainActivity) context).addFragment(new Contact_Us_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Contact_Us_Fragment(), true);
 
 
                 }
@@ -176,7 +176,7 @@ public class Menu_1_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    ((MainActivity) context).addFragment(new Term_And_Condition_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Term_And_Condition_Fragment(), true);
 
 
                 }
@@ -186,7 +186,7 @@ public class Menu_1_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    ((MainActivity) context).addFragment(new Privacy_Policy_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Privacy_Policy_Fragment(), true);
 
 
                 }

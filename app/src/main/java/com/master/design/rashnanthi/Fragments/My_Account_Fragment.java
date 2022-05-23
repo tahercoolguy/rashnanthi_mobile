@@ -129,7 +129,7 @@ public class My_Account_Fragment extends Fragment {
             view_event_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new My_Event_1_Fragment(), false);
+                    ((MainActivity) context).addFragment(new My_Event_1_Fragment(), true);
 
 
                 }
@@ -137,14 +137,14 @@ public class My_Account_Fragment extends Fragment {
             change_password_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Change_Password_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Change_Password_Fragment(), true);
 
                 }
             });
             edit_profile_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Edit_Profile_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Edit_Profile_Fragment(), true);
 
                 }
             });

@@ -32,9 +32,9 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class VerifyActivity extends AppCompatActivity {
-      Context context;
+    Context context;
     AppController appController;
-
+    String mobile;
     Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
@@ -61,6 +61,8 @@ public class VerifyActivity extends AppCompatActivity {
         dialogUtil = new DialogUtil();
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
+        mobile = getIntent().getStringExtra("mobile");
+
         user = new User(VerifyActivity.this);
 
     }
@@ -87,34 +89,32 @@ public class VerifyActivity extends AppCompatActivity {
 
     public void VerifyAPI() {
 
-        if(connectionDetector.isConnectingToInternet())
-        {
-            progress = dialogUtil.showProgressDialog(VerifyActivity.this,getString(R.string.please_wait));
+        if (connectionDetector.isConnectingToInternet()) {
+            progress = dialogUtil.showProgressDialog(VerifyActivity.this, getString(R.string.please_wait));
 
 //            String mobile =String.valueOf(user.getId()) ;
 
-            appController.paServices.OtpVerify("221212", otpTextView.getOTP() , new Callback<OtpScrenRootDM>() {
+            appController.paServices.OtpVerify(mobile, otpTextView.getOTP(), new Callback<OtpScrenRootDM>() {
                 @Override
 
-                public void success ( OtpScrenRootDM otpScrenRootDM, Response response ) {
+                public void success(OtpScrenRootDM otpScrenRootDM, Response response) {
                     progress.dismiss();
-                    if(otpScrenRootDM.getOutput().getSuccess().equalsIgnoreCase("1"))
-                    {
+                    if (otpScrenRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.showToast(VerifyActivity.this,otpScrenRootDM.getOutput().getSuccess());
-                        startActivity(new Intent(VerifyActivity.this,LoginActivity.class));
-                    }else
-                        Helper.showToast(VerifyActivity.this,otpScrenRootDM.getOutput().getSuccess());
+                        startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
+                    } else
+                        Helper.showToast(VerifyActivity.this, otpScrenRootDM.getOutput().getSuccess());
                 }
 
                 @Override
-                public void failure ( RetrofitError retrofitError ) {
+                public void failure(RetrofitError retrofitError) {
                     progress.dismiss();
-                    Log.e("error",retrofitError.toString());
+                    Log.e("error", retrofitError.toString());
 
                 }
             });
-        }else
-            Helper.showToast(VerifyActivity.this,getString(R.string.no_internet_connection));
+        } else
+            Helper.showToast(VerifyActivity.this, getString(R.string.no_internet_connection));
 
 
     }
@@ -154,14 +154,14 @@ public class VerifyActivity extends AppCompatActivity {
 
     }
 
-    public  void IntentValuesFromSignupActivity(){
+    public void IntentValuesFromSignupActivity() {
         Intent intent = getIntent();
 
         String Event = intent.getStringExtra("EventCreator");
         String Coach = intent.getStringExtra("CoachCreator");
 
         if (Event.equals("1")) {
-            startActivity(new Intent(VerifyActivity.this,LoginActivity.class));
+            startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
 
         } else if (Coach.equals("2")) {
             startActivity(new Intent(VerifyActivity.this, LoginActivity.class));

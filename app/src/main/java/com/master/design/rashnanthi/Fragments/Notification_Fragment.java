@@ -86,7 +86,7 @@ public class Notification_Fragment extends Fragment {
             notification_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), true);
 
                 }
             });

@@ -90,21 +90,21 @@ public class Coach_Account_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    ((MainActivity) context).addFragment(new My_Event_Fragment(), false);
+                    ((MainActivity) context).addFragment(new My_Event_Fragment(), true);
 
                 }
             });
             change_password_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Change_Password_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Change_Password_Fragment(), true);
 
                 }
             });
             edit_profile_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new Edit_Profile_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Edit_Profile_Fragment(), true);
 
                 }
             });

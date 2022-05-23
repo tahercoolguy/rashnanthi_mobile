@@ -83,7 +83,9 @@ public class Change_Password_Fragment extends Fragment {
 
     @OnClick(R.id.backImg)
     public void Back(){
-     }
+        ((MainActivity)context).addFragment(new My_Account_Fragment(),false);
+
+    }
 
     @OnClick(R.id.change_password_Btn)
     public void ChangePasswordBtn(){

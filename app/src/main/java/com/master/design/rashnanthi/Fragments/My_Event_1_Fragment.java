@@ -72,8 +72,8 @@ public class My_Event_1_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         context = getActivity();
-        appController = (AppController) getActivity().getApplicationContext();
         user = new User(getActivity());
+        appController = (AppController) getActivity().getApplicationContext();
 
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
@@ -96,15 +96,16 @@ public class My_Event_1_Fragment extends Fragment {
             my_event_menu_1_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getActivity().finish();
-                 }
+
+                    ((MainActivity)context).addFragment(new My_Account_Fragment(),false);
+                  }
             });
 
 
             my_event_menu_1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), true);
                 }
             });
 
@@ -136,22 +137,22 @@ public class My_Event_1_Fragment extends Fragment {
     public void MyEventAPI() {
         if (connectionDetector.isConnectingToInternet()) {
             //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            appController.paServices.MyEvents("11","1",new Callback<MyEventsRootDM>() {
+            appController.paServices.MyEvents(String.valueOf(user.getId()),"1",new Callback<MyEventsRootDM>() {
+
                 @Override
 
                 public void success(MyEventsRootDM myEventsRootDM, Response response) {
 
                     if (myEventsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-//
+
                         Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getContext(),myEventsRootDM.getOutput().getData());
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                         my_event_Rcv.setLayoutManager(linearLayoutManager);
                         my_event_Rcv.setAdapter(adapter_my_event_1);
 
-
                     } else
-                        Helper.showToast(getActivity(),"something wrong");
+                        Helper.showToast(getActivity(),"your post does not exist");
                 }
 
                 @Override

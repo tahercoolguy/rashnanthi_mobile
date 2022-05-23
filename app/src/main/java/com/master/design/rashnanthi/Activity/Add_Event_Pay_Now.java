@@ -43,7 +43,6 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     Context context;
     String eventid;
 
-    String EventID;
 
 
     Button add_event_pay_now;
@@ -62,7 +61,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.post_price_kuwait_Txt)
     TextView post_price_kuwait_Txt;
-  @NotEmpty
+    @NotEmpty
     @BindView(R.id.qatar_price_Txt)
     TextView qatar_price_Txt;
 
@@ -73,8 +72,6 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.total_price_kwd)
     TextView total_price_kwd;
-
-
 
 
     @OnClick(R.id.add_event_pay_back)
@@ -93,12 +90,10 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(Add_Event_Pay_Now.this);
-
+        eventid= getIntent().getStringExtra("eventid");
         SummaryForPaidEvent();
 
-        Intent intent = getIntent();
 
-          eventid = intent.getStringExtra("eventid");
 
 
         add_event_pay_now = findViewById(R.id.add_event_pay_now);
@@ -136,7 +131,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
         add_event_pay_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              }
+            }
         });
 
 
@@ -176,10 +171,12 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     public void SummaryForPaidEvent() {
         if (connectionDetector.isConnectingToInternet()) {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+//            Intent intent = getIntent();
 
+//            eventid = intent.getStringExtra("eventid");
             progress = dialogUtil.showProgressDialog(Add_Event_Pay_Now.this, getString(R.string.please_wait));
 
-            appController.paServices.SummaryForPaidEvent("16", new Callback<SummaryForPaidEventRootDM>() {
+            appController.paServices.SummaryForPaidEvent(eventid, new Callback<SummaryForPaidEventRootDM>() {
 
                 @Override
                 public void success(SummaryForPaidEventRootDM summaryForPaidEventRootDM, Response response) {
@@ -188,7 +185,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
 //                        Helper.shwToast(Add_Event_Pay_Now.this,customerRegisterDM.getMessage());
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
 
-                       //                        rcv_paynow.setAdapter(occasionAdapter);
+                        //                        rcv_paynow.setAdapter(occasionAdapter);
 
                         post_price_country_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountry());
                         post_price_kuwait_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountry());
@@ -199,7 +196,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
 //                        startActivity(new Intent(Add_Event_Pay_Now.this,Add_Event_Bill.class));
 
                     } else
-                        Helper.showToast(Add_Event_Pay_Now.this,"something wrong ");
+                        Helper.showToast(Add_Event_Pay_Now.this, "something wrong ");
 
                 }
 

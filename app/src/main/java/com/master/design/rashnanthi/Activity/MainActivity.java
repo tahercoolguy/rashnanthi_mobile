@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -209,29 +211,29 @@ public class MainActivity extends AppCompatActivity {
 //            drawer.closeDrawer(GravityCompat.START);
 //        }
 //    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
-//            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
-//            if (backStackEntryCount == 0) {
-//                if (fragment != null && fragment instanceof Fragment_Default) {
-//                    exitDialog();
-//                } else {
-//                    addFragment(new Fragment_Default(), false);
-//                }
-//            } else {
-//                super.onBackPressed();
-//            }
-//        }
-//    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            if (backStackEntryCount == 0) {
+                if (fragment != null && fragment instanceof Calender_Fragment) {
+                    exitDialog();
+                } else {
+                    addFragment(new Calender_Fragment(), false);
+                }
+            } else {
+                super.onBackPressed();
+            }
+        }
+    }
 
     private void exitDialog() {
-        DialogUtil.showDialogTwoButton(this, R.drawable.app_icon, getString(R.string.app_name), getString(R.string.are_you_sure_you_want_to_exit_the_app), getString(R.string.ok), getString(R.string.cancel), new DialogUtil.CallBack() {
+        DialogUtil.showDialogTwoButton(this, R.drawable.splash_screen_logo, getString(R.string.app_name), getString(R.string.are_you_sure_you_want_to_exit_the_app), getString(R.string.ok), getString(R.string.cancel), new DialogUtil.CallBack() {
             @Override
             public void onDismiss(boolean isPressedOK) {
                 if (isPressedOK) {
