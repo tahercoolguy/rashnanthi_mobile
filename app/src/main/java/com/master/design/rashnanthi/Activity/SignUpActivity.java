@@ -307,6 +307,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                         user.setId(Integer.valueOf(eventRegisterDM.getOutput().getUserid()));
+                         user.setEmail(emailET.getText().toString());
  //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
 
                         Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
@@ -361,8 +362,8 @@ public class SignUpActivity extends AppCompatActivity {
                         progress.dismiss();
                         if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                             user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
-
                             user.setEmail(emailET.getText().toString());
+
 
                             Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
                             intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());

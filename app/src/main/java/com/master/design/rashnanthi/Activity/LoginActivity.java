@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     Context context;
     private ArrayList<Country_CodeDM> country_codeDMS;
     Spinner code_spinner;
-    String email;
+
 
     @BindView(R.id.register_now_Btn)
     Button register_now_Btn;
@@ -83,7 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.forget_PasswordTxt)
     public void ForgotPassword() {
-        ForgotPasswordAPI();
+        Intent intent=new Intent(LoginActivity.this,Forgot_Password_Activity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.loginBtn)
@@ -109,8 +110,11 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
                                 user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
 
+                               String neemail= loginRootDM.getOutput().getData().get(0).getEmail();
+                                user.setEmail(neemail);
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
+
 
                             } else
                                 Helper.showToast(LoginActivity.this, "entered mobile,password or country code incorrect");
@@ -133,36 +137,36 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void ForgotPasswordAPI() {
-
-        if (connectionDetector.isConnectingToInternet()) {
-
-            progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
-
-
-            appController.paServices.ForgotPassword("fdsfd", new Callback<ForgotPasswordRootDM>() {
-                @Override
-
-                public void success(ForgotPasswordRootDM forgotPasswordRootDM, Response response) {
-                    progress.dismiss();
-                    if (forgotPasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        Helper.showToast(LoginActivity.this, "password sent on registered email");
-
-                    } else
-                        Helper.showToast(LoginActivity.this, "password did not sent on registered email");
-                }
-
-                @Override
-                public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
-                    Log.e("error", retrofitError.toString());
-
-                }
-            });
-        } else
-            Helper.showToast(LoginActivity.this, getString(R.string.no_internet_connection));
-
-    }
+//    public void ForgotPasswordAPI() {
+//
+//        if (connectionDetector.isConnectingToInternet()) {
+//
+//            progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
+//
+//                String   email11= user.getEmail();
+//            appController.paServices.ForgotPassword(email11, new Callback<ForgotPasswordRootDM>() {
+//                @Override
+//
+//                public void success(ForgotPasswordRootDM forgotPasswordRootDM, Response response) {
+//                    progress.dismiss();
+//                    if (forgotPasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//                        Helper.showToast(LoginActivity.this, "password sent on registered email");
+//
+//                    } else
+//                        Helper.showToast(LoginActivity.this, "password did not sent on registered email");
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError retrofitError) {
+//                    progress.dismiss();
+//                    Log.e("error", retrofitError.toString());
+//
+//                }
+//            });
+//        } else
+//            Helper.showToast(LoginActivity.this, getString(R.string.no_internet_connection));
+//
+//    }
 
 
     @OnClick(R.id.backlogin)
@@ -186,6 +190,7 @@ public class LoginActivity extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(LoginActivity.this);
+
         dialogUtil = new DialogUtil();
         Binding();
 
@@ -324,5 +329,6 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+
 
 }

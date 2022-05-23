@@ -73,7 +73,7 @@
         <activity android:name=".Activity.Activity_Add_Event_1" />
         <activity android:name=".Activity.Story_activity" />
         <activity android:name=".Activity.ImageActicity" />
-
+        <activity android:name=".Activity.Forgot_Password_Activity" />
 
 
     </application>

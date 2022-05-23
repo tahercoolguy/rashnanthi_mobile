@@ -33,6 +33,7 @@
     <string name="about_app">About app</string>
     <string name="registes">Register</string>
     <string name="logins">Login</string>
+    <string name="Forgot_Password">Forgot Password</string>
 
     <string name="upload_image_video">Upload Image/Video</string>
 
