@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private User user;
+    String coachcreator,eventcreator;
 
 
     TextView calenderTxt, coachTxt, social_mediaTxt, notificationTxt;
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         user = new User(this);
+
+        eventcreator = getIntent().getStringExtra("EventCreator");
+        coachcreator = getIntent().getStringExtra("CoachCreator");
+
         addFragment(new Calender_Fragment(), false);
 
         calenderTxt = findViewById(R.id.calenderTxt);

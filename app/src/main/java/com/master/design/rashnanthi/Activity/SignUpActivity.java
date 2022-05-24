@@ -1,8 +1,12 @@
 package com.master.design.rashnanthi.Activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,10 +22,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Code_Only_Spinner;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Name_Spinner;
 import com.master.design.rashnanthi.Controller.AppController;
@@ -39,16 +49,24 @@ import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.echodev.resizer.Resizer;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.MultipartTypedOutput;
+import retrofit.mime.TypedFile;
 import retrofit.mime.TypedString;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -59,6 +77,9 @@ public class SignUpActivity extends AppCompatActivity {
     private static final int FILE_PICKER_SELECT = 3;
     private static final int IMAGE_VIDEO_ACTIVITY_PICKER = 4;
     Uri uri;
+
+
+    String CountryId;
     Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
@@ -69,15 +90,12 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.country_spinnerET)
     TextView country_spinnerET;
 
-  @BindView(R.id.country_Img)
+    @BindView(R.id.country_Img)
     ImageView country_Img;
 
 
-
-  @BindView(R.id.mobilecountryImg)
+    @BindView(R.id.mobilecountryImg)
     ImageView mobilecountryImg;
-
-
 
 
     @BindView(R.id.spinnerBottomRL)
@@ -87,24 +105,18 @@ public class SignUpActivity extends AppCompatActivity {
     RelativeLayout spinnerBottom_RL;
 
 
-  @BindView(R.id.spinnerCountryBottomRL)
+    @BindView(R.id.spinnerCountryBottomRL)
     RelativeLayout spinnerCountryBottomRL;
 
 
-     @BindView(R.id.country_spinner_ET)
+    @BindView(R.id.country_spinner_ET)
     TextView country_spinner_ET;
 
-     @BindView(R.id.country_spinner_Txt)
+    @BindView(R.id.country_spinner_Txt)
     TextView country_spinner_Txt;
 
 
-
-
-
-
-
-
-//    Spinner country_name_spinner, mobile_countrycode_Sp, wtsap_countrycode_Sp;
+    //    Spinner country_name_spinner, mobile_countrycode_Sp, wtsap_countrycode_Sp;
     CircleImageView dp;
 
     ImageView profileImg, cameraImg, back_from_register_page;
@@ -137,9 +149,7 @@ public class SignUpActivity extends AppCompatActivity {
         back_from_register_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
-
             }
         });
 
@@ -168,12 +178,10 @@ public class SignUpActivity extends AppCompatActivity {
 //
 
 
-
         //        progressDialog = new ProgressDialog(getActivity());
 //        progressDialog.setMessage(getResources().getString(R.string.please_wait));
 //        progressDialog.setIndeterminate(true);
 //        progressDialog.setCancelable(false);
-
 
 
         coach.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +209,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (ifCoach) {
                     CoachRegisterAPI();
-                } else  {
+                } else {
                     EventsCreatorAPI();
                 }
             }
@@ -210,38 +218,37 @@ public class SignUpActivity extends AppCompatActivity {
         cameraImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProfileImg();
-             }
+                OpenImage();
+            }
         });
 
     }
 
 
-    public  void ProfileImg(){
-
-        Intent iGallery = new Intent(Intent.ACTION_PICK);
-        iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(iGallery,IMAGE_PICKER_SELECT);
-    }
-
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode==RESULT_OK){
-
-            if(requestCode==IMAGE_PICKER_SELECT){
-//                for gallery
-
-                dp.setImageURI(data.getData());
-
-            }
-        }
+//    public void ProfileImg() {
+//
+//        Intent iGallery = new Intent(Intent.ACTION_PICK);
+//        iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//        startActivityForResult(iGallery, IMAGE_PICKER_SELECT);
+//    }
 
 
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (resultCode == RESULT_OK) {
+//
+//            if (requestCode == IMAGE_PICKER_SELECT) {
+////                for gallery
+//
+//                dp.setImageURI(data.getData());
+//
+//            }
+//        }
+//
+//
+//    }
 
 //
 //    public void EventsCreators() {
@@ -279,18 +286,18 @@ public class SignUpActivity extends AppCompatActivity {
 //
 //    }
 
+    boolean ifimg1 = true;
 
     public void EventsCreatorAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("fullname", new TypedString(nameET.getText().toString()));
-            multipartTypedOutput.addPart("image", new TypedString("4324423"));
             multipartTypedOutput.addPart("email", new TypedString(emailET.getText().toString()));
             multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
             multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
             multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
-            multipartTypedOutput.addPart("countrycode", new TypedString("1"));
+            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
             multipartTypedOutput.addPart("creatorcoach", new TypedString("1"));
 
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
@@ -298,6 +305,57 @@ public class SignUpActivity extends AppCompatActivity {
             multipartTypedOutput.addPart("devicetype", new TypedString("2"));
 
 
+//            if (ifimg1) {
+//                File f = new File(SignUpActivity.this.getCacheDir(), "temp1.jpg");
+//                try {
+//                    f.createNewFile();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                Bitmap one = ((BitmapDrawable) profileImg.getDrawable()).getBitmap();
+////Convert bitmap to byte array
+//                Bitmap bitmap = one;
+//                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+//                byte[] bitmapdata = bos.toByteArray();
+//
+////write the bytes in file
+//                FileOutputStream fos = null;
+//                try {
+//                    fos = new FileOutputStream(f);
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    fos.write(bitmapdata);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    fos.flush();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    fos.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                File resizedImage1 = null;
+//                try {
+//                    resizedImage1 = new Resizer(SignUpActivity.this)
+//                            .setTargetLength(200)
+//                            .setQuality(80)
+//                            .setOutputFormat("JPEG")
+//                            .setOutputFilename("resized_image2")
+//                            .setSourceImage(f)
+//                            .getResizedFile();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage1));
+//            }
 
             appController.paServices.EventCreatorReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
                 @Override
@@ -305,15 +363,15 @@ public class SignUpActivity extends AppCompatActivity {
                     if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
 
-
                         user.setId(Integer.valueOf(eventRegisterDM.getOutput().getUserid()));
-                         user.setEmail(emailET.getText().toString());
- //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                        user.setEmail(emailET.getText().toString());
+                        //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
 
                         Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
                         intent.putExtra("EventCreator", eventRegisterDM.getOutput().getCreatorcoach());
                         intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                         startActivity(intent);
+                        finish();
 
 //                        startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
 //                        finish();
@@ -342,20 +400,70 @@ public class SignUpActivity extends AppCompatActivity {
                 MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
                 multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
                 multipartTypedOutput.addPart("fullname", new TypedString(nameET.getText().toString()));
-                multipartTypedOutput.addPart("image", new TypedString("12"));
                 multipartTypedOutput.addPart("email", new TypedString(emailET.getText().toString()));
                 multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
                 multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
                 multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
-                multipartTypedOutput.addPart("countrycode", new TypedString("91"));
+                multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
                 multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
                 multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
-                multipartTypedOutput.addPart("countryid", new TypedString("5"));
-
+                multipartTypedOutput.addPart("countryid", new TypedString(CountryId));
                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();
                 multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
                 multipartTypedOutput.addPart("devicetype", new TypedString("2"));
+                boolean ifimg1 = true;
 
+//                if (ifimg1) {
+//                    File f = new File(SignUpActivity.this.getCacheDir(), "temp1.jpg");
+//                    try {
+//                        f.createNewFile();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    Bitmap one = ((BitmapDrawable) profileImg.getDrawable()).getBitmap();
+////Convert bitmap to byte array
+//                    Bitmap bitmap = one;
+//                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+//                    byte[] bitmapdata = bos.toByteArray();
+//
+////write the bytes in file
+//                    FileOutputStream fos = null;
+//                    try {
+//                        fos = new FileOutputStream(f);
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        fos.write(bitmapdata);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        fos.flush();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        fos.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    File resizedImage1 = null;
+//                    try {
+//                        resizedImage1 = new Resizer(SignUpActivity.this)
+//                                .setTargetLength(200)
+//                                .setQuality(80)
+//                                .setOutputFormat("JPEG")
+//                                .setOutputFilename("resized_image2")
+//                                .setSourceImage(f)
+//                                .getResizedFile();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage1));
+//                }
 
                 appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
                     @Override
@@ -368,13 +476,14 @@ public class SignUpActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
                             intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());
+                            intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                             startActivity(intent);
+                            finish();
 
 //                            startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
 //                            finish();
                         } else
                             Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
-
                     }
 
                     @Override
@@ -410,18 +519,15 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-
-
-
     BottomForAll bottomForAll;
 
-    ArrayList<CountryData> approvalOne=new ArrayList<>();
-    ArrayList<String> approvalTwo=new ArrayList<>();
+    ArrayList<CountryData> approvalOne = new ArrayList<>();
+    ArrayList<String> approvalTwo = new ArrayList<>();
 
     @OnClick(R.id.spinnerBottom_RL)
     public void Spinner_Country() {
-        bottomForAll= new BottomForAll();
-        bottomForAll.arrayList=approvalOne;
+        bottomForAll = new BottomForAll();
+        bottomForAll.arrayList = approvalOne;
 
         bottomForAll.setResponseListener(new ResponseListener() {
             @Override
@@ -447,15 +553,15 @@ public class SignUpActivity extends AppCompatActivity {
 
     @OnClick(R.id.spinnerCountryBottomRL)
     public void Spinner__Country() {
-        bottomForAll= new BottomForAll();
-        bottomForAll.arrayList=approvalOne;
+        bottomForAll = new BottomForAll();
+        bottomForAll.arrayList = approvalOne;
 
         bottomForAll.setResponseListener(new ResponseListener() {
             @Override
             public void response(int position, Object object) {
 
                 country_spinner_Txt.setText(data.get(position).getTitle());
-                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(country_Img);
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img);
 
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
@@ -473,11 +579,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-
     @OnClick(R.id.spinnerBottomRL)
     public void SpinnerCountry() {
-        bottomForAll= new BottomForAll();
-        bottomForAll.arrayList=approvalOne;
+        bottomForAll = new BottomForAll();
+        bottomForAll.arrayList = approvalOne;
 
         bottomForAll.setResponseListener(new ResponseListener() {
             @Override
@@ -485,8 +590,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                 country_spinnerET.setText(data.get(position).getCallingcode());
 //                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
-                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(mobilecountryImg);
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(mobilecountryImg);
 
+                CountryId = data.get(position).getId();
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
 //                ) {
@@ -502,18 +608,16 @@ public class SignUpActivity extends AppCompatActivity {
         bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
     }
 
-    ArrayList<CountryData> data=new ArrayList<>();
-    public void Binding()
-    {
-        if(connectionDetector.isConnectingToInternet())
-        {
+    ArrayList<CountryData> data = new ArrayList<>();
+
+    public void Binding() {
+        if (connectionDetector.isConnectingToInternet()) {
             appController.paServices.Countries(new Callback<CountryRootDM>() {
                 @Override
                 public void success(CountryRootDM countryRootDM, Response response) {
-                    if(countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1"))
-                    {
+                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         data = countryRootDM.getOutput().getData();
-                        for (CountryData area:countryRootDM.getOutput().getData()
+                        for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
                             approvalOne.add(area);
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
@@ -523,18 +627,130 @@ public class SignUpActivity extends AppCompatActivity {
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
                             }
                         }
-                    }else
-                        Helper.showToast(SignUpActivity.this,"Some network happened ..");
+                    } else
+                        Helper.showToast(SignUpActivity.this, "Some network happened ..");
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Log.e("String",error.toString());
+                    Log.e("String", error.toString());
                 }
             });
         }
     }
 
+
+    public void OpenImage() {
+        Dexter.withActivity(SignUpActivity.this)
+                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            showImagePickerOptions();
+                        }
+
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            showSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    int imgClicked;
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                Uri uri = data.getParcelableExtra("path");
+                try {
+                    // You can update this bitmap to your server
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(SignUpActivity.this.getContentResolver(), uri);
+                    if (imgClicked == 1) {
+                        profileImg.setImageBitmap(bitmap);
+                        ifimg1 = true;
+
+                     }
+                    // loading profile image from local cache
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void showImagePickerOptions() {
+        ImagePickerActivity.showImagePickerOptions(SignUpActivity.this, new ImagePickerActivity.PickerOptionListener() {
+            @Override
+            public void onTakeCameraSelected() {
+                launchCameraIntent();
+            }
+
+            @Override
+            public void onChooseGallerySelected() {
+                launchGalleryIntent();
+            }
+        });
+    }
+
+    private void launchCameraIntent() {
+        Intent intent = new Intent(SignUpActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
+
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
+
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    int REQUEST_IMAGE = 999;
+
+    private void launchGalleryIntent() {
+        Intent intent = new Intent(SignUpActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
+
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+
+    /**
+     * Showing Alert Dialog with Settings option
+     * Navigates user to app settings
+     * NOTE: Keep proper title and message depending on your app
+     */
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+        builder.setTitle(getString(R.string.dialog_permission_title));
+        builder.setMessage(getString(R.string.dialog_permission_message));
+        builder.setPositiveButton(getString(R.string.go_to_settings), (dialog, which) -> {
+            dialog.cancel();
+//            openSettings();
+        });
+        builder.setNegativeButton(getString(android.R.string.cancel), (dialog, which) -> dialog.cancel());
+        builder.show();
+
+    }
 
 
 }

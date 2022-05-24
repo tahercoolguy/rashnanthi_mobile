@@ -187,9 +187,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     String EventId;
 
 
+
+
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
-        ifpaid = true;
         AddEventByCreatorAPI();
 
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
@@ -198,7 +199,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.continue_Btn)
     public void Continue() {
 
-        iffree = true;
+
         AddEventByCreatorAPI();
 
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
@@ -206,7 +207,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @OnClick(R.id.post_for_free_nowBtn)
     public void PostForFreeNow() {
-        iffree = true;
         AddEventByCreatorAPI();
     }
 
@@ -242,6 +242,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         add_img_video_2_RL = findViewById(R.id.add_img_video_2_RL);
         add_img_video_4_RL = findViewById(R.id.add_img_video_4_RL);
 
+        if(user.getCoachOrEvent().equalsIgnoreCase("1"))
+        {
+            //event
+        }else if(user.getCoachOrEvent().equalsIgnoreCase("2"))
+        {
+            //Coach
+        }
 //
 //        add_event_pay_back=findViewById(R.id.add_event_pay_back);
 //

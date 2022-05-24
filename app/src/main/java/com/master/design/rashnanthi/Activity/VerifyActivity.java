@@ -34,7 +34,7 @@ import retrofit.client.Response;
 public class VerifyActivity extends AppCompatActivity {
     Context context;
     AppController appController;
-    String mobile;
+    String mobile,coachcreator,eventcreator;
     Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
@@ -62,6 +62,8 @@ public class VerifyActivity extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         mobile = getIntent().getStringExtra("mobile");
+        eventcreator = getIntent().getStringExtra("EventCreator");
+        coachcreator = getIntent().getStringExtra("CoachCreator");
 
         user = new User(VerifyActivity.this);
 
@@ -96,11 +98,33 @@ public class VerifyActivity extends AppCompatActivity {
 
             appController.paServices.OtpVerify(mobile, otpTextView.getOTP(), new Callback<OtpScrenRootDM>() {
                 @Override
-
                 public void success(OtpScrenRootDM otpScrenRootDM, Response response) {
                     progress.dismiss();
                     if (otpScrenRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.showToast(VerifyActivity.this,otpScrenRootDM.getOutput().getSuccess());
+
+
+//                        if(eventcreator.equalsIgnoreCase("1")){
+//
+//
+//                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
+//                            intent.putExtra("CoachCreator","1");
+//                            startActivity(intent);
+//
+////                            startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
+//
+//
+//                        }else if(coachcreator.equalsIgnoreCase("2")){
+//
+//
+//                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
+//                            intent.putExtra("CoachCreator", "2");
+//                            startActivity(intent);
+//
+////                            startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
+//
+//                        }
+
                         startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
                     } else
                         Helper.showToast(VerifyActivity.this, otpScrenRootDM.getOutput().getSuccess());
@@ -118,7 +142,30 @@ public class VerifyActivity extends AppCompatActivity {
 
 
     }
-
+//
+//    public void IntentValuesFromSignupActivity() {
+//
+//        String Event = getIntent().getStringExtra("EventCreator");
+//        String Coach = getIntent().getStringExtra("CoachCreator");
+//
+//        if (Event.equalsIgnoreCase("1")) {
+//
+//            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
+//            intent.putExtra("EventCreator", Event);
+//            startActivity(intent);
+//
+////            startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
+//
+//        } else if (Coach.equalsIgnoreCase("2")) {
+//
+//            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
+//            intent.putExtra("CoachCreator", Coach);
+//            startActivity(intent);
+//
+////            startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
+//
+//        }
+//    }
 
     public void ResendOtpAPI() {
 //        if (connectionDetector.isConnectingToInternet()) {

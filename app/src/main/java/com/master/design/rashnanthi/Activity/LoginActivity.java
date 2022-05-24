@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
+    String coachcreator, eventcreator;
+
     Context context;
     private ArrayList<Country_CodeDM> country_codeDMS;
     Spinner code_spinner;
@@ -83,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.forget_PasswordTxt)
     public void ForgotPassword() {
-        Intent intent=new Intent(LoginActivity.this,Forgot_Password_Activity.class);
+        Intent intent = new Intent(LoginActivity.this, Forgot_Password_Activity.class);
         startActivity(intent);
     }
 
@@ -109,12 +111,32 @@ public class LoginActivity extends AppCompatActivity {
 
                                 user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
                                 user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
-
-                               String neemail= loginRootDM.getOutput().getData().get(0).getEmail();
+                                user.setCoachOrEvent(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
+                                String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
                                 user.setEmail(neemail);
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
 
+//                                if (user.getCoachOrEvent().equalsIgnoreCase("1")) {
+//
+//                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                                } else {
+//                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                                }
+
+
+//                                if (String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"))=="1") {
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    intent.putExtra("EventCreator", "1");
+//                                    startActivity(intent);
+//                                    finish();
+//
+//
+//                                } else {
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    intent.putExtra("CoachCreator", "2");
+//                                    startActivity(intent);
+//                                    finish();
+//                                }
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
                             } else
                                 Helper.showToast(LoginActivity.this, "entered mobile,password or country code incorrect");
@@ -190,7 +212,8 @@ public class LoginActivity extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(LoginActivity.this);
-
+        eventcreator = getIntent().getStringExtra("EventCreator");
+        coachcreator = getIntent().getStringExtra("CoachCreator");
         dialogUtil = new DialogUtil();
         Binding();
 

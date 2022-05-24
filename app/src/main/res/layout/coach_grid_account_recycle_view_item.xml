@@ -30,21 +30,30 @@
 
             <!--            </ImageView>-->
 
-            <com.makeramen.roundedimageview.RoundedImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/coach_grid_img"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_centerInParent="true"
-                 android:src="@drawable/my_event_1_img"
+                android:src="@drawable/coach_slider_img"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
 
-                app:civ_border_color="#FFFFFF"
-                app:riv_corner_radius_bottom_right="100dp"
-                app:riv_corner_radius_bottom_left="100dp"
-                app:riv_corner_radius_top_left="100dp"
-                android:adjustViewBounds="true"
-                app:riv_corner_radius_top_right="100dp"
-                app:civ_border_width="1000dp"
-                app:riv_corner_radius="1000dp" />
+<!--            <com.makeramen.roundedimageview.RoundedImageView-->
+<!--                android:id="@+id/coach_grid_img"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_centerInParent="true"-->
+
+<!--                android:adjustViewBounds="true"-->
+<!--                android:src="@drawable/my_event_1_img"-->
+<!--                app:civ_border_color="#FFFFFF"-->
+<!--                app:civ_border_width="1000dp"-->
+<!--                app:riv_corner_radius="1000dp"-->
+<!--                app:riv_corner_radius_bottom_left="100dp"-->
+<!--                app:riv_corner_radius_bottom_right="100dp"-->
+<!--                app:riv_corner_radius_top_left="100dp"-->
+<!--                app:riv_corner_radius_top_right="100dp" />-->
 
             <ImageView
                 android:id="@+id/like_coach_grid"

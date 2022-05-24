@@ -36,12 +36,12 @@ public class Menu_1_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-      RelativeLayout languageRL;
+    RelativeLayout languageRL;
     RelativeLayout aboutapp_RL;
     RelativeLayout registerRL;
     RelativeLayout contact_usRl;
     RelativeLayout loginRL;
-     RelativeLayout myaccount_RL;
+    RelativeLayout myaccount_RL;
     RelativeLayout logout_Rl;
     RelativeLayout contact_uRL;
     User user;
@@ -82,7 +82,8 @@ public class Menu_1_Fragment extends Fragment {
         progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
 
-
+        String EventCreator = ((MainActivity) context).getIntent().getStringExtra("EventCreator");
+        String CoachCreator = ((MainActivity) context).getIntent().getStringExtra("CoachCreator");
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.menu_1_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
@@ -95,24 +96,51 @@ public class Menu_1_Fragment extends Fragment {
             registerRL = rootView.findViewById(R.id.registerRL);
             loginRL = rootView.findViewById(R.id.loginRL);
             contact_usRl = rootView.findViewById(R.id.contact_usRl);
-            myaccount_RL=rootView.findViewById(R.id.myaccount_RL);
-            logout_Rl=rootView.findViewById(R.id.logout_Rl);
+            myaccount_RL = rootView.findViewById(R.id.myaccount_RL);
+            logout_Rl = rootView.findViewById(R.id.logout_Rl);
 
 
-            if(user.getId() == 0){
+            if (user.getId() == 0) {
                 registerRL.setVisibility(View.VISIBLE);
                 loginRL.setVisibility(View.VISIBLE);
                 myaccount_RL.setVisibility(View.GONE);
                 logout_Rl.setVisibility(View.GONE);
-            }else{
+            } else {
                 registerRL.setVisibility(View.GONE);
                 loginRL.setVisibility(View.GONE);
-             }
+            }
 
             myaccount_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+
+                    String eventcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"));
+                    String coachcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("2"));
+
+
+                    if(String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"))==EventCreator){
+
+                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+                    }
+
+                    else  {
+                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
+                    }
+
+//                    if (CoachCreator != null) {
+//                        if (CoachCreator.equalsIgnoreCase("2")) {
+//                            ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
+//
+//                        }
+//                    }else if (EventCreator != null) {
+//                        if (EventCreator.equalsIgnoreCase("1")) {
+//                            ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+//
+//                        }
+//                    }
+
+
+
 
                 }
             });
@@ -123,8 +151,6 @@ public class Menu_1_Fragment extends Fragment {
                     ((MainActivity) context).addFragment(new Calender_Fragment(), false);
                 }
             });
-
-
 
 
             registerRL.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +185,7 @@ public class Menu_1_Fragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(((MainActivity) context), LoginActivity.class);
                     startActivity(intent);
-                 }
+                }
             });
 
             contact_usRl.setOnClickListener(new View.OnClickListener() {

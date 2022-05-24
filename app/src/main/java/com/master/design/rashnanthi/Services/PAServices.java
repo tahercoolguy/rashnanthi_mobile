@@ -20,6 +20,7 @@ import com.master.design.rashnanthi.DataModel.LoginRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
 import com.master.design.rashnanthi.DataModel.OtpScrenRootDM;
+import com.master.design.rashnanthi.DataModel.ProfilePictureRootDM;
 import com.master.design.rashnanthi.DataModel.SocialMediaDM;
 import com.master.design.rashnanthi.DataModel.SummaryForPaidEventRootDM;
 import com.master.design.rashnanthi.DataModel.UpdateProfileRootDM;
@@ -156,6 +157,10 @@ public interface PAServices {
     @POST("/deletevent")
     void DeletEvent(@Field("eventid") String eventid,
                     Callback<DeleteEventRootDM> deleteEventRootDMCallback);
+
+    @FormUrlEncoded
+    @POST("/profilepicture")
+    void ProfilePicture(@Body MultipartTypedOutput multipartTypedOutput, Callback<ProfilePictureRootDM> profilePictureRootDMCallback);
 
 
 //    @Headers("Cache-Control: no-cache;")

@@ -69,7 +69,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
 //        Picasso.get().load(Integer.parseInt(getCoachsByCountryRootDMArrayList.get(position).getProfilepic())).into(viewHolder.circle_imgview);
 
-        Picasso.get().load(AppController.base_image_url +getCoachsByCountryRootDMArrayList.get(position).getProfilepic()).into(viewHolder.circle_imgview);
+        Picasso.get().load(AppController.base_image_url + getCoachsByCountryRootDMArrayList.get(position).getProfilepic()).into(viewHolder.circle_imgview);
 
         viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +77,14 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
                 viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
                 liked = true;
-                unliked =true;
+                unliked = true;
                 LikedUnliked();
- //                Intent i = new Intent(context, Story_activity.class);
+                //                Intent i = new Intent(context, Story_activity.class);
 //                context.startActivity(i);
             }
 
             boolean liked = false;
-            boolean unliked =false;
+            boolean unliked = false;
 
             public void LikedUnliked() {
 
@@ -92,7 +92,8 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
                     viewHolder.imageView1.setImageResource(R.drawable.ic_heart_red);
                     viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
 
-                }  if (unliked){
+                }
+                if (unliked) {
                     viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
                     viewHolder.imageView1.setImageResource(R.drawable.ic_heart_red);
 
@@ -118,9 +119,8 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView  imageView1;
-
-        RoundedImageView circle_imgview;
+        ImageView imageView1;
+        de.hdodenhof.circleimageview.CircleImageView circle_imgview;
 
         public ViewHolder(View itemView) {
             super(itemView);
