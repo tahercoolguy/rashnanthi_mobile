@@ -730,8 +730,8 @@
                         <ImageView
                             android:id="@+id/img2"
                             android:layout_width="match_parent"
-                            android:background="@drawable/rounded_rectangle_whitee"
-                            android:layout_height="130dp">
+                            android:layout_height="130dp"
+                            android:background="@drawable/rounded_rectangle_whitee">
 
                         </ImageView>
 
@@ -962,8 +962,8 @@
             <ImageView
                 android:id="@+id/img3"
                 android:layout_width="match_parent"
-                android:background="@drawable/rounded_rectangle_whitee"
-                android:layout_height="130dp">
+                android:layout_height="130dp"
+                android:background="@drawable/rounded_rectangle_whitee">
 
             </ImageView>
 
