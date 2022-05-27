@@ -17,6 +17,7 @@ import com.master.design.rashnanthi.DataModel.EventsDetailsRootDM;
 import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
 import com.master.design.rashnanthi.DataModel.OtpScrenRootDM;
@@ -113,7 +114,7 @@ public interface PAServices {
     @POST("/myevents")
     void MyEvents(@Field("userid") String userid,
                   @Field("countryid") String countryid,
-                  Callback<MyEventsRootDM> myEventsRootDMCallback);
+                  Callback<MyEventRootDM1> myEventRootDM1Callback);
 
     @FormUrlEncoded
     @POST("/myprofile")

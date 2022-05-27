@@ -24,9 +24,11 @@ import com.master.design.rashnanthi.Activity.LoginActivity;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.LoginRootDM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,18 +116,49 @@ public class Menu_1_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    String eventcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"));
-                    String coachcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("2"));
+//                    String eventcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"));
+//                    String coachcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("2"));
 
 
-                    if(String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"))==EventCreator){
+//                    String coachcreator = String.valueOf(loginRootDM.getOutput().getData().get(0).getCreatorcoach().equalsIgnoreCase("2"));
+//                    String eventcreator = String.valueOf(loginRootDM.getOutput().getData().get(0).getCreatorcoach().equalsIgnoreCase("1"));
 
-                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
-                    }
+//                    if (coachcreator != null) {
+//                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
+//
+//
+//                    } else if (eventcreator != null) {
+//
+//                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+//
+//                    }
 
-                    else  {
-                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
-                    }
+
+//                    if(user.getCoachOrEvent().equalsIgnoreCase("1")){
+//                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
+//                    }else{
+//                        Helper.showToast(context,"noteventaccount");
+//
+//                    }  if(user.getCoachOrEvent().equalsIgnoreCase("2")){
+//                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+//                    }
+//                    else {
+//                        Helper.showToast(context,"notcoachaccount");
+//
+//                    }
+
+
+//                    ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+
+
+//                    if(String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"))==EventCreator){
+//
+//                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+//                    }
+//
+//                    else  {
+//                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
+//                    }
 
 //                    if (CoachCreator != null) {
 //                        if (CoachCreator.equalsIgnoreCase("2")) {
@@ -138,8 +171,6 @@ public class Menu_1_Fragment extends Fragment {
 //
 //                        }
 //                    }
-
-
 
 
                 }

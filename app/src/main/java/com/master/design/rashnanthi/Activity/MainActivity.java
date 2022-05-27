@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         user = new User(this);
 
-        eventcreator = getIntent().getStringExtra("EventCreator");
-        coachcreator = getIntent().getStringExtra("CoachCreator");
+        eventcreator = getIntent().getStringExtra("chirag1");
+        coachcreator = getIntent().getStringExtra("chirag2");
 
         addFragment(new Calender_Fragment(), false);
 

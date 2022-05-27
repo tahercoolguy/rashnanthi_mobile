@@ -25,7 +25,9 @@ import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.DeleteEventRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventData;
+import com.master.design.rashnanthi.DataModel.MyEventData1;
 import com.master.design.rashnanthi.DataModel.MyEventImageData;
+import com.master.design.rashnanthi.DataModel.MyEventImageData1;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
 import com.master.design.rashnanthi.Helper.User;
@@ -43,8 +45,9 @@ import retrofit.client.Response;
 
 public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.ViewHolder> {
     private Context context;
-    private ArrayList<MyEventImageData> myEventData;
-    Activity_Add_Event_1 activity_add_event_1;
+    private ArrayList<MyEventData1> myEventData;
+    private ArrayList<MyEventImageData1> myEventImageData1ArrayList;
+
 
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -53,9 +56,11 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
     int selectedPosition = 0;
 
-    public Adapter_MY_Event_1(Context context, ArrayList<MyEventImageData> myEventData) {
+    public Adapter_MY_Event_1(Context context, ArrayList<MyEventData1> myEventData, ArrayList<MyEventImageData1> myEventImageData1ArrayList) {
         this.context = context;
         this.myEventData = myEventData;
+        this.myEventImageData1ArrayList = myEventImageData1ArrayList;
+
         user = new User(context);
         appController = (AppController) context.getApplicationContext();
 
@@ -106,8 +111,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                         public void success(DeleteEventRootDM deleteEventRootDM, Response response) {
                             if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                                myEventData.remove(selectedPosition);
-                                notifyItemRemoved(selectedPosition);
+                                myEventData.remove(position);
+                                notifyItemRemoved(position);
                                 Helper.showToast(context, "item deleted succesfully");
 
                             } else
@@ -135,30 +140,27 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 viewHolder.date_time.setText(myEventData.get(position).getDate());
                 Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_1);
                 Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
-                MyEventData myEventData1 = new MyEventData();
 
                 Intent intent = new Intent(context, Activity_Add_Event_1.class);
                 intent.putExtra("image1", myEventData.get(position).getImage());
                 intent.putExtra("date", myEventData.get(position).getDate());
                 intent.putExtra("image2", myEventData.get(position).getImage());
                 intent.putExtra("eventid", myEventData.get(position).getId());
+                intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
+                intent.putExtra("instagram", myEventData.get(position).getInstagram());
+                intent.putExtra("website", myEventData.get(position).getWebsite());
+                intent.putExtra("whatsappcountrycode", myEventData.get(position).getWhatsapcountrycode());
+                intent.putExtra("whatsappnumber", myEventData.get(position).getWhatsapnumber());
+                intent.putExtra("countries", myEventData.get(position).getImpcountries());
+                intent.putExtra("creatorcoach", myEventData.get(position).getCreatorcoach());
+                intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
+                intent.putExtra("status", myEventData.get(position).getStatus());
+                intent.putExtra("postedby", myEventData.get(position).getPostedby());
                 context.startActivity(intent);
 
             }
         });
-
-
     }
-
-
-    public void Edit_Post_API() {
-
-    }
-
-    public void Delete_Post_API() {
-
-    }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

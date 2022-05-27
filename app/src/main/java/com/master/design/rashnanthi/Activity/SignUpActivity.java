@@ -369,6 +369,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
                         intent.putExtra("EventCreator", eventRegisterDM.getOutput().getCreatorcoach());
+                        intent.putExtra("chirag1", "1");
                         intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                         startActivity(intent);
                         finish();
@@ -392,111 +393,56 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void CoachRegisterAPI() {
-        try {
-            if (connectionDetector.isConnectingToInternet()) {
+        if (connectionDetector.isConnectingToInternet()) {
 
 
-                progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
-                MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-                multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
-                multipartTypedOutput.addPart("fullname", new TypedString(nameET.getText().toString()));
-                multipartTypedOutput.addPart("email", new TypedString(emailET.getText().toString()));
-                multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
-                multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
-                multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
-                multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
-                multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
-                multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
-                multipartTypedOutput.addPart("countryid", new TypedString(CountryId));
-                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-                multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
-                multipartTypedOutput.addPart("devicetype", new TypedString("2"));
-                boolean ifimg1 = true;
+//                progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
+            multipartTypedOutput.addPart("fullname", new TypedString(nameET.getText().toString()));
+            multipartTypedOutput.addPart("email", new TypedString(emailET.getText().toString()));
+            multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
+            multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
+            multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
+            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
+            multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
+            multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
+//                multipartTypedOutput.addPart("countryid", new TypedString(country_spinnerET.getText().toString()));
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
+            multipartTypedOutput.addPart("devicetype", new TypedString("2"));
 
-//                if (ifimg1) {
-//                    File f = new File(SignUpActivity.this.getCacheDir(), "temp1.jpg");
-//                    try {
-//                        f.createNewFile();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    Bitmap one = ((BitmapDrawable) profileImg.getDrawable()).getBitmap();
-////Convert bitmap to byte array
-//                    Bitmap bitmap = one;
-//                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-//                    byte[] bitmapdata = bos.toByteArray();
-//
-////write the bytes in file
-//                    FileOutputStream fos = null;
-//                    try {
-//                        fos = new FileOutputStream(f);
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    }
-//                    try {
-//                        fos.write(bitmapdata);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    try {
-//                        fos.flush();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    try {
-//                        fos.close();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    File resizedImage1 = null;
-//                    try {
-//                        resizedImage1 = new Resizer(SignUpActivity.this)
-//                                .setTargetLength(200)
-//                                .setQuality(80)
-//                                .setOutputFormat("JPEG")
-//                                .setOutputFilename("resized_image2")
-//                                .setSourceImage(f)
-//                                .getResizedFile();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage1));
-//                }
-
-                appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
-                    @Override
-                    public void success(EventRegisterDM eventRegisterDM, Response response) {
-                        progress.dismiss();
-                        if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                            user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
-                            user.setEmail(emailET.getText().toString());
+            appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
+                @Override
+                public void success(EventRegisterDM eventRegisterDM, Response response) {
+//                        progress.dismiss();
+                    if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
+                        user.setEmail(emailET.getText().toString());
 
 
-                            Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
-                            intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());
-                            intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
-                            startActivity(intent);
-                            finish();
+                        Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
+                        intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());
+                        intent.putExtra("chirag2", "2");
+                        intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
+                        startActivity(intent);
+                        finish();
 
 //                            startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
 //                            finish();
-                        } else
-                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
-                    }
+                    } else
+                        Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                }
 
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Log.e("String", error.toString());
-                        progress.dismiss();
-                    }
-                });
-            } else
-                Helper.showToast(SignUpActivity.this, getString(R.string.no_internet_connection));
-        } catch (Exception e) {
-            Log.e("String", e.toString());
-        }
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("String", error.toString());
+//                        progress.dismiss();
+                }
+            });
+        } else
+            Helper.showToast(SignUpActivity.this, getString(R.string.no_internet_connection));
+
     }
 
 
@@ -678,7 +624,7 @@ public class SignUpActivity extends AppCompatActivity {
                         profileImg.setImageBitmap(bitmap);
                         ifimg1 = true;
 
-                     }
+                    }
                     // loading profile image from local cache
 
                 } catch (IOException e) {

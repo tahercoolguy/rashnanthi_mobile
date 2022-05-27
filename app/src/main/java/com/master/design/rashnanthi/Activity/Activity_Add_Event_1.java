@@ -84,11 +84,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
+
     private static final int IMAGE_PICKER_SELECT1 = 1;
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1, image2, date, eventid, snapchat;
+    String image1, image2, date, eventid, snapchat,instagram,wtsapcode,wtsapnumber,website,impcountry,creatorcoach,payorfree,status,postedby;
 
     MyEventData myEventData1;
     String CountryId;
@@ -195,10 +196,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
 
-        if (eventid != null) {
-
+        if(status!=null){
             EditAddEventCreatorAPI();
-        } else {
+
+        }else{
             AddEventByCreatorAPI();
         }
 
@@ -209,22 +210,21 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.continue_Btn)
     public void Continue() {
 
-
-        if (eventid != null) {
-
+        if(status!=null){
             EditAddEventCreatorAPI();
-        } else {
+
+        }else{
             AddEventByCreatorAPI();
         }
-
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
 
     @OnClick(R.id.post_for_free_nowBtn)
     public void PostForFreeNow() {
-        if (eventid != null) {
+
+        if(status!=null){
             EditAddEventCreatorAPI();
-        } else {
+        }else{
             AddEventByCreatorAPI();
         }
     }
@@ -252,32 +252,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         user = new User(Activity_Add_Event_1.this);
 
         Binding();
-
-
-        image1 = getIntent().getStringExtra("image1");
-        image2 = getIntent().getStringExtra("image2");
-        date = getIntent().getStringExtra("date");
-        eventid = getIntent().getStringExtra("eventid");
-        snapchat = getIntent().getStringExtra("snapchat");
-
-        if (image1 != null) {
-//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
-            Picasso.get().load(AppController.base_image_url + image1).into(img1);
-
-        }
-        if (image2 != null) {
-//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img2);
-            Picasso.get().load(AppController.base_image_url + image2).into(img2);
-
-        }
-        if (date != null) {
-            dateTxt.setText(date);
-
-        }
-        if (eventid != null) {
-
-        }
-
+        DataGetFromAdapterIntent();
 
         ad_more_eventtLL = findViewById(R.id.ad_more_eventtLL);
         your_post_will_beTXt = findViewById(R.id.your_post_will_beTXt);
@@ -290,11 +265,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         add_img_video_2_RL = findViewById(R.id.add_img_video_2_RL);
         add_img_video_4_RL = findViewById(R.id.add_img_video_4_RL);
 
-        if (user.getCoachOrEvent().equalsIgnoreCase("1")) {
-            //event
-        } else if (user.getCoachOrEvent().equalsIgnoreCase("2")) {
-            //Coach
-        }
+//        if (user.getCoachOrEvent().equalsIgnoreCase("1")) {
+//            //event
+//        } else if (user.getCoachOrEvent().equalsIgnoreCase("2")) {
+//            //Coach
+//        }
 
         add_more_eventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -334,12 +309,68 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     boolean iffree = false;
     boolean ifpaid = false;
 
-    String Date = dateTxt.getText().toString();
-    String WhatsappCode = wtspcodeTxt.getText().toString();
-    String MobileNumber = mobile__ET.getText().toString();
-    String SnapChat = snap_ET.getText().toString();
-    String InstaGram = insta_ET.getText().toString();
-    String WebSite = wesite_ET.getText().toString();
+//    String Date = dateTxt.getText().toString();
+//    String WhatsappCode = wtspcodeTxt.getText().toString();
+//    String MobileNumber = mobile__ET.getText().toString();
+//    String SnapChat = snap_ET.getText().toString();
+//    String InstaGram = insta_ET.getText().toString();
+//    String WebSite = wesite_ET.getText().toString();
+
+
+
+
+    public  void DataGetFromAdapterIntent(){
+
+        wtsapcode=getIntent().getStringExtra("whatsappcountrycode");
+        wtsapnumber=getIntent().getStringExtra("whatsappnumber");
+        instagram=getIntent().getStringExtra("instagram");
+         website=getIntent().getStringExtra("website");
+        impcountry=getIntent().getStringExtra("countries");
+        creatorcoach = getIntent().getStringExtra("creatorcoach");
+        payorfree = getIntent().getStringExtra("payorfree");
+        status = getIntent().getStringExtra("status");
+        image1 = getIntent().getStringExtra("image1");
+        image2 = getIntent().getStringExtra("image2");
+        date = getIntent().getStringExtra("date");
+        eventid = getIntent().getStringExtra("eventid");
+        snapchat = getIntent().getStringExtra("snapchat");
+        postedby = getIntent().getStringExtra("postedby");
+
+        if (image1 != null) {
+//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
+            Picasso.get().load(AppController.base_image_url + image1).into(img1);
+
+        }
+        if (image2 != null) {
+//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img2);
+            Picasso.get().load(AppController.base_image_url + image2).into(img2);
+
+        }
+        if (date != null) {
+            dateTxt.setText(date);
+
+        }
+        if (snapchat != null) {
+
+            snap_ET.setText(snapchat);
+        }if (instagram != null) {
+
+            insta_ET.setText(instagram);
+        }if (wtsapcode != null) {
+
+            wtspcodeTxt.setText(wtsapcode);
+        }if (wtsapnumber != null) {
+
+            mobile__ET.setText(wtsapnumber);
+        }if (website != null) {
+
+            wesite_ET.setText(website);
+        }if (impcountry != null) {
+
+            country_spinner_Txt.setText(impcountry);
+        }
+    }
+
 
 
     public void EditAddEventCreatorAPI() {
@@ -357,12 +388,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
             multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
             multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
-//            multipartTypedOutput.addPart("payorfree", new TypedString("1"));
+//            multipartTypedOutput.addPart("payorfree", new TypedString(payorfree));
             multipartTypedOutput.addPart("postedby", new TypedString(user.getName()));
-            multipartTypedOutput.addPart("creatorcoach", new TypedString("1"));
+            multipartTypedOutput.addPart("creatorcoach", new TypedString(creatorcoach));
             multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
-            multipartTypedOutput.addPart("status", new TypedString("1"));
-            multipartTypedOutput.addPart("eventid", new TypedString(EventId));
+            multipartTypedOutput.addPart("status", new TypedString(status));
+            multipartTypedOutput.addPart("eventid", new TypedString(eventid));
 
 
 //
@@ -485,17 +516,20 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             }
 
 
-            progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
+//            progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
 
             appController.paServices.EditEvent(multipartTypedOutput, new Callback<EditEventRootDM>() {
 
                 @Override
 
                 public void success(EditEventRootDM editEventRootDM, Response response) {
-                    progress.dismiss();
+//                    progress.dismiss();
                     if (editEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
+
+                        Helper.showToast(Activity_Add_Event_1.this,editEventRootDM.getOutput().getMessage());
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
+
+
 
                         EventId = editEventRootDM.getOutput().getEventid();
 
@@ -517,7 +551,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
+//                    progress.dismiss();
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -677,11 +711,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
                     progress.dismiss();
                     if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-//                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
 
                         Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+//                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
                         EventId = addEventByCreatorRootDM.getOutput().getEventid();
+
+                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
                         //                        if (post_for_free_nowBtn.callOnClick()) {
 //

@@ -24,6 +24,7 @@ import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.MyEventData;
 import com.master.design.rashnanthi.DataModel.MyEventImageData;
+import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
 import com.master.design.rashnanthi.Helper.User;
@@ -137,16 +138,15 @@ public class My_Event_1_Fragment extends Fragment {
     public void MyEventAPI() {
         if (connectionDetector.isConnectingToInternet()) {
             //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            appController.paServices.MyEvents(String.valueOf(user.getId()),"1",new Callback<MyEventsRootDM>() {
+            appController.paServices.MyEvents(String.valueOf(user.getId()),"1",new Callback<MyEventRootDM1>() {
 
                 @Override
 
-                public void success(MyEventsRootDM myEventsRootDM, Response response) {
+                public void success(MyEventRootDM1 myEventRootDM1, Response response) {
 
-                    if (myEventsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                    if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-
-                        Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getContext(),myEventsRootDM.getOutput().getData());
+                         Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getContext(),myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                         my_event_Rcv.setLayoutManager(linearLayoutManager);
                         my_event_Rcv.setAdapter(adapter_my_event_1);

@@ -195,10 +195,8 @@ public class My_Account_Fragment extends Fragment {
 
     @OnClick(R.id.edit_ProfileImg)
     public void ProfilePictureAPI() {
-
         imgClicked = 1;
         OpenImage();
-        EditProfileImageAPI();
     }
 
 
@@ -247,10 +245,7 @@ public class My_Account_Fragment extends Fragment {
                 @Override
                 public void success(ProfilePictureRootDM profilePictureRootDM, Response response) {
                     if (profilePictureRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-
-
                         Helper.showToast(getActivity(), profilePictureRootDM.getOutput().getMessage());
-
                     } else
                         Helper.showToast(getActivity(), profilePictureRootDM.getOutput().getMessage());
                 }
@@ -334,9 +329,7 @@ public class My_Account_Fragment extends Fragment {
                     if (imgClicked == 1) {
                         my_account_Img.setImageBitmap(bitmap);
                         ifimg1 = true;
-
-                        ProfilePictureAPI();
-                    }
+                      }
                     // loading profile image from local cache
 
                 } catch (IOException e) {

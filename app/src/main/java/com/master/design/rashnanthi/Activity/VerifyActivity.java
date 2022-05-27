@@ -34,7 +34,7 @@ import retrofit.client.Response;
 public class VerifyActivity extends AppCompatActivity {
     Context context;
     AppController appController;
-    String mobile,coachcreator,eventcreator;
+    String mobile, coachcreator, eventcreator;
     Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
@@ -62,8 +62,11 @@ public class VerifyActivity extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         mobile = getIntent().getStringExtra("mobile");
-        eventcreator = getIntent().getStringExtra("EventCreator");
-        coachcreator = getIntent().getStringExtra("CoachCreator");
+
+//        eventcreator = getIntent().getStringExtra("EventCreator");
+//        coachcreator = getIntent().getStringExtra("CoachCreator");
+        eventcreator = getIntent().getStringExtra("chirag1");
+        coachcreator = getIntent().getStringExtra("chirag2");
 
         user = new User(VerifyActivity.this);
 
@@ -71,6 +74,7 @@ public class VerifyActivity extends AppCompatActivity {
 
     @OnClick(R.id.submit_otpBtn)
     public void SubmitOtp() {
+
 
         VerifyAPI();
 
@@ -103,6 +107,17 @@ public class VerifyActivity extends AppCompatActivity {
                     if (otpScrenRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.showToast(VerifyActivity.this,otpScrenRootDM.getOutput().getSuccess());
 
+
+                        if(eventcreator=="1"){
+                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
+                            intent.putExtra("chirag1",eventcreator);
+                            startActivity(intent);
+
+                        }else if(coachcreator=="2"){
+                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
+                            intent.putExtra("chirag2", coachcreator);
+                            startActivity(intent);
+                        }
 
 //                        if(eventcreator.equalsIgnoreCase("1")){
 //

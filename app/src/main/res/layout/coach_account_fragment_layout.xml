@@ -70,47 +70,55 @@
 
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/my_account_Img"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                     app:civ_border_width="2dp"
+                    app:civ_border_color="@color/white"
                     android:layout_centerInParent="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/lady" />
 
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/big_unselector">
 
+                </de.hdodenhof.circleimageview.CircleImageView>
 
+                <ImageView
+                    android:id="@+id/edit_ProfileImg"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
 
-
-
+                    android:layout_marginHorizontal="225dp"
+                    android:layout_marginTop="80dp"
+                    android:src="@drawable/ic_edit_profile"></ImageView>
 
             </RelativeLayout>
 
+
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
-
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                 android:layout_marginTop="-120dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="125dp"
+                android:layout_marginTop="-120dp"
+                android:layout_marginBottom="15dp"
                 android:orientation="horizontal">
-
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:src="@drawable/ic__5k_likes"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="wrap_content"
 
                     android:text="25K Likes"
                     android:textColor="@color/white">
@@ -118,44 +126,35 @@
                 </TextView>
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                 android:layout_marginLeft="45dp"
-                android:layout_marginTop="18dp"
-
-                android:src="@drawable/ic_edit_profile"></ImageView>
-
 
             <TextView
+                android:id="@+id/account_NameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:fontFamily="@font/red_hat_isplay_bold"
                 android:gravity="center"
                 android:text="@string/rizana_cader"
                 android:textColor="@color/black"
-                android:textSize="@dimen/login"
-                ></TextView>
+                android:textSize="@dimen/login"></TextView>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="40dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/add_new_event_RL"
                     android:layout_width="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
 
 
                     android:background="@drawable/my_account_bg"
@@ -186,10 +185,10 @@
                 <RelativeLayout
                     android:id="@+id/view_event_RL"
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="@dimen/margin"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
 
                     android:background="@drawable/my_account_bg"
                     android:elevation="4dp">
@@ -223,18 +222,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
 
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/change_password_RL"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
 
                     android:background="@drawable/my_account_bg"
                     android:elevation="4dp">
@@ -265,9 +264,9 @@
                     android:id="@+id/edit_profile_RL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/margin"
+                    android:layout_weight="1"
                     android:background="@drawable/my_account_bg"
                     android:elevation="4dp">
 
