@@ -98,8 +98,8 @@ public class My_Event_1_Fragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    ((MainActivity)context).addFragment(new My_Account_Fragment(),false);
-                  }
+                    ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
+                }
             });
 
 
@@ -133,26 +133,25 @@ public class My_Event_1_Fragment extends Fragment {
         }
         return rootView;
     }
+
     ArrayList<MyEventData> myEventData;
 
     public void MyEventAPI() {
         if (connectionDetector.isConnectingToInternet()) {
             //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            appController.paServices.MyEvents(String.valueOf(user.getId()),"1",new Callback<MyEventRootDM1>() {
-
+            appController.paServices.MyEvents(String.valueOf(user.getId()), "1", new Callback<MyEventRootDM1>() {
                 @Override
-
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
 
                     if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                         Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getContext(),myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+                        Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(context, myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
                         my_event_Rcv.setLayoutManager(linearLayoutManager);
                         my_event_Rcv.setAdapter(adapter_my_event_1);
 
                     } else
-                        Helper.showToast(getActivity(),"your post does not exist");
+                        Helper.showToast(getActivity(), "your post does not exist");
                 }
 
                 @Override
@@ -178,7 +177,7 @@ public class My_Event_1_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 100);
+        }, 1500);
 
 
     }

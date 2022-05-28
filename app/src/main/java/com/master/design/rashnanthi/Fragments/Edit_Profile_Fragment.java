@@ -257,7 +257,7 @@ public class Edit_Profile_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 100);
+        }, 1500);
     }
 
     public void ShowProgress() {

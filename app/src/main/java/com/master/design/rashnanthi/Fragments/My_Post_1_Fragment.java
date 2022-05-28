@@ -159,7 +159,7 @@ public class My_Post_1_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 100);
+        }, 1500);
 
 
     }

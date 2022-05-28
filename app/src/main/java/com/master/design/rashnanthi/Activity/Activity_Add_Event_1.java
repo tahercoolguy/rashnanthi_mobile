@@ -569,7 +569,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 //            String id = String.valueOf(user.getId());
 
-
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
             multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
@@ -592,7 +591,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //                ifpaid = true;
 //                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
 //            }
-
 
             try {
                 if (ifimg1) {
@@ -705,9 +703,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
 
             appController.paServices.AddEventByCreator(multipartTypedOutput, new Callback<AddEventByCreatorRootDM>() {
-
                 @Override
-
                 public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
                     progress.dismiss();
                     if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {

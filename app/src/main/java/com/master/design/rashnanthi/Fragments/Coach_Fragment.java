@@ -195,24 +195,24 @@ public class Coach_Fragment extends Fragment {
 
             coachDMArrayList = new ArrayList<>();
 
-
-            ArrayList<CoachDM> coachDMArrayList = new ArrayList<>();
-
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-
-
-            coach_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-            coach_Rcv.setAdapter(new Adapter_Coach_Fgmt(((MainActivity) context), coachDMArrayList));
+//
+//            ArrayList<CoachDM> coachDMArrayList = new ArrayList<>();
+//
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
+//
+//
+//            coach_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
+//            coach_Rcv.setAdapter(new Adapter_Coach_Fgmt(((MainActivity) context), coachDMArrayList));
 
 
 

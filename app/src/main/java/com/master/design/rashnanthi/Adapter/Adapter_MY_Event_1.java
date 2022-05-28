@@ -96,7 +96,6 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
     private void setDetails(Adapter_MY_Event_1.ViewHolder viewHolder, int position) {
         viewHolder.date_time.setText(myEventData.get(position).getDate());
-
         Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_1);
         Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
 

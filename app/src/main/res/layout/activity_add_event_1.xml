@@ -51,10 +51,14 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:src="@drawable/ic_chevron_regular"></ImageView>
+
             </RelativeLayout>
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
 
     <ScrollView
         android:layout_width="match_parent"

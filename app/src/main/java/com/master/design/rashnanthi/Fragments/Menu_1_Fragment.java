@@ -148,7 +148,7 @@ public class Menu_1_Fragment extends Fragment {
 //                    }
 
 
-//                    ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+                    ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
 
 
 //                    if(String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"))==EventCreator){
@@ -216,6 +216,8 @@ public class Menu_1_Fragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(((MainActivity) context), LoginActivity.class);
                     startActivity(intent);
+
+//                    ((MainActivity) context).addFragment(new LoginFragment(),true);
                 }
             });
 
@@ -275,7 +277,7 @@ public class Menu_1_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 100);
+        }, 1500);
 
 
     }

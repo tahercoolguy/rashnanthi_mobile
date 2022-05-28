@@ -38,48 +38,49 @@ import retrofit.mime.MultipartTypedOutput;
 
 public interface PAServices {
 
-
+    //1      done
     @POST("/aboutus")
     void Aboutus(Callback<AboutUsDM> aboutUsDMCallback);
 
+    //2    done
 
     @POST("/termsandcond")
     void TermsAndCondition(Callback<AboutUsDM> aboutUsDMCallback);
 
-
+    //3    done
     @POST("/privacypolicy")
     void PrivacyPolicy(Callback<AboutUsDM> aboutUsDMCallback);
 
-
+    //4    done
     @POST("/contactus")
     void ContactUS(Callback<AboutUsDM> aboutUsDMCallback);
 
-
+    //5    done
     @Headers("Cache-Control: no-cache;")
     @GET("/countries")
     void Countries(Callback<CountryRootDM> countryRootDMCallback);
 
-
+    //6        done
     @POST("/socialnetworklinks")
     void SocialMedia(Callback<SocialMediaDM> socialMediaDMCallback);
 
-
+    //7      done
     @Headers("Cache-Control: no-cache;")
     @POST("/eventcreatorreg")
     void EventCreatorReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
 
-
+    //8          someproblem,imageupload,coach 1-2 transfer
     @Headers("Cache-Control: no-cache;")
     @POST("/coachreg")
     void CoachReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
 
-
+    //9         done
     @FormUrlEncoded
     @POST("/otpscreen")
     void OtpVerify(@Field("mobile") String mobile,
                    @Field("otp") String otp,
                    Callback<OtpScrenRootDM> otpScrenRootDMCallback);
-
+    //10         done
     @FormUrlEncoded
     @POST("/login")
     void Login(@Field("countrycode") String countrycode,
@@ -87,12 +88,13 @@ public interface PAServices {
                @Field("password") String password,
                Callback<LoginRootDM> loginRootDMCallback);
 
+    //11             done
     @FormUrlEncoded
     @POST("/forgotpassword")
     void ForgotPassword(@Field("email") String email,
                         Callback<ForgotPasswordRootDM> forgotPasswordRootDMCallback);
 
-
+    //12            done
     @FormUrlEncoded
     @POST("/changepassword")
     void ChangePassword(@Field("loginid") String loginid,
@@ -101,6 +103,7 @@ public interface PAServices {
                         @Field("retypepass") String retypepass,
                         Callback<ChangePasswordRootDM> changePasswordRootDMCallback);
 
+    //13                 done
     @FormUrlEncoded
     @POST("/updateprofile")
     void UpdateProfile(@Field("userid") String userid,
@@ -110,55 +113,59 @@ public interface PAServices {
                        @Field("countrycode") String countrycode,
                        Callback<UpdateProfileRootDM> updateProfileRootDMCallback);
 
+    //14              done         ,country id now static have to pass it
     @FormUrlEncoded
     @POST("/myevents")
     void MyEvents(@Field("userid") String userid,
                   @Field("countryid") String countryid,
                   Callback<MyEventRootDM1> myEventRootDM1Callback);
 
+    //15            done
     @FormUrlEncoded
     @POST("/myprofile")
     void MyProfile(@Field("userid") String userid,
                    Callback<MyProfileRootDM> myProfileRootDMCallback);
 
-
+    //16             done
     @FormUrlEncoded
     @POST("/getcoachsbycountry")
     void GetCoachsByCountry(@Field("countryid") String countryid,
                             Callback<GetCoachsByCountryRootDM> myProfileRootDMCallback);
 
-
+    //17                        coachcrator , paynow ,video add functionality not now availaible
     @Headers("Cache-Control: no-cache;")
     @POST("/addeventbycreator")
     void AddEventByCreator(@Body MultipartTypedOutput multipartTypedOutput, Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
 
-
+    //18                    done
     @FormUrlEncoded
     @POST("/summaryforpaidevent")
     void SummaryForPaidEvent(@Field("eventid") String eventid,
                              Callback<SummaryForPaidEventRootDM> summaryForPaidEventRootDMCallback);
 
-
+    //19                      coachcrator , paynow ,video add functionality not now availaible
     @FormUrlEncoded
     @POST("/editevent")
     void EditEvent(@Body MultipartTypedOutput multipartTypedOutput, Callback<EditEventRootDM> editEventRootDMCallback);
 
-
+    //20                        done                   but i dont know where to implement it
     @FormUrlEncoded
     @POST("/eventdetails")
     void EventDetails(@Field("eventid") String eventid,
                       Callback<EventsDetailsRootDM> eventsDetailsRootDMCallback);
-
+    //21                                             i dont know where to implement it
     @FormUrlEncoded
     @POST("/confirmevent")
     void ConfirmEvent(@Field("eventid") String eventid,
                       Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
 
+    //22       done
     @FormUrlEncoded
     @POST("/deletevent")
     void DeletEvent(@Field("eventid") String eventid,
                     Callback<DeleteEventRootDM> deleteEventRootDMCallback);
 
+    //23          done                      but pic does not uploading on server
     @FormUrlEncoded
     @POST("/profilepicture")
     void ProfilePicture(@Body MultipartTypedOutput multipartTypedOutput, Callback<ProfilePictureRootDM> profilePictureRootDMCallback);
