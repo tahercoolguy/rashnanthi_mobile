@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -36,7 +38,8 @@ public class Privacy_Policy_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
-
+    DialogUtil dialogUtil;
+    Dialog progress;
 
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
@@ -62,11 +65,13 @@ public class Privacy_Policy_Fragment extends Fragment {
 
     public void PrivacyPolicy () {
         if (connectionDetector.isConnectingToInternet()) {
+            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
             appController.paServices.PrivacyPolicy(new Callback<AboutUsDM>() {
                 @Override
 
                 public void success(AboutUsDM aboutUsDM, Response response) {
+                    progress.dismiss();
                     if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
 
                         PrivacyPolicy.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
@@ -79,6 +84,7 @@ public class Privacy_Policy_Fragment extends Fragment {
 
                 @Override
                 public void failure( RetrofitError retrofitError) {
+                    progress.dismiss();
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -96,10 +102,11 @@ public class Privacy_Policy_Fragment extends Fragment {
         appController = (AppController) getActivity().getApplicationContext();
 
         connectionDetector = new ConnectionDetector(getActivity());
-//        progressDialog = new ProgressDialog(getActivity());
-//        progressDialog.setMessage(getResources().getString(R.string.please_wait));
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setCancelable(false);
+        dialogUtil = new DialogUtil();
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage(getResources().getString(R.string.please_wait));
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
 
 
@@ -147,7 +154,7 @@ public class Privacy_Policy_Fragment extends Fragment {
             public void run() {
                DismissProgress();
             }
-        }, 1500);
+        }, 100);
 
 
 

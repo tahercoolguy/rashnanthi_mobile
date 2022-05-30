@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.DataModel.Data;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -56,7 +58,8 @@ public class About_App_Fragment extends Fragment {
     AppController appController;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
-
+    DialogUtil dialogUtil;
+    Dialog progress;
 
 
     @BindView(R.id.about_AppTxt)
@@ -64,11 +67,14 @@ public class About_App_Fragment extends Fragment {
 
     public void AboutUs () {
         if (connectionDetector.isConnectingToInternet()) {
+            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
             appController.paServices.Aboutus(new Callback<AboutUsDM>() {
                 @Override
 
                 public void success(AboutUsDM aboutUsDM, Response response) {
+                    progress.dismiss();
+
                     if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
 
                         AboutAppTxt.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
@@ -81,6 +87,8 @@ public class About_App_Fragment extends Fragment {
 
                 @Override
                 public void failure( RetrofitError retrofitError) {
+                    progress.dismiss();
+
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -98,6 +106,7 @@ public class About_App_Fragment extends Fragment {
         appController = (AppController) getActivity().getApplicationContext();
 
         connectionDetector = new ConnectionDetector(getActivity());
+        dialogUtil = new DialogUtil();
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
         progressDialog.setIndeterminate(true);
@@ -159,7 +168,7 @@ public class About_App_Fragment extends Fragment {
             public void run() {
                DismissProgress();
             }
-        }, 1500);
+        }, 100);
 
 
 

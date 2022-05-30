@@ -2,6 +2,7 @@ package com.master.design.rashnanthi.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
 import com.master.design.rashnanthi.DataModel.ProfilePictureRootDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
@@ -69,6 +71,8 @@ public class Coach_Account_Fragment extends Fragment {
     private Context context;
     User user;
     RelativeLayout add_new_event_RL, view_event_RL, change_password_RL, edit_profile_RL;
+    DialogUtil dialogUtil;
+    Dialog progress;
 
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
@@ -99,6 +103,7 @@ public class Coach_Account_Fragment extends Fragment {
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
         user = new User(getActivity());
+        dialogUtil = new DialogUtil();
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -111,7 +116,6 @@ public class Coach_Account_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.coach_account_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
 
-            MyProfileAPI();
 
             add_new_event_RL = rootView.findViewById(R.id.add_new_event_RL);
             view_event_RL = rootView.findViewById(R.id.view_event_RL);
@@ -170,21 +174,18 @@ public class Coach_Account_Fragment extends Fragment {
 
         imgClicked = 1;
         OpenImage();
-        EditProfileImageAPI();
-    }
+     }
 
 
     public void EditProfileImageAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
-            String id = String.valueOf(user.getId());
-
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("userid", new TypedString(id));
+            multipartTypedOutput.addPart("userid", new TypedString(String.valueOf(user.getId())));
 
             try {
                 if (ifimg1) {
-                    File f = new File(getContext().getCacheDir(), "temp.jpg");
+                    File f = new File(context.getCacheDir(), "temp.jpg");
                     f.createNewFile();
 
                     Bitmap one = ((BitmapDrawable) my_account_Img.getDrawable()).getBitmap();
@@ -199,7 +200,7 @@ public class Coach_Account_Fragment extends Fragment {
                     fos.write(bitmapdata);
                     fos.flush();
                     fos.close();
-                    File resizedImage = new Resizer(getContext())
+                    File resizedImage = new Resizer(context)
                             .setTargetLength(200)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
@@ -213,22 +214,24 @@ public class Coach_Account_Fragment extends Fragment {
             } catch (Exception e) {
                 Log.e("Error", e.toString());
             }
-
+            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
             appController.paServices.ProfilePicture(multipartTypedOutput, new Callback<ProfilePictureRootDM>() {
                 @Override
                 public void success(ProfilePictureRootDM profilePictureRootDM, Response response) {
+                    progress.dismiss();
+
                     if (profilePictureRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-
                         Helper.showToast(getActivity(), profilePictureRootDM.getOutput().getMessage());
-
                     } else
                         Helper.showToast(getActivity(), profilePictureRootDM.getOutput().getMessage());
                 }
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
+
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -238,32 +241,6 @@ public class Coach_Account_Fragment extends Fragment {
     }
 
 
-    public void MyProfileAPI() {
-
-        if (connectionDetector.isConnectingToInternet()) {
-
-            appController.paServices.MyProfile(String.valueOf(user.getId()), new Callback<MyProfileRootDM>() {
-                @Override
-                public void success(MyProfileRootDM myProfileRootDM, Response response) {
-                    if (myProfileRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-
-                        account_NameTxt.setText(myProfileRootDM.getOutput().getData().get(0).getFullname());
-                         Picasso.get().load(AppController.base_image_url + myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into(my_account_Img);
-//                         Picasso.get().load(myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into((ImageView) rootView.findViewById(R.id.profileImg));
-
-                    } else
-                        Helper.showToast(getActivity(), "something wrong");
-                }
-
-                @Override
-                public void failure(RetrofitError retrofitError) {
-                    Log.e("error", retrofitError.toString());
-
-                }
-            });
-        } else
-            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
-    }
 
 
     public void OpenImage() {

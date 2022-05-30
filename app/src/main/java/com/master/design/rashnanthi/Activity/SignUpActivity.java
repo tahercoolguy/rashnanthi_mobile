@@ -3,6 +3,7 @@ package com.master.design.rashnanthi.Activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -40,6 +41,7 @@ import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.Country_CodeDM;
 import com.master.design.rashnanthi.DataModel.Country_NameDM;
 import com.master.design.rashnanthi.DataModel.EventRegisterDM;
+import com.master.design.rashnanthi.DataModel.ProfilePictureRootDM;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
@@ -78,12 +80,13 @@ public class SignUpActivity extends AppCompatActivity {
     private static final int IMAGE_VIDEO_ACTIVITY_PICKER = 4;
     Uri uri;
 
-
-    String CountryId;
+    DialogUtil dialogUtil;
+    String countryId;
     Dialog progress;
     ConnectionDetector connectionDetector;
     User user;
-    DialogUtil dialogUtil;
+    ProgressDialog progressDialog;
+
     private ArrayList<Country_NameDM> countryNameDMS;
     private ArrayList<Country_CodeDM> country_codeDMS;
 
@@ -115,11 +118,13 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.country_spinner_Txt)
     TextView country_spinner_Txt;
 
+    @BindView(R.id.profile_RoundedImgView)
+    CircleImageView profile_RoundedImgView;
+
 
     //    Spinner country_name_spinner, mobile_countrycode_Sp, wtsap_countrycode_Sp;
-    CircleImageView dp;
 
-    ImageView profileImg, cameraImg, back_from_register_page;
+    ImageView   cameraImg, back_from_register_page;
 
 //    ImageView back_from_register_page;
 
@@ -140,6 +145,10 @@ public class SignUpActivity extends AppCompatActivity {
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(SignUpActivity.this);
         dialogUtil = new DialogUtil();
+//        progressDialog = new ProgressDialog(SignUpActivity.this);
+//        progressDialog.setMessage(getResources().getString(R.string.please_wait));
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setCancelable(false);
         Binding();
 
 //        country_name_spinner = findViewById(R.id.country_name_spinner);
@@ -158,8 +167,7 @@ public class SignUpActivity extends AppCompatActivity {
         event = findViewById(R.id.eventTxt);
         coach = findViewById(R.id.coachTxt);
         register_NowBtn = findViewById(R.id.register_NowBtn);
-        profileImg = findViewById(R.id.profileImg);
-        cameraImg = findViewById(R.id.cameraImg);
+         cameraImg = findViewById(R.id.cameraImg);
         nameET = findViewById(R.id.nameET);
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
@@ -167,21 +175,12 @@ public class SignUpActivity extends AppCompatActivity {
         snap_id_ET = findViewById(R.id.snap_id_ET);
         insta_id_ET = findViewById(R.id.insta_id_ET);
         mobileET = findViewById(R.id.mobileET);
-        dp = findViewById(R.id.profile_RoundedImgView);
-        cameraImg = findViewById(R.id.cameraImg);
-//
 
         VisibilityFunction();
 
 
 //                Intent i = new Intent(getApplicationContext(),Menu_1_Fragment.class);
 //
-
-
-        //        progressDialog = new ProgressDialog(getActivity());
-//        progressDialog.setMessage(getResources().getString(R.string.please_wait));
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setCancelable(false);
 
 
         coach.setOnClickListener(new View.OnClickListener() {
@@ -225,67 +224,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-//    public void ProfileImg() {
-//
-//        Intent iGallery = new Intent(Intent.ACTION_PICK);
-//        iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        startActivityForResult(iGallery, IMAGE_PICKER_SELECT);
-//    }
-
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (resultCode == RESULT_OK) {
-//
-//            if (requestCode == IMAGE_PICKER_SELECT) {
-////                for gallery
-//
-//                dp.setImageURI(data.getData());
-//
-//            }
-//        }
-//
-//
-//    }
-
-//
-//    public void EventsCreators() {
-//        try {
-//            if (connectionDetector.isConnectingToInternet()) {
-//                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-//
-////                appController.paServices.CustomerRegister("0", "1", "12", "12", "123",
-////                        "123", "123", "12", "2", refreshedToken, new Callback<EventRegisterDM>() {
-////                            @Override
-////                            public void success(EventRegisterDM eventRegisterDM, Response response) {
-////                                progress.dismiss();
-////                                if (eventRegisterDM.getEventRegisterOutput().getMessage().equalsIgnoreCase("1")) {
-////
-////                                    startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
-////                                    finish();
-////
-////
-////                                } else
-////                                    Helper.showToast(SignUpActivity.this, eventRegisterDM.getEventRegisterOutput().getMessage());
-////
-////                            }
-////
-////                            @Override
-////                            public void failure(RetrofitError error) {
-////                                Log.e("String", error.toString());
-////                            }
-////                        });
-//            } else
-//                Helper.showToast(SignUpActivity.this, getString(R.string.no_internet_connection));
-//
-//        } catch (Exception e) {
-//            Log.e("String", e.toString());
-//        }
-//
-//    }
-
     boolean ifimg1 = true;
 
     public void EventsCreatorAPI() {
@@ -303,65 +241,43 @@ public class SignUpActivity extends AppCompatActivity {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
             multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
             multipartTypedOutput.addPart("devicetype", new TypedString("2"));
+            try {
+                if (ifimg1) {
+                    File f = new File(context.getCacheDir(), "temp.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) profile_RoundedImgView.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage = new Resizer(context)
+                            .setTargetLength(200)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image1")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage));
+                }
 
 
-//            if (ifimg1) {
-//                File f = new File(SignUpActivity.this.getCacheDir(), "temp1.jpg");
-//                try {
-//                    f.createNewFile();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                Bitmap one = ((BitmapDrawable) profileImg.getDrawable()).getBitmap();
-////Convert bitmap to byte array
-//                Bitmap bitmap = one;
-//                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-//                byte[] bitmapdata = bos.toByteArray();
-//
-////write the bytes in file
-//                FileOutputStream fos = null;
-//                try {
-//                    fos = new FileOutputStream(f);
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    fos.write(bitmapdata);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    fos.flush();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    fos.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                File resizedImage1 = null;
-//                try {
-//                    resizedImage1 = new Resizer(SignUpActivity.this)
-//                            .setTargetLength(200)
-//                            .setQuality(80)
-//                            .setOutputFormat("JPEG")
-//                            .setOutputFilename("resized_image2")
-//                            .setSourceImage(f)
-//                            .getResizedFile();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage1));
-//            }
+            } catch (Exception e) {
+                Log.e("Error", e.toString());
+            }
 
             appController.paServices.EventCreatorReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
                 @Override
                 public void success(EventRegisterDM eventRegisterDM, Response response) {
-                    if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
+                    if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                         user.setId(Integer.valueOf(eventRegisterDM.getOutput().getUserid()));
                         user.setEmail(emailET.getText().toString());
@@ -384,6 +300,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
+
                     Log.e("Error", error.toString());
                 }
             });
@@ -396,7 +313,6 @@ public class SignUpActivity extends AppCompatActivity {
         if (connectionDetector.isConnectingToInternet()) {
 
 
-//                progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
             multipartTypedOutput.addPart("fullname", new TypedString(nameET.getText().toString()));
@@ -407,16 +323,47 @@ public class SignUpActivity extends AppCompatActivity {
             multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
-//                multipartTypedOutput.addPart("countryid", new TypedString(country_spinnerET.getText().toString()));
+                multipartTypedOutput.addPart("countryid", new TypedString(countryId));
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
             multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
             multipartTypedOutput.addPart("devicetype", new TypedString("2"));
+            try {
+                if (ifimg1) {
+                    File f = new File(context.getCacheDir(), "temp.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) profile_RoundedImgView.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage = new Resizer(context)
+                            .setTargetLength(200)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image1")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage));
+
+                }
+
+
+            } catch (Exception e) {
+                Log.e("Error", e.toString());
+            }
 
             appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
                 @Override
                 public void success(EventRegisterDM eventRegisterDM, Response response) {
-//                        progress.dismiss();
-                    if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                     if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
                         user.setEmail(emailET.getText().toString());
 
@@ -436,8 +383,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Log.e("String", error.toString());
-//                        progress.dismiss();
+                     Log.e("String", error.toString());
                 }
             });
         } else
@@ -538,7 +484,7 @@ public class SignUpActivity extends AppCompatActivity {
 //                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(mobilecountryImg);
 
-                CountryId = data.get(position).getId();
+                countryId = data.get(position).getId();
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
 //                ) {
@@ -569,6 +515,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
                                 country_spinnerET.setText(data.get(0).getCallingcode());
                                 country_spinner_ET.setText(data.get(0).getCallingcode());
+                                countryId= data.get(0).getId();
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(mobilecountryImg);
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
                             }
@@ -587,7 +534,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void OpenImage() {
-        Dexter.withActivity(SignUpActivity.this)
+        Dexter.withActivity(((MainActivity) context))
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
@@ -615,16 +562,14 @@ public class SignUpActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
-
                 Uri uri = data.getParcelableExtra("path");
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(SignUpActivity.this.getContentResolver(), uri);
                     if (imgClicked == 1) {
-                        profileImg.setImageBitmap(bitmap);
+                        profile_RoundedImgView.setImageBitmap(bitmap);
                         ifimg1 = true;
-
-                    }
+                     }
                     // loading profile image from local cache
 
                 } catch (IOException e) {
@@ -697,6 +642,7 @@ public class SignUpActivity extends AppCompatActivity {
         builder.show();
 
     }
+
 
 
 }

@@ -89,7 +89,7 @@ public class ImagePickerActivity extends AppCompatActivity {
         builder.setTitle("Set image");
 
         // add a list
-        String[] animals = {"Take a video", "Choose from gallery"};
+        String[] animals = {"Take a image", "Choose from gallery"};
         builder.setItems(animals, (dialog, which) -> {
             switch (which) {
                 case 0:
@@ -113,8 +113,8 @@ public class ImagePickerActivity extends AppCompatActivity {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if (report.areAllPermissionsGranted()) {
-                            fileName = System.currentTimeMillis() + ".mp4";
-                            Intent takePictureIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                            fileName = System.currentTimeMillis() + ".jpg";
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, getCacheImagePath(fileName));
                             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);

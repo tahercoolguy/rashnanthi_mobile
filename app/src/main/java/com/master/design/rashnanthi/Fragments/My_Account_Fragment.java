@@ -2,6 +2,7 @@ package com.master.design.rashnanthi.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -46,6 +47,7 @@ import com.master.design.rashnanthi.DataModel.MyEventImageData;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
 import com.master.design.rashnanthi.DataModel.ProfilePictureRootDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
@@ -55,6 +57,7 @@ import com.squareup.picasso.Target;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -79,7 +82,8 @@ public class My_Account_Fragment extends Fragment {
     private Context context;
     ImageView my_accountImg;
     RelativeLayout add_new_event_RL, view_event_RL, change_password_RL, edit_profile_RL;
-
+    DialogUtil dialogUtil;
+    Dialog progress;
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
 
@@ -117,6 +121,7 @@ public class My_Account_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
+        dialogUtil = new DialogUtil();
 
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
@@ -195,7 +200,6 @@ public class My_Account_Fragment extends Fragment {
 
     @OnClick(R.id.edit_ProfileImg)
     public void ProfilePictureAPI() {
-        imgClicked = 1;
         OpenImage();
     }
 
@@ -203,14 +207,12 @@ public class My_Account_Fragment extends Fragment {
     public void EditProfileImageAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
-            String id = String.valueOf(user.getId());
-
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("userid", new TypedString(id));
+            multipartTypedOutput.addPart("userid", new TypedString(String.valueOf(user.getId())));
 
             try {
                 if (ifimg1) {
-                    File f = new File(getContext().getCacheDir(), "temp.jpg");
+                    File f = new File(context.getCacheDir(), "temp.jpg");
                     f.createNewFile();
 
                     Bitmap one = ((BitmapDrawable) my_account_Img.getDrawable()).getBitmap();
@@ -225,7 +227,7 @@ public class My_Account_Fragment extends Fragment {
                     fos.write(bitmapdata);
                     fos.flush();
                     fos.close();
-                    File resizedImage = new Resizer(getContext())
+                    File resizedImage = new Resizer(context)
                             .setTargetLength(200)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
@@ -239,12 +241,15 @@ public class My_Account_Fragment extends Fragment {
             } catch (Exception e) {
                 Log.e("Error", e.toString());
             }
-
+            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
             appController.paServices.ProfilePicture(multipartTypedOutput, new Callback<ProfilePictureRootDM>() {
                 @Override
                 public void success(ProfilePictureRootDM profilePictureRootDM, Response response) {
+                    progress.dismiss();
+
                     if (profilePictureRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
                         Helper.showToast(getActivity(), profilePictureRootDM.getOutput().getMessage());
                     } else
                         Helper.showToast(getActivity(), profilePictureRootDM.getOutput().getMessage());
@@ -252,6 +257,8 @@ public class My_Account_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
+
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -260,7 +267,6 @@ public class My_Account_Fragment extends Fragment {
             Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
     }
 
-
     public void MyProfileAPI() {
 
         if (connectionDetector.isConnectingToInternet()) {
@@ -268,6 +274,7 @@ public class My_Account_Fragment extends Fragment {
             appController.paServices.MyProfile(String.valueOf(user.getId()), new Callback<MyProfileRootDM>() {
                 @Override
                 public void success(MyProfileRootDM myProfileRootDM, Response response) {
+
                     if (myProfileRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                         account_NameTxt.setText(myProfileRootDM.getOutput().getData().get(0).getFullname());
@@ -284,6 +291,7 @@ public class My_Account_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
+
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -326,10 +334,11 @@ public class My_Account_Fragment extends Fragment {
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
-                    if (imgClicked == 1) {
-                        my_account_Img.setImageBitmap(bitmap);
-                        ifimg1 = true;
-                      }
+
+                    my_account_Img.setImageBitmap(bitmap);
+                    ifimg1 = true;
+                    EditProfileImageAPI();
+
                     // loading profile image from local cache
 
                 } catch (IOException e) {

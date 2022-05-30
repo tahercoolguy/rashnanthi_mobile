@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.DataModel.SocialMediaDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -40,6 +42,9 @@ public class Social_Media_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
+    DialogUtil dialogUtil;
+    Dialog progress;
+
     ImageView social_media_menu;
     RelativeLayout instaRL;
     RelativeLayout whatsappRl;
@@ -75,11 +80,12 @@ public class Social_Media_Fragment extends Fragment {
     public void SocialMediaLink() {
 
         if (connectionDetector.isConnectingToInternet()) {
-
+            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
             appController.paServices.SocialMedia(new Callback<SocialMediaDM>() {
                 @Override
 
                 public void success(SocialMediaDM socialMediaDM, Response response) {
+                    progress.dismiss();
                     if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                         if (ifinsta) {
@@ -216,6 +222,7 @@ public class Social_Media_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -232,7 +239,7 @@ public class Social_Media_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
-
+        dialogUtil = new DialogUtil();
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));

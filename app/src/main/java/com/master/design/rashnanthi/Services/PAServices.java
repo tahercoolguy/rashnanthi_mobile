@@ -144,31 +144,33 @@ public interface PAServices {
                              Callback<SummaryForPaidEventRootDM> summaryForPaidEventRootDMCallback);
 
     //19                      coachcrator , paynow ,video add functionality not now availaible
-    @FormUrlEncoded
+    @Headers("Cache-Control: no-cache;")
     @POST("/editevent")
     void EditEvent(@Body MultipartTypedOutput multipartTypedOutput, Callback<EditEventRootDM> editEventRootDMCallback);
 
-    //20                        done                   but i dont know where to implement it
+    //20                        done
     @FormUrlEncoded
     @POST("/eventdetails")
     void EventDetails(@Field("eventid") String eventid,
                       Callback<EventsDetailsRootDM> eventsDetailsRootDMCallback);
+
     //21                                             i dont know where to implement it
-    @FormUrlEncoded
+    @Headers("Cache-Control: no-cache;")
     @POST("/confirmevent")
     void ConfirmEvent(@Field("eventid") String eventid,
                       Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
 
     //22       done
-    @FormUrlEncoded
+    @Headers("Cache-Control: no-cache;")
     @POST("/deletevent")
     void DeletEvent(@Field("eventid") String eventid,
                     Callback<DeleteEventRootDM> deleteEventRootDMCallback);
 
-    //23          done                      but pic does not uploading on server
-    @FormUrlEncoded
+//    23          done
+    @Headers("Cache-Control: no-cache;")
     @POST("/profilepicture")
     void ProfilePicture(@Body MultipartTypedOutput multipartTypedOutput, Callback<ProfilePictureRootDM> profilePictureRootDMCallback);
+
 
 
 //    @Headers("Cache-Control: no-cache;")

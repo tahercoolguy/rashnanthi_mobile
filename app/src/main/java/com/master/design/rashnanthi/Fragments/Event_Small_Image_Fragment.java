@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
+import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
 import com.master.design.rashnanthi.Adapter.SliderAdapter;
@@ -101,7 +103,8 @@ public class Event_Small_Image_Fragment extends Fragment {
             i.setData(Uri.parse(url));
             context.startActivity(i);
         } catch (PackageManager.NameNotFoundException e) {
-            Toast.makeText(context, "Whatsapp app not installed in your phone", Toast.LENGTH_LONG).show();
+             Helper.showToast(context, "Whatsapp app not installed in your phone");
+
             e.printStackTrace();
         }
     }
@@ -132,8 +135,9 @@ public class Event_Small_Image_Fragment extends Fragment {
             Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + Website));
             startActivity(myIntent);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, "No application can handle this request."
-                    + " Please install a web browser", Toast.LENGTH_LONG).show();
+
+            Helper.showToast(context, "No application can handle this request."
+                    + " Please install a web browser");
             e.printStackTrace();
         }
     }
@@ -145,7 +149,9 @@ public class Event_Small_Image_Fragment extends Fragment {
             intent.setPackage("com.snapchat.android");
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(context, "Snapchat app not installed in your phone", Toast.LENGTH_LONG).show();
+            Helper.showToast(context, "Snapchat app not installed in your phone");
+
+
             e.printStackTrace();
         }
     }
@@ -238,12 +244,10 @@ public class Event_Small_Image_Fragment extends Fragment {
     public void EventDetailsAPI() {
 
         if (connectionDetector.isConnectingToInternet()) {
-            dialog = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
-            appController.paServices.EventDetails("15", new Callback<EventsDetailsRootDM>() {
+             appController.paServices.EventDetails("15", new Callback<EventsDetailsRootDM>() {
                 @Override
                 public void success(EventsDetailsRootDM eventsDetailsRootDM, Response response) {
-                    dialog.dismiss();
-                    if (eventsDetailsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                     if (eventsDetailsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                         Instagram = eventsDetailsRootDM.getOutput().getData().get(0).getInstagram();
                         Whatsapp = eventsDetailsRootDM.getOutput().getData().get(0).getWhatsapnumber();
@@ -285,7 +289,7 @@ public class Event_Small_Image_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
-                    dialog.dismiss();
+                     Log.e("String", retrofitError.toString());
 
                 }
             });
