@@ -18,17 +18,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
+import com.master.design.rashnanthi.Adapter.Adapter_Coach__grid_Fgmt;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.DataModel.GetAllCoachesWithPostsRootDM;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.ResponseListener;
 import com.master.design.rashnanthi.R;
@@ -46,6 +49,8 @@ import it.sephiroth.android.library.widget.HListView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.mime.MultipartTypedOutput;
+import retrofit.mime.TypedString;
 
 public class Coach_Fragment extends Fragment {
 
@@ -277,6 +282,55 @@ public class Coach_Fragment extends Fragment {
         }
         return rootView;
     }
+
+
+
+
+    public void GetAllCoachesWithPosts(){
+
+        if (connectionDetector.isConnectingToInternet()) {
+
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("countryid", new TypedString("1"));
+
+
+            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput,new Callback<GetAllCoachesWithPostsRootDM>() {
+                @Override
+                public void success(GetAllCoachesWithPostsRootDM getAllCoachesWithPostsRootDM, Response response) {
+                    if (getAllCoachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+
+//                        ImageRecyclerAdapter imageRecyclerAdapter = new ImageRecyclerAdapter(context);
+//                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//                        coach_Rcv.setLayoutManager(linearLayoutManager);
+//                        coach_Rcv.setHasFixedSize(true);
+//                        coach_Rcv.setAdapter(imageRecyclerAdapter);
+//                        adapter.notifyDataSetChanged();
+
+//                        mList=new ArrayList<>();
+//                        //get data from backend
+//                        mList.add("one");
+//                        mList.add("two");
+//                        mList.add("three");
+//                        adapter =new ImageRecyclerAdapter(mList,getContext());
+//                        coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
+//                        coach_Rcv.setHasFixedSize(true);
+//                        coach_Rcv.setAdapter(adapter);
+//                        adapter.notifyDataSetChanged();
+
+                    } else
+                        Helper.showToast(getActivity(), "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("String", error.toString());
+                }
+            });
+        }
+    }
+
+
 
 
     BottomForAll bottomForAll;

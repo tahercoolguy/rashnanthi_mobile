@@ -121,12 +121,12 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if (coachcreator!=null) {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("chirag2", coachcreator);
+                                    intent.putExtra("CoachCreator", coachcreator);
                                     startActivity(intent);
                                     finish();
                                 } else if (eventcreator!=null) {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("chirag1", eventcreator);
+                                    intent.putExtra("EventCreator", eventcreator);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -243,12 +243,12 @@ public class LoginActivity extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(LoginActivity.this);
-//        eventcreator = getIntent().getStringExtra("EventCreator");
-//        coachcreator = getIntent().getStringExtra("CoachCreator");
+        eventcreator = getIntent().getStringExtra("EventCreator");
+        coachcreator = getIntent().getStringExtra("CoachCreator");
         dialogUtil = new DialogUtil();
         Binding();
-        eventcreator = getIntent().getStringExtra("chirag1");
-        coachcreator = getIntent().getStringExtra("chirag2");
+//        eventcreator = getIntent().getStringExtra("chirag1");
+//        coachcreator = getIntent().getStringExtra("chirag2");
 
 //        ArrayList<Country_CodeDM> country_codeDMS;
 //        country_codeDMS = new ArrayList<>();

@@ -7,6 +7,7 @@ package com.master.design.rashnanthi.Services;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.DataModel.AddEventByCreatorRootDM;
 import com.master.design.rashnanthi.DataModel.ChangePasswordRootDM;
+import com.master.design.rashnanthi.DataModel.CoachRegisterDM;
 import com.master.design.rashnanthi.DataModel.ConfirmEventRootDM;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.DeleteEventOutput;
@@ -15,6 +16,7 @@ import com.master.design.rashnanthi.DataModel.EditEventRootDM;
 import com.master.design.rashnanthi.DataModel.EventRegisterDM;
 import com.master.design.rashnanthi.DataModel.EventsDetailsRootDM;
 import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
+import com.master.design.rashnanthi.DataModel.GetAllCoachesWithPostsRootDM;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
@@ -72,7 +74,7 @@ public interface PAServices {
     //8          someproblem,imageupload,coach 1-2 transfer
     @Headers("Cache-Control: no-cache;")
     @POST("/coachreg")
-    void CoachReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
+    void CoachReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterDMCallback);
 
     //9         done
     @FormUrlEncoded
@@ -170,6 +172,12 @@ public interface PAServices {
     @Headers("Cache-Control: no-cache;")
     @POST("/profilepicture")
     void ProfilePicture(@Body MultipartTypedOutput multipartTypedOutput, Callback<ProfilePictureRootDM> profilePictureRootDMCallback);
+
+
+//    24
+    @Headers("Cache-Control: no-cache;")
+    @POST("/getallcoacheswithposts")
+    void GetAllCoachesWithPosts(@Body MultipartTypedOutput multipartTypedOutput, Callback<GetAllCoachesWithPostsRootDM> getAllCoachesWithPostsRootDMCallback);
 
 
 

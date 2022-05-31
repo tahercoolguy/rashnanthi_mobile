@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -61,6 +62,30 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
 //            public void onPageScrollStateChanged(int state) {
 //            }
 //        });
+
+
+        holder.whatsapp_IMg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.snapchaht_Img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.insta_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
     }
 
     private void addBottomDots(int currentPage, TextView[] dots, ViewHolder holder) {
@@ -89,11 +114,18 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
         SliderPagerAdapter sliderPagerAdapter;
         private TextView[] dots;
         private LinearLayout ll_dots;
+        ImageView whatsapp_IMg,insta_img,snapchaht_Img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mViewPager = itemView.findViewById(R.id.vp_slider);
             ll_dots = itemView.findViewById(R.id.ll_dots);
+            whatsapp_IMg=itemView.findViewById(R.id.whatsapp_IMg);
+            insta_img=itemView.findViewById(R.id.insta_img);
+            snapchaht_Img=itemView.findViewById(R.id.snapchaht_Img);
+
+
+
 //            mName = itemView.findViewById(R.id.list_name);
             slider_image_list = new ArrayList<>();
             slider_image_list.add("https://oi65.photobucket.com/albums/h214/L_The_Legend/DeathNoteS01E09E.png");

@@ -63,10 +63,10 @@ public class VerifyActivity extends AppCompatActivity {
         connectionDetector = new ConnectionDetector(getApplicationContext());
         mobile = getIntent().getStringExtra("mobile");
 
-//        eventcreator = getIntent().getStringExtra("EventCreator");
-//        coachcreator = getIntent().getStringExtra("CoachCreator");
-        eventcreator = getIntent().getStringExtra("chirag1");
-        coachcreator = getIntent().getStringExtra("chirag2");
+        eventcreator = getIntent().getStringExtra("EventCreator");
+        coachcreator = getIntent().getStringExtra("CoachCreator");
+//        eventcreator = getIntent().getStringExtra("chirag1");
+//        coachcreator = getIntent().getStringExtra("chirag2");
 
         user = new User(VerifyActivity.this);
 
@@ -110,13 +110,15 @@ public class VerifyActivity extends AppCompatActivity {
 
                         if(eventcreator=="1"){
                             Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
-                            intent.putExtra("chirag1",eventcreator);
+                            intent.putExtra("EventCreator",eventcreator);
                             startActivity(intent);
+                            finish();
 
                         }else if(coachcreator=="2"){
                             Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
-                            intent.putExtra("chirag2", coachcreator);
+                            intent.putExtra("CoachCreator", coachcreator);
                             startActivity(intent);
+                            finish();
                         }
 
 //                        if(eventcreator.equalsIgnoreCase("1")){

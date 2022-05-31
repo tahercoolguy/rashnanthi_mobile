@@ -1,6 +1,7 @@
 package com.master.design.rashnanthi.Activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -36,6 +37,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Code_Only_Spinner;
 import com.master.design.rashnanthi.Adapter.Adapter_Country_Name_Spinner;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CoachRegisterDM;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.Country_CodeDM;
@@ -124,15 +126,17 @@ public class SignUpActivity extends AppCompatActivity {
 
     //    Spinner country_name_spinner, mobile_countrycode_Sp, wtsap_countrycode_Sp;
 
-    ImageView   cameraImg, back_from_register_page;
+    ImageView cameraImg, back_from_register_page;
 
 //    ImageView back_from_register_page;
 
     LinearLayout testing, testing1;
-    TextView event, coach, nameET, emailET, passwordET, confirm_passwordET;
+    TextView event, coach;
+    EditText passwordET, confirm_passwordET;
     Button register_NowBtn;
-    EditText snap_id_ET, insta_id_ET, mobileET;
+    EditText snap_id_ET, insta_id_ET, mobile__ET, emailET, nameET, mobileET;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,15 +171,15 @@ public class SignUpActivity extends AppCompatActivity {
         event = findViewById(R.id.eventTxt);
         coach = findViewById(R.id.coachTxt);
         register_NowBtn = findViewById(R.id.register_NowBtn);
-         cameraImg = findViewById(R.id.cameraImg);
+        cameraImg = findViewById(R.id.cameraImg);
         nameET = findViewById(R.id.nameET);
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
         confirm_passwordET = findViewById(R.id.confirm_passwordET);
         snap_id_ET = findViewById(R.id.snap_id_ET);
         insta_id_ET = findViewById(R.id.insta_id_ET);
+        mobile__ET = findViewById(R.id.mobile__ET);
         mobileET = findViewById(R.id.mobileET);
-
         VisibilityFunction();
 
 
@@ -196,7 +200,6 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ifCoach = false;
-
                 VisibilityFunction();
             }
         });
@@ -217,6 +220,7 @@ public class SignUpActivity extends AppCompatActivity {
         cameraImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                img1Sel=true;
                 OpenImage();
             }
         });
@@ -224,8 +228,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    boolean ifimg1 = true;
-
+    boolean img1Sel = false;
     public void EventsCreatorAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
@@ -241,9 +244,11 @@ public class SignUpActivity extends AppCompatActivity {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
             multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
             multipartTypedOutput.addPart("devicetype", new TypedString("2"));
+
+
             try {
-                if (ifimg1) {
-                    File f = new File(context.getCacheDir(), "temp.jpg");
+                if (img1Sel) {
+                    File f = new File(SignUpActivity.this.getCacheDir(), "temp.jpg");
                     f.createNewFile();
 
                     Bitmap one = ((BitmapDrawable) profile_RoundedImgView.getDrawable()).getBitmap();
@@ -258,7 +263,7 @@ public class SignUpActivity extends AppCompatActivity {
                     fos.write(bitmapdata);
                     fos.flush();
                     fos.close();
-                    File resizedImage = new Resizer(context)
+                    File resizedImage = new Resizer(SignUpActivity.this)
                             .setTargetLength(200)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
@@ -267,7 +272,6 @@ public class SignUpActivity extends AppCompatActivity {
                             .getResizedFile();
                     multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage));
                 }
-
 
             } catch (Exception e) {
                 Log.e("Error", e.toString());
@@ -300,7 +304,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
-
                     Log.e("Error", error.toString());
                 }
             });
@@ -320,16 +323,18 @@ public class SignUpActivity extends AppCompatActivity {
             multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
             multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
             multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
-            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
+            multipartTypedOutput.addPart("countrycode", new TypedString("965"));
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
-                multipartTypedOutput.addPart("countryid", new TypedString(countryId));
+            multipartTypedOutput.addPart("countryid", new TypedString(countryId));
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
             multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
             multipartTypedOutput.addPart("devicetype", new TypedString("2"));
+
+
             try {
-                if (ifimg1) {
-                    File f = new File(context.getCacheDir(), "temp.jpg");
+                if (img1Sel) {
+                    File f = new File(SignUpActivity.this.getCacheDir(), "temp.jpg");
                     f.createNewFile();
 
                     Bitmap one = ((BitmapDrawable) profile_RoundedImgView.getDrawable()).getBitmap();
@@ -344,7 +349,7 @@ public class SignUpActivity extends AppCompatActivity {
                     fos.write(bitmapdata);
                     fos.flush();
                     fos.close();
-                    File resizedImage = new Resizer(context)
+                    File resizedImage = new Resizer(SignUpActivity.this)
                             .setTargetLength(200)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
@@ -352,18 +357,15 @@ public class SignUpActivity extends AppCompatActivity {
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("image", new TypedFile("image/jpg", resizedImage));
-
                 }
-
 
             } catch (Exception e) {
                 Log.e("Error", e.toString());
             }
-
             appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
                 @Override
                 public void success(EventRegisterDM eventRegisterDM, Response response) {
-                     if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                    if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
                         user.setEmail(emailET.getText().toString());
 
@@ -383,7 +385,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
-                     Log.e("String", error.toString());
+                    Log.e("String", error.toString());
                 }
             });
         } else
@@ -515,7 +517,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
                                 country_spinnerET.setText(data.get(0).getCallingcode());
                                 country_spinner_ET.setText(data.get(0).getCallingcode());
-                                countryId= data.get(0).getId();
+                                countryId = data.get(0).getId();
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(mobilecountryImg);
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
                             }
@@ -534,7 +536,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void OpenImage() {
-        Dexter.withActivity(((MainActivity) context))
+        Dexter.withActivity( SignUpActivity.this)
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
@@ -557,7 +559,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     int imgClicked;
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE) {
@@ -566,10 +567,11 @@ public class SignUpActivity extends AppCompatActivity {
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(SignUpActivity.this.getContentResolver(), uri);
-                    if (imgClicked == 1) {
+
+
                         profile_RoundedImgView.setImageBitmap(bitmap);
-                        ifimg1 = true;
-                     }
+                        img1Sel=true;
+
                     // loading profile image from local cache
 
                 } catch (IOException e) {
@@ -612,7 +614,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     int REQUEST_IMAGE = 999;
-
     private void launchGalleryIntent() {
         Intent intent = new Intent(SignUpActivity.this, ImagePickerActivity.class);
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
@@ -623,6 +624,7 @@ public class SignUpActivity extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
         startActivityForResult(intent, REQUEST_IMAGE);
     }
+
 
 
     /**
@@ -642,9 +644,6 @@ public class SignUpActivity extends AppCompatActivity {
         builder.show();
 
     }
-
-
-
 }
 
 

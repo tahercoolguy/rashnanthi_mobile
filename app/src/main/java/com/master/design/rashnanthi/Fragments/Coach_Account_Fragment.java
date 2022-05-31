@@ -161,20 +161,51 @@ public class Coach_Account_Fragment extends Fragment {
             });
 
             setDetails();
-
+            MyProfileAPI();
 
         }
         return rootView;
+    }
+
+    public void MyProfileAPI() {
+
+        if (connectionDetector.isConnectingToInternet()) {
+
+            appController.paServices.MyProfile(String.valueOf(user.getId()), new Callback<MyProfileRootDM>() {
+                @Override
+                public void success(MyProfileRootDM myProfileRootDM, Response response) {
+
+                    if (myProfileRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                        account_NameTxt.setText(myProfileRootDM.getOutput().getData().get(0).getFullname());
+                        Picasso.get().load(AppController.base_image_url + myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into(my_account_Img);
+
+
+//                         Picasso.get().load(myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into((ImageView) rootView.findViewById(R.id.profileImg));
+
+
+                    } else
+                        Helper.showToast(getActivity(), "something wrong");
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
     }
 
     boolean ifimg1 = false;
 
     @OnClick(R.id.edit_ProfileImg)
     public void ProfilePictureAPI() {
-
-        imgClicked = 1;
+        ifimg1 = true;
         OpenImage();
-     }
+    }
 
 
     public void EditProfileImageAPI() {
@@ -214,7 +245,7 @@ public class Coach_Account_Fragment extends Fragment {
             } catch (Exception e) {
                 Log.e("Error", e.toString());
             }
-            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
+            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
 
             appController.paServices.ProfilePicture(multipartTypedOutput, new Callback<ProfilePictureRootDM>() {
                 @Override
@@ -241,8 +272,6 @@ public class Coach_Account_Fragment extends Fragment {
     }
 
 
-
-
     public void OpenImage() {
         Dexter.withActivity(((MainActivity) context))
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -265,8 +294,6 @@ public class Coach_Account_Fragment extends Fragment {
                 }).check();
     }
 
-    int imgClicked;
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -276,12 +303,11 @@ public class Coach_Account_Fragment extends Fragment {
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
-                    if (imgClicked == 1) {
-                        my_account_Img.setImageBitmap(bitmap);
-                        ifimg1 = true;
 
-                        ProfilePictureAPI();
-                    }
+                    my_account_Img.setImageBitmap(bitmap);
+                    ifimg1 = true;
+                    EditProfileImageAPI();
+
                     // loading profile image from local cache
 
                 } catch (IOException e) {

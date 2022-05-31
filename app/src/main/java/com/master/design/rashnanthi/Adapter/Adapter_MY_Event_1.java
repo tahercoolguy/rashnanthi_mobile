@@ -105,7 +105,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             public void onClick(View v) {
                 if (connectionDetector.isConnectingToInternet()) {
 
-                    appController.paServices.DeletEvent(myEventData.get(position).getId(), new Callback<DeleteEventRootDM>() {
+                    appController.paServices.DeletEvent(myEventData.get(0).getId(), new Callback<DeleteEventRootDM>() {
                         @Override
                         public void success(DeleteEventRootDM deleteEventRootDM, Response response) {
                             if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {

@@ -2,7 +2,7 @@ package com.master.design.rashnanthi.DataModel;
 
 import java.util.ArrayList;
 
-public class EventRegisterOutput {
+public class CoachRegisterOutput {
     private String creatorcoach;
     private String success;
     private String countrycode;
