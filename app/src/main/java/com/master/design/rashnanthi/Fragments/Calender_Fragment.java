@@ -30,6 +30,7 @@ import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.ResponseListener;
 import com.master.design.rashnanthi.R;
@@ -49,10 +50,13 @@ import it.sephiroth.android.library.widget.HListView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.mime.MultipartTypedOutput;
+import retrofit.mime.TypedString;
 
 public class Calender_Fragment extends Fragment {
 
 
+    long EventDate;
     private View rootView;
     private Context context;
     ImageView home_menu;
@@ -113,7 +117,7 @@ public class Calender_Fragment extends Fragment {
             ButterKnife.bind(this, rootView);
             Binding();
 
-             //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
+            //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
             backmonthImg = rootView.findViewById(R.id.backmonthImg);
             aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
             story_viewer = rootView.findViewById(R.id.story_viewer);
@@ -153,57 +157,10 @@ public class Calender_Fragment extends Fragment {
             });
 
 
-
-
-            ArrayList<County_ItemDM> county_itemDMS;
-
-
-            county_itemDMS = new ArrayList<>();
-            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
-
-            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwaitttttt));
-            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
-            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
-            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
-            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
-            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwaitttttt));
-            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
-            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
-            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
-            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
-            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-
-
-//            Adapter_Spin adapter_country_spinner;
-//            adapter_country_spinner = new Adapter_Spin(context, county_itemDMS);
-//            calender_page_country_spinner.setAdapter(adapter_country_spinner);
-
-
-//            calender_page_country_spinner.setOnItemSelectedListener(
-//                    new AdapterView.OnItemSelectedListener() {
-//                        @Override
-//                        public void onItemSelected(AdapterView<?> parent,
-//                                                   View view, int position, long id)
-//                        {
-//
-//                            // It returns the clicked item.
-//                            County_ItemDM clickedItem = (County_ItemDM)
-//                                    parent.getItemAtPosition(position);
-//                            String name = clickedItem.getMcountryName();
-////                            Toast.makeText(MainActivity.this, name + " selected", Toast.LENGTH_SHORT).show();
-//                        }
-//                        @Override
-//                        public void onNothingSelected(AdapterView<?> parent)
-//                        {
-//                        }
-//                    });
-
-
             compactCalendar = (CompactCalendarView) rootView.findViewById(R.id.compactcalendar_view);
             compactCalendar.setUseThreeLetterAbbreviation(true);
 
-//         compactCalendar.setCurrentSelectedDayBackgroundColor(Color.RED);
+            compactCalendar.setCurrentSelectedDayBackgroundColor(Color.RED);
 
             SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
             Date date = new Date();
@@ -226,10 +183,16 @@ public class Calender_Fragment extends Fragment {
             String ma = month_date.format(cal.getTime());
             moth_year_txt.setText(ma);
 
+//            String s="1654108200000";
+//            long l=Long.parseLong(s);
+//
+//            Event ev1 = new Event(Color.YELLOW, l, "Event 1");
+//            compactCalendar.addEvent(ev1);
+
 
             Event ev1 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
             compactCalendar.addEvent(ev1);
-
+//
             compactCalendar.setTargetHeight(700);
 
 
@@ -237,6 +200,43 @@ public class Calender_Fragment extends Fragment {
                 @Override
                 public void onDayClick(Date dateClicked) {
                     appController = (AppController) getActivity().getApplicationContext();
+
+
+//                    if (connectionDetector.isConnectingToInternet()) {
+//
+//                        MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+//                        multipartTypedOutput.addPart("countryid", new TypedString("1"));
+//                        multipartTypedOutput.addPart("date", new TypedString("2022-06-02"));
+//
+//
+//                        appController.paServices.GetEventsByCountryDate(multipartTypedOutput, new Callback<GetEventsByCountryDateRootDM>() {
+//                            @Override
+//                            public void success(GetEventsByCountryDateRootDM getEventsByCountryDateRootDM, Response response) {
+//                                if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//
+//                                    Event ev1 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
+//                                    compactCalendar.addEvent(ev1);
+//
+//                                    if (calendar.getTimeInMillis()!= 0) {
+//
+//                                        ((MainActivity) context).addFragment(new Event_Small_Image_Fragment(), true);
+//
+//                                    } else {
+//                                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+//
+//                                    }
+//
+//                                } else
+//                                    Helper.showToast(getActivity(), "Some network happened ..");
+//                            }
+//
+//                            @Override
+//                            public void failure(RetrofitError error) {
+//                                Log.e("String", error.toString());
+//                            }
+//                        });
+//                    }
+
                     if (calendar.getTimeInMillis() != 0) {
 
                         ((MainActivity) context).addFragment(new Event_Small_Image_Fragment(), true);
@@ -270,6 +270,34 @@ public class Calender_Fragment extends Fragment {
     }
 
 
+    public void GeteventsbyCountryDateAPI() {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("countryid", new TypedString("1"));
+            multipartTypedOutput.addPart("date", new TypedString("2022-06-02"));
+
+
+            appController.paServices.GetEventsByCountryDate(multipartTypedOutput, new Callback<GetEventsByCountryDateRootDM>() {
+                @Override
+                public void success(GetEventsByCountryDateRootDM getEventsByCountryDateRootDM, Response response) {
+                    if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+//                        EventDate = getEventsByCountryDateRootDM.getOutput().getData().get(0).getEventdate();
+
+
+                    } else
+                        Helper.showToast(getActivity(), "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("String", error.toString());
+                }
+            });
+        }
+    }
+
 
     BottomForAll bottomForAll;
 
@@ -288,7 +316,7 @@ public class Calender_Fragment extends Fragment {
             public void response(int position, Object object) {
 
                 country_spinner_Txt.setText(data.get(position).getTitle());
-                Picasso.get().load(AppController.base_image_url +data.get(position).getImage()).into(countryImg);
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
 
 //                countryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
 //                AreaID = data.get(selected).getId();
@@ -305,7 +333,6 @@ public class Calender_Fragment extends Fragment {
 
         bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
     }
-
 
 
     ArrayList<CountryData> data = new ArrayList<>();

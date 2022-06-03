@@ -1,15 +1,12 @@
 package com.master.design.rashnanthi.DataModel;
 
-import java.util.ArrayList;
-
-public class GetAllCoachesWithPostsOutputData {
+public class GetEventsByCountryDateData {
     private String date;
     private String image;
     private String whatsapcountrycode;
     private String website;
     private String payorfree;
     private String whatsapnumber;
-    private ArrayList<GetAllCoachesWithPostsOutputDataImageData> imagedata;
     private String instagram;
     private String eventdate;
     private String postedby;
@@ -91,18 +88,6 @@ public class GetAllCoachesWithPostsOutputData {
     public void setWhatsapnumber(String whatsapnumber) {
 
         this.whatsapnumber = whatsapnumber;
-
-    }
-
-    public ArrayList<GetAllCoachesWithPostsOutputDataImageData> getImagedata() {
-
-        return imagedata;
-
-    }
-
-    public void setImagedata(ArrayList<GetAllCoachesWithPostsOutputDataImageData> imagedata) {
-
-        this.imagedata = imagedata;
 
     }
 

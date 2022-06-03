@@ -28,6 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -95,8 +96,14 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.country_spinnerET)
     TextView country_spinnerET;
 
+    @BindView(R.id.country_spinner_ET)
+    TextView whatsapp_country_spinner_ET;
+
     @BindView(R.id.country_Img)
     ImageView country_Img;
+
+    @BindView(R.id.wtspcountryImg)
+    ImageView wtspcountryImg;
 
 
     @BindView(R.id.mobilecountryImg)
@@ -114,8 +121,8 @@ public class SignUpActivity extends AppCompatActivity {
     RelativeLayout spinnerCountryBottomRL;
 
 
-    @BindView(R.id.country_spinner_ET)
-    TextView country_spinner_ET;
+//    @BindView(R.id.country_spinner_ET)
+//    TextView country_spinner_ET;
 
     @BindView(R.id.country_spinner_Txt)
     TextView country_spinner_Txt;
@@ -132,7 +139,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     LinearLayout testing, testing1;
     TextView event, coach;
-    EditText passwordET, confirm_passwordET;
+     TextInputEditText passwordET, confirm_passwordET;
     Button register_NowBtn;
     EditText snap_id_ET, insta_id_ET, mobile__ET, emailET, nameET, mobileET;
 
@@ -181,6 +188,9 @@ public class SignUpActivity extends AppCompatActivity {
         mobile__ET = findViewById(R.id.mobile__ET);
         mobileET = findViewById(R.id.mobileET);
         VisibilityFunction();
+
+
+
 
 
 //                Intent i = new Intent(getApplicationContext(),Menu_1_Fragment.class);
@@ -323,7 +333,7 @@ public class SignUpActivity extends AppCompatActivity {
             multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
             multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
             multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
-            multipartTypedOutput.addPart("countrycode", new TypedString("965"));
+            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
             multipartTypedOutput.addPart("countryid", new TypedString(countryId));
@@ -427,7 +437,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                country_spinner_ET.setText(data.get(position).getCallingcode());
+                whatsapp_country_spinner_ET.setText(data.get(position).getCallingcode());
+                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(wtspcountryImg);
 
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
@@ -516,9 +527,10 @@ public class SignUpActivity extends AppCompatActivity {
                             approvalOne.add(area);
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
                                 country_spinnerET.setText(data.get(0).getCallingcode());
-                                country_spinner_ET.setText(data.get(0).getCallingcode());
+                                whatsapp_country_spinner_ET.setText(data.get(0).getCallingcode());
                                 countryId = data.get(0).getId();
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(mobilecountryImg);
+                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(wtspcountryImg);
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
                             }
                         }

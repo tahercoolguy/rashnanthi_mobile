@@ -89,10 +89,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1, image2, date, eventid, snapchat,instagram,wtsapcode,wtsapnumber,website,impcountry,creatorcoach,payorfree,status,postedby;
+    String image1, image2, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
 
     MyEventData myEventData1;
-    String CountryId;
+    String CountryId, Free, Paid;
 
     @NotEmpty
     @BindView(R.id.dateTxt)
@@ -170,6 +170,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     ImageView country_Img1;
 
     @NotEmpty
+    @BindView(R.id.termsRB)
+    RadioButton termsRB;
+
+    @NotEmpty
     @BindView(R.id.spinnerCountryBottomRL1)
     RelativeLayout spinnerCountryBottomRL1;
 
@@ -195,11 +199,16 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
+        ifpaid = true;
+        Paid = "2";
+        if (status != null) {
+            Paid.equalsIgnoreCase("2");
 
-        if(status!=null){
             EditAddEventCreatorAPI();
 
-        }else{
+        } else {
+            Paid.equalsIgnoreCase("2");
+
             AddEventByCreatorAPI();
         }
 
@@ -209,11 +218,17 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @OnClick(R.id.continue_Btn)
     public void Continue() {
-
-        if(status!=null){
+        iffree = true;
+        Free = "1";
+        if (status != null) {
+            continue_Btn.setText(getString(R.string.edit_event));
+            Free.equalsIgnoreCase("1");
             EditAddEventCreatorAPI();
 
-        }else{
+        } else {
+            Free.equalsIgnoreCase("1");
+
+            continue_Btn.setText(getString(R.string.continuee));
             AddEventByCreatorAPI();
         }
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
@@ -221,10 +236,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @OnClick(R.id.post_for_free_nowBtn)
     public void PostForFreeNow() {
-
-        if(status!=null){
+        iffree = true;
+        Free = "1";
+        if (status != null) {
+            Free.equalsIgnoreCase("1");
             EditAddEventCreatorAPI();
-        }else{
+        } else {
+            Free.equalsIgnoreCase("1");
             AddEventByCreatorAPI();
         }
     }
@@ -254,6 +272,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         Binding();
         DataGetFromAdapterIntent();
 
+
         ad_more_eventtLL = findViewById(R.id.ad_more_eventtLL);
         your_post_will_beTXt = findViewById(R.id.your_post_will_beTXt);
         website_LL = findViewById(R.id.website_LL);
@@ -281,7 +300,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
         ad_more_eventtLL.setVisibility(View.GONE);
         your_post_will_beTXt.setVisibility(View.GONE);
-        continue_Btn.setVisibility(View.GONE);
+        if (status == null) {
+            continue_Btn.setVisibility(View.GONE);
+
+        }
         NotificationVisibilityFunction1();
     }
 
@@ -308,6 +330,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     boolean iffree = false;
     boolean ifpaid = false;
+    boolean ifTermsClicked = false;
 
 //    String Date = dateTxt.getText().toString();
 //    String WhatsappCode = wtspcodeTxt.getText().toString();
@@ -317,15 +340,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //    String WebSite = wesite_ET.getText().toString();
 
 
+    public void DataGetFromAdapterIntent() {
 
-
-    public  void DataGetFromAdapterIntent(){
-
-        wtsapcode=getIntent().getStringExtra("whatsappcountrycode");
-        wtsapnumber=getIntent().getStringExtra("whatsappnumber");
-        instagram=getIntent().getStringExtra("instagram");
-         website=getIntent().getStringExtra("website");
-        impcountry=getIntent().getStringExtra("countries");
+        wtsapcode = getIntent().getStringExtra("whatsappcountrycode");
+        wtsapnumber = getIntent().getStringExtra("whatsappnumber");
+        instagram = getIntent().getStringExtra("instagram");
+        website = getIntent().getStringExtra("website");
+        impcountry = getIntent().getStringExtra("countries");
         creatorcoach = getIntent().getStringExtra("creatorcoach");
         payorfree = getIntent().getStringExtra("payorfree");
         status = getIntent().getStringExtra("status");
@@ -353,24 +374,40 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         if (snapchat != null) {
 
             snap_ET.setText(snapchat);
-        }if (instagram != null) {
+        }
+        if (instagram != null) {
 
             insta_ET.setText(instagram);
-        }if (wtsapcode != null) {
+        }
+        if (wtsapcode != null) {
 
             wtspcodeTxt.setText(wtsapcode);
-        }if (wtsapnumber != null) {
+        }
+        if (wtsapnumber != null) {
 
             mobile__ET.setText(wtsapnumber);
-        }if (website != null) {
+        }
+        if (website != null) {
 
             wesite_ET.setText(website);
-        }if (impcountry != null) {
+        }
+        if (impcountry != null) {
 
             country_spinner_Txt.setText(impcountry);
         }
-    }
+        if (status != null) {
+            continue_Btn.setVisibility(View.VISIBLE);
+            continue_Btn.setText(getString(R.string.edit_event));
+            pay_now_Btn.setVisibility(View.GONE);
+            post_for_free_nowBtn.setVisibility(View.GONE);
+        } else {
+            continue_Btn.setText(getString(R.string.add_event));
+            pay_now_Btn.setVisibility(View.VISIBLE);
+            post_for_free_nowBtn.setVisibility(View.VISIBLE);
+            continue_Btn.setVisibility(View.GONE);
 
+        }
+    }
 
 
     public void EditAddEventCreatorAPI() {
@@ -395,17 +432,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("status", new TypedString(status));
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
 
-
-//
-//            if (iffree) {
-//                iffree = true;
-//                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-//            }
-//
-//            if (ifpaid) {
-//                ifpaid = true;
-//                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
-//            }
+            if (iffree == true) {
+                multipartTypedOutput.addPart("payorfree", new TypedString(Free));
+            }
+            if (ifpaid == true) {
+                multipartTypedOutput.addPart("payorfree", new TypedString(Paid));
+            }
 
 
             try {
@@ -516,32 +548,41 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             }
 
 
-//            progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
+            progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
 
             appController.paServices.EditEvent(multipartTypedOutput, new Callback<EditEventRootDM>() {
 
                 @Override
 
                 public void success(EditEventRootDM editEventRootDM, Response response) {
-//                    progress.dismiss();
+                    progress.dismiss();
                     if (editEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        Helper.showToast(Activity_Add_Event_1.this,editEventRootDM.getOutput().getMessage());
+                        Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
-
-
-
                         EventId = editEventRootDM.getOutput().getEventid();
 
-//                        if (post_for_free_nowBtn.callOnClick()) {
-//
-//                            Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-//
-//                        }   if (pay_now_Btn.callOnClick()) {
-//                            Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-//                            intent.putExtra("eventid", EventId);
-//                            startActivity(intent);
-//                        }
+                        if (Free == "1") {
+
+                            if (ifTermsClicked==true) {
+                                Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
+                            } else {
+                                Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
+                            }
+
+                        } else if (Paid == "2") {
+
+                            if (ifTermsClicked==true) {
+                                Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
+                                intent.putExtra("eventid", EventId);
+                                startActivity(intent);
+                            } else {
+                                Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
+
+                            }
+
+
+                        }
 
 
                     } else
@@ -580,6 +621,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //            multipartTypedOutput.addPart("payorfree", new TypedString("1"));
             multipartTypedOutput.addPart("postedby", new TypedString(id));
             multipartTypedOutput.addPart("creatorcoach", new TypedString("1"));
+
+            if (iffree == true) {
+                multipartTypedOutput.addPart("payorfree", new TypedString(Free));
+            } else if (ifpaid == true) {
+                multipartTypedOutput.addPart("payorfree", new TypedString(Paid));
+            }
+
 
 //
 //            if (iffree) {
@@ -712,19 +760,18 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
                         EventId = addEventByCreatorRootDM.getOutput().getEventid();
 
-                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+//                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
-                        //                        if (post_for_free_nowBtn.callOnClick()) {
-//
-//                            Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-//
-//                        }   if (pay_now_Btn.callOnClick()) {
-//                            Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-//                            intent.putExtra("eventid", EventId);
-//                            startActivity(intent);
-//                        }
+                        if (iffree == true) {
 
+                            Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
+                        }
+                        if (ifpaid == true) {
+                            Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
+                            intent.putExtra("eventid", EventId);
+                            startActivity(intent);
+                        }
                     } else
                         Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 

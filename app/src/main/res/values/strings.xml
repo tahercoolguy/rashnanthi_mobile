@@ -15,7 +15,7 @@
     <string name="verification_pin">4 - Digit PIN has been sent to your Registered Mobile Number. Enter it below to continue</string>
     <string name="resend_otp_timer">Resend in 00:59</string>
     <string name="submit">SUBMIT</string>
-    <string name="edit_number">EDIT NUMBER</string>
+    <string name="edit_number">EDIT NUMBER</string><string name="edit_event">EDIT EVENT</string>
     <string name="calender">CALENDER</string>
     <string name="social_media">SOCIAL MEDIA</string>
     <string name="notification">NOTIFICATION</string>

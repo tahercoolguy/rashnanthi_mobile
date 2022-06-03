@@ -116,62 +116,13 @@ public class Menu_1_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-//                    String eventcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"));
-//                    String coachcreator  = String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("2"));
+                    if( user.getCoachOrEvent().equalsIgnoreCase("1")){
+                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
 
+                    }else   {
+                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
 
-//                    String coachcreator = String.valueOf(loginRootDM.getOutput().getData().get(0).getCreatorcoach().equalsIgnoreCase("2"));
-//                    String eventcreator = String.valueOf(loginRootDM.getOutput().getData().get(0).getCreatorcoach().equalsIgnoreCase("1"));
-
-//                    if (coachcreator != null) {
-//                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
-//
-//
-//                    } else if (eventcreator != null) {
-//
-//                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
-//
-//                    }
-
-
-//                    if(user.getCoachOrEvent().equalsIgnoreCase("1")){
-//                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
-//                    }else{
-//                        Helper.showToast(context,"noteventaccount");
-//
-//                    }  if(user.getCoachOrEvent().equalsIgnoreCase("2")){
-//                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
-//                    }
-//                    else {
-//                        Helper.showToast(context,"notcoachaccount");
-//
-//                    }
-
-
-                    ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
-
-
-//                    if(String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"))==EventCreator){
-//
-//                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
-//                    }
-//
-//                    else  {
-//                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
-//                    }
-
-//                    if (CoachCreator != null) {
-//                        if (CoachCreator.equalsIgnoreCase("2")) {
-//                            ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
-//
-//                        }
-//                    }else if (EventCreator != null) {
-//                        if (EventCreator.equalsIgnoreCase("1")) {
-//                            ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
-//
-//                        }
-//                    }
-
+                    }
 
                 }
             });

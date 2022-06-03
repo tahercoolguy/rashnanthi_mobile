@@ -1,8 +1,10 @@
 
 package com.master.design.rashnanthi.Activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,24 +14,46 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.StoriesByDateRootDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
+
+import java.util.ArrayList;
 
 import jp.shts.android.storiesprogressview.StoriesProgressView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import retrofit.mime.MultipartTypedOutput;
+import retrofit.mime.TypedString;
 
 
 public class Story_activity extends AppCompatActivity implements StoriesProgressView.StoriesListener {
-    private User user;
-     // on below line we are creating a int array
+    User user;
+    AppController appController;
+    ConnectionDetector connectionDetector;
+    DialogUtil dialogUtil;
+    Dialog progress;
+    ArrayList<String> array_image;
+    ArrayList<Integer> mL;
+
+
+    // on below line we are creating a int array
     // in which we are storing all our image ids.
     private final int[] resources = new int[]{
             R.drawable.story_img_1,
             R.drawable.story_img_2,
-            R.drawable.story_img_3, R.drawable.story_img_1,
-             R.drawable.story_img_2,
-             R.drawable.story_img_3
-
+            R.drawable.story_img_3,
+            R.drawable.story_img_1,
+            R.drawable.story_img_2,
+            R.drawable.story_img_3
     };
+
 
     // on below line we are creating variable for
     // our press time and time limit to display a story.
@@ -39,7 +63,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     // on below line we are creating variables for
     // our progress bar view and image view .
     private StoriesProgressView storiesProgressView;
-  ImageView image,story_back_btn;
+    ImageView image, story_back_btn;
 
     // on below line we are creating a counter
     // for keeping count of our stories.
@@ -83,7 +107,13 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_activity);
         user = new User(this);
-        story_back_btn=findViewById(R.id.story_back_btn);
+        appController = (AppController) getApplicationContext();
+        connectionDetector = new ConnectionDetector(Story_activity.this);
+        dialogUtil = new DialogUtil();
+        array_image = new ArrayList<String>();
+        mL = new ArrayList<Integer>();
+        StoriesByDateAPI();
+        story_back_btn = findViewById(R.id.story_back_btn);
 
         story_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +220,45 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         super.onDestroy();
     }
 
+
+    public void StoriesByDateAPI() {
+
+        if (connectionDetector.isConnectingToInternet()) {
+
+            progress = dialogUtil.showProgressDialog(Story_activity.this, getString(R.string.please_wait));
+
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("date", new TypedString("2022-06-03"));
+            multipartTypedOutput.addPart("countryid", new TypedString("1"));
+
+            appController.paServices.StoriesByDate(multipartTypedOutput, new Callback<StoriesByDateRootDM>() {
+                @Override
+
+                public void success(StoriesByDateRootDM storiesByDateRootDM, Response response) {
+                    progress.dismiss();
+                    if (storiesByDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+
+//                        array_image.add(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage());
+//                        mL.add(Integer.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
+
+                    } else
+                        Helper.showToast(Story_activity.this, "something wrong");
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+
+        } else
+            Helper.showToast(Story_activity.this, getString(R.string.no_internet_connection));
+
+
+    }
 
 //    private class DrawerItemClickListener implements ListView.OnItemClickListener {
 //        @Override

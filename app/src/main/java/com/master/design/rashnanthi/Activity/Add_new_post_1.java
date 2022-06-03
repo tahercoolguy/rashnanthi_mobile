@@ -337,7 +337,7 @@ public class Add_new_post_1 extends AppCompatActivity {
         if (connectionDetector.isConnectingToInternet()) {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-//            String id = String.valueOf(user.getId());
+            String id = String.valueOf(user.getId());
 
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
@@ -349,7 +349,7 @@ public class Add_new_post_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
              multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
             multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-            multipartTypedOutput.addPart("postedby", new TypedString(user.getName()));
+            multipartTypedOutput.addPart("postedby", new TypedString(id));
             multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
 
 //

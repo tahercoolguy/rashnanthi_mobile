@@ -1,5 +1,8 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -18,22 +21,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
-import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
-import com.master.design.rashnanthi.Adapter.Adapter_Coach__grid_Fgmt;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
+import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter1;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
+import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
-import com.master.design.rashnanthi.DataModel.GetAllCoachesWithPostsRootDM;
 import com.master.design.rashnanthi.Helper.BottomForAll;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -56,12 +59,18 @@ public class Coach_Fragment extends Fragment {
 
     private View rootView;
     private Context context;
+    User user;
+    AppController appController;
+    ConnectionDetector connectionDetector;
+    DialogUtil dialogUtil;
+    Dialog progress;
     public ArrayList<CoachDM> coachDMArrayList;
     //    public ArrayList<County_ItemDM> county_itemDMS;
 //    Spinner calender_page_country_spinner;
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
     private ImageRecyclerAdapter adapter;
+    private ImageRecyclerAdapter1 adapter1;
     private List<String> mList;
 
 
@@ -92,9 +101,7 @@ public class Coach_Fragment extends Fragment {
     @BindView(R.id.layout_parent)
     LinearLayout layout_parent;
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
-    AppController appController;
-    ConnectionDetector connectionDetector;
-    ProgressDialog progressDialog;
+     ProgressDialog progressDialog;
     ImageView coach_menu_Back;
 
     @Nullable
@@ -103,7 +110,9 @@ public class Coach_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
-
+        user = new User(context);
+        appController = (AppController) getApplicationContext();
+         dialogUtil = new DialogUtil();
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -111,6 +120,7 @@ public class Coach_Fragment extends Fragment {
         progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
         Binding();
+
 
 
         if (rootView == null) {
@@ -130,23 +140,6 @@ public class Coach_Fragment extends Fragment {
                 }
             });
 
-            ArrayList<County_ItemDM> county_itemDMS;
-
-
-            county_itemDMS = new ArrayList<>();
-            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
-
-            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwait_flag));
-            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
-            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
-            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
-            county_itemDMS.add(new County_ItemDM("Bahrain", R.drawable.ic_bahrain));
-            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
-            county_itemDMS.add(new County_ItemDM("Kuwait", R.drawable.kuwait_flag));
-            county_itemDMS.add(new County_ItemDM("Oman", R.drawable.oman_flag));
-            county_itemDMS.add(new County_ItemDM("Saudi Arabia", R.drawable.ic_saudi_arabia));
-            county_itemDMS.add(new County_ItemDM("Qatar", R.drawable.ic_qatar));
-            county_itemDMS.add(new County_ItemDM("United Arab Emirates", R.drawable.ic_united_arab_emirates));
 
 
 //
@@ -227,11 +220,11 @@ public class Coach_Fragment extends Fragment {
             mList.add("one");
             mList.add("two");
             mList.add("three");
-            adapter =new ImageRecyclerAdapter(mList,getContext());
+            adapter1 =new ImageRecyclerAdapter1(mList,getContext());
             coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
             coach_Rcv.setHasFixedSize(true);
-            coach_Rcv.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            coach_Rcv.setAdapter(adapter1);
+            adapter1.notifyDataSetChanged();
 
 
 
@@ -292,31 +285,14 @@ public class Coach_Fragment extends Fragment {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("countryid", new TypedString("1"));
+            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
 
 
-            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput,new Callback<GetAllCoachesWithPostsRootDM>() {
+            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput,new Callback<CoachesWithPostsRootDM>() {
                 @Override
-                public void success(GetAllCoachesWithPostsRootDM getAllCoachesWithPostsRootDM, Response response) {
-                    if (getAllCoachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-
-
-//                        ImageRecyclerAdapter imageRecyclerAdapter = new ImageRecyclerAdapter(context);
-//                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//                        coach_Rcv.setLayoutManager(linearLayoutManager);
-//                        coach_Rcv.setHasFixedSize(true);
-//                        coach_Rcv.setAdapter(imageRecyclerAdapter);
-//                        adapter.notifyDataSetChanged();
-
-//                        mList=new ArrayList<>();
-//                        //get data from backend
-//                        mList.add("one");
-//                        mList.add("two");
-//                        mList.add("three");
-//                        adapter =new ImageRecyclerAdapter(mList,getContext());
-//                        coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
-//                        coach_Rcv.setHasFixedSize(true);
-//                        coach_Rcv.setAdapter(adapter);
-//                        adapter.notifyDataSetChanged();
+                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
+                    progress.dismiss();
+                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                     } else
                         Helper.showToast(getActivity(), "Some network happened ..");
@@ -324,6 +300,8 @@ public class Coach_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError error) {
+                    progress.dismiss();
+
                     Log.e("String", error.toString());
                 }
             });

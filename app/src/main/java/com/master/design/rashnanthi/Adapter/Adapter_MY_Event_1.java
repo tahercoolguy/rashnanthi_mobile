@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.master.design.rashnanthi.DataModel.MyEventImageData;
 import com.master.design.rashnanthi.DataModel.MyEventImageData1;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
@@ -47,7 +49,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     private Context context;
     private ArrayList<MyEventData1> myEventData;
     private ArrayList<MyEventImageData1> myEventImageData1ArrayList;
-
+    Dialog progress;
+    DialogUtil dialogUtil;
 
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -60,6 +63,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         this.context = context;
         this.myEventData = myEventData;
         this.myEventImageData1ArrayList = myEventImageData1ArrayList;
+        dialogUtil = new DialogUtil();
 
         user = new User(context);
         appController = (AppController) context.getApplicationContext();
@@ -95,7 +99,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
 
     private void setDetails(Adapter_MY_Event_1.ViewHolder viewHolder, int position) {
-        viewHolder.date_time.setText(myEventData.get(position).getDate());
+        viewHolder.date_time.setText(myEventData.get(position).getEventdate());
         Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_1);
         Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
 
@@ -104,15 +108,23 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             @Override
             public void onClick(View v) {
                 if (connectionDetector.isConnectingToInternet()) {
+                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
 
-                    appController.paServices.DeletEvent(myEventData.get(0).getId(), new Callback<DeleteEventRootDM>() {
+                    appController.paServices.DeletEvent(myEventData.get(position).getId(), new Callback<DeleteEventRootDM>() {
                         @Override
                         public void success(DeleteEventRootDM deleteEventRootDM, Response response) {
+                            progress.dismiss();
                             if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                                myEventData.remove(position);
+                                myEventData.remove(selectedPosition);
                                 notifyItemRemoved(position);
+                                notifyDataSetChanged();
                                 Helper.showToast(context, "item deleted succesfully");
+
+
+//                                openHelper.deleteProduct(shoppingCart.getId());
+//                                shoppingCartList.remove(position);
+//                                notifyItemRemoved(position);
 
                             } else
                                 Helper.showToast(context, "item does not deleted");
@@ -120,6 +132,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
                         @Override
                         public void failure(RetrofitError retrofitError) {
+                            progress.dismiss();
                             Log.e("error", retrofitError.toString());
 
                         }
@@ -142,7 +155,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
                 Intent intent = new Intent(context, Activity_Add_Event_1.class);
                 intent.putExtra("image1", myEventData.get(position).getImage());
-                intent.putExtra("date", myEventData.get(position).getDate());
+                intent.putExtra("date", myEventData.get(position).getEventdate());
                 intent.putExtra("image2", myEventData.get(position).getImage());
                 intent.putExtra("eventid", myEventData.get(position).getId());
                 intent.putExtra("snapchat", myEventData.get(position).getSnapchat());

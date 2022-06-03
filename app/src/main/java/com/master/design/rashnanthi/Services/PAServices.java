@@ -7,24 +7,23 @@ package com.master.design.rashnanthi.Services;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.DataModel.AddEventByCreatorRootDM;
 import com.master.design.rashnanthi.DataModel.ChangePasswordRootDM;
-import com.master.design.rashnanthi.DataModel.CoachRegisterDM;
+import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
 import com.master.design.rashnanthi.DataModel.ConfirmEventRootDM;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
-import com.master.design.rashnanthi.DataModel.DeleteEventOutput;
 import com.master.design.rashnanthi.DataModel.DeleteEventRootDM;
 import com.master.design.rashnanthi.DataModel.EditEventRootDM;
 import com.master.design.rashnanthi.DataModel.EventRegisterDM;
 import com.master.design.rashnanthi.DataModel.EventsDetailsRootDM;
 import com.master.design.rashnanthi.DataModel.ForgotPasswordRootDM;
-import com.master.design.rashnanthi.DataModel.GetAllCoachesWithPostsRootDM;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
+import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
-import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
 import com.master.design.rashnanthi.DataModel.OtpScrenRootDM;
 import com.master.design.rashnanthi.DataModel.ProfilePictureRootDM;
 import com.master.design.rashnanthi.DataModel.SocialMediaDM;
+import com.master.design.rashnanthi.DataModel.StoriesByDateRootDM;
 import com.master.design.rashnanthi.DataModel.SummaryForPaidEventRootDM;
 import com.master.design.rashnanthi.DataModel.UpdateProfileRootDM;
 
@@ -82,6 +81,7 @@ public interface PAServices {
     void OtpVerify(@Field("mobile") String mobile,
                    @Field("otp") String otp,
                    Callback<OtpScrenRootDM> otpScrenRootDMCallback);
+
     //10         done
     @FormUrlEncoded
     @POST("/login")
@@ -163,56 +163,33 @@ public interface PAServices {
                       Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
 
     //22       done
-    @Headers("Cache-Control: no-cache;")
+    @FormUrlEncoded
     @POST("/deletevent")
     void DeletEvent(@Field("eventid") String eventid,
                     Callback<DeleteEventRootDM> deleteEventRootDMCallback);
 
-//    23          done
+    //    23          done
     @Headers("Cache-Control: no-cache;")
     @POST("/profilepicture")
     void ProfilePicture(@Body MultipartTypedOutput multipartTypedOutput, Callback<ProfilePictureRootDM> profilePictureRootDMCallback);
 
 
-//    24
+    //    24            running
     @Headers("Cache-Control: no-cache;")
     @POST("/getallcoacheswithposts")
-    void GetAllCoachesWithPosts(@Body MultipartTypedOutput multipartTypedOutput, Callback<GetAllCoachesWithPostsRootDM> getAllCoachesWithPostsRootDMCallback);
+    void GetAllCoachesWithPosts(@Body MultipartTypedOutput multipartTypedOutput, Callback<CoachesWithPostsRootDM> coachesWithPostsRootDMCallback);
 
 
+    //    25      running
+    @Headers("Cache-Control: no-cache;")
+    @POST("/geteventsbycountrydate")
+    void GetEventsByCountryDate(@Body MultipartTypedOutput multipartTypedOutput, Callback<GetEventsByCountryDateRootDM> getEventsByCountryDateRootDMCallback);
 
-//    @Headers("Cache-Control: no-cache;")
-//    @POST("/auth/signin")
-//    void SignUp(@Body MultipartTypedOutput multipartTypedOutput, Callback<SignUpDM> signUpDMCallback);
-//
-//    @Headers("Cache-Control: no-cache;")
-//    @POST("/auth/record_video")
-//    void RecordedVideo(@Body MultipartTypedOutput multipartTypedOutput, Callback<VideoDM> videoDMCallback);
-//
-//    @Headers("Cache-Control: no-cache;")
-//    @POST("/auth/user_login")
-//    void LoginIn(@Body MultipartTypedOutput multipartTypedOutput, Callback<SignUpDM> signUpDMCallback);
-//
-//    @Headers("Cache-Control: no-cache;")
-//    @GET("/user/view_home_banner")
-//    void Banner(Callback<BannerDM> bannerDMCallback);
-//
-//    @Headers("Cache-Control: no-cache;")
-//    @GET("/user/view_news")
-//    void News(Callback<NewsDM> newsDMCallback);
-//
-//    @Headers("Cache-Control: no-cache;")
-//    @GET("/user/view_events")
-//    void Events(Callback<EventsDM> eventsDMCallback);
-//
-//    @Headers("Cache-Control: no-cache;")
-//    @GET("/user/view_restaurants")
-//    void Restaurent(Callback<RestaurentDM> restaurentDMCallback);
-//
-//
-//    @Headers("Cache-Control: no-cache;")
-//    @GET("/user/view_shops")
-//    void Shops(Callback<ShopsDM> shopsDMCallback);
+    //  26          running
+    @Headers("Cache-Control: no-cache;")
+    @POST("/storiesbydate")
+    void StoriesByDate(@Body MultipartTypedOutput multipartTypedOutput, Callback<StoriesByDateRootDM> storiesByDateRootDMCallback);
+
 
 
 }
