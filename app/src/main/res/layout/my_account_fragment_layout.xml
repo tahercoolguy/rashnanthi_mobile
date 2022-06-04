@@ -40,6 +40,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:src="@drawable/ic_chevron_regular"></ImageView>
+
+            <ImageView
+                android:id="@+id/coach_menu_Back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_menu_filled"></ImageView>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 

@@ -242,13 +242,18 @@ public class SignUpActivity extends AppCompatActivity {
     public void EventsCreatorAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
+            String countryspinnercodeET = country_spinnerET.getText().toString();
+
+//Remove first character
+            countryspinnercodeET.substring(1); //ello World
+
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("fullname", new TypedString(nameET.getText().toString()));
             multipartTypedOutput.addPart("email", new TypedString(emailET.getText().toString()));
             multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
             multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
             multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
-            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
+            multipartTypedOutput.addPart("countrycode", new TypedString(countryspinnercodeET));
             multipartTypedOutput.addPart("creatorcoach", new TypedString("1"));
 
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
@@ -295,7 +300,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                         user.setId(Integer.valueOf(eventRegisterDM.getOutput().getUserid()));
                         user.setEmail(emailET.getText().toString());
-                        //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                        user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
+                         //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
 
                         Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
                         intent.putExtra("EventCreator", eventRegisterDM.getOutput().getCreatorcoach());
@@ -325,6 +331,9 @@ public class SignUpActivity extends AppCompatActivity {
     public void CoachRegisterAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
+            String countryspinnercodeET = country_spinnerET.getText().toString();
+//Remove first character
+            countryspinnercodeET.substring(1); //ello World
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
@@ -333,7 +342,7 @@ public class SignUpActivity extends AppCompatActivity {
             multipartTypedOutput.addPart("password", new TypedString(passwordET.getText().toString()));
             multipartTypedOutput.addPart("confpassword", new TypedString(confirm_passwordET.getText().toString()));
             multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
-            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
+            multipartTypedOutput.addPart("countrycode", new TypedString(countryspinnercodeET));
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
             multipartTypedOutput.addPart("countryid", new TypedString(countryId));
@@ -378,6 +387,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
                         user.setEmail(emailET.getText().toString());
+                        user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 
 
                         Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);

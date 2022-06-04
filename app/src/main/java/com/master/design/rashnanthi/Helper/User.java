@@ -38,11 +38,11 @@ public class User {
         sp.edit().putString("user_type", user_type).apply();
     }
 
-    public String getCoachOrEvent() {
-        return sp.getString("user_type", User.TYPE_NORMAL);
+    public String getCreatorcoach() {
+        return sp.getString("creatorcoach", User.TYPE_NORMAL);
     }
 
-    public void setCoachOrEvent(String creatorcoach) {
+    public void setCreatorcoach(String creatorcoach) {
         sp.edit().putString("creatorcoach", creatorcoach).apply();
     }
 

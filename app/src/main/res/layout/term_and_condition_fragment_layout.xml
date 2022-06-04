@@ -55,20 +55,17 @@
     <LinearLayout
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
+        android:layout_marginTop="55dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
-        android:layout_marginLeft="20dp"
-         android:layout_marginRight="20dp"
-        android:orientation="vertical">
+          android:orientation="vertical">
 
         <TextView
             android:id="@+id/terms_conditionTxt"
             android:layout_width="match_parent"
+            android:layout_margin="20dp"
             android:layout_height="wrap_content"
-             android:layout_marginTop="10dp"
-            android:layout_marginLeft="@dimen/marginLeft"
-            android:text="terms_condition"
-            android:textSize="18dp">
+             android:text="terms_condition"
+            android:textSize="@dimen/text_size_normal">
 
         </TextView>
     </LinearLayout>

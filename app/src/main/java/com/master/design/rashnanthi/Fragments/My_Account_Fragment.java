@@ -114,7 +114,7 @@ public class My_Account_Fragment extends Fragment {
     TextView your_post_will_beTXt;
     RadioButton radioBtn_Term_condition;
     Button pay_now_Btn, continue_Btn;
-
+    ImageView coach_menu_Back;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -135,7 +135,14 @@ public class My_Account_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.my_account_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
             user = new User(getActivity());
+            coach_menu_Back = rootView.findViewById(R.id.coach_menu_Back);
 
+            coach_menu_Back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
+                }
+            });
 
             my_accountImg = rootView.findViewById(R.id.my_accountImg);
 

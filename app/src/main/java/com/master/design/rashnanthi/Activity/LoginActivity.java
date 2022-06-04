@@ -111,8 +111,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
                                 user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
-                                user.setCoachOrEvent(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
-                                String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
+                                user.setCreatorcoach(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
+                                 String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
                                 user.setEmail(neemail);
 
 

@@ -116,11 +116,11 @@ public class Menu_1_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    if( user.getCoachOrEvent().equalsIgnoreCase("1")){
-                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
+                    if( user.getCreatorcoach().equalsIgnoreCase("1")){
+                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
 
                     }else   {
-                        ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
+                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
 
                     }
 

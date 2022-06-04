@@ -16,12 +16,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.StoriesByDateRootDM;
+import com.master.design.rashnanthi.DataModel.StoriesByImageData;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,7 +42,8 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     ConnectionDetector connectionDetector;
     DialogUtil dialogUtil;
     Dialog progress;
-    ArrayList<String> array_image;
+    ArrayList<String> array_image = new ArrayList<>();
+    ArrayList<String> array_image_count = new ArrayList<>();
     ArrayList<Integer> mL;
 
 
@@ -53,6 +57,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
             R.drawable.story_img_2,
             R.drawable.story_img_3
     };
+
 
 
     // on below line we are creating variable for
@@ -110,7 +115,6 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(Story_activity.this);
         dialogUtil = new DialogUtil();
-        array_image = new ArrayList<String>();
         mL = new ArrayList<Integer>();
         StoriesByDateAPI();
         story_back_btn = findViewById(R.id.story_back_btn);
@@ -129,57 +133,6 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         // on below line we are initializing our variables.
         storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
 
-        // on below line we are setting the total count for our stories.
-        storiesProgressView.setStoriesCount(resources.length);
-
-        // on below line we are setting story duration for each story.
-        storiesProgressView.setStoryDuration(3000L);
-
-        // on below line we are calling a method for set
-        // on story listener and passing context to it.
-        storiesProgressView.setStoriesListener(this);
-
-        // below line is use to start stories progress bar.
-        storiesProgressView.startStories(counter);
-
-        // initializing our image view.
-        image = (ImageView) findViewById(R.id.image);
-
-        // on below line we are setting image to our image view.
-        image.setImageResource(resources[counter]);
-
-        // below is the view for going to the previous story.
-        // initializing our previous view.
-        View reverse = findViewById(R.id.reverse);
-
-        // adding on click listener for our reverse view.
-        reverse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // inside on click we are
-                // reversing our progress view.
-                storiesProgressView.reverse();
-            }
-        });
-
-        // on below line we are calling a set on touch
-        // listener method to move towards previous image.
-        reverse.setOnTouchListener(onTouchListener);
-
-        // on below line we are initializing
-        // view to skip a specific story.
-        View skip = findViewById(R.id.skip);
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // inside on click we are
-                // skipping the story progress view.
-                storiesProgressView.skip();
-            }
-        });
-        // on below line we are calling a set on touch
-        // listener method to move to next story.
-        skip.setOnTouchListener(onTouchListener);
     }
 
     @Override
@@ -189,7 +142,9 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 
         if ((counter + 1) < 0) return;
 
-        image.setImageResource(resources[++counter]);
+        Picasso.get().load(AppController.base_image_url +array_image.get(0)).into(image);
+
+//        image.setImageResource(resources[++counter]);
     }
 
     @Override
@@ -198,9 +153,10 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         // this method id called when we move to previous story.
         // on below line we are decreasing our counter
         if ((counter - 1) < 0) return;
-
         // on below line we are setting image to image view
-        image.setImageResource(resources[--counter]);
+//        image.setImageResource(resources[--counter]);
+        Picasso.get().load(AppController.base_image_url +array_image.get(0)).into(image);
+
     }
 
     @Override
@@ -238,6 +194,63 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                     progress.dismiss();
                     if (storiesByDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
+
+                        array_image.add(0, String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
+                        array_image_count.add(0, String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size()));
+
+                        // on below line we are setting the total count for our stories.
+                        storiesProgressView.setStoriesCount(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size());
+
+                        // on below line we are setting story duration for each story.
+                        storiesProgressView.setStoryDuration(3000L);
+
+                        // on below line we are calling a method for set
+                        // on story listener and passing context to it.
+                        storiesProgressView.setStoriesListener(Story_activity.this);
+
+                        // below line is use to start stories progress bar.
+                        storiesProgressView.startStories(counter);
+
+                        // initializing our image view.
+                        image = (ImageView) findViewById(R.id.image);
+
+                        // on below line we are setting image to our image view.
+//                        image.setImageResource(resources[counter]);
+
+                        Picasso.get().load(AppController.base_image_url +storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()).into(image);
+
+                        // below is the view for going to the previous story.
+                        // initializing our previous view.
+                        View reverse = findViewById(R.id.reverse);
+
+                        // adding on click listener for our reverse view.
+                        reverse.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // inside on click we are
+                                // reversing our progress view.
+                                storiesProgressView.reverse();
+                            }
+                        });
+
+                        // on below line we are calling a set on touch
+                        // listener method to move towards previous image.
+                        reverse.setOnTouchListener(onTouchListener);
+
+                        // on below line we are initializing
+                        // view to skip a specific story.
+                        View skip = findViewById(R.id.skip);
+                        skip.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // inside on click we are
+                                // skipping the story progress view.
+                                storiesProgressView.skip();
+                            }
+                        });
+                        // on below line we are calling a set on touch
+                        // listener method to move to next story.
+                        skip.setOnTouchListener(onTouchListener);
 
 //                        array_image.add(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage());
 //                        mL.add(Integer.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));

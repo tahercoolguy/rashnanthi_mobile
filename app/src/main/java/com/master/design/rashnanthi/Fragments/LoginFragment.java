@@ -136,7 +136,7 @@ public class LoginFragment extends Fragment {
 
                                 user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
                                 user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
-                                user.setCoachOrEvent(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
+                                user.setCreatorcoach(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
                                 String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
                                 user.setEmail(neemail);
 

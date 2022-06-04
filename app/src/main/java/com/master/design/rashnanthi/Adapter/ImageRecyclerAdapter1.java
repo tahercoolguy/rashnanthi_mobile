@@ -199,11 +199,11 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
             dots[i] = new TextView(context);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(Color.parseColor("#CF0010"));
+            dots[i].setTextColor(Color.parseColor("#A1A1A1"));
             holder.ll_dots.addView(dots[i]);
         }
         if (dots.length > 0)
-            dots[currentPage].setTextColor(Color.parseColor("#A1A1A1"));
+            dots[currentPage].setTextColor(Color.parseColor("#CF0010"));
     }
 
     @Override

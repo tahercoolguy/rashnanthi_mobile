@@ -54,21 +54,18 @@
     <LinearLayout
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
+        android:layout_marginTop="55dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical">
+         android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/privacy_policyTxt"
             android:layout_width="match_parent"
+            android:layout_margin="20dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="@dimen/marginLeft"
-            android:text="@string/privacy_policy"
-            android:textSize="18dp"/>
+             android:text="@string/privacy_policy"
+            android:textSize="@dimen/text_size_normal"/>
     </LinearLayout>
 
     <include layout="@layout/layout_error" />
