@@ -70,7 +70,7 @@ public interface PAServices {
     @POST("/eventcreatorreg")
     void EventCreatorReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterOutputCallback);
 
-    //8          someproblem,imageupload,coach 1-2 transfer
+    //8           done
     @Headers("Cache-Control: no-cache;")
     @POST("/coachreg")
     void CoachReg(@Body MultipartTypedOutput multipartTypedOutput, Callback<EventRegisterDM> eventRegisterDMCallback);
@@ -140,9 +140,9 @@ public interface PAServices {
     void AddEventByCreator(@Body MultipartTypedOutput multipartTypedOutput, Callback<AddEventByCreatorRootDM> addEventByCreatorRootDMCallback);
 
     //18                    done
-    @FormUrlEncoded
+    @Headers("Cache-Control: no-cache;")
     @POST("/summaryforpaidevent")
-    void SummaryForPaidEvent(@Field("eventid") String eventid,
+    void SummaryForPaidEvent(@Body MultipartTypedOutput multipartTypedOutput,
                              Callback<SummaryForPaidEventRootDM> summaryForPaidEventRootDMCallback);
 
     //19                      coachcrator , paynow ,video add functionality not now availaible
@@ -156,10 +156,17 @@ public interface PAServices {
     void EventDetails(@Field("eventid") String eventid,
                       Callback<EventsDetailsRootDM> eventsDetailsRootDMCallback);
 
-    //21                                             i dont know where to implement it
-    @Headers("Cache-Control: no-cache;")
+    //21
+    // //  done
+     @POST("/confirmevent")
+    void ConfirmEvent(@Body MultipartTypedOutput multipartTypedOutput,
+                      Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
+
+    //21
+    // //  done
+    @FormUrlEncoded
     @POST("/confirmevent")
-    void ConfirmEvent(@Field("eventid") String eventid,
+    void ConfirmEvent1(@Field("eventid") String eventid,@Field("paymentmethod") String paymentmethod,
                       Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
 
     //22       done
@@ -185,11 +192,10 @@ public interface PAServices {
     @POST("/geteventsbycountrydate")
     void GetEventsByCountryDate(@Body MultipartTypedOutput multipartTypedOutput, Callback<GetEventsByCountryDateRootDM> getEventsByCountryDateRootDMCallback);
 
-    //  26          running
+    //  26           done
     @Headers("Cache-Control: no-cache;")
     @POST("/storiesbydate")
     void StoriesByDate(@Body MultipartTypedOutput multipartTypedOutput, Callback<StoriesByDateRootDM> storiesByDateRootDMCallback);
-
 
 
 }

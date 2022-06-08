@@ -46,6 +46,14 @@ public class User {
         sp.edit().putString("creatorcoach", creatorcoach).apply();
     }
 
+    public String getCountryid() {
+        return sp.getString("countryid", User.TYPE_NORMAL);
+    }
+
+    public void setCountryid(String countryid) {
+        sp.edit().putString("countryid", countryid).apply();
+    }
+
     public String getUserType() {
         return sp.getString("user_type", User.TYPE_NORMAL);
     }

@@ -220,7 +220,7 @@ public class Coach_Fragment extends Fragment {
             mList.add("one");
             mList.add("two");
             mList.add("three");
-            adapter1 =new ImageRecyclerAdapter1(mList,getContext());
+            adapter1 =new ImageRecyclerAdapter1(mList,getContext(), "1");
             coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
             coach_Rcv.setHasFixedSize(true);
             coach_Rcv.setAdapter(adapter1);
@@ -329,6 +329,12 @@ public class Coach_Fragment extends Fragment {
 
                 country_spinner_Txt.setText(data.get(position).getTitle());
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
+
+                adapter1 =new ImageRecyclerAdapter1(mList,getContext(),data.get(position).getId());
+                coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
+                coach_Rcv.setHasFixedSize(true);
+                coach_Rcv.setAdapter(adapter1);
+                adapter1.notifyDataSetChanged();
 
 //                countryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
 //                AreaID = data.get(selected).getId();

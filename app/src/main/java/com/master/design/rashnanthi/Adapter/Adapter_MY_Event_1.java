@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
+import com.master.design.rashnanthi.Activity.Add_new_post_1;
 import com.master.design.rashnanthi.Activity.ImageActicity;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SignUpActivity;
@@ -104,6 +105,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
 
 
+
         viewHolder.delete_Img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,22 +155,43 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_1);
                 Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
 
-                Intent intent = new Intent(context, Activity_Add_Event_1.class);
-                intent.putExtra("image1", myEventData.get(position).getImage());
-                intent.putExtra("date", myEventData.get(position).getEventdate());
-                intent.putExtra("image2", myEventData.get(position).getImage());
-                intent.putExtra("eventid", myEventData.get(position).getId());
-                intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
-                intent.putExtra("instagram", myEventData.get(position).getInstagram());
-                intent.putExtra("website", myEventData.get(position).getWebsite());
-                intent.putExtra("whatsappcountrycode", myEventData.get(position).getWhatsapcountrycode());
-                intent.putExtra("whatsappnumber", myEventData.get(position).getWhatsapnumber());
-                intent.putExtra("countries", myEventData.get(position).getImpcountries());
-                intent.putExtra("creatorcoach", myEventData.get(position).getCreatorcoach());
-                intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
-                intent.putExtra("status", myEventData.get(position).getStatus());
-                intent.putExtra("postedby", myEventData.get(position).getPostedby());
-                context.startActivity(intent);
+                if(user.getCreatorcoach().equalsIgnoreCase("1")){
+                    Intent intent = new Intent(context, Activity_Add_Event_1.class);
+                    intent.putExtra("image1", myEventData.get(position).getImage());
+                    intent.putExtra("date", myEventData.get(position).getEventdate());
+                    intent.putExtra("image2", myEventData.get(position).getImage());
+                    intent.putExtra("eventid", myEventData.get(position).getId());
+                    intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
+                    intent.putExtra("instagram", myEventData.get(position).getInstagram());
+                    intent.putExtra("website", myEventData.get(position).getWebsite());
+                    intent.putExtra("whatsappcountrycode", myEventData.get(position).getWhatsapcountrycode());
+                    intent.putExtra("whatsappnumber", myEventData.get(position).getWhatsapnumber());
+                    intent.putExtra("countries", myEventData.get(position).getImpcountries());
+                    intent.putExtra("creatorcoach", myEventData.get(position).getCreatorcoach());
+                    intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
+                    intent.putExtra("status", myEventData.get(position).getStatus());
+                    intent.putExtra("postedby", myEventData.get(position).getPostedby());
+                     context.startActivity(intent);
+                }else{
+                    Intent intent = new Intent(context, Add_new_post_1.class);
+                    intent.putExtra("image1", myEventData.get(position).getImage());
+                    intent.putExtra("date", myEventData.get(position).getEventdate());
+                    intent.putExtra("image2", myEventData.get(position).getImage());
+                    intent.putExtra("eventid", myEventData.get(position).getId());
+                    intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
+                    intent.putExtra("instagram", myEventData.get(position).getInstagram());
+                    intent.putExtra("website", myEventData.get(position).getWebsite());
+                    intent.putExtra("whatsappcountrycode", myEventData.get(position).getWhatsapcountrycode());
+                    intent.putExtra("whatsappnumber", myEventData.get(position).getWhatsapnumber());
+                    intent.putExtra("countries", myEventData.get(position).getImpcountries());
+                    intent.putExtra("creatorcoach", myEventData.get(position).getCreatorcoach());
+                    intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
+                    intent.putExtra("status", myEventData.get(position).getStatus());
+                    intent.putExtra("postedby", myEventData.get(position).getPostedby());
+                    context.startActivity(intent);
+                }
+
+
 
             }
         });

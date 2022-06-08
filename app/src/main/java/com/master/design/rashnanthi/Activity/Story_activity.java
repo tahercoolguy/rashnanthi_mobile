@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import jp.shts.android.storiesprogressview.StoriesProgressView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -46,6 +49,10 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     ArrayList<String> array_image_count = new ArrayList<>();
     ArrayList<Integer> mL;
 
+//    @BindView(R.id.videoview)
+//    VideoView videoview;
+
+
 
     // on below line we are creating a int array
     // in which we are storing all our image ids.
@@ -57,7 +64,6 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
             R.drawable.story_img_2,
             R.drawable.story_img_3
     };
-
 
 
     // on below line we are creating variable for
@@ -112,6 +118,8 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         super.onCreate(savedInstanceState);
         setContentView(R.layout.story_activity);
         user = new User(this);
+        ButterKnife.bind(Story_activity.this);
+
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(Story_activity.this);
         dialogUtil = new DialogUtil();
@@ -142,7 +150,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 
         if ((counter + 1) < 0) return;
 
-        Picasso.get().load(AppController.base_image_url +array_image.get(0)).into(image);
+        Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
 
 //        image.setImageResource(resources[++counter]);
     }
@@ -155,7 +163,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         if ((counter - 1) < 0) return;
         // on below line we are setting image to image view
 //        image.setImageResource(resources[--counter]);
-        Picasso.get().load(AppController.base_image_url +array_image.get(0)).into(image);
+        Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
 
     }
 
@@ -195,8 +203,8 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                     if (storiesByDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
 
-                        array_image.add(0, String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
-                        array_image_count.add(0, String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size()));
+                        array_image.add(String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
+                        array_image_count.add(String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size()));
 
                         // on below line we are setting the total count for our stories.
                         storiesProgressView.setStoriesCount(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size());
@@ -217,7 +225,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                         // on below line we are setting image to our image view.
 //                        image.setImageResource(resources[counter]);
 
-                        Picasso.get().load(AppController.base_image_url +storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()).into(image);
+                        Picasso.get().load(AppController.base_image_url + storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()).into(image);
 
                         // below is the view for going to the previous story.
                         // initializing our previous view.

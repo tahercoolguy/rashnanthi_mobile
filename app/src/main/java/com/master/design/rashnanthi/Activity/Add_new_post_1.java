@@ -73,6 +73,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
+    String image1, image2, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
 
     @NotEmpty
     @BindView(R.id.add_new_post_pay_back)
@@ -90,6 +91,10 @@ public class Add_new_post_1 extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.snapET)
     EditText snapET;
+
+    @NotEmpty
+    @BindView(R.id.termsRB)
+    RadioButton termsRB;
 
 
     @NotEmpty
@@ -126,17 +131,21 @@ public class Add_new_post_1 extends AppCompatActivity {
         finish();
     }
 
+    boolean ifpay,iffree=false;
 
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
-        AddNewPostByCoach();
-     }
-
-    @OnClick(R.id.post_for_free_nowBtn)
-    public void PostForFreeNow() {
+        ifpay=true;
+        iffree=false;
         AddNewPostByCoach();
     }
 
+    @OnClick(R.id.post_for_free_nowBtn)
+    public void PostForFreeNow() {
+        iffree=true;
+        ifpay=false;
+        AddNewPostByCoach();
+    }
 
 
     RadioButton term_conditionRB;
@@ -159,17 +168,18 @@ public class Add_new_post_1 extends AppCompatActivity {
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(Add_new_post_1.this);
         Binding();
+        DataGetFromAdapterIntent();
 
-        pay_now_Btn = findViewById(R.id.pay_now_Btn);
-
-
-        pay_now_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Add_new_post_1.this, Add_Event_Pay_Now.class));
-                finish();
-            }
-        });
+//        pay_now_Btn = findViewById(R.id.pay_now_Btn);
+//
+//
+//        pay_now_Btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//              AddNewPostByCoach();
+//              finish();
+//            }
+//        });
 
 
     }
@@ -178,11 +188,86 @@ public class Add_new_post_1 extends AppCompatActivity {
     @BindView(R.id.wtsapRL)
     RelativeLayout wtsapRL;
 
+    @NotEmpty
+    @BindView(R.id.editpostnowBtn)
+    Button editpostnowBtn;
+
     @BindView(R.id.country_spinnerET)
     TextView country_spinnerET;
 
     @BindView(R.id.countryImg)
     ImageView countryImg;
+
+    @BindView(R.id.youpostEditTxt)
+    TextView youpostEditTxt;
+
+
+    public void DataGetFromAdapterIntent() {
+
+        wtsapcode = getIntent().getStringExtra("whatsappcountrycode");
+        wtsapnumber = getIntent().getStringExtra("whatsappnumber");
+        instagram = getIntent().getStringExtra("instagram");
+        website = getIntent().getStringExtra("website");
+        impcountry = getIntent().getStringExtra("countries");
+        creatorcoach = getIntent().getStringExtra("creatorcoach");
+        payorfree = getIntent().getStringExtra("payorfree");
+        status = getIntent().getStringExtra("status");
+        image1 = getIntent().getStringExtra("image1");
+        image2 = getIntent().getStringExtra("image2");
+        date = getIntent().getStringExtra("date");
+        eventid = getIntent().getStringExtra("eventid");
+        snapchat = getIntent().getStringExtra("snapchat");
+        postedby = getIntent().getStringExtra("postedby");
+        if (image1 != null) {
+//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
+            Picasso.get().load(AppController.base_image_url + image1).into(img1);
+
+        }
+        if (image2 != null) {
+//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img2);
+            Picasso.get().load(AppController.base_image_url + image2).into(img2);
+
+        }
+
+        if (snapchat != null) {
+
+            snapET.setText(snapchat);
+        }
+        if (instagram != null) {
+
+            instaET.setText(instagram);
+        }
+        if (wtsapcode != null) {
+
+            country_spinnerET.setText(wtsapcode);
+            wtspcodeTxt.setText(wtsapcode);
+        }
+        if (wtsapnumber != null) {
+
+            wtsapMobile__ET.setText(wtsapnumber);
+            mobileET.setText(wtsapnumber);
+        }
+//        if (website != null) {
+//
+//            wesite_ET.setText(website);
+//        }
+        if (impcountry != null) {
+
+            country_spinner_Txt.setText(impcountry);
+        }
+        if (status != null) {
+            youpostEditTxt.setText("Your Post will be edited within 24 hours");
+            editpostnowBtn.setVisibility(View.VISIBLE);
+            pay_now_Btn.setVisibility(View.GONE);
+            post_for_free_nowBtn.setVisibility(View.GONE);
+        } else {
+            youpostEditTxt.setText("Your Post will be uploaded within 24 hours");
+            pay_now_Btn.setVisibility(View.VISIBLE);
+            post_for_free_nowBtn.setVisibility(View.VISIBLE);
+            editpostnowBtn.setVisibility(View.GONE);
+
+        }
+    }
 
     BottomForAll bottomForAll;
 
@@ -196,6 +281,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.country_Img)
     ImageView country_Img;
+
 
     @OnClick(R.id.spinnerCountryBottomRL)
     public void Spinner__Country() {
@@ -261,7 +347,12 @@ public class Add_new_post_1 extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.wtspcountryImg)
     ImageView wtspcountryImg;
+    boolean term = false;
 
+    @OnClick(R.id.termsRB)
+    public void Terms() {
+        term = true;
+    }
 
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
@@ -342,27 +433,24 @@ public class Add_new_post_1 extends AppCompatActivity {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
 
+//            multipartTypedOutput.addPart("eventdate", new TypedString("2022-06-06"));
             multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
             multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
             multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
             multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
-             multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
-            multipartTypedOutput.addPart("payorfree", new TypedString("1"));
+//            multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
+            multipartTypedOutput.addPart("countryid[]", new TypedString(user.getCountryid()));
+
             multipartTypedOutput.addPart("postedby", new TypedString(id));
-            multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
+            multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
 
-//
-//            if (iffree) {
-//                iffree = true;
-//                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-//            }
-//
-//            if (ifpaid) {
-//                ifpaid = true;
-//                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
-//            }
+            if(iffree!=false){
+                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
 
+            } if(ifpay!=false){
+                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
+            }
 
             try {
                 if (ifimg1) {
@@ -481,22 +569,26 @@ public class Add_new_post_1 extends AppCompatActivity {
                 public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
                     progress.dismiss();
                     if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        Helper.showToast(Add_new_post_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-//                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
 
-//                        Helper.showToast(Add_new_post_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+
                         EventId = addEventByCreatorRootDM.getOutput().getEventid();
 
-                        //                        if (post_for_free_nowBtn.callOnClick()) {
-//
-                            Helper.showToast(Add_new_post_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-//
-//                        }   if (pay_now_Btn.callOnClick()) {
-//                            Intent intent = new Intent(Add_new_post_1.this, Add_Event_Pay_Now.class);
-//                            intent.putExtra("eventid", EventId);
-//                            startActivity(intent);
-//                        }
+                        if (term != false) {
 
+
+                                if(iffree!=false){
+                                    Helper.showToast(Add_new_post_1.this,addEventByCreatorRootDM.getOutput().getMessage());
+
+                                } if(ifpay!=false){
+                                    Intent intent = new Intent(Add_new_post_1.this, Add_Event_Pay_Now.class);
+                                    intent.putExtra("eventid", EventId);
+                                    startActivity(intent);
+                                }
+
+
+                        } else {
+                             Helper.showToast(Add_new_post_1.this, "kindly accept terms and condition");
+                        }
 
                     } else
                         Helper.showToast(Add_new_post_1.this, addEventByCreatorRootDM.getOutput().getMessage());
@@ -516,7 +608,181 @@ public class Add_new_post_1 extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.editpostnowBtn)
+    public void Edit_Post() {
+        EditPostByCoach();
+    }
 
+    public void EditPostByCoach() {
+        if (connectionDetector.isConnectingToInternet()) {
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+            String id = String.valueOf(user.getId());
+
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("eventdate", new TypedString(date));
+            multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
+            multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
+            multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
+            multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+            multipartTypedOutput.addPart("countryid[]", new TypedString("3"));
+            multipartTypedOutput.addPart("payorfree", new TypedString("2"));
+            multipartTypedOutput.addPart("postedby", new TypedString(id));
+            multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
+            multipartTypedOutput.addPart("posteddate", new TypedString(date));
+            multipartTypedOutput.addPart("editimageid[]", new TypedString("1"));
+
+
+            try {
+                if (ifimg1) {
+                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) img1.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage = new Resizer(Add_new_post_1.this)
+                            .setTargetLength(200)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image1")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("storyphotovideo[]", new TypedFile("image/jpg", resizedImage));
+                }
+                if (ifimg2) {
+                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp1.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) img2.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage1 = new Resizer(Add_new_post_1.this)
+                            .setTargetLength(200)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image2")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("eventphotovideo[]", new TypedFile("image/jpg", resizedImage1));
+                }
+                if (ifimg3) {
+                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp2.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) img3.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage2 = new Resizer(Add_new_post_1.this)
+                            .setTargetLength(200)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image3")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("storyphotovideo[]", new TypedFile("image/jpg", resizedImage2));
+                }
+
+                if (ifimg4) {
+                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp3.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) img4.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage3 = new Resizer(Add_new_post_1.this)
+                            .setTargetLength(200)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image4")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("eventphotovideo[]", new TypedFile("image/jpg", resizedImage3));
+                }
+
+            } catch (Exception e) {
+                Log.e("Error", e.toString());
+            }
+
+
+            progress = dialogUtil.showProgressDialog(Add_new_post_1.this, getString(R.string.please_wait));
+
+            appController.paServices.AddEventByCreator(multipartTypedOutput, new Callback<AddEventByCreatorRootDM>() {
+                @Override
+                public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
+                    progress.dismiss();
+                    if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+ //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
+                        EventId = addEventByCreatorRootDM.getOutput().getEventid();
+
+                        if (term != false) {
+
+
+                            if(status!=null){
+                                Helper.showToast(Add_new_post_1.this,addEventByCreatorRootDM.getOutput().getMessage());
+
+                            }else{
+                                Intent intent = new Intent(Add_new_post_1.this, Add_Event_Pay_Now.class);
+                                intent.putExtra("eventid", EventId);
+                                startActivity(intent);
+                            }
+                         } else {
+                            Helper.showToast(Add_new_post_1.this, "kindly acept terms and condition");
+                        }
+
+                    } else
+                        Helper.showToast(Add_new_post_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+
+        } else
+            Helper.showToast(Add_new_post_1.this, getString(R.string.no_internet_connection));
+    }
 
     @OnClick(R.id.img1)
     public void Image1Clicked() {
@@ -606,14 +872,35 @@ public class Add_new_post_1 extends AppCompatActivity {
             public void onTakeCameraSelected() {
                 launchCameraIntent();
             }
-
+            @Override
+            public void onTakeCameraSelectedVideo() {
+//                launchCameraIntent();
+                launchCameraIntentVideo();
+            }
             @Override
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
-        });
+        },true);
+    }
+    private void launchCameraIntentVideo() {
+        Intent intent = new Intent(Add_new_post_1.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE_VIDEO);
+
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
+
+        startActivityForResult(intent, REQUEST_IMAGE_VIDEO);
     }
 
+    int REQUEST_IMAGE_VIDEO = 998 ;
     private void launchCameraIntent() {
         Intent intent = new Intent(Add_new_post_1.this, ImagePickerActivity.class);
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);

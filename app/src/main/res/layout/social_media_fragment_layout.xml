@@ -115,7 +115,7 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/twitterRL"
+            android:id="@+id/facbookRL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -130,6 +130,38 @@
                 android:layout_marginLeft="5dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
+                android:src="@drawable/ic_facebook_logo_2019">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="60dp"
+                android:text="@string/facebook"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/twitterRL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+
+            android:background="@drawable/social_media_bg"
+            android:elevation="4dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_twitter">
 
             </ImageView>

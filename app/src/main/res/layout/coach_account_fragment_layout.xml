@@ -120,7 +120,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
 
-                    android:text="25K Likes"
+                    android:text="0   Like"
                     android:textColor="@color/white">
 
                 </TextView>

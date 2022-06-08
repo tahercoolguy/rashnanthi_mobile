@@ -26,7 +26,11 @@ import com.master.design.rashnanthi.R;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.StringBufferInputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 
@@ -44,6 +48,7 @@ public class ImagePickerActivity extends AppCompatActivity {
 
     public static final int REQUEST_IMAGE_CAPTURE = 0;
     public static final int REQUEST_GALLERY_IMAGE = 1;
+    public static final int REQUEST_IMAGE_CAPTURE_VIDEO = 2;
 
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
     private int ASPECT_RATIO_X = 16, ASPECT_RATIO_Y = 9, bitmapMaxWidth = 1000, bitmapMaxHeight = 1000;
@@ -52,6 +57,7 @@ public class ImagePickerActivity extends AppCompatActivity {
 
     public interface PickerOptionListener {
         void onTakeCameraSelected();
+        void onTakeCameraSelectedVideo();
 
         void onChooseGallerySelected();
     }
@@ -78,18 +84,33 @@ public class ImagePickerActivity extends AppCompatActivity {
         int requestCode = intent.getIntExtra(INTENT_IMAGE_PICKER_OPTION, -1);
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             takeCameraImage();
-        } else {
+        }else if (requestCode == REQUEST_IMAGE_CAPTURE_VIDEO )
+        {
+            takeCameraImageVideo();
+        }
+            else {
             chooseImageFromGallery();
         }
     }
 
-    public static void showImagePickerOptions(Context context, PickerOptionListener listener) {
+
+    public static void showImagePickerOptions(Context context, PickerOptionListener listener,boolean isVideo) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Set image");
+        if(isVideo)
+            builder.setTitle("Set image / Video");
 
+        List<String> where = new ArrayList<String>();
+        where.add( "Take a image" );
+        where.add( "Choose from gallery" );
+        if(isVideo)
+            where.add( "Take a video" );
+        String[] animals = new String[ where.size() ];
+        where.toArray( animals );
         // add a list
-        String[] animals = {"Take a image", "Choose from gallery"};
+//        String[] animals = {"Take a image", "Choose from gallery","Take a video"};
+
         builder.setItems(animals, (dialog, which) -> {
             switch (which) {
                 case 0:
@@ -97,6 +118,10 @@ public class ImagePickerActivity extends AppCompatActivity {
                     break;
                 case 1:
                     listener.onChooseGallerySelected();
+                    break;
+
+                case 2:
+                    listener.onTakeCameraSelectedVideo();
                     break;
             }
         });
@@ -118,6 +143,33 @@ public class ImagePickerActivity extends AppCompatActivity {
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, getCacheImagePath(fileName));
                             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    private void takeCameraImageVideo() {
+        Dexter.withActivity(this)
+                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            fileName = System.currentTimeMillis() + ".mp4";
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                            takePictureIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, getCacheImagePath(fileName));
+                            if (getPackageManager().resolveActivity(takePictureIntent, 0) != null) {
+                                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_VIDEO);
+                            }else {
+                                Toast.makeText(ImagePickerActivity.this, "No apps supports this action", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

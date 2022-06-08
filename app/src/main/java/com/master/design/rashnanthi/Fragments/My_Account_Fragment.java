@@ -364,10 +364,15 @@ public class My_Account_Fragment extends Fragment {
             }
 
             @Override
+            public void onTakeCameraSelectedVideo() {
+
+            }
+
+            @Override
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
-        });
+        },false);
     }
 
     private void launchCameraIntent() {

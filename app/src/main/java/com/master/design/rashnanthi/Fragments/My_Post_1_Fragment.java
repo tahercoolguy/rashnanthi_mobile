@@ -117,10 +117,13 @@ public class My_Post_1_Fragment extends Fragment {
     }
 
 
+
     public void MyPostAPI() {
         if (connectionDetector.isConnectingToInternet()) {
+
+
             //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            appController.paServices.MyEvents(String.valueOf(user.getId()), "1", new Callback<MyEventRootDM1>() {
+            appController.paServices.MyEvents(String.valueOf(user.getId()),"1",   new Callback<MyEventRootDM1>() {
 
                 @Override
 

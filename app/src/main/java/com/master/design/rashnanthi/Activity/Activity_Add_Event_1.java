@@ -4,11 +4,15 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -18,10 +22,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -57,11 +64,15 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -94,6 +105,9 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     MyEventData myEventData1;
     String CountryId, Free, Paid;
 
+    ArrayList<String> arrayList = new ArrayList<>(Arrays.asList("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"));
+    int index = 0;
+
     @NotEmpty
     @BindView(R.id.dateTxt)
     TextView dateTxt;
@@ -102,6 +116,9 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @BindView(R.id.dateRL)
     RelativeLayout dateRL;
 
+
+    @BindView(R.id.vd1)
+    VideoView vd1;
 
     @NotEmpty
     @BindView(R.id.wtspcountryImg)
@@ -195,19 +212,71 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     Button post_for_free_nowBtn;
 
     String EventId;
+    boolean iffree = false;
+    boolean ifpaid = false;
+
+
+//    public  void addvideo(){
+//        final MediaController mediacontroller = new MediaController(this);
+//        mediacontroller.setAnchorView(vd1);
+//
+//
+//        vd1.setMediaController(mediacontroller);
+//        vd1.setVideoURI(Uri.parse(arrayList.get(index)));
+//        vd1.requestFocus();
+//
+//        vd1.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+//                    @Override
+//                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+//                        vd1.setMediaController(mediacontroller);
+//                        mediacontroller.setAnchorView(vd1);
+//
+//                    }
+//                });
+//            }
+//        });
+//
+//        vd1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            @Override
+//            public void onCompletion(MediaPlayer mp) {
+//                Toast.makeText(getApplicationContext(), "Video over", Toast.LENGTH_SHORT).show();
+//                if (index++ == arrayList.size()) {
+//                    index = 0;
+//                    mp.release();
+//                    Toast.makeText(getApplicationContext(), "Videos completed", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    vd1.setVideoURI(Uri.parse(arrayList.get(index)));
+//                    vd1.start();
+//                }
+//
+//
+//            }
+//        });
+//
+//        vd1.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+//            @Override
+//            public boolean onError(MediaPlayer mp, int what, int extra) {
+//                Log.d("API123", "What " + what + " extra " + extra);
+//                return false;
+//            }
+//        });
+//    }
+
+
 
 
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
         ifpaid = true;
-        Paid = "2";
+        iffree = false;
         if (status != null) {
-            Paid.equalsIgnoreCase("2");
 
             EditAddEventCreatorAPI();
 
         } else {
-            Paid.equalsIgnoreCase("2");
 
             AddEventByCreatorAPI();
         }
@@ -216,17 +285,22 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
 
+    boolean ifterm = false;
+
+    @OnClick(R.id.termsRB)
+    public void Term() {
+        ifterm = true;
+
+    }
+
     @OnClick(R.id.continue_Btn)
     public void Continue() {
         iffree = true;
-        Free = "1";
         if (status != null) {
             continue_Btn.setText(getString(R.string.edit_event));
-            Free.equalsIgnoreCase("1");
             EditAddEventCreatorAPI();
 
         } else {
-            Free.equalsIgnoreCase("1");
 
             continue_Btn.setText(getString(R.string.continuee));
             AddEventByCreatorAPI();
@@ -237,12 +311,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.post_for_free_nowBtn)
     public void PostForFreeNow() {
         iffree = true;
-        Free = "1";
+        ifpaid = false;
         if (status != null) {
-            Free.equalsIgnoreCase("1");
             EditAddEventCreatorAPI();
         } else {
-            Free.equalsIgnoreCase("1");
             AddEventByCreatorAPI();
         }
     }
@@ -328,8 +400,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     }
 
-    boolean iffree = false;
-    boolean ifpaid = false;
+
     boolean ifTermsClicked = false;
 
 //    String Date = dateTxt.getText().toString();
@@ -425,19 +496,20 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
             multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
             multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
-//            multipartTypedOutput.addPart("payorfree", new TypedString(payorfree));
             multipartTypedOutput.addPart("postedby", new TypedString(id));
             multipartTypedOutput.addPart("creatorcoach", new TypedString(creatorcoach));
             multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
             multipartTypedOutput.addPart("status", new TypedString(status));
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
+            multipartTypedOutput.addPart("editimageid[]", new TypedString("1"));
 
-            if (iffree == true) {
-                multipartTypedOutput.addPart("payorfree", new TypedString(Free));
-            }
-            if (ifpaid == true) {
-                multipartTypedOutput.addPart("payorfree", new TypedString(Paid));
-            }
+//            if (iffree != false) {
+//                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
+//
+//            }
+//            if (ifpaid != false) {
+//                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
+//            }
 
 
             try {
@@ -558,33 +630,18 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     progress.dismiss();
                     if (editEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
-//                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
+                        //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
                         EventId = editEventRootDM.getOutput().getEventid();
 
-                        if (Free == "1") {
 
-                            if (ifTermsClicked==true) {
-                                Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
-                            } else {
-                                Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
-                            }
+                        if (ifterm != false) {
 
-                        } else if (Paid == "2") {
+                            Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
 
-                            if (ifTermsClicked==true) {
-                                Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-                                intent.putExtra("eventid", EventId);
-                                startActivity(intent);
-                            } else {
-                                Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
-
-                            }
-
+                        } else {
+                            Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
 
                         }
-
-
                     } else
                         Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
 
@@ -617,28 +674,21 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
             multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
-            multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
-//            multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-            multipartTypedOutput.addPart("postedby", new TypedString(id));
-            multipartTypedOutput.addPart("creatorcoach", new TypedString("1"));
+            multipartTypedOutput.addPart("countryid[]", new TypedString(user.getCountryid()));
 
-            if (iffree == true) {
-                multipartTypedOutput.addPart("payorfree", new TypedString(Free));
-            } else if (ifpaid == true) {
-                multipartTypedOutput.addPart("payorfree", new TypedString(Paid));
+            multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
+            multipartTypedOutput.addPart("postedby", new TypedString(id));
+            multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
+
+
+            if (iffree != false) {
+                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
+
+            }
+            if (ifpaid != false) {
+                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
             }
 
-
-//
-//            if (iffree) {
-//                iffree = true;
-//                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-//            }
-//
-//            if (ifpaid) {
-//                ifpaid = true;
-//                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
-//            }
 
             try {
                 if (ifimg1) {
@@ -756,22 +806,25 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     progress.dismiss();
                     if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
-//                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
+
+                        //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
                         EventId = addEventByCreatorRootDM.getOutput().getEventid();
+                        if (ifterm != false) {
 
-//                        Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                            if (iffree != false) {
+                                Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
-                        if (iffree == true) {
-
-                            Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                            }
+                            if (ifpaid != false) {
+                                Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
+                                intent.putExtra("eventid", EventId);
+                                startActivity(intent);
+                            }
+                        } else {
+                            Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
 
                         }
-                        if (ifpaid == true) {
-                            Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-                            intent.putExtra("eventid", EventId);
-                            startActivity(intent);
-                        }
+
                     } else
                         Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
@@ -815,10 +868,16 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
+                        if((monthOfYear+1)<=9) {
+                            dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            if(dayOfMonth<=9)
+                                dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0"+dayOfMonth);
 
-                        dateTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
-
+                        }else {
+                            dateTxt.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            if(dayOfMonth<=9)
+                                dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0"+dayOfMonth);
+                        }
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
@@ -970,11 +1029,20 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             });
         }
     }
+    private static final int SELECT_VIDEO = 2;
 
     @OnClick(R.id.img1)
     public void Image1Clicked() {
         imgClicked = 1;
+
         OpenImage();
+//            Intent intent = new Intent();
+//            intent.setType("video/*");
+//            intent.setAction(Intent.ACTION_GET_CONTENT);
+//            startActivityForResult(Intent.createChooser(intent, "Select Video"), SELECT_VIDEO);
+
+//        showPictureDialog();
+
     }
 
     @OnClick(R.id.img2)
@@ -1017,8 +1085,171 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 }).check();
     }
 
+
+
+
+    private void showPictureDialog(){
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
+        pictureDialog.setTitle("Select Action");
+        String[] pictureDialogItems = {
+                "Select video from gallery",
+                "Record video from camera","Select image from gallery","Take image from camera" };
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                chooseVideoFromGallary();
+                                break;
+                            case 1:
+                                takeVideoFromCamera();
+                                break;
+                            case 2:
+                                chooseImageFromGallary();
+                                break;
+                            case 3:
+                                chooseImageFromCamera();
+                                break;
+
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
+    private static final String VIDEO_DIRECTORY = "/demonuts";
+    private int GALLERY = 1, CAMERA = 2;
+    private  int SELECT_PICTURE = 200;
+    private  int CAMERA_PIC_REQUEST = 300;
+
+
+    public void chooseVideoFromGallary() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(galleryIntent, GALLERY);
+    }
+
+    public void chooseImageFromGallary() {
+        // this function is triggered when
+        // the Select Image Button is clicked
+
+
+            // create an instance of the
+            // intent of the type image
+            Intent i = new Intent();
+            i.setType("image/*");
+            i.setAction(Intent.ACTION_GET_CONTENT);
+
+            // pass the constant to compare it
+            // with the returned requestCode
+            startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+    } public void chooseImageFromCamera() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+    }
+
+    private void takeVideoFromCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        startActivityForResult(intent, CAMERA);
+    }
+
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//        Log.d("result",""+resultCode);
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == this.RESULT_CANCELED) {
+//            Log.d("what","cancle");
+//            return;
+//        }
+//        if (requestCode == GALLERY) {
+//            Log.d("what","gale");
+//            if (data != null) {
+//                Uri contentURI = data.getData();
+//
+//                String selectedVideoPath = getPath(contentURI);
+//                Log.d("path",selectedVideoPath);
+//                saveVideoToInternalStorage(selectedVideoPath);
+//                vd1.setVideoURI(contentURI);
+//                vd1.requestFocus();
+//                vd1.start();
+//
+//            }
+//
+//        } else if (requestCode == CAMERA) {
+//            Uri contentURI = data.getData();
+//            String recordedVideoPath = getPath(contentURI);
+//            Log.d("frrr",recordedVideoPath);
+//            saveVideoToInternalStorage(recordedVideoPath);
+//            vd1.setVideoURI(contentURI);
+//            vd1.requestFocus();
+//            vd1.start();
+//        }
+//    }
+
+    private void saveVideoToInternalStorage (String filePath) {
+
+        File newfile;
+
+        try {
+
+            File currentFile = new File(filePath);
+            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory() + VIDEO_DIRECTORY);
+            newfile = new File(wallpaperDirectory, Calendar.getInstance().getTimeInMillis() + ".mp4");
+
+            if (!wallpaperDirectory.exists()) {
+                wallpaperDirectory.mkdirs();
+            }
+
+            if(currentFile.exists()){
+
+                InputStream in = new FileInputStream(currentFile);
+                OutputStream out = new FileOutputStream(newfile);
+
+                // Copy the bits from instream to outstream
+                byte[] buf = new byte[1024];
+                int len;
+
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+                out.close();
+                Log.v("vii", "Video file saved successfully.");
+            }else{
+                Log.v("vii", "Video saving failed. Source file missing.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Video.Media.DATA };
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } else
+            return null;
+    }
+
+
+
+
+
+
     int imgClicked;
 
+    @BindView(R.id.cam1)
+    ImageView cam1;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1049,7 +1280,131 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+//            Log.d("result",""+resultCode);
+//            super.onActivityResult(requestCode, resultCode, data);
+//            if (resultCode == this.RESULT_CANCELED) {
+//                Log.d("what","cancle");
+//                return;
+//            }
+//            if (requestCode == GALLERY) {
+//                Log.d("what","gale");
+//                if (data != null) {
+//                    Uri contentURI = data.getData();
+//                    img1.setVisibility(View.GONE);
+//                    cam1.setVisibility(View.GONE);
+//                    vd1.setVisibility(View.VISIBLE);
+//                    String selectedVideoPath = getPath(contentURI);
+//                    Log.d("path",selectedVideoPath);
+//                    saveVideoToInternalStorage(selectedVideoPath);
+//                    vd1.setVideoURI(contentURI);
+//                    vd1.requestFocus();
+//                    vd1.start();
+//
+//                }
+//
+//            }
+//            if (requestCode == CAMERA) {
+//                Uri contentURI = data.getData();
+//                String recordedVideoPath = getPath(contentURI);
+//                Log.d("frrr",recordedVideoPath);
+//                img1.setVisibility(View.GONE);
+//                cam1.setVisibility(View.GONE);
+//                vd1.setVisibility(View.VISIBLE);
+//                saveVideoToInternalStorage(recordedVideoPath);
+//                vd1.setVideoURI(contentURI);
+//                vd1.requestFocus();
+//                vd1.start();
+//            }
         }
+
+//          if (requestCode == SELECT_PICTURE) {
+//            // Get the url of the image from data
+//            Uri selectedImageUri = data.getData();
+//            if (null != selectedImageUri) {
+//                img1.setVisibility(View.VISIBLE);
+//                cam1.setVisibility(View.GONE);
+//                vd1.setVisibility(View.GONE);
+//                // update the preview image in the layout
+//                img1.setImageURI(selectedImageUri);
+//            }
+//        }
+//          if (requestCode == CAMERA) {
+//            // Get the url of the image from data
+//            Uri selectedImageUri = data.getData();
+//            if (null != selectedImageUri) {
+//                img1.setVisibility(View.GONE);
+//                cam1.setVisibility(View.GONE);
+//                vd1.setVisibility(View.VISIBLE);
+//                // update the preview image in the layout
+//                img1.setImageURI(selectedImageUri);
+//            }
+//        }
+//          if (requestCode == CAMERA_PIC_REQUEST) {
+//            // Get the url of the image from data
+//            Uri selectedImageUri = data.getData();
+////            Uri uri = data.getParcelableExtra("path");
+//            try
+//            {
+//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(Activity_Add_Event_1.this.getContentResolver(), selectedImageUri);
+//
+//                if (null != selectedImageUri) {
+//                    img1.setVisibility(View.VISIBLE);
+//                    cam1.setVisibility(View.GONE);
+//                    vd1.setVisibility(View.GONE);
+//                    // update the preview image in the layout
+//                    img1.setImageBitmap(bitmap);
+//                    ifimg1 = true;
+//                }
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//        }
+
+          if (requestCode == REQUEST_IMAGE_VIDEO) {
+//            if (resultCode == Activity.RESULT_OK) {
+//                Uri uri = data.getParcelableExtra("path");
+//            Uri uri = data.getParcelableExtra("path");
+//            vd1.setVideoURI(uri);
+                try {
+                    // You can update this bitmap to your server
+
+                    if (imgClicked == 1) {
+                        img1.setVisibility(View.GONE);
+                        cam1.setVisibility(View.GONE);
+                        vd1.setVisibility(View.VISIBLE);
+                        Uri contentURI = data.getData();
+                        String recordedVideoPath = getPath(contentURI);
+                        Log.d("frrr",recordedVideoPath);
+                        img1.setVisibility(View.GONE);
+                        cam1.setVisibility(View.GONE);
+                        vd1.setVisibility(View.VISIBLE);
+                        saveVideoToInternalStorage(recordedVideoPath);
+                        vd1.setVideoURI(contentURI);
+                        vd1.requestFocus();
+                        vd1.start();
+                    }
+                } catch (Exception e) {
+                    Log.e("Exception",e.toString());
+                }
+//            }
+
+        }
+//          if (requestCode == GALLERY) {
+//            Uri mVideoURI = data.getData();
+//            vd1.setVideoURI(mVideoURI);
+//            img1.setVisibility(View.GONE);
+//            cam1.setVisibility(View.GONE);
+//            vd1.setVisibility(View.VISIBLE);
+//            MediaController mediaController = new MediaController(this);
+//            mediaController.setAnchorView(vd1);
+//            vd1.setMediaController(mediaController);
+//
+//            vd1.start();
+//
+//        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -1061,10 +1416,16 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             }
 
             @Override
+            public void onTakeCameraSelectedVideo() {
+//                launchCameraIntent();
+                launchCameraIntentVideo();
+            }
+
+            @Override
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
-        });
+        },true);
     }
 
     private void launchCameraIntent() {
@@ -1084,7 +1445,26 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_IMAGE);
     }
 
+
+    private void launchCameraIntentVideo() {
+        Intent intent = new Intent(Activity_Add_Event_1.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE_VIDEO);
+
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
+
+        startActivityForResult(intent, REQUEST_IMAGE_VIDEO);
+    }
+
     int REQUEST_IMAGE = 999;
+    int REQUEST_IMAGE_VIDEO = 998;
 
     private void launchGalleryIntent() {
         Intent intent = new Intent(Activity_Add_Event_1.this, ImagePickerActivity.class);

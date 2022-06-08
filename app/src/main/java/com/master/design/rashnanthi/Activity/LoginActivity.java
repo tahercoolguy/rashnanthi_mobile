@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         if (connectionDetector.isConnectingToInternet()) {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
+
             progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
 
             appController.paServices.Login(country_spinnerET.getText().toString(), mobileET.getText().toString(),
@@ -112,7 +113,9 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
                                 user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
                                 user.setCreatorcoach(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
+                                user.setCountryid(loginRootDM.getOutput().getData().get(0).getCountryid());
                                  String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
+
                                 user.setEmail(neemail);
 
 

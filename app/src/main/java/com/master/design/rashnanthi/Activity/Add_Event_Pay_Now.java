@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.master.design.rashnanthi.Adapter.Adapter_Add_Event_Pay_Now;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.ConfirmEventRootDM;
 import com.master.design.rashnanthi.DataModel.SummaryForPaidEventRootDM;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
@@ -31,6 +32,8 @@ import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.mime.MultipartTypedOutput;
+import retrofit.mime.TypedString;
 
 public class Add_Event_Pay_Now extends AppCompatActivity {
 
@@ -41,13 +44,10 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     AppController appController;
 
     Context context;
-    String eventid;
+    String eventid, invoiceid, paymentlink;
 
 
-
-    Button add_event_pay_now;
-
-    TextView knet_circle, my_fatoorah_circle, visa_mastercard_circle;
+    TextView knet_circle, visa_mastercard_circle;
 
 
     @NotEmpty
@@ -58,25 +58,32 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     @BindView(R.id.post_price_country_Txt)
     TextView post_price_country_Txt;
 
-    @NotEmpty
-    @BindView(R.id.post_price_kuwait_Txt)
-    TextView post_price_kuwait_Txt;
+
     @NotEmpty
     @BindView(R.id.qatar_price_Txt)
     TextView qatar_price_Txt;
 
-    @NotEmpty
-    @BindView(R.id.kuwait_price__Txt)
-    TextView kuwait_price__Txt;
 
     @NotEmpty
     @BindView(R.id.total_price_kwd)
     TextView total_price_kwd;
 
+    @NotEmpty
+    @BindView(R.id.pay_now_Btn)
+    Button pay_now_Btn;
+
 
     @OnClick(R.id.add_event_pay_back)
     public void Back() {
         finish();
+    }
+
+
+    @OnClick(R.id.pay_now_Btn)
+    public void ConfirmEventPayNow() {
+
+        ConfirmEventPayNowAPI();
+
     }
 
     @Override
@@ -90,22 +97,21 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(Add_Event_Pay_Now.this);
-        eventid= getIntent().getStringExtra("eventid");
+
+        eventid = getIntent().getStringExtra("eventid");
         SummaryForPaidEvent();
 
 
-
-
-        add_event_pay_now = findViewById(R.id.add_event_pay_now);
         visa_mastercard_circle = findViewById(R.id.visa_mastercard_circle);
         knet_circle = findViewById(R.id.knet_circle);
 
-        my_fatoorah_circle = findViewById(R.id.my_fatoorah_circle);
+//        my_fatoorah_circle = findViewById(R.id.my_fatoorah_circle);
 
         visa_mastercard_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ifVisa_Mastercard = true;
+                ifKnet = false;
                 ifVisa_MastercardSelected();
 
             }
@@ -114,35 +120,30 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ifKnet = true;
+                ifVisa_Mastercard = false;
                 ifKnetSelected();
 
             }
         });
 
-        my_fatoorah_circle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifMY_Fatoora = true;
-                ifMY_FatooraSelected();
-            }
-        });
-
-
-        add_event_pay_now.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+//        my_fatoorah_circle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ifMY_Fatoora = true;
+//                 ifMY_FatooraSelected();
+//            }
+//        });
 
 
     }
 
 
     boolean ifKnet = false;
+    String knet, fatoora, visa;
 
     public void ifKnetSelected() {
         knet_circle.setBackground(getDrawable(R.drawable.ic_payment_method_selected_circle));
-        my_fatoorah_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
+//        my_fatoorah_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
         visa_mastercard_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
 
 
@@ -152,7 +153,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
 
     public void ifMY_FatooraSelected() {
         knet_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
-        my_fatoorah_circle.setBackground(getDrawable(R.drawable.ic_payment_method_selected_circle));
+//        my_fatoorah_circle.setBackground(getDrawable(R.drawable.ic_payment_method_selected_circle));
         visa_mastercard_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
 
     }
@@ -162,7 +163,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     public void ifVisa_MastercardSelected() {
 
         knet_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
-        my_fatoorah_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
+//        my_fatoorah_circle.setBackground(getDrawable(R.drawable.ic_unselected_circle));
         visa_mastercard_circle.setBackground(getDrawable(R.drawable.ic_payment_method_selected_circle));
 
     }
@@ -174,26 +175,21 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
 //            Intent intent = getIntent();
 
 //            eventid = intent.getStringExtra("eventid");
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("eventid", new TypedString(eventid));
             progress = dialogUtil.showProgressDialog(Add_Event_Pay_Now.this, getString(R.string.please_wait));
 
-            appController.paServices.SummaryForPaidEvent(eventid, new Callback<SummaryForPaidEventRootDM>() {
+            appController.paServices.SummaryForPaidEvent(multipartTypedOutput, new Callback<SummaryForPaidEventRootDM>() {
 
                 @Override
                 public void success(SummaryForPaidEventRootDM summaryForPaidEventRootDM, Response response) {
                     progress.dismiss();
                     if (summaryForPaidEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//                        Helper.shwToast(Add_Event_Pay_Now.this,customerRegisterDM.getMessage());
-//                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
-
-                        //                        rcv_paynow.setAdapter(occasionAdapter);
 
                         post_price_country_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountry());
-                        post_price_kuwait_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountry());
                         qatar_price_Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountryvalue());
-                        kuwait_price__Txt.setText(summaryForPaidEventRootDM.getOutput().getData().getCountryvalue());
                         total_price_kwd.setText(summaryForPaidEventRootDM.getOutput().getData().getCountryvalue());
 
-//                        startActivity(new Intent(Add_Event_Pay_Now.this,Add_Event_Bill.class));
 
                     } else
                         Helper.showToast(Add_Event_Pay_Now.this, "something wrong ");
@@ -212,6 +208,72 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
             Helper.showToast(Add_Event_Pay_Now.this, getString(R.string.no_internet_connection));
 
     }
+
+    public void ConfirmEventPayNowAPI() {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("eventid", new TypedString(eventid));
+            multipartTypedOutput.addPart("paymentmethod", new TypedString("1"));
+
+            if (ifKnet != false) {
+                multipartTypedOutput.addPart("paymentmethod", new TypedString("1"));
+
+            }
+            if (ifVisa_Mastercard != false) {
+                multipartTypedOutput.addPart("paymentmethod", new TypedString("2"));
+
+            }
+
+
+            progress = dialogUtil.showProgressDialog(Add_Event_Pay_Now.this, getString(R.string.please_wait));
+
+            appController.paServices.ConfirmEvent(multipartTypedOutput, new Callback<ConfirmEventRootDM>() {
+                @Override
+                public void success(ConfirmEventRootDM confirmEventRootDM, Response response) {
+                    progress.dismiss();
+                    if (confirmEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                        invoiceid = confirmEventRootDM.getOutput().getInvoiceId();
+                        paymentlink = confirmEventRootDM.getOutput().getPaymentLink();
+
+
+                        if (ifKnet != false) {
+                            Intent intent = new Intent(Add_Event_Pay_Now.this, PayNowActivity.class);
+                            intent.putExtra("invoiceid", invoiceid);
+                            intent.putExtra("PaymentUrl", paymentlink);
+                            startActivity(intent);
+                        } else {
+                            Helper.showToast(context, "kindly select any one  payment method");
+                        }
+
+                        if (ifVisa_Mastercard != false) {
+                            Intent intent = new Intent(Add_Event_Pay_Now.this, PayNowActivity.class);
+                            intent.putExtra("invoiceid", invoiceid);
+                            intent.putExtra("PaymentUrl", paymentlink);
+                            startActivity(intent);
+                        } else {
+                            Helper.showToast(context, "kindly select any one  payment method");
+                        }
+
+                    } else
+                        Helper.showToast(Add_Event_Pay_Now.this, "Something Wrong");
+
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+
+        } else
+            Helper.showToast(Add_Event_Pay_Now.this, getString(R.string.no_internet_connection));
+
+    }
+
 
 
 }

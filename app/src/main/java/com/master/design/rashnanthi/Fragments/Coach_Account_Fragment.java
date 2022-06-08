@@ -324,12 +324,15 @@ public class Coach_Account_Fragment extends Fragment {
             public void onTakeCameraSelected() {
                 launchCameraIntent();
             }
+            @Override
+            public void onTakeCameraSelectedVideo() {
 
+            }
             @Override
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
-        });
+        },false);
     }
 
     private void launchCameraIntent() {

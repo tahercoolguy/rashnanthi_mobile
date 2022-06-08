@@ -1,5 +1,7 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.master.design.rashnanthi.Controller.AppController.TAG;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -162,11 +164,18 @@ public class Coach_Grid_Account_Fragment extends Fragment {
 
                         if (Id != null) {
 
-                            my_account_grid_Rcv.setVisibility(View.VISIBLE);
-                            Adapter_Coach__grid_Fgmt occasionAdapter = new Adapter_Coach__grid_Fgmt(getActivity(), getCoachsByCountryRootDM.getOutput().getData());
-                            GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 3);
-                            my_account_grid_Rcv.setLayoutManager(linearLayoutManager);
-                            my_account_grid_Rcv.setAdapter(occasionAdapter);
+                            try {
+                                my_account_grid_Rcv.setVisibility(View.VISIBLE);
+                                Adapter_Coach__grid_Fgmt occasionAdapter = new Adapter_Coach__grid_Fgmt(getActivity(), getCoachsByCountryRootDM.getOutput().getData());
+                                GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 3);
+                                my_account_grid_Rcv.setLayoutManager(linearLayoutManager);
+                                my_account_grid_Rcv.setAdapter(occasionAdapter);
+                            }   catch(Exception error1) {
+                                Log.e(TAG, "The exception caught while executing the process. (error1)");
+                                error1.printStackTrace();
+
+                            }
+
                         }
                     } else {
                         my_account_grid_Rcv.setVisibility(View.GONE);

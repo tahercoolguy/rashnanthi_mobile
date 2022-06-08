@@ -19,6 +19,9 @@
         android:contentDescription="@null"
         tools:src="@color/black" />
 
+
+
+
     <!--on below line we are creating
         linear layout for our views-->
     <LinearLayout

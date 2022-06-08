@@ -52,8 +52,7 @@ public class SliderPagerAdapter1 extends PagerAdapter {
         im_slider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "image clicked", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, ImageActicity.class);
+                 Intent intent = new Intent(context, ImageActicity.class);
                 intent.putExtra("url", AppController.base_image_url+coachesWithPostsImageDatamArrayList.get(position).getImage());
                 context.startActivity(intent);
             }

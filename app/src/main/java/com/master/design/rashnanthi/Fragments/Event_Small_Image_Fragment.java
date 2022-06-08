@@ -34,8 +34,10 @@ import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
 import com.master.design.rashnanthi.Adapter.SliderAdapter;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.EventsDetailsRootDM;
+import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
 import com.master.design.rashnanthi.DataModel.SliderData;
 import com.master.design.rashnanthi.Helper.DialogUtil;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -51,6 +53,8 @@ import it.sephiroth.android.library.widget.HListView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.mime.MultipartTypedOutput;
+import retrofit.mime.TypedString;
 
 public class Event_Small_Image_Fragment extends Fragment {
 
@@ -156,6 +160,9 @@ public class Event_Small_Image_Fragment extends Fragment {
         }
     }
 
+    User user;
+
+    String date;
 
     @Nullable
     @Override
@@ -182,7 +189,7 @@ public class Event_Small_Image_Fragment extends Fragment {
             setDetails();
             even_back_Img = rootView.findViewById(R.id.even_back_Img);
             menu_1_menu = rootView.findViewById(R.id.menu_1_menu);
-
+            user =  new User(getActivity());
             even_back_Img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -196,10 +203,12 @@ public class Event_Small_Image_Fragment extends Fragment {
                     ((MainActivity) context).addFragment(new Menu_1_Fragment(), true);
                 }
             });
+            Bundle bd=getArguments();
+            date = bd.getString("date");
 
             setClickListeners();
             setDetails();
-            EventDetailsAPI();
+            newAPI();
 
         }
         return rootView;
@@ -240,7 +249,72 @@ public class Event_Small_Image_Fragment extends Fragment {
         }
 
     }
+public void newAPI()
+    {
+        if (connectionDetector.isConnectingToInternet()) {
 
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("countryid", new TypedString(user.getCountryid()));
+            multipartTypedOutput.addPart("date", new TypedString(date));
+
+
+            appController.paServices.GetEventsByCountryDate(multipartTypedOutput, new Callback<GetEventsByCountryDateRootDM>() {
+                @Override
+                public void success(GetEventsByCountryDateRootDM getEventsByCountryDateRootDM, Response response) {
+                    if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+//                        EventDate = getEventsByCountryDateRootDM.getOutput().getData().get(0).getEventdate();
+
+                        if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                            Instagram = getEventsByCountryDateRootDM.getOutput().getData().get(0).getInstagram();
+                            Whatsapp = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapnumber();
+                            Snapchat = getEventsByCountryDateRootDM.getOutput().getData().get(0).getSnapchat();
+                            Website = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWebsite();
+                            WhatsappCountryCode = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapcountrycode();
+
+                            // passing this array list inside our adapter class.
+                            SliderAdapter adapter = new SliderAdapter(context, getEventsByCountryDateRootDM.getOutput().getData());
+
+                            // below method is used to set auto cycle direction in left to
+                            // right direction you can change according to requirement.
+                            slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+
+                            // below method is used to
+                            // setadapter to sliderview.
+                            slider.setSliderAdapter(adapter);
+
+                            // below method is use to set
+                            // scroll time in seconds.
+
+                            slider.setScrollTimeInSec(3);
+//
+//                        // to set it scrollable automatically
+//                        // we use below method.
+
+                            slider.setAutoCycle(true);
+//
+//                        // to start autocycle below method is used.
+
+                            slider.startAutoCycle();
+
+
+
+
+                        } else
+                            Helper.showToast(context, "event details does not exist here ");
+
+                    } else
+                        Helper.showToast(getActivity(), "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("String", error.toString());
+                }
+            });
+        }
+    }
     public void EventDetailsAPI() {
 
         if (connectionDetector.isConnectingToInternet()) {

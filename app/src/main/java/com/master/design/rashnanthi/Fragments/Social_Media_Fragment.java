@@ -52,7 +52,7 @@ public class Social_Media_Fragment extends Fragment {
     RelativeLayout snapchatRl;
     RelativeLayout youtubeRL;
     RelativeLayout tiktokRl;
-    RelativeLayout telegramRL;
+    RelativeLayout telegramRL;RelativeLayout facbookRL;
 
 
     @BindView(R.id.progress_bar)
@@ -75,6 +75,7 @@ public class Social_Media_Fragment extends Fragment {
     boolean ifyoutube = false;
     boolean iftiktok = false;
     boolean iftelegram = false;
+    boolean iffacebook = false;
 
 
     public void SocialMediaLink() {
@@ -88,33 +89,31 @@ public class Social_Media_Fragment extends Fragment {
                     progress.dismiss();
                     if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        if (ifinsta) {
+                        if (ifinsta!=false) {
                              if (socialMediaDM.getOutput().getData().get(0).getInstagram() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getInstagram();
 //                                Intent intent = new Intent(Intent.ACTION_VIEW);
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getInstagram()));
-                                 ifinsta =true;
 
-                                 String url = "https://www.google.com/";
+                                 String url = socialMediaDM.getOutput().getData().get(0).getInstagram();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
                             }
 
-                        }   if (ifwhatsapp) {
+                        }     if (ifwhatsapp!=false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getWhatsapp() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getWhatsapp();
-//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                Intent intent =!=false new Intent(Intent.ACTION_VIEW);
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getInstagram()));
-                                ifwhatsapp=true;
 
-                                String url = "https://www.google.com/";
+                                String url = socialMediaDM.getOutput().getData().get(0).getWhatsapp();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
@@ -123,7 +122,7 @@ public class Social_Media_Fragment extends Fragment {
 //
 
 
-                        }   if (iftwitter) {
+                        }    if (iftwitter!=false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getTwitter() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getTwitter() ;
@@ -131,9 +130,8 @@ public class Social_Media_Fragment extends Fragment {
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getTwitter()));
-                                iftwitter =true;
 
-                                String url = "https://www.google.com/";
+                                String url = socialMediaDM.getOutput().getData().get(0).getTwitter();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
@@ -141,16 +139,15 @@ public class Social_Media_Fragment extends Fragment {
                             }
 
 
-                        }   if (ifsnapchat) {
+                        }    if (ifsnapchat!=false) {
                             if (socialMediaDM.getOutput().getData().get(0).getSnapchat() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getSnapchat();
 //                                Intent intent = new Intent(Intent.ACTION_VIEW);
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getSnapchat()));
-                                ifsnapchat =true;
 
-                                String url = "https://www.google.com/";
+                                String url = socialMediaDM.getOutput().getData().get(0).getSnapchat();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
@@ -158,23 +155,22 @@ public class Social_Media_Fragment extends Fragment {
                             }
 
 
-                        }   if (ifyoutube) {
+                        }    if (ifyoutube!=false) {
                             if (socialMediaDM.getOutput().getData().get(0).getYoutube() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getYoutube();
 //                                Intent intent = new Intent(Intent.ACTION_VIEW);
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                              Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getYoutube()));
-                                ifyoutube =true;
 
-                                String url = "https://www.google.com/";
+                                String url = socialMediaDM.getOutput().getData().get(0).getYoutube();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
                             }
 
-                        }   if (iftiktok) {
+                        }    if (iftiktok!=false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getTiktok() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getTiktok();
@@ -182,9 +178,8 @@ public class Social_Media_Fragment extends Fragment {
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                               Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getTiktok()));
-                                iftiktok =true;
 
-                                String url = "https://www.google.com/";
+                                String url = socialMediaDM.getOutput().getData().get(0).getTiktok();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
@@ -194,7 +189,8 @@ public class Social_Media_Fragment extends Fragment {
 
 
 
-                        }   if (iftelegram) {
+                        }
+                        if (iftelegram!=false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getTelegram() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getTelegram();
@@ -202,9 +198,24 @@ public class Social_Media_Fragment extends Fragment {
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                               Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getTelegram()));
-                                iftelegram=true;
 
-                                String url = "https://www.google.com/";
+                                String url = socialMediaDM.getOutput().getData().get(0).getTelegram();
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+
+                            }
+
+                        }if (iffacebook!=false) {
+
+                            if (socialMediaDM.getOutput().getData().get(0).getFacebook() != null) {
+//                                String url = socialMediaDM.getOutput().getData().get(0).getTelegram();
+//                                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                                intent.setData(Uri.parse(url));
+//                                startActivity(intent);
+//                               Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getTelegram()));
+
+                                String url = socialMediaDM.getOutput().getData().get(0).getFacebook();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
@@ -215,9 +226,7 @@ public class Social_Media_Fragment extends Fragment {
 
 
                     } else
-                        Helper.showToast(context, socialMediaDM.getOutput().
-
-                                getSuccess());
+                        Helper.showToast(context, "something wrong");
                 }
 
                 @Override
@@ -263,6 +272,7 @@ public class Social_Media_Fragment extends Fragment {
             youtubeRL = rootView.findViewById(R.id.youtubeRL);
             tiktokRl = rootView.findViewById(R.id.tiktokRl);
             telegramRL = rootView.findViewById(R.id.telegramRL);
+            facbookRL = rootView.findViewById(R.id.facbookRL);
 
             social_media_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -275,6 +285,12 @@ public class Social_Media_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     ifinsta = true;
+                       ifwhatsapp = false;
+                      iftwitter = false;
+                      ifsnapchat = false;
+                      ifyoutube = false;
+                      iftiktok = false;
+                      iftelegram = false;iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -284,6 +300,12 @@ public class Social_Media_Fragment extends Fragment {
                 public void onClick(View view) {
 
                     ifwhatsapp = true;
+                    ifinsta = false;
+                     iftwitter = false;
+                    ifsnapchat = false;
+                    ifyoutube = false;
+                    iftiktok = false;
+                    iftelegram = false;iffacebook = false;
                     SocialMediaLink();
 
 
@@ -295,6 +317,12 @@ public class Social_Media_Fragment extends Fragment {
                 public void onClick(View view) {
 
                     iftwitter = true;
+                    ifinsta = false;
+                    ifwhatsapp = false;
+                     ifsnapchat = false;
+                    ifyoutube = false;
+                    iftiktok = false;
+                    iftelegram = false;iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -304,6 +332,12 @@ public class Social_Media_Fragment extends Fragment {
                 public void onClick(View view) {
 
                     ifsnapchat = true;
+                    ifinsta = false;
+                    ifwhatsapp = false;
+                    iftwitter = false;
+                     ifyoutube = false;
+                    iftiktok = false;
+                    iftelegram = false;iffacebook = false;
                     SocialMediaLink();
 
 
@@ -315,6 +349,12 @@ public class Social_Media_Fragment extends Fragment {
 
 
                     ifyoutube = true;
+                    ifinsta = false;
+                    ifwhatsapp = false;
+                    iftwitter = false;
+                    ifsnapchat = false;
+                     iftiktok = false;
+                    iftelegram = false;iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -325,6 +365,12 @@ public class Social_Media_Fragment extends Fragment {
 
 
                     iftiktok = true;
+                    ifinsta = false;
+                    ifwhatsapp = false;
+                    iftwitter = false;
+                    ifsnapchat = false;
+                    ifyoutube = false;
+                     iftelegram = false;iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -334,7 +380,28 @@ public class Social_Media_Fragment extends Fragment {
                 public void onClick(View view) {
 
                     iftelegram = true;
+                    ifinsta = false;
+                    ifwhatsapp = false;
+                    iftwitter = false;
+                    ifsnapchat = false;
+                    ifyoutube = false;
+                    iftiktok = false;
+                    iffacebook = false;
 
+
+                    SocialMediaLink();
+
+                }
+            });  facbookRL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    iffacebook = true;
+                    iftelegram = false; ifinsta = false;
+                    ifwhatsapp = false;
+                    iftwitter = false;
+                    ifsnapchat = false;
+                    ifyoutube = false;
+                    iftiktok = false;
                     SocialMediaLink();
 
                 }

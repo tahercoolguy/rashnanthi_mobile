@@ -49,6 +49,7 @@ public class My_Event_1_Fragment extends Fragment {
     ImageView my_event_menu_1, my_event_menu_1_back;
     RecyclerView my_event_Rcv;
     private ArrayList<My_Event_1DM> my_event_1DMArrayList;
+    String countryId;
 
 
     @BindView(R.id.progress_bar)
@@ -138,8 +139,12 @@ public class My_Event_1_Fragment extends Fragment {
 
     public void MyEventAPI() {
         if (connectionDetector.isConnectingToInternet()) {
+
+            String countryid=user.getCountryid();
+
+            String userid=String.valueOf(user.getId());
             //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            appController.paServices.MyEvents(String.valueOf(user.getId()), "1", new Callback<MyEventRootDM1>() {
+            appController.paServices.MyEvents(userid, countryid, new Callback<MyEventRootDM1>() {
                 @Override
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
 
@@ -151,7 +156,7 @@ public class My_Event_1_Fragment extends Fragment {
                         my_event_Rcv.setAdapter(adapter_my_event_1);
 
                     } else
-                        Helper.showToast(getActivity(), "your post does not exist");
+                        Helper.showToast(getActivity(), "No posts");
                 }
 
                 @Override

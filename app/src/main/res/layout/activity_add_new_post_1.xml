@@ -383,12 +383,12 @@
                             android:id="@+id/wtspcodeTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="45dp"
                             android:lines="1"
                             android:maxLength="6"
-                            android:text="+965"></TextView>
+                            android:text="+965"
+                            android:textColor="@color/black"></TextView>
                         <ImageView
                             android:layout_width="wrap_content"
                             android:src="@drawable/ic_down_arrow_spinner"
@@ -577,6 +577,7 @@
                             android:elevation="3dp"
                             android:gravity="center"
                             android:text="@string/even_photo_video">
+
                             <ImageView
                                 android:id="@+id/img2"
                                 android:layout_width="150dp"
@@ -729,6 +730,7 @@
 
 
                 <TextView
+                    android:id="@+id/youpostEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -736,7 +738,6 @@
                     android:gravity="center"
                     android:lines="1"
                     android:text="@string/your_post_will_be_uploaded_within_24_hours"
-
                     android:textColor="@color/black"
                     android:textSize="18dp">
 
@@ -750,14 +751,12 @@
                     android:layout_marginTop="30dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/my_fatoorah_circle"
+                    <RadioButton
+                        android:id="@+id/termsRB"
                         android:layout_width="wrap_content"
+                        android:allowUndo="true"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_unselected_circle"></TextView>
-
-
+                        android:layout_gravity="center"></RadioButton>
                     <TextView
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
@@ -812,6 +811,21 @@
                     android:background="@drawable/button_rounded_primary_color_selector"
 
                     android:text="@string/pay_now"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_title"></Button>
+                <Button
+                    android:id="@+id/editpostnowBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="50dp"
+
+                    android:background="@drawable/button_rounded_primary_color_selector"
+
+                    android:text="@string/edit_post"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"></Button>
 

@@ -21,23 +21,31 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.Story_activity;
+import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateData;
 import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
+import com.master.design.rashnanthi.DataModel.MyEventData1;
+import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.ResponseListener;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -95,6 +103,7 @@ public class Calender_Fragment extends Fragment {
     AppController appController;
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
+    User user;
 
     @Nullable
     @Override
@@ -116,6 +125,8 @@ public class Calender_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
             Binding();
+            user= new User(getActivity());
+            appController = (AppController) getActivity().getApplicationContext();
 
             //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
             backmonthImg = rootView.findViewById(R.id.backmonthImg);
@@ -160,14 +171,18 @@ public class Calender_Fragment extends Fragment {
             compactCalendar = (CompactCalendarView) rootView.findViewById(R.id.compactcalendar_view);
             compactCalendar.setUseThreeLetterAbbreviation(true);
 
-            compactCalendar.setCurrentSelectedDayBackgroundColor(Color.RED);
+            compactCalendar.setCurrentSelectedDayBackgroundColor(Color.YELLOW);
 
+            compactCalendar.setEventIndicatorStyle(CompactCalendarView.FILL_LARGE_INDICATOR);
+            
             SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
             Date date = new Date();
 //            moth_year_txt.setText(formatter.format(date));
 
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DATE, 1);
+//            calendar.set(Calendar.DATE,);
+
 
             compactCalendar.setUseThreeLetterAbbreviation(false);
             compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
@@ -186,12 +201,12 @@ public class Calender_Fragment extends Fragment {
 //            String s="1654108200000";
 //            long l=Long.parseLong(s);
 //
-//            Event ev1 = new Event(Color.YELLOW, l, "Event 1");
+//            Event ev2 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
+//            compactCalendar.addEvent(ev2);
+//
+//            calendar.add(Calendar.DATE, 1);
+//            Event ev1 = new Event(Color.RED, calendar.getTimeInMillis(), "Event 1");
 //            compactCalendar.addEvent(ev1);
-
-
-            Event ev1 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
-            compactCalendar.addEvent(ev1);
 //
             compactCalendar.setTargetHeight(700);
 
@@ -199,47 +214,16 @@ public class Calender_Fragment extends Fragment {
             compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
                 @Override
                 public void onDayClick(Date dateClicked) {
-                    appController = (AppController) getActivity().getApplicationContext();
 
-
-//                    if (connectionDetector.isConnectingToInternet()) {
-//
-//                        MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-//                        multipartTypedOutput.addPart("countryid", new TypedString("1"));
-//                        multipartTypedOutput.addPart("date", new TypedString("2022-06-02"));
-//
-//
-//                        appController.paServices.GetEventsByCountryDate(multipartTypedOutput, new Callback<GetEventsByCountryDateRootDM>() {
-//                            @Override
-//                            public void success(GetEventsByCountryDateRootDM getEventsByCountryDateRootDM, Response response) {
-//                                if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//
-//                                    Event ev1 = new Event(Color.YELLOW, calendar.getTimeInMillis(), "Event 1");
-//                                    compactCalendar.addEvent(ev1);
-//
-//                                    if (calendar.getTimeInMillis()!= 0) {
-//
-//                                        ((MainActivity) context).addFragment(new Event_Small_Image_Fragment(), true);
-//
-//                                    } else {
-//                                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
-//
-//                                    }
-//
-//                                } else
-//                                    Helper.showToast(getActivity(), "Some network happened ..");
-//                            }
-//
-//                            @Override
-//                            public void failure(RetrofitError error) {
-//                                Log.e("String", error.toString());
-//                            }
-//                        });
-//                    }
 
                     if (calendar.getTimeInMillis() != 0) {
 
-                        ((MainActivity) context).addFragment(new Event_Small_Image_Fragment(), true);
+                       Event_Small_Image_Fragment event_small_image_fragment =  new Event_Small_Image_Fragment();
+                       Bundle bd=new Bundle();
+                       SimpleDateFormat datenew = new SimpleDateFormat("yyyy-MM-dd");
+                       bd.putString("date",datenew.format(dateClicked));
+                       event_small_image_fragment.setArguments(bd);
+                        ((MainActivity) context).addFragment(event_small_image_fragment, true);
 
                     } else {
                         Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
@@ -264,39 +248,92 @@ public class Calender_Fragment extends Fragment {
             setDetails();
             setClickListeners();
 
-
+            myEventsApi();
         }
         return rootView;
     }
-
-
-    public void GeteventsbyCountryDateAPI() {
-        if (connectionDetector.isConnectingToInternet()) {
-
-            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("countryid", new TypedString("1"));
-            multipartTypedOutput.addPart("date", new TypedString("2022-06-02"));
-
-
-            appController.paServices.GetEventsByCountryDate(multipartTypedOutput, new Callback<GetEventsByCountryDateRootDM>() {
-                @Override
-                public void success(GetEventsByCountryDateRootDM getEventsByCountryDateRootDM, Response response) {
-                    if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-
-//                        EventDate = getEventsByCountryDateRootDM.getOutput().getData().get(0).getEventdate();
-
-
-                    } else
-                        Helper.showToast(getActivity(), "Some network happened ..");
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    Log.e("String", error.toString());
-                }
-            });
-        }
+    public static Calendar toCalendar(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
     }
+    public void myEventsApi()
+    {
+        if(connectionDetector.isConnectingToInternet())
+        {
+        String countryid=user.getCountryid();
+
+        String userid=String.valueOf(user.getId());
+        //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        appController.paServices.MyEvents(userid, countryid, new Callback<MyEventRootDM1>() {
+            @Override
+            public void success(MyEventRootDM1 myEventRootDM1, Response response) {
+                Calendar calendar = Calendar.getInstance();
+//                calendar.set(Calendar.DATE,12);
+//                Event ev1 = new Event(Color.BLUE, calendar.getTimeInMillis(), "New");
+//                compactCalendar.addEvent(ev1);
+
+                if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                    for (MyEventData1 dm:
+                            myEventRootDM1.getOutput().getData()
+                    ) {
+
+                        SimpleDateFormat mdyFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            Date km = mdyFormat.parse(dm.getEventdate());
+
+
+                            Event ev2 = new Event(Color.YELLOW, toCalendar(km).getTimeInMillis(), dm.getEventdate());
+                            compactCalendar.addEvent(ev2);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                } else
+                    Helper.showToast(getActivity(), "No posts");
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                Log.e("error", retrofitError.toString());
+
+            }
+        });
+    } else
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
+    }
+
+
+//    public void GeteventsbyCountryDateAPI() {
+//        if (connectionDetector.isConnectingToInternet()) {
+//
+//            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+//            multipartTypedOutput.addPart("countryid", new TypedString("1"));
+//            multipartTypedOutput.addPart("date", new TypedString("2022-06-02"));
+//
+//
+//            appController.paServices.GetEventsByCountryDate(multipartTypedOutput, new Callback<GetEventsByCountryDateRootDM>() {
+//                @Override
+//                public void success(GetEventsByCountryDateRootDM getEventsByCountryDateRootDM, Response response) {
+//                    if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//
+////                        EventDate = getEventsByCountryDateRootDM.getOutput().getData().get(0).getEventdate();
+//
+//
+//
+//                    } else
+//                        Helper.showToast(getActivity(), "Some network happened ..");
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError error) {
+//                    Log.e("String", error.toString());
+//                }
+//            });
+//        }
+//    }
 
 
     BottomForAll bottomForAll;

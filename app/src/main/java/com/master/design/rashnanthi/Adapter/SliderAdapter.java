@@ -48,10 +48,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     @Override
     public void onBindViewHolder(SliderAdapterViewHolder viewHolder, int position) {
 
+        if(eventsDetailsData.get(position).getImagedata()!=null)
         if(eventsDetailsData.get(position).getImagedata().get(position).getImage()!=null){
             Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImagedata().get(position).getImage()).into(viewHolder.imageViewBackground);
 
         }else{
+            Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage()).into(viewHolder.imageViewBackground);
+
             Helper.showToast(context,"Event Images Does not exist");
         }
 

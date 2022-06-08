@@ -4,7 +4,6 @@ package com.master.design.rashnanthi.Adapter;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -52,12 +51,14 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     DialogUtil dialogUtil;
     String whatsapp,whatsappcode,instagram,snapcahat;
     Dialog progress;
-    List<String> mList;
+    List<String> mList;String id;
+
     ArrayList<String> slider_image_list;
 
-    public ImageRecyclerAdapter1(List<String> mList, Context context) {
+    public ImageRecyclerAdapter1(List<String> mList, Context context, String id) {
         this.mList = mList;
         this.context = context;
+        this.id = id;
         appController = (AppController) context.getApplicationContext();
         user = new User(context);
         appController = (AppController) getApplicationContext();
@@ -81,7 +82,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
         if (connectionDetector.isConnectingToInternet()) {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("countryid", new TypedString("1"));
+            multipartTypedOutput.addPart("countryid", new TypedString(id));
              appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
                 @Override
                 public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
@@ -115,20 +116,20 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
         }
 
 
-        holder.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                addBottomDots(position, holder.dots, holder);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
+//        holder.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                addBottomDots(position, holder.dots, holder);
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//            }
+//        });
 
 
         holder.whatsapp_IMg.setOnClickListener(new View.OnClickListener() {

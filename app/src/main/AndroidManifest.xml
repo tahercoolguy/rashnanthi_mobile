@@ -73,6 +73,8 @@
         <activity android:name=".Activity.Story_activity" />
         <activity android:name=".Activity.ImageActicity" />
         <activity android:name=".Activity.Forgot_Password_Activity" />
+        <activity android:name=".Activity.PayNowActivity" >
+        </activity>
     </application>
 
 </manifest>

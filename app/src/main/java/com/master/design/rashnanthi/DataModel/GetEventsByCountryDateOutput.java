@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class GetEventsByCountryDateOutput {
 
-    private ArrayList<GetEventsByCountryDateData> data;
+    private ArrayList<EventsDetailsData> data;
     private String success;
 
-    public ArrayList<GetEventsByCountryDateData> getData() {
+    public ArrayList<EventsDetailsData> getData() {
 
         return data;
 
     }
 
-    public void setData(ArrayList<GetEventsByCountryDateData> data) {
+    public void setData(ArrayList<EventsDetailsData> data) {
 
         this.data = data;
 
