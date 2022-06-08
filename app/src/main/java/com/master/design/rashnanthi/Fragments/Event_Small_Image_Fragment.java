@@ -64,6 +64,7 @@ public class Event_Small_Image_Fragment extends Fragment {
     ImageView even_back_Img, menu_1_menu;
     DialogUtil dialogUtil;
     Dialog dialog;
+    String countryIdMain="1";
 
     String Snapchat, Instagram, Whatsapp, Website, WhatsappCountryCode;
 
@@ -205,10 +206,12 @@ public class Event_Small_Image_Fragment extends Fragment {
             });
             Bundle bd=getArguments();
             date = bd.getString("date");
-
+            countryIdMain = bd.getString("countryid");
             setClickListeners();
             setDetails();
             newAPI();
+
+
 
         }
         return rootView;
@@ -254,7 +257,7 @@ public void newAPI()
         if (connectionDetector.isConnectingToInternet()) {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("countryid", new TypedString(user.getCountryid()));
+            multipartTypedOutput.addPart("countryid", new TypedString(countryIdMain));
             multipartTypedOutput.addPart("date", new TypedString(date));
 
 
@@ -267,11 +270,12 @@ public void newAPI()
 
                         if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                            Instagram = getEventsByCountryDateRootDM.getOutput().getData().get(0).getInstagram();
-                            Whatsapp = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapnumber();
-                            Snapchat = getEventsByCountryDateRootDM.getOutput().getData().get(0).getSnapchat();
-                            Website = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWebsite();
-                            WhatsappCountryCode = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapcountrycode();
+//                            Instagram = getEventsByCountryDateRootDM.getOutput().getData().get(0).getInstagram();
+//                            Whatsapp = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapnumber();
+//                            Snapchat = getEventsByCountryDateRootDM.getOutput().getData().get(0).getSnapchat();
+//                            Website = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWebsite();
+//                            WhatsappCountryCode = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapcountrycode();
+//                            DataNUll();
 
                             // passing this array list inside our adapter class.
                             SliderAdapter adapter = new SliderAdapter(context, getEventsByCountryDateRootDM.getOutput().getData());
@@ -315,62 +319,62 @@ public void newAPI()
             });
         }
     }
-    public void EventDetailsAPI() {
-
-        if (connectionDetector.isConnectingToInternet()) {
-             appController.paServices.EventDetails("15", new Callback<EventsDetailsRootDM>() {
-                @Override
-                public void success(EventsDetailsRootDM eventsDetailsRootDM, Response response) {
-                     if (eventsDetailsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-
-                        Instagram = eventsDetailsRootDM.getOutput().getData().get(0).getInstagram();
-                        Whatsapp = eventsDetailsRootDM.getOutput().getData().get(0).getWhatsapnumber();
-                        Snapchat = eventsDetailsRootDM.getOutput().getData().get(0).getSnapchat();
-                        Website = eventsDetailsRootDM.getOutput().getData().get(0).getWebsite();
-                        WhatsappCountryCode = eventsDetailsRootDM.getOutput().getData().get(0).getWhatsapcountrycode();
-
-                        // passing this array list inside our adapter class.
-                        SliderAdapter adapter = new SliderAdapter(context, eventsDetailsRootDM.getOutput().getData());
-
-                        // below method is used to set auto cycle direction in left to
-                        // right direction you can change according to requirement.
-                        slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
-
-                        // below method is used to
-                        // setadapter to sliderview.
-                        slider.setSliderAdapter(adapter);
-
-                        // below method is use to set
-                        // scroll time in seconds.
-
-                        slider.setScrollTimeInSec(3);
+//    public void EventDetailsAPI() {
 //
-//                        // to set it scrollable automatically
-//                        // we use below method.
-
-                        slider.setAutoCycle(true);
+//        if (connectionDetector.isConnectingToInternet()) {
+//             appController.paServices.EventDetails("15", new Callback<EventsDetailsRootDM>() {
+//                @Override
+//                public void success(EventsDetailsRootDM eventsDetailsRootDM, Response response) {
+//                     if (eventsDetailsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //
-//                        // to start autocycle below method is used.
-
-                        slider.startAutoCycle();
-
-
-
-
-                    } else
-                        Helper.showToast(context, "event details does not exist here ");
-                }
-
-                @Override
-                public void failure(RetrofitError retrofitError) {
-                     Log.e("String", retrofitError.toString());
-
-                }
-            });
-        } else
-            Helper.showToast(context, getString(R.string.no_internet_connection));
-
-    }
+//                        Instagram = eventsDetailsRootDM.getOutput().getData().get(0).getInstagram();
+//                        Whatsapp = eventsDetailsRootDM.getOutput().getData().get(0).getWhatsapnumber();
+//                        Snapchat = eventsDetailsRootDM.getOutput().getData().get(0).getSnapchat();
+//                        Website = eventsDetailsRootDM.getOutput().getData().get(0).getWebsite();
+//                        WhatsappCountryCode = eventsDetailsRootDM.getOutput().getData().get(0).getWhatsapcountrycode();
+//
+//                        // passing this array list inside our adapter class.
+//                        SliderAdapter adapter = new SliderAdapter(context, eventsDetailsRootDM.getOutput().getData());
+//
+//                        // below method is used to set auto cycle direction in left to
+//                        // right direction you can change according to requirement.
+//                        slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+//
+//                        // below method is used to
+//                        // setadapter to sliderview.
+//                        slider.setSliderAdapter(adapter);
+//
+//                        // below method is use to set
+//                        // scroll time in seconds.
+//
+//                        slider.setScrollTimeInSec(3);
+////
+////                        // to set it scrollable automatically
+////                        // we use below method.
+//
+//                        slider.setAutoCycle(true);
+////
+////                        // to start autocycle below method is used.
+//
+//                        slider.startAutoCycle();
+//
+//
+//
+//
+//                    } else
+//                        Helper.showToast(context, "event details does not exist here ");
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError retrofitError) {
+//                     Log.e("String", retrofitError.toString());
+//
+//                }
+//            });
+//        } else
+//            Helper.showToast(context, getString(R.string.no_internet_connection));
+//
+//    }
 
     @Override
     public void onResume() {

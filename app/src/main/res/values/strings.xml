@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rashnanthi</string>
+    <string name="app_name">رزنامتي</string>
     <string name="ok">Ok</string>
     <string name="login">LOGIN</string>
     <string name="mobile">Mobile</string>
@@ -172,8 +172,13 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 </string>
     <string name="continuee">CONTINUE</string>
 
+
     <string name="dialog_permission_title">Grant Permissions</string>
     <string name="dialog_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
     <string name="go_to_settings">GOTO SETTINGS</string>
+
+    <string name="otp_toast">kindly enter valid otp</string>
+    <string name="login_messesge">entered mobile,password or country code incorrect</string>
+    <string name="story">Story</string>
 
 </resources>

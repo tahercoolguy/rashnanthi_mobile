@@ -197,7 +197,12 @@ public interface PAServices {
     @POST("/storiesbydate")
     void StoriesByDate(@Body MultipartTypedOutput multipartTypedOutput, Callback<StoriesByDateRootDM> storiesByDateRootDMCallback);
 
-
+    @FormUrlEncoded
+    @POST("/geteventsbycountrymonth")
+    void AllEvent(@Field("countryid") String userid,
+                  @Field("fromdate") String fromdate,
+                  @Field("todate") String todate,
+                  Callback<MyEventRootDM1> myEventRootDM1Callback);
 }
 
 

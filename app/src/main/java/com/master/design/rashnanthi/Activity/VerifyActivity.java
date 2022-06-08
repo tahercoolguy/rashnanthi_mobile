@@ -75,8 +75,10 @@ public class VerifyActivity extends AppCompatActivity {
     @OnClick(R.id.submit_otpBtn)
     public void SubmitOtp() {
 
+        if (!otpTextView.getOTP().equalsIgnoreCase("")) {
+            VerifyAPI();
+        }
 
-        VerifyAPI();
 
 //                Intent intent = new Intent(VerifyActivity.this, MainActivity.class);
 //                intent.putExtra("something", "yep");
@@ -91,6 +93,8 @@ public class VerifyActivity extends AppCompatActivity {
 
     @OnClick(R.id.edit_numberBtn)
     public void EditNumber() {
+
+        finish();
     }
 
     public void VerifyAPI() {
@@ -100,51 +104,18 @@ public class VerifyActivity extends AppCompatActivity {
 
 //            String mobile =String.valueOf(user.getId()) ;
 
+
             appController.paServices.OtpVerify(mobile, otpTextView.getOTP(), new Callback<OtpScrenRootDM>() {
                 @Override
                 public void success(OtpScrenRootDM otpScrenRootDM, Response response) {
                     progress.dismiss();
                     if (otpScrenRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//                        Helper.showToast(VerifyActivity.this,otpScrenRootDM.getOutput().getSuccess());
+                        Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        VerifyActivity.this.finish();
 
-
-                        if(eventcreator=="1"){
-                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
-                            intent.putExtra("EventCreator",eventcreator);
-                            startActivity(intent);
-                            finish();
-
-                        }else if(coachcreator=="2"){
-                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
-                            intent.putExtra("CoachCreator", coachcreator);
-                            startActivity(intent);
-                            finish();
-                        }
-
-//                        if(eventcreator.equalsIgnoreCase("1")){
-//
-//
-//                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
-//                            intent.putExtra("CoachCreator","1");
-//                            startActivity(intent);
-//
-////                            startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
-//
-//
-//                        }else if(coachcreator.equalsIgnoreCase("2")){
-//
-//
-//                            Intent intent = new Intent(VerifyActivity.this, LoginActivity.class);
-//                            intent.putExtra("CoachCreator", "2");
-//                            startActivity(intent);
-//
-////                            startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
-//
-//                        }
-
-                        startActivity(new Intent(VerifyActivity.this, LoginActivity.class));
                     } else
-                        Helper.showToast(VerifyActivity.this, otpScrenRootDM.getOutput().getSuccess());
+                        Helper.showToast(VerifyActivity.this, String.valueOf(R.string.otp_toast));
                 }
 
                 @Override

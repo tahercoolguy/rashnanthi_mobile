@@ -1,10 +1,12 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,18 +40,24 @@ import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventData1;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.Helper.BottomForAll;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.master.design.rashnanthi.views.RedColorDecorator;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +68,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.MultipartTypedOutput;
 import retrofit.mime.TypedString;
-
+import org.threeten.bp.LocalDate;
 public class Calender_Fragment extends Fragment {
 
 
@@ -68,6 +76,8 @@ public class Calender_Fragment extends Fragment {
     private View rootView;
     private Context context;
     ImageView home_menu;
+    DialogUtil dialogUtil;
+    Dialog progress;
     ImageView story_viewer;
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
@@ -81,6 +91,8 @@ public class Calender_Fragment extends Fragment {
 
     @BindView(R.id.countryImg)
     ImageView countryImg;
+
+    String countryidMain="1",storydate;
 
     @BindView(R.id.country_spinner_Txt)
     TextView country_spinner_Txt;
@@ -105,6 +117,8 @@ public class Calender_Fragment extends Fragment {
     ProgressDialog progressDialog;
     User user;
 
+    @BindView(R.id.calendarView) com.prolificinteractive.materialcalendarview.MaterialCalendarView calendarView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -119,6 +133,7 @@ public class Calender_Fragment extends Fragment {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
+        dialogUtil = new DialogUtil();
 
 
         if (rootView == null) {
@@ -133,19 +148,25 @@ public class Calender_Fragment extends Fragment {
             aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
             story_viewer = rootView.findViewById(R.id.story_viewer);
 
+
+
             backmonthImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     compactCalendar.scrollLeft();
+                    calendarView.goToPrevious();
 
                 }
             });
+
+
 
             aheadamonthImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     compactCalendar.scrollRight();
+                    calendarView.goToNext();
 
                 }
             });
@@ -153,7 +174,29 @@ public class Calender_Fragment extends Fragment {
             story_viewer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(((MainActivity) context), Story_activity.class));
+//                    Story_activity story_activity = new Story_activity();
+//                    story_activity.StoriesByDateAPI(storydate,countryidMain);
+
+                    Calendar calendar=Calendar.getInstance();
+                    String date="",month="";
+                    if((calendar.get(Calendar.DATE))<=9)
+                        date = "0"+String.valueOf(calendar.get(Calendar.DATE));
+                    else
+                        date = String.valueOf(calendar.get(Calendar.DATE));
+
+
+                    if((calendar.get(Calendar.MONTH))<=9)
+                        month = "0"+String.valueOf(calendar.get(Calendar.MONTH)+1);
+                    else
+                        month = String.valueOf(calendar.get(Calendar.MONTH));
+
+                    storydate = calendar.get(Calendar.YEAR)+"-"+month+"-"+date;
+
+
+                    Intent intent=new Intent(getActivity(), Story_activity.class);
+                    intent.putExtra("date",storydate);
+                    intent.putExtra("countryid",countryidMain);
+                    startActivity(intent);
                 }
             });
 
@@ -174,7 +217,9 @@ public class Calender_Fragment extends Fragment {
             compactCalendar.setCurrentSelectedDayBackgroundColor(Color.YELLOW);
 
             compactCalendar.setEventIndicatorStyle(CompactCalendarView.FILL_LARGE_INDICATOR);
-            
+
+            compactCalendar.displayOtherMonthDays(true);
+
             SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
             Date date = new Date();
 //            moth_year_txt.setText(formatter.format(date));
@@ -189,7 +234,7 @@ public class Calender_Fragment extends Fragment {
             compactCalendar.setCurrentSelectedDayBackgroundColor(View.getDefaultSize(10, 2));
 
 
-            compactCalendar.displayOtherMonthDays(false);
+            compactCalendar.displayOtherMonthDays(true);
 
 
             moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
@@ -218,13 +263,20 @@ public class Calender_Fragment extends Fragment {
 
                     if (calendar.getTimeInMillis() != 0) {
 
-                       Event_Small_Image_Fragment event_small_image_fragment =  new Event_Small_Image_Fragment();
-                       Bundle bd=new Bundle();
-                       SimpleDateFormat datenew = new SimpleDateFormat("yyyy-MM-dd");
-                       bd.putString("date",datenew.format(dateClicked));
-                       event_small_image_fragment.setArguments(bd);
-                        ((MainActivity) context).addFragment(event_small_image_fragment, true);
+                      List<Event> e = compactCalendar.getEvents(dateClicked);
+                        if(!e.isEmpty()){
+                            Event_Small_Image_Fragment event_small_image_fragment = new Event_Small_Image_Fragment();
+                            Bundle bd = new Bundle();
+                            SimpleDateFormat datenew = new SimpleDateFormat("yyyy-MM-dd");
 
+                            bd.putString("date", datenew.format(dateClicked));
+                            bd.putString("countryid",countryidMain);
+                            event_small_image_fragment.setArguments(bd);
+                            ((MainActivity) context).addFragment(event_small_image_fragment, true);
+                        }else
+                        {
+                            Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
 
@@ -248,7 +300,27 @@ public class Calender_Fragment extends Fragment {
             setDetails();
             setClickListeners();
 
-            myEventsApi();
+//            String[] days = {"","","","","","",""};
+
+            CharSequence[] days = {"","","","","","",""};
+            calendarView.setWeekDayLabels(days);
+//            compactCalendar.setDayColumnNames(days);
+            calendarView.setTopbarVisible(false);
+
+//            try {
+//                final ArrayList<CalendarDay> Appointment=new ArrayList<>();
+//                Appointment.add(CalendarDay.from(LocalDate.parse("2022-06-09")));
+//                Appointment.add(CalendarDay.from(LocalDate.parse("2022-06-10")));
+//                Appointment.add(CalendarDay.from(LocalDate.parse("2022-06-11")));
+//                RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(),Appointment);
+//                calendarView.addDecorator(redColorDecorator);
+//
+//            }catch (Exception e)
+//            {
+//
+//            }
+
+            myEventsApi(countryidMain);
         }
         return rootView;
     }
@@ -257,24 +329,20 @@ public class Calender_Fragment extends Fragment {
         cal.setTime(date);
         return cal;
     }
-    public void myEventsApi()
+    public void myEventsApi(String countryid)
     {
         if(connectionDetector.isConnectingToInternet())
         {
-        String countryid=user.getCountryid();
+            progress = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
 
-        String userid=String.valueOf(user.getId());
-        //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        appController.paServices.MyEvents(userid, countryid, new Callback<MyEventRootDM1>() {
+        appController.paServices.AllEvent(countryid,"2022-01-01","2040-01-01", new Callback<MyEventRootDM1>() {
             @Override
             public void success(MyEventRootDM1 myEventRootDM1, Response response) {
-                Calendar calendar = Calendar.getInstance();
-//                calendar.set(Calendar.DATE,12);
-//                Event ev1 = new Event(Color.BLUE, calendar.getTimeInMillis(), "New");
-//                compactCalendar.addEvent(ev1);
+                progress.dismiss();
+                final ArrayList<CalendarDay> Appointment=new ArrayList<>();
 
                 if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                    for (MyEventData1 dm:
+                    for (MyEventData1 dm :
                             myEventRootDM1.getOutput().getData()
                     ) {
 
@@ -285,18 +353,31 @@ public class Calender_Fragment extends Fragment {
 
                             Event ev2 = new Event(Color.YELLOW, toCalendar(km).getTimeInMillis(), dm.getEventdate());
                             compactCalendar.addEvent(ev2);
-                        } catch (ParseException e) {
+
+
+
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
-
+                        Appointment.add(CalendarDay.from(LocalDate.parse(dm.getEventdate())));
+                    }
+                    RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(),Appointment);
+                    calendarView.addDecorator(redColorDecorator);
+                } else {
+                    Helper.showToast(getActivity(), "No posts");
+                    List<Event> events = compactCalendar.getEventsForMonth((Calendar.getInstance()).getTime());
+                    for (Event e:events
+                         ) {
+                        compactCalendar.removeEvent(e, true);
                     }
 
-                } else
-                    Helper.showToast(getActivity(), "No posts");
+                    calendarView.removeDecorators();
+                }
             }
 
             @Override
             public void failure(RetrofitError retrofitError) {
+                progress.dismiss();
                 Log.e("error", retrofitError.toString());
 
             }
@@ -354,7 +435,8 @@ public class Calender_Fragment extends Fragment {
 
                 country_spinner_Txt.setText(data.get(position).getTitle());
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
-
+                countryidMain=data.get(position).getId();
+                myEventsApi(countryidMain);
 //                countryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
@@ -423,7 +505,7 @@ public class Calender_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 1500);
+        }, 100);
 
 
     }

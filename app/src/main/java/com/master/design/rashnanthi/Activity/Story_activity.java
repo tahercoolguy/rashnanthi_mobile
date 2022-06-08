@@ -3,13 +3,15 @@ package com.master.design.rashnanthi.Activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.VideoView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
+import com.master.design.rashnanthi.DataModel.StoriesByDateData;
 import com.master.design.rashnanthi.DataModel.StoriesByDateRootDM;
 import com.master.design.rashnanthi.DataModel.StoriesByImageData;
 import com.master.design.rashnanthi.Helper.DialogUtil;
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.shts.android.storiesprogressview.StoriesProgressView;
+import jp.wasabeef.picasso.transformations.BlurTransformation;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -48,10 +52,10 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     ArrayList<String> array_image = new ArrayList<>();
     ArrayList<String> array_image_count = new ArrayList<>();
     ArrayList<Integer> mL;
+    String date, countryid;
 
-//    @BindView(R.id.videoview)
-//    VideoView videoview;
-
+//    @BindView(R.id.webView)
+//    webView webView;
 
 
     // on below line we are creating a int array
@@ -74,7 +78,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     // on below line we are creating variables for
     // our progress bar view and image view .
     private StoriesProgressView storiesProgressView;
-    ImageView image, story_back_btn;
+    ImageView image, story_back_btn, backgrd;
 
     // on below line we are creating a counter
     // for keeping count of our stories.
@@ -112,6 +116,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         }
     };
 
+    WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,13 +124,15 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         setContentView(R.layout.story_activity);
         user = new User(this);
         ButterKnife.bind(Story_activity.this);
-
+        webView = (WebView) findViewById(R.id.webView);
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(Story_activity.this);
         dialogUtil = new DialogUtil();
         mL = new ArrayList<Integer>();
-        StoriesByDateAPI();
+
         story_back_btn = findViewById(R.id.story_back_btn);
+        backgrd =(ImageView) findViewById(R.id.bckgrd);
+
 
         story_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +148,9 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         // on below line we are initializing our variables.
         storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
 
+
+        if (getIntent() != null)
+            storiesByDateAPI(getIntent().getStringExtra("date"), getIntent().getStringExtra("countryid"));
     }
 
     @Override
@@ -150,7 +160,28 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 
         if ((counter + 1) < 0) return;
 
-        Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
+        counter = counter + 1;
+        if (array_image.get(counter) != null) {
+           String new1= array_image.get(counter);
+            if (array_image.get(counter).contains(".mp4")) {
+                webView.setVisibility(View.VISIBLE);
+                image.setVisibility(View.GONE);
+//                webView.setVideoURI(Uri.parse(AppController.base_image_url + array_image.get(counter))); //the string of the URL mentioned above
+//                webView.requestFocus();
+//                webView.start();
+                webView.loadUrl(AppController.base_image_url + array_image.get(counter));
+
+            } else {
+                webView.setVisibility(View.GONE);
+                image.setVisibility(View.VISIBLE);
+                Picasso.get().load(AppController.base_image_url + array_image.get(counter)).into(image);
+                Picasso.get()
+                        .load(AppController.base_image_url + array_image.get(counter))
+                        .transform(new BlurTransformation(Story_activity.this, 25, 1))
+                        .into(backgrd);
+            }
+        }
+
 
 //        image.setImageResource(resources[++counter]);
     }
@@ -163,7 +194,27 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         if ((counter - 1) < 0) return;
         // on below line we are setting image to image view
 //        image.setImageResource(resources[--counter]);
-        Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
+        counter = counter - 1;
+
+        if (array_image.get(counter) != null)
+            if (array_image.get(counter).contains(".mp4")) {
+                webView.setVisibility(View.VISIBLE);
+                image.setVisibility(View.GONE);
+//                webView.setVideoURI(Uri.parse("http://kuwaitgate.com/rasnanthi/uploads/eventimages/rasnanthi10111654689005.mp4")); //the string of the URL mentioned above
+//                webView.requestFocus();
+//                webView.start();
+                webView.loadUrl(AppController.base_image_url + array_image.get(counter));
+
+            } else {
+                webView.setVisibility(View.GONE);
+                image.setVisibility(View.VISIBLE);
+                Picasso.get().load(AppController.base_image_url + array_image.get(counter)).into(image);
+                Picasso.get()
+                        .load(AppController.base_image_url + array_image.get(counter))
+                        .transform(new BlurTransformation(Story_activity.this, 25, 1))
+                        .into(backgrd);
+            }
+
 
     }
 
@@ -185,15 +236,15 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     }
 
 
-    public void StoriesByDateAPI() {
+    public void storiesByDateAPI(String date, String countryid) {
 
         if (connectionDetector.isConnectingToInternet()) {
 
             progress = dialogUtil.showProgressDialog(Story_activity.this, getString(R.string.please_wait));
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("date", new TypedString("2022-06-03"));
-            multipartTypedOutput.addPart("countryid", new TypedString("1"));
+            multipartTypedOutput.addPart("date", new TypedString(date));
+            multipartTypedOutput.addPart("countryid", new TypedString(countryid));
 
             appController.paServices.StoriesByDate(multipartTypedOutput, new Callback<StoriesByDateRootDM>() {
                 @Override
@@ -202,12 +253,19 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                     progress.dismiss();
                     if (storiesByDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
+                        for (StoriesByDateData story : storiesByDateRootDM.getOutput().getData()
+                        ) {
+                            for (StoriesByImageData storiesImageData : story.getImagedata()
+                            ) {
+                                array_image.add(storiesImageData.getStoryimage());
+                            }
+                        }
 
-                        array_image.add(String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
-                        array_image_count.add(String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size()));
+
+//                        array_image_count.add(String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size()));
 
                         // on below line we are setting the total count for our stories.
-                        storiesProgressView.setStoriesCount(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size());
+                        storiesProgressView.setStoriesCount(array_image.size());
 
                         // on below line we are setting story duration for each story.
                         storiesProgressView.setStoryDuration(3000L);
@@ -221,12 +279,27 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 
                         // initializing our image view.
                         image = (ImageView) findViewById(R.id.image);
-
+                        backgrd = (ImageView) findViewById(R.id.bckgrd);
                         // on below line we are setting image to our image view.
 //                        image.setImageResource(resources[counter]);
 
-                        Picasso.get().load(AppController.base_image_url + storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()).into(image);
+                        if (array_image.get(0).contains(".mp4")) {
+                            webView.setVisibility(View.VISIBLE);
+                            image.setVisibility(View.GONE);
+//                            webView.setVideoURI(Uri.parse(AppController.base_image_url + array_image.get(counter))); //the string of the URL mentioned above
+//                            webView.requestFocus();
+//                            webView.start();
 
+                            webView.loadUrl(AppController.base_image_url + array_image.get(counter));
+                        } else {
+                            webView.setVisibility(View.GONE);
+                            image.setVisibility(View.VISIBLE);
+                            Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
+                            Picasso.get()
+                                    .load(AppController.base_image_url + array_image.get(0))
+                                    .transform(new BlurTransformation(Story_activity.this, 25, 1))
+                                    .into(backgrd);
+                        }
                         // below is the view for going to the previous story.
                         // initializing our previous view.
                         View reverse = findViewById(R.id.reverse);
@@ -264,7 +337,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 //                        mL.add(Integer.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
 
                     } else
-                        Helper.showToast(Story_activity.this, "something wrong");
+                        Helper.showToast(Story_activity.this, "no stories present");
                 }
 
                 @Override

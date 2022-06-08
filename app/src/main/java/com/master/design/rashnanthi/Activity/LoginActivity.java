@@ -115,65 +115,12 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setCreatorcoach(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
                                 user.setCountryid(loginRootDM.getOutput().getData().get(0).getCountryid());
                                  String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
-
                                 user.setEmail(neemail);
 
-
-                                coachcreator = String.valueOf(loginRootDM.getOutput().getData().get(0).getCreatorcoach().equalsIgnoreCase("2"));
-                                eventcreator = String.valueOf(loginRootDM.getOutput().getData().get(0).getCreatorcoach().equalsIgnoreCase("1"));
-
-                                if (coachcreator!=null) {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("CoachCreator", coachcreator);
-                                    startActivity(intent);
-                                    finish();
-                                } else if (eventcreator!=null) {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("EventCreator", eventcreator);
-                                    startActivity(intent);
-                                    finish();
-                                }
-
-
-//                                if(eventcreator=="1"){
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    intent.putExtra("chirag1", eventcreator);
-//                                    startActivity(intent);
-//                                    finish();
-//
-//                                }else if(coachcreator=="2"){
-//
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    intent.putExtra("chirag2", coachcreator);
-//                                    startActivity(intent);
-//                                    finish();
-//                                }
-
-//                                if (user.getCoachOrEvent().equalsIgnoreCase("1")) {
-//
-//                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                                } else {
-//                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                                }
-
-
-//                                if (String.valueOf(user.getCoachOrEvent().equalsIgnoreCase("1"))=="1") {
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    intent.putExtra("EventCreator", "1");
-//                                    startActivity(intent);
-//                                    finish();
-//
-//
-//                                } else {
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    intent.putExtra("CoachCreator", "2");
-//                                    startActivity(intent);
-//                                    finish();
-//                                }
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
                             } else
-                                Helper.showToast(LoginActivity.this, "entered mobile,password or country code incorrect");
+                                 Helper.showToast(LoginActivity.this, String.valueOf(R.string.login_messesge));
 
                         }
 

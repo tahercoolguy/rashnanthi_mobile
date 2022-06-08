@@ -243,7 +243,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (connectionDetector.isConnectingToInternet()) {
 
             String countryspinnercodeET = country_spinnerET.getText().toString();
-
+            progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
 //Remove first character
             countryspinnercodeET.substring(1); //ello World
 
@@ -292,9 +292,13 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.e("Error", e.toString());
             }
 
+
+
             appController.paServices.EventCreatorReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
                 @Override
                 public void success(EventRegisterDM eventRegisterDM, Response response) {
+                    progress.dismiss();
+
 
                     if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
@@ -308,7 +312,6 @@ public class SignUpActivity extends AppCompatActivity {
                         intent.putExtra("chirag1", "1");
                         intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                         startActivity(intent);
-                        finish();
 
 //                        startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
 //                        finish();
@@ -320,6 +323,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
+                    progress.dismiss();
+
                     Log.e("Error", error.toString());
                 }
             });
@@ -381,9 +386,13 @@ public class SignUpActivity extends AppCompatActivity {
             } catch (Exception e) {
                 Log.e("Error", e.toString());
             }
+
+            progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
             appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
                 @Override
                 public void success(EventRegisterDM eventRegisterDM, Response response) {
+                    progress.dismiss();
+
                     if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
                         user.setEmail(emailET.getText().toString());
@@ -405,6 +414,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
+                    progress.dismiss();
+
                     Log.e("String", error.toString());
                 }
             });
