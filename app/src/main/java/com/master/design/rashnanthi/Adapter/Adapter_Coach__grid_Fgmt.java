@@ -166,15 +166,15 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
         });
 
 
-        viewHolder.circle_imgview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, Story_activity.class);
-                context.startActivity(i);
-            }
-
-        });
+//        viewHolder.circle_imgview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent i = new Intent(context, Story_activity.class);
+//                context.startActivity(i);
+//            }
+//
+//        });
 
 
     }

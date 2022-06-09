@@ -138,7 +138,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
     }
 
 
-    boolean ifKnet = false;
+    boolean ifKnet = true;
     String knet, fatoora, visa;
 
     public void ifKnetSelected() {
@@ -244,7 +244,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
                             intent.putExtra("PaymentUrl", paymentlink);
                             startActivity(intent);
                         } else {
-                            Helper.showToast(context, "kindly select any one  payment method");
+                            Helper.showToast(Add_Event_Pay_Now.this, "kindly select any one  payment method");
                         }
 
                         if (ifVisa_Mastercard != false) {
@@ -253,7 +253,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
                             intent.putExtra("PaymentUrl", paymentlink);
                             startActivity(intent);
                         } else {
-                            Helper.showToast(context, "kindly select any one  payment method");
+                            Helper.showToast(Add_Event_Pay_Now.this, "kindly select any one  payment method");
                         }
 
                     } else

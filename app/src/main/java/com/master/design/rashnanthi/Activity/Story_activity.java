@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.AllStoryImage;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.StoriesByDateData;
 import com.master.design.rashnanthi.DataModel.StoriesByDateRootDM;
@@ -253,12 +254,9 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                     progress.dismiss();
                     if (storiesByDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        for (StoriesByDateData story : storiesByDateRootDM.getOutput().getData()
+                        for (AllStoryImage story : storiesByDateRootDM.getOutput().getAllimagedata()
                         ) {
-                            for (StoriesByImageData storiesImageData : story.getImagedata()
-                            ) {
-                                array_image.add(storiesImageData.getStoryimage());
-                            }
+                            array_image.add(story.getImage());
                         }
 
 

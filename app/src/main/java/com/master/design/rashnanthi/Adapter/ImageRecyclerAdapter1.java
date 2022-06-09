@@ -3,6 +3,7 @@ package com.master.design.rashnanthi.Adapter;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -24,7 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CoachesWithPostsDatam;
+import com.master.design.rashnanthi.DataModel.CoachesWithPostsImageDatam;
 import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
+import com.master.design.rashnanthi.DataModel.CoacheswithDatam;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -49,21 +53,22 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     AppController appController;
     ConnectionDetector connectionDetector;
     DialogUtil dialogUtil;
-    String whatsapp,whatsappcode,instagram,snapcahat;
+    String whatsapp, whatsappcode, instagram, snapcahat;
     Dialog progress;
-    List<String> mList;String id;
+    ArrayList<CoacheswithDatam> mList;
+    String id;
 
     ArrayList<String> slider_image_list;
 
-    public ImageRecyclerAdapter1(List<String> mList, Context context, String id) {
+    public ImageRecyclerAdapter1(Activity context,ArrayList<CoacheswithDatam> mList) {
         this.mList = mList;
         this.context = context;
-        this.id = id;
-        appController = (AppController) context.getApplicationContext();
-        user = new User(context);
-        appController = (AppController) getApplicationContext();
+
+//        appController = (AppController) context.getApplicationContext();
+        user = new User(this.context);
+        appController = (AppController) this.context.getApplicationContext();
         dialogUtil = new DialogUtil();
-        connectionDetector = new ConnectionDetector(context);
+        connectionDetector = new ConnectionDetector(this.context);
 
     }
 
@@ -78,42 +83,100 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 //        holder.mName.setText(mList.get(position));
 
+        instagram = mList.get(position).getInstagram();
+        whatsapp = mList.get(position).getWhatsapnumber();
+        whatsappcode = mList.get(position).getWhatscountrycode();
+        snapcahat = mList.get(position).getSnapchat();
 
-        if (connectionDetector.isConnectingToInternet()) {
-
-            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("countryid", new TypedString(id));
-             appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
-                @Override
-                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
-                      if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        slider_image_list = new ArrayList<>();
-
-                        instagram=coachesWithPostsRootDM.getOutput().getData().get(0).getInstagram();
-                        whatsapp=coachesWithPostsRootDM.getOutput().getData().get(0).getWhatsapnumber();
-                        whatsappcode= coachesWithPostsRootDM.getOutput().getData().get(0).getWhatscountrycode();
-                        snapcahat=coachesWithPostsRootDM.getOutput().getData().get(0).getSnapchat();
-                        try{
-
-                             holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context,coachesWithPostsRootDM.getOutput().getData().get(0).getPostsdata().get(0).getImagedata() );
-                            holder.mViewPager.setAdapter(holder.sliderPagerAdapter1);
-                            holder.dots = new TextView[coachesWithPostsRootDM.getOutput().getData().get(0).getPostsdata().size()];
-                            addBottomDots(0, holder.dots, holder);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-
-                    } else
-                        Helper.showToast(context, "Some network happened ..");
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                     Log.e("String", error.toString());
-                }
-            });
+        if(instagram != null)
+        if (instagram.equalsIgnoreCase("")) {
+            holder.insta_img.setVisibility(View.GONE);
+        } else {
+            holder.insta_img.setVisibility(View.VISIBLE);
         }
+
+        ArrayList<String> km = new ArrayList<>();
+
+        if(mList.get(position).getPostsdata()!=null)
+        for (CoachesWithPostsDatam s : mList.get(position).getPostsdata()
+        ) {
+
+            if(s.getImagedata()!=null)
+                for (CoachesWithPostsImageDatam caoch : s.getImagedata()
+            ) {
+//                if (!caoch.getEventimage().equalsIgnoreCase(""))
+                    km.add(caoch.getImage());
+
+            }
+        }
+
+
+        try {
+
+            holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context, km);
+            holder.mViewPager.setAdapter(holder.sliderPagerAdapter1);
+            holder.dots = new TextView[km.size()];
+            addBottomDots(0, holder.dots, holder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+//        if (Whatsapp == null) {
+//            wtsapImg.setVisibility(View.GONE);
+//        } else {
+//            wtsapImg.setVisibility(View.VISIBLE);
+//        }
+//
+//
+//        if (Website == null) {
+//            webImg.setVisibility(View.GONE);
+//        } else {
+//            webImg.setVisibility(View.VISIBLE);
+//        }
+//
+//
+//        if (Snapchat == null) {
+//            snapImg.setVisibility(View.GONE);
+//        } else {
+//            snapImg.setVisibility(View.VISIBLE);
+//        }
+
+//        if (connectionDetector.isConnectingToInternet()) {
+//
+//            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+//            multipartTypedOutput.addPart("countryid", new TypedString(id));
+//             appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
+//                @Override
+//                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
+//                      if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//                        slider_image_list = new ArrayList<>();
+//
+//                        instagram=coachesWithPostsRootDM.getOutput().getData().get(0).getInstagram();
+//                        whatsapp=coachesWithPostsRootDM.getOutput().getData().get(0).getWhatsapnumber();
+//                        whatsappcode= coachesWithPostsRootDM.getOutput().getData().get(0).getWhatscountrycode();
+//                        snapcahat=coachesWithPostsRootDM.getOutput().getData().get(0).getSnapchat();
+//                        try{
+//
+//                             holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context,coachesWithPostsRootDM.getOutput().getData().get(0).getPostsdata().get(0).getImagedata() );
+//                            holder.mViewPager.setAdapter(holder.sliderPagerAdapter1);
+//                            holder.dots = new TextView[coachesWithPostsRootDM.getOutput().getData().get(0).getPostsdata().size()];
+//                            addBottomDots(0, holder.dots, holder);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//                    } else
+//                        Helper.showToast(context, "Some network happened ..");
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError error) {
+//                     Log.e("String", error.toString());
+//                }
+//            });
+//        }
 
 
 //        holder.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

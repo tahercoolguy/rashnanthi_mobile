@@ -29,7 +29,24 @@ import com.master.design.rashnanthi.R;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
+    private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
 
+    // key to store image path in savedInstance state
+    public static final String KEY_IMAGE_STORAGE_PATH = "image_path";
+
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    public static final int MEDIA_TYPE_VIDEO = 2;
+
+    // Bitmap sampling size
+    public static final int BITMAP_SAMPLE_SIZE = 8;
+
+    // Gallery directory name to store the images or videos
+    public static final String GALLERY_DIRECTORY_NAME = "Hello Camera";
+
+    // Image and Video file extensions
+    public static final String IMAGE_EXTENSION = "jpg";
+    public static final String VIDEO_EXTENSION = "mp4";
 
     private User user;
     String coachcreator,eventcreator;
@@ -96,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifSearchClicked = true;
                 SearchVisibilityFunction();
-               addFragment(new Coach_Fragment(), false);
+               addFragment(new Coach_Fragment(), true);
 
 
 
@@ -156,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             coachTxt.setBackground(getDrawable(R.drawable.search_red));
             social_mediaTxt.setBackground(getDrawable(R.drawable.social_media_black));
             notificationTxt.setBackground(getDrawable(R.drawable.notification_black));
-            addFragment(new Coach_Fragment(), false);
+            addFragment(new Coach_Fragment(), true);
 
 
         }

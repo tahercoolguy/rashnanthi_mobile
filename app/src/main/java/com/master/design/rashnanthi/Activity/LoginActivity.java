@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
                             } else
-                                 Helper.showToast(LoginActivity.this, String.valueOf(R.string.login_messesge));
+                                 Helper.showToast(LoginActivity.this, getString(R.string.login_messesge));
 
                         }
 

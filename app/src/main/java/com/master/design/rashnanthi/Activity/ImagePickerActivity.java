@@ -161,16 +161,12 @@ public class ImagePickerActivity extends AppCompatActivity {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if (report.areAllPermissionsGranted()) {
-                            fileName = System.currentTimeMillis() + ".mp4";
-                            Intent takePictureIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                            takePictureIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-
+                            fileName = System.currentTimeMillis() + ".jpg";
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, getCacheImagePath(fileName));
-                            if (getPackageManager().resolveActivity(takePictureIntent, 0) != null) {
-                                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_VIDEO);
-                            }else {
-                                Toast.makeText(ImagePickerActivity.this, "No apps supports this action", Toast.LENGTH_SHORT).show();
-                            }
+//                            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//                            }
                         }
                     }
 
@@ -208,8 +204,8 @@ public class ImagePickerActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
-//                    cropImage(getCacheImagePath(fileName));
-                    setResultOk(getCacheImagePath(fileName));
+                    cropImage(getCacheImagePath(fileName));
+//                    setResultOk(getCacheImagePath(fileName));
                 } else {
                     setResultCancelled();
                 }
@@ -217,8 +213,8 @@ public class ImagePickerActivity extends AppCompatActivity {
             case REQUEST_GALLERY_IMAGE:
                 if (resultCode == RESULT_OK) {
                     Uri imageUri = data.getData();
-//                    cropImage(imageUri);
-                    setResultOk(imageUri);
+                    cropImage(imageUri);
+//                    setResultOk(imageUri);
                 } else {
                     setResultCancelled();
                 }

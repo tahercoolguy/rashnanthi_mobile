@@ -27,9 +27,9 @@ public class SliderPagerAdapter1 extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private Context context;
     private ArrayList<String> image_arraylist;
-    private ArrayList<CoachesWithPostsImageDatam> coachesWithPostsImageDatamArrayList;
+    private ArrayList<String> coachesWithPostsImageDatamArrayList;
 
-    public SliderPagerAdapter1(Context context,ArrayList<CoachesWithPostsImageDatam> coachesWithPostsImageDatamArrayList) {
+    public SliderPagerAdapter1(Context context,ArrayList<String> coachesWithPostsImageDatamArrayList) {
         this.context = context;
          this.coachesWithPostsImageDatamArrayList = coachesWithPostsImageDatamArrayList;
     }
@@ -39,7 +39,7 @@ public class SliderPagerAdapter1 extends PagerAdapter {
 
         View view = LayoutInflater.from(context).inflate(R.layout.layout_slider, container, false);
         ImageView im_slider = view.findViewById(R.id.im_slider);
-        Picasso.get().load(AppController.base_image_url + coachesWithPostsImageDatamArrayList.get(position).getImage()).into(im_slider);
+        Picasso.get().load(AppController.base_image_url + coachesWithPostsImageDatamArrayList.get(position)).into(im_slider);
 
 //        Glide.with(context).load(image_arraylist.get(position)).into(im_slider);
         //For Picasso user
@@ -53,7 +53,7 @@ public class SliderPagerAdapter1 extends PagerAdapter {
             @Override
             public void onClick(View v) {
                  Intent intent = new Intent(context, ImageActicity.class);
-                intent.putExtra("url", AppController.base_image_url+coachesWithPostsImageDatamArrayList.get(position).getImage());
+                intent.putExtra("url", AppController.base_image_url+coachesWithPostsImageDatamArrayList.get(position));
                 context.startActivity(intent);
             }
         });

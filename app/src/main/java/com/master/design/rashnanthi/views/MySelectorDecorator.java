@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import androidx.core.content.ContextCompat;
+
 import com.master.design.rashnanthi.R;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -30,6 +32,7 @@ public class  MySelectorDecorator implements DayViewDecorator {
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.setSelectionDrawable(context1.getDrawable(R.drawable.background_calendar));
+        view.setSelectionDrawable(context1.getDrawable(R.drawable.padding_my_selector));
+
     }
 }

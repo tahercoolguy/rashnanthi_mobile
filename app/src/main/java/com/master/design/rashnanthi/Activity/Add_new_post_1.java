@@ -1,5 +1,7 @@
 package com.master.design.rashnanthi.Activity;
 
+import static com.master.design.rashnanthi.Activity.Activity_Add_Event_1.getRealPathFromUri;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
@@ -19,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +45,7 @@ import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.master.design.rashnanthi.Utils.CameraUtils;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -132,6 +136,24 @@ public class Add_new_post_1 extends AppCompatActivity {
     }
 
     boolean ifpay,iffree=false;
+
+    @BindView(R.id.vd1)
+    VideoView vd1;
+    @BindView(R.id.vd2)
+    VideoView vd2;
+    @BindView(R.id.vd3)
+    VideoView vd3;
+    @BindView(R.id.vd4)
+    VideoView vd4;
+
+
+
+
+    Uri Video1, Video2, Video3, Video4;
+
+
+    boolean v1 = false, v2 = false, v3 = false, v4 = false;
+    String CountryId="1";
 
     @OnClick(R.id.pay_now_Btn)
     public void PayNow() {
@@ -295,7 +317,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                 country_spinner_Txt.setText(data.get(position).getTitle());
 //                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img);
-
+                CountryId = data.get(position).getId();
 //                AreaID = data.get(selected).getId();
 //                for (CountryData s:data
 //                ) {
@@ -440,10 +462,10 @@ public class Add_new_post_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
 //            multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
-            multipartTypedOutput.addPart("countryid[]", new TypedString(user.getCountryid()));
+            multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
 
             multipartTypedOutput.addPart("postedby", new TypedString(id));
-            multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
+            multipartTypedOutput.addPart("creatorcoach", new TypedString("2"));
 
             if(iffree!=false){
                 multipartTypedOutput.addPart("payorfree", new TypedString("1"));
@@ -476,8 +498,16 @@ public class Add_new_post_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image1")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("storyphotovideo[]", new TypedFile("image/jpg", resizedImage));
+                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage));
                 }
+
+                if (v1) {
+                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video1));
+
+
+                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                }
+
                 if (ifimg2) {
                     File f = new File(Add_new_post_1.this.getCacheDir(), "temp1.jpg");
                     f.createNewFile();
@@ -501,8 +531,16 @@ public class Add_new_post_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image2")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[]", new TypedFile("image/jpg", resizedImage1));
+                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage1));
                 }
+
+                if (v2) {
+                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video2));
+
+
+                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                }
+
                 if (ifimg3) {
                     File f = new File(Add_new_post_1.this.getCacheDir(), "temp2.jpg");
                     f.createNewFile();
@@ -526,9 +564,15 @@ public class Add_new_post_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image3")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("storyphotovideo[]", new TypedFile("image/jpg", resizedImage2));
+                    multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("image/jpg", resizedImage2));
                 }
 
+                if (v3) {
+                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
+
+
+                    multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
+                }
                 if (ifimg4) {
                     File f = new File(Add_new_post_1.this.getCacheDir(), "temp3.jpg");
                     f.createNewFile();
@@ -552,9 +596,16 @@ public class Add_new_post_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image4")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[]", new TypedFile("image/jpg", resizedImage3));
+                    multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("image/jpg", resizedImage3));
                 }
 
+
+                if (v4) {
+                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video4));
+
+
+                    multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
+                }
             } catch (Exception e) {
                 Log.e("Error", e.toString());
             }
@@ -599,6 +650,8 @@ public class Add_new_post_1 extends AppCompatActivity {
                 public void failure(RetrofitError retrofitError) {
                     progress.dismiss();
                     Log.e("error", retrofitError.toString());
+
+                    Helper.showToast(Add_new_post_1.this,getString(R.string.no_package));
 
                 }
             });
@@ -659,6 +712,8 @@ public class Add_new_post_1 extends AppCompatActivity {
                             .getResizedFile();
                     multipartTypedOutput.addPart("storyphotovideo[]", new TypedFile("image/jpg", resizedImage));
                 }
+
+
                 if (ifimg2) {
                     File f = new File(Add_new_post_1.this.getCacheDir(), "temp1.jpg");
                     f.createNewFile();
@@ -863,6 +918,83 @@ public class Add_new_post_1 extends AppCompatActivity {
                 }
             }
         }
+
+
+        if (requestCode == IMAGE_VIDEO_ACTIVITY_PICKER) {
+            if (data != null) {
+                if (data.getStringExtra("mode").equalsIgnoreCase("photo")) {
+                    Uri.fromFile(new File(data.getStringExtra("uri")));
+
+                } else {
+
+
+                    if (imgClicked == 1) {
+
+
+                        Video1 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                        String path = Video1.getPath();
+                        CameraUtils.refreshGallery(getApplicationContext(), path);
+
+                        vd1.setVisibility(View.VISIBLE);
+                        img1.setVisibility(View.GONE);
+                        vd1.setVideoPath(path);
+                        // start playing
+                        vd1.start();
+                        ifimg1 = false;
+                        v1 = true;
+                    } else if (imgClicked == 2) {
+
+                        Video2 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                        String path = Video2.getPath();
+                        CameraUtils.refreshGallery(getApplicationContext(), path);
+                        vd2.setVisibility(View.VISIBLE);
+
+                        img2.setVisibility(View.GONE);
+
+                        vd2.setVideoPath(path);
+                        // start playing
+                        vd2.start();
+                        ifimg2 = false;
+                        v2 = true;
+
+                    } else if (imgClicked == 3) {
+                        Video3 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                        String path = Video3.getPath();
+                        CameraUtils.refreshGallery(getApplicationContext(), path);
+                        vd3.setVisibility(View.VISIBLE);
+
+                        img3.setVisibility(View.GONE);
+
+                        vd3.setVideoPath(path);
+                        // start playing
+                        vd3.start();
+
+                        ifimg3 = false;
+                        v3 = true;
+
+                    } else if (imgClicked == 4) {
+                        Video4 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                        String path = Video4.getPath();
+                        CameraUtils.refreshGallery(getApplicationContext(), path);
+
+                        vd4.setVisibility(View.VISIBLE);
+
+                        img4.setVisibility(View.GONE);
+
+                        vd4.setVideoPath(path);
+                        // start playing
+                        vd4.start();
+
+                        ifimg4 = false;
+                        v4 = true;
+                    }
+
+
+//                    UploadVideo();
+                }
+
+            }
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -874,7 +1006,6 @@ public class Add_new_post_1 extends AppCompatActivity {
             }
             @Override
             public void onTakeCameraSelectedVideo() {
-//                launchCameraIntent();
                 launchCameraIntentVideo();
             }
             @Override
@@ -884,22 +1015,26 @@ public class Add_new_post_1 extends AppCompatActivity {
         },true);
     }
     private void launchCameraIntentVideo() {
-        Intent intent = new Intent(Add_new_post_1.this, ImagePickerActivity.class);
-        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE_VIDEO);
+//        Intent intent = new Intent(Add_new_post_1.this, ImagePickerActivity.class);
+//        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE_VIDEO);
+//
+//        // setting aspect ratio
+//        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+//        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+//        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+//
+//        // setting maximum bitmap width and height
+//        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+//        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
+//        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
+//
+//        startActivityForResult(intent, REQUEST_IMAGE_VIDEO);
 
-        // setting aspect ratio
-        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
-
-        // setting maximum bitmap width and height
-        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
-        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
-        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
-
-        startActivityForResult(intent, REQUEST_IMAGE_VIDEO);
+        Intent intent = new Intent(Add_new_post_1.this, CameraHandling.class);
+        intent.putExtra("mode", "video");
+        startActivityForResult(intent, IMAGE_VIDEO_ACTIVITY_PICKER);
     }
-
+    private static final int IMAGE_VIDEO_ACTIVITY_PICKER = 4;
     int REQUEST_IMAGE_VIDEO = 998 ;
     private void launchCameraIntent() {
         Intent intent = new Intent(Add_new_post_1.this, ImagePickerActivity.class);

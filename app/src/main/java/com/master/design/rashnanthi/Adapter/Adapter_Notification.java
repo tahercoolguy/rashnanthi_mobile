@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.master.design.rashnanthi.DataModel.MyNotificationOutput;
+import com.master.design.rashnanthi.DataModel.MyNotificationOutputData;
 import com.master.design.rashnanthi.DataModel.NotificationDM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -17,16 +19,17 @@ import java.util.ArrayList;
 
 public class Adapter_Notification extends RecyclerView.Adapter<Adapter_Notification.ViewHolder> {
     private Context context;
-    private ArrayList<NotificationDM> notificationDMS;
+    private ArrayList<MyNotificationOutputData> myNotificationOutputDataArrayList;
+    private ArrayList<MyNotificationOutput> myNotificationOutputs;
      User user;
 
 
     int selectedPosition = 0;
 
-    public Adapter_Notification(Context context, ArrayList<NotificationDM> notificationDMS) {
+    public Adapter_Notification(Context context, ArrayList<MyNotificationOutputData> myNotificationOutputDataArrayList ) {
         this.context = context;
-        this.notificationDMS = notificationDMS;
-        user = new User(context);
+        this.myNotificationOutputDataArrayList = myNotificationOutputDataArrayList;
+         user = new User(context);
 
     }
 
@@ -52,16 +55,16 @@ public class Adapter_Notification extends RecyclerView.Adapter<Adapter_Notificat
 
     @Override
     public int getItemCount() {
-        return notificationDMS.size();
+        return myNotificationOutputDataArrayList.size();
     }
 
 
     private void setDetails(Adapter_Notification.ViewHolder viewHolder, int position) {
 //        Picasso.with(context).load(arrayList.get(position).getImage_file()).into(viewHolder.img);
-        viewHolder.time.setText(notificationDMS.get(position).getTime());
-        viewHolder.tittle.setText(notificationDMS.get(position).getTittle());
+        viewHolder.time.setText(myNotificationOutputDataArrayList.get(position).getDate());
+        viewHolder.tittle.setText("");
 
-        viewHolder.messege.setText(notificationDMS.get(position).getMessage());
+        viewHolder.messege.setText(myNotificationOutputDataArrayList.get(position).getMessage());
 
 //        viewHolder.read.setOnClickListener(new View.OnClickListener() {
 //            @Override

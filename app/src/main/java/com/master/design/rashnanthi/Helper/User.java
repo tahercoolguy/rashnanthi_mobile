@@ -38,6 +38,14 @@ public class User {
         sp.edit().putString("user_type", user_type).apply();
     }
 
+    public String getCountryCode() {
+        return sp.getString("countrycode", User.TYPE_NORMAL);
+    }
+
+    public void setCountryCode(String countryCode) {
+        sp.edit().putString("countrycode", countryCode).apply();
+    }
+
     public String getCreatorcoach() {
         return sp.getString("creatorcoach", User.TYPE_NORMAL);
     }

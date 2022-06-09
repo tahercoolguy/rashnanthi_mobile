@@ -115,7 +115,7 @@ public class VerifyActivity extends AppCompatActivity {
                         VerifyActivity.this.finish();
 
                     } else
-                        Helper.showToast(VerifyActivity.this, String.valueOf(R.string.otp_toast));
+                        Helper.showToast(VerifyActivity.this, getString(R.string.otp_toast));
                 }
 
                 @Override

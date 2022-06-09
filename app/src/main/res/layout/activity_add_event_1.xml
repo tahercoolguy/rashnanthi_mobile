@@ -252,6 +252,8 @@
 
                         android:inputType="number"
                         android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:padding="15dp"
 
                         android:textSize="15sp">
@@ -328,6 +330,8 @@
                         android:background="@color/transparent"
                         android:drawableStart="@drawable/snapchat"
                         android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:textSize="15sp"></EditText>
 
 
@@ -409,7 +413,9 @@
                         android:layout_centerInParent="true"
                         android:background="@color/transparent"
                         android:drawableStart="@drawable/ic_instaaaaaaaaaaaaaa"
+                        android:imeOptions="actionNext"
                         android:lines="1"
+                        android:singleLine="true"
                         android:textSize="15sp"></EditText>
 
                 </RelativeLayout>
@@ -487,6 +493,8 @@
                             android:background="@color/transparent"
                             android:drawableStart="@drawable/ic_webbbbbb"
                             android:lines="1"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
                             android:textSize="15sp"></EditText>
 
                     </RelativeLayout>
@@ -1142,6 +1150,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="45dp"
+                    android:visibility="gone"
                     android:layout_marginRight="25dp"
 
                     android:layout_marginBottom="50dp"

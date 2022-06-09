@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/black"
     android:backgroundTintMode="multiply"
     android:orientation="vertical">
 <ImageView
@@ -18,7 +18,7 @@
       be displaying images in our stories-->
     <ImageView
         android:id="@+id/image"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_centerInParent="true"
         android:layout_height="520dp"
          />

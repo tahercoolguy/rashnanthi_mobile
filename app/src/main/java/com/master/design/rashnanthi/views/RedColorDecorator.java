@@ -21,6 +21,7 @@ public class RedColorDecorator implements DayViewDecorator {
         date=dates;
     }
 
+
     @Override
     public boolean shouldDecorate(CalendarDay day) {
         return date.contains(day);
@@ -29,7 +30,7 @@ public class RedColorDecorator implements DayViewDecorator {
     @Override
     public void decorate(DayViewFacade view) {
         try {
-            view.setBackgroundDrawable(contextl.getDrawable(R.drawable.background_calendar));
+            view.setBackgroundDrawable(contextl.getDrawable(R.drawable.padding_gradient_calendar));
         }catch (Exception e)
         {
 

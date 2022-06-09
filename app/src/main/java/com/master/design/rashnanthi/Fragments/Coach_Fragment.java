@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter1;
+import com.master.design.rashnanthi.Adapter.SliderPagerAdapter1;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
 import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
@@ -220,11 +221,15 @@ public class Coach_Fragment extends Fragment {
             mList.add("one");
             mList.add("two");
             mList.add("three");
-            adapter1 =new ImageRecyclerAdapter1(mList,getContext(), "1");
-            coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
-            coach_Rcv.setHasFixedSize(true);
-            coach_Rcv.setAdapter(adapter1);
-            adapter1.notifyDataSetChanged();
+
+
+            APIforCoach("1");
+
+//            adapter1 =new ImageRecyclerAdapter1(mList,getContext(), "1");
+//            coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
+//            coach_Rcv.setHasFixedSize(true);
+//            coach_Rcv.setAdapter(adapter1);
+//            adapter1.notifyDataSetChanged();
 
 
 
@@ -276,6 +281,35 @@ public class Coach_Fragment extends Fragment {
         return rootView;
     }
 
+    public  void APIforCoach(String id)
+    {
+        if (connectionDetector.isConnectingToInternet()) {
+           progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            multipartTypedOutput.addPart("countryid", new TypedString(id));
+            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
+                @Override
+                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
+                    progress.dismiss();
+                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        context = getActivity();
+                        adapter1 =new ImageRecyclerAdapter1(getActivity(),coachesWithPostsRootDM.getOutput().getData() );
+                        coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        coach_Rcv.setHasFixedSize(true);
+                        coach_Rcv.setAdapter(adapter1);
+                    } else
+                        Helper.showToast(context, "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    progress.dismiss();
+
+                    Log.e("String", error.toString());
+                }
+            });
+        }
+    }
 
 
 
@@ -330,19 +364,8 @@ public class Coach_Fragment extends Fragment {
                 country_spinner_Txt.setText(data.get(position).getTitle());
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
 
-                adapter1 =new ImageRecyclerAdapter1(mList,getContext(),data.get(position).getId());
-                coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
-                coach_Rcv.setHasFixedSize(true);
-                coach_Rcv.setAdapter(adapter1);
-                adapter1.notifyDataSetChanged();
+                APIforCoach(data.get(position).getId());
 
-//                countryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
-//                AreaID = data.get(selected).getId();
-//                for (CountryData s:data
-//                ) {
-//                    if(s.getCallingcode().equals((String) object))
-//                        AreaID = s.getId();
-//                }
 
 
             }

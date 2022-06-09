@@ -37,9 +37,9 @@ public class AppController extends Application {
 
 
 
-    private static final String SHOPCH11_SERVER = "http://kuwaitgate.com/rasnanthi/webservices/rasnanthi";
+    private static final String SHOPCH11_SERVER = "http://reznamty.com/webservices/rasnanthi";
 
-    public static String base_image_url="http://kuwaitgate.com/rasnanthi/";
+    public static String base_image_url="http://reznamty.com/";
     public static final String TAG = AppController.class.getSimpleName();
 
 

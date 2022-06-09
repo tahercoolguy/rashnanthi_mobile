@@ -146,37 +146,36 @@
 
                     <RelativeLayout
                         android:id="@+id/spinnerBottomRL"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="1dp"
-                        android:layout_weight="10"
+
                         android:background="@drawable/mob_bg"
 
                         android:elevation="4dp">
 
 
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="15dp"
-                            android:src="@drawable/ic_down_arrow_spinner"></ImageView>
+<!--                        <ImageView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_centerVertical="true"-->
+<!--                            android:layout_marginRight="15dp"-->
+<!--                            android:src="@drawable/ic_down_arrow_spinner"></ImageView>-->
 
 
                         <TextView
                             android:id="@+id/country_spinnerET"
-                            android:layout_width="wrap_content"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@color/transparent"
 
+                            android:drawableRight="@drawable/ic_down_arrow_spinner"
+
                             android:hint="+965"
-
-
                             android:inputType="number"
                             android:lines="1"
                             android:padding="15dp"
@@ -194,9 +193,10 @@
                         android:layout_height="55dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="15dp"
-
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:layout_marginRight="1dp"
-                        android:layout_weight="1"
+
                         android:background="@drawable/mob_bg"
                         android:elevation="4dp"
 
@@ -254,6 +254,8 @@
                              android:layout_height="match_parent"
                             android:background="@color/transparent"
                             android:lines="1"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textSize="15sp">
 

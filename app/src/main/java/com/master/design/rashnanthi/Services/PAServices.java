@@ -19,6 +19,7 @@ import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
+import com.master.design.rashnanthi.DataModel.MyNotificationRootDM;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
 import com.master.design.rashnanthi.DataModel.OtpScrenRootDM;
 import com.master.design.rashnanthi.DataModel.ProfilePictureRootDM;
@@ -158,7 +159,7 @@ public interface PAServices {
 
     //21
     // //  done
-     @POST("/confirmevent")
+    @POST("/confirmevent")
     void ConfirmEvent(@Body MultipartTypedOutput multipartTypedOutput,
                       Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
 
@@ -166,8 +167,8 @@ public interface PAServices {
     // //  done
     @FormUrlEncoded
     @POST("/confirmevent")
-    void ConfirmEvent1(@Field("eventid") String eventid,@Field("paymentmethod") String paymentmethod,
-                      Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
+    void ConfirmEvent1(@Field("eventid") String eventid, @Field("paymentmethod") String paymentmethod,
+                       Callback<ConfirmEventRootDM> confirmEventRootDMCallback);
 
     //22       done
     @FormUrlEncoded
@@ -197,12 +198,19 @@ public interface PAServices {
     @POST("/storiesbydate")
     void StoriesByDate(@Body MultipartTypedOutput multipartTypedOutput, Callback<StoriesByDateRootDM> storiesByDateRootDMCallback);
 
+    //27     done
     @FormUrlEncoded
     @POST("/geteventsbycountrymonth")
     void AllEvent(@Field("countryid") String userid,
                   @Field("fromdate") String fromdate,
                   @Field("todate") String todate,
                   Callback<MyEventRootDM1> myEventRootDM1Callback);
+
+    //28
+    @FormUrlEncoded
+    @POST("/mynotifications")
+    void MyNotifications(@Field("userid") String userid,
+                         Callback<MyNotificationRootDM> myNotificationRootDMCallback);
 }
 
 

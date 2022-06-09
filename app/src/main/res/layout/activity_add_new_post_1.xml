@@ -180,7 +180,8 @@
 
                         android:hint="34324324"
                         android:inputType="number"
-
+                        android:imeOptions="actionNext"
+                         android:singleLine="true"
                         android:lines="1"
                         android:padding="15dp"
                         android:textColor="@color/black"
@@ -403,7 +404,8 @@
                         android:id="@+id/wtsapMobile__ET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:imeOptions="actionNext"
+                         android:singleLine="true"
                         android:layout_gravity="center"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="1dp"
@@ -452,6 +454,8 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:background="@color/transparent"
+                        android:imeOptions="actionNext"
+                         android:singleLine="true"
                         android:drawableStart="@drawable/snapchat"
                         android:lines="1"
                         android:textSize="15sp"></EditText>
@@ -486,6 +490,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
+                        android:imeOptions="actionNext"
+                         android:singleLine="true"
                         android:background="@color/transparent"
                         android:drawableStart="@drawable/ic_instaaaaaaaaaaaaaa"
                         android:lines="1"
@@ -556,6 +562,14 @@
                                 android:layout_centerInParent="true"
                                 android:src="@drawable/otp_rounded_rectangle_whitee"></ImageView>
 
+                            <VideoView
+                                android:id="@+id/vd1"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerInParent="true"
+                                android:visibility="gone"
+                                ></VideoView>
+
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_centerInParent="true"
@@ -584,7 +598,13 @@
                                 android:layout_height="150dp"
                                 android:layout_centerInParent="true"
                                 android:src="@drawable/otp_rounded_rectangle_whitee"></ImageView>
-
+                            <VideoView
+                                android:id="@+id/vd2"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerInParent="true"
+                                android:visibility="gone"
+                                ></VideoView>
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_centerInParent="true"
@@ -636,7 +656,13 @@
                                 android:layout_height="150dp"
                                 android:layout_centerInParent="true"
                                 android:src="@drawable/otp_rounded_rectangle_whitee"></ImageView>
-
+                            <VideoView
+                                android:id="@+id/vd3"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerInParent="true"
+                                android:visibility="gone"
+                                ></VideoView>
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_centerInParent="true"
@@ -686,7 +712,13 @@
                                 android:layout_height="150dp"
                                 android:layout_centerInParent="true"
                                 android:src="@drawable/otp_rounded_rectangle_whitee"></ImageView>
-
+                            <VideoView
+                                android:id="@+id/vd4"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerInParent="true"
+                                android:visibility="gone"
+                                ></VideoView>
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_centerInParent="true"

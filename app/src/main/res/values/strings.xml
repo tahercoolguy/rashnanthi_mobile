@@ -180,5 +180,6 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="otp_toast">kindly enter valid otp</string>
     <string name="login_messesge">entered mobile,password or country code incorrect</string>
     <string name="story">Story</string>
+    <string name="no_package">No package available</string>
 
 </resources>

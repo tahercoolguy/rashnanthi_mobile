@@ -11,7 +11,9 @@
         android:layout_margin="5dp"
         app:cardCornerRadius="15dp"
         android:layout_height="375dp">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
         <ImageView
             android:id="@+id/myimage"
             android:layout_width="match_parent"
@@ -19,6 +21,14 @@
              android:layout_centerHorizontal="true"
             android:contentDescription="@string/app_name" />
 
+        <VideoView
+            android:id="@+id/myvideo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name" />
+</RelativeLayout>
     </androidx.cardview.widget.CardView>
     <LinearLayout
         android:layout_width="match_parent"

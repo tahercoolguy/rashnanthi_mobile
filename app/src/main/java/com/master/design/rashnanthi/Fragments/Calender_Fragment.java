@@ -46,8 +46,11 @@ import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.master.design.rashnanthi.views.MySelectorDecorator;
 import com.master.design.rashnanthi.views.RedColorDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -300,12 +303,44 @@ public class Calender_Fragment extends Fragment {
             setDetails();
             setClickListeners();
 
+
+            calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+                @Override
+                public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                    for (CalendarDay cal:Appointment
+                         ) {
+                        if(date.getDay() == cal.getDay() && date.getMonth() == cal.getMonth() && date.getYear() == cal.getYear())
+                        {
+                            String Date=String.valueOf(date.getDay()),Month=String.valueOf(date.getMonth()),Year=String.valueOf(date.getYear());
+
+                            if(cal.getDay()<=9)
+                               Date = "0"+cal.getDay();
+
+                            if((cal.getMonth()+1)<=9)
+                            {
+                                Month = "0"+cal.getMonth();
+                            }
+
+                            Event_Small_Image_Fragment event_small_image_fragment = new Event_Small_Image_Fragment();
+                            Bundle bd = new Bundle();
+                            bd.putString("date", Year+"-"+Month+"-"+Date);
+                            bd.putString("countryid",countryidMain);
+                            event_small_image_fragment.setArguments(bd);
+                            ((MainActivity) context).addFragment(event_small_image_fragment, true);
+                        }
+                    }
+                }
+            });
+
 //            String[] days = {"","","","","","",""};
 
             CharSequence[] days = {"","","","","","",""};
             calendarView.setWeekDayLabels(days);
 //            compactCalendar.setDayColumnNames(days);
             calendarView.setTopbarVisible(false);
+
+
+
 
 //            try {
 //                final ArrayList<CalendarDay> Appointment=new ArrayList<>();
@@ -320,10 +355,14 @@ public class Calender_Fragment extends Fragment {
 //
 //            }
 
+//            MySelectorDecorator mySelectorDecorator = new MySelectorDecorator(getActivity());
+//            calendarView.addDecorator(mySelectorDecorator);
+
             myEventsApi(countryidMain);
         }
         return rootView;
     }
+    final ArrayList<CalendarDay> Appointment=new ArrayList<>();
     public static Calendar toCalendar(Date date){
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -339,7 +378,8 @@ public class Calender_Fragment extends Fragment {
             @Override
             public void success(MyEventRootDM1 myEventRootDM1, Response response) {
                 progress.dismiss();
-                final ArrayList<CalendarDay> Appointment=new ArrayList<>();
+
+                Appointment.clear();
 
                 if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
                     for (MyEventData1 dm :
@@ -354,15 +394,32 @@ public class Calender_Fragment extends Fragment {
                             Event ev2 = new Event(Color.YELLOW, toCalendar(km).getTimeInMillis(), dm.getEventdate());
                             compactCalendar.addEvent(ev2);
 
+                            ///This is mine
+                            try {
+                                LocalDate km1=  LocalDate.parse(dm.getEventdate());
+                                Appointment.add(CalendarDay.from(km1));
+                            }catch (Exception e)
+                            {
+                            e.toString();
+                            }
+
 
 
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        Appointment.add(CalendarDay.from(LocalDate.parse(dm.getEventdate())));
+
+
+
+
                     }
+
+                    //this is mine
                     RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(),Appointment);
                     calendarView.addDecorator(redColorDecorator);
+
+
+
                 } else {
                     Helper.showToast(getActivity(), "No posts");
                     List<Event> events = compactCalendar.getEventsForMonth((Calendar.getInstance()).getTime());

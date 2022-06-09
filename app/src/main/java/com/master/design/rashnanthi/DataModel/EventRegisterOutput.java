@@ -10,15 +10,15 @@ public class EventRegisterOutput {
     private String otp;
     private String message;
     private String userid;
-    private ArrayList<CoachRegisterData> data;
+//    private ArrayList<CoachRegisterData> data;
 
-    public ArrayList<CoachRegisterData> getData() {
-        return data;
-    }
-
-    public void setData(ArrayList<CoachRegisterData> data) {
-        this.data = data;
-    }
+//    public ArrayList<CoachRegisterData> getData() {
+//        return data;
+//    }
+//
+//    public void setData(ArrayList<CoachRegisterData> data) {
+//        this.data = data;
+//    }
 
     public String getCreatorcoach() {
 
