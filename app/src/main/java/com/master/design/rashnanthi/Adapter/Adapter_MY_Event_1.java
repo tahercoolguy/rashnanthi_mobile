@@ -101,9 +101,21 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
     private void setDetails(Adapter_MY_Event_1.ViewHolder viewHolder, int position) {
         viewHolder.date_time.setText(myEventData.get(position).getEventdate());
-        Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_1);
-        Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
 
+        ArrayList<String> img = new ArrayList<>();
+        if(myEventData.get(position).getImagedata()!=null)
+        for (MyEventImageData1 myEventImageData1:myEventData.get(position).getImagedata()
+             ) {
+            img.add(myEventImageData1.getImage());
+        }
+
+        if(img.size()>=2) {
+            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+        }else if(img.size()==1)
+        {
+            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+        }
 
 
         viewHolder.delete_Img.setOnClickListener(new View.OnClickListener() {

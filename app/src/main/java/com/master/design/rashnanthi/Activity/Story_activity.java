@@ -295,7 +295,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                             Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
                             Picasso.get()
                                     .load(AppController.base_image_url + array_image.get(0))
-                                    .transform(new BlurTransformation(Story_activity.this, 25, 1))
+                                    .transform(new BlurTransformation(Story_activity.this, 500, 1))
                                     .into(backgrd);
                         }
                         // below is the view for going to the previous story.

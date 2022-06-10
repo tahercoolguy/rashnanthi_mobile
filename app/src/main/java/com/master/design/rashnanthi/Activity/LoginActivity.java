@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout spinnerBottomRL;
 
 
+
+
     @BindView(R.id.passwordET)
     EditText passwordET;
 
@@ -273,7 +275,7 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<String> approvalTwo = new ArrayList<>();
 
 
-    @OnClick(R.id.spinnerBottomRL)
+    @OnClick(R.id.country_spinnerET)
     public void SpinnerCountry() {
         bottomForAll = new BottomForAll();
         bottomForAll.arrayList = approvalOne;

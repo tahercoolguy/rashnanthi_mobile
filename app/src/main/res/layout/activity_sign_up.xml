@@ -114,39 +114,35 @@
                         android:orientation="vertical">
 
 
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/profileImg"-->
+                        <!--                                android:layout_width="wrap_content"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:src="@drawable/profile_img">-->
+
+                        <!--                            </ImageView>-->
+
+                        <!--                            <com.makeramen.roundedimageview.RoundedImageView-->
+                        <!--                                android:id="@+id/profile_RoundedImgView"-->
+                        <!--                                android:layout_width="150dp"-->
+                        <!--                                android:layout_height="150dp"-->
+
+                        <!--                                android:src="@drawable/lady"-->
+                        <!--                                app:riv_border_color="@color/white"-->
+                        <!--                                app:riv_corner_radius="1000dp"-->
+                        <!--                                app:riv_oval="false"></com.makeramen.roundedimageview.RoundedImageView>-->
 
 
-                            <!--                            <ImageView-->
-                            <!--                                android:id="@+id/profileImg"-->
-                            <!--                                android:layout_width="wrap_content"-->
-                            <!--                                android:layout_height="wrap_content"-->
-                            <!--                                android:src="@drawable/profile_img">-->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_RoundedImgView"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/splash_screen_logo"
 
-                            <!--                            </ImageView>-->
-
-<!--                            <com.makeramen.roundedimageview.RoundedImageView-->
-<!--                                android:id="@+id/profile_RoundedImgView"-->
-<!--                                android:layout_width="150dp"-->
-<!--                                android:layout_height="150dp"-->
-
-<!--                                android:src="@drawable/lady"-->
-<!--                                app:riv_border_color="@color/white"-->
-<!--                                app:riv_corner_radius="1000dp"-->
-<!--                                app:riv_oval="false"></com.makeramen.roundedimageview.RoundedImageView>-->
-
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/profile_RoundedImgView"
-                                android:layout_width="130dp"
-                                android:layout_height="130dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/splash_screen_logo"
-
-                                app:civ_border_color="@color/white"
-                                app:civ_border_overlay="true"
-                                app:civ_border_width="3dp" />
-
-
+                            app:civ_border_color="@color/white"
+                            app:civ_border_overlay="true"
+                            app:civ_border_width="3dp" />
 
 
                         <ImageView
@@ -165,8 +161,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
 
                         android:gravity="center">
 
@@ -387,16 +383,16 @@
                         android:layout_marginRight="@dimen/marginRight"
                         android:background="@drawable/rounded_corner_white"
                         android:elevation="4dp"
-                        android:lines="1"
                         android:imeOptions="actionNext"
-android:singleLine="true"
-                        android:padding="10dp">
+                        android:lines="1"
+                        android:padding="10dp"
+                        android:singleLine="true">
 
                     </EditText>
 
 
                     <TextView
-                         android:layout_width="match_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp"
@@ -412,12 +408,12 @@ android:singleLine="true"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="@dimen/marginRight"
-                        android:imeOptions="actionNext"
-android:singleLine="true"
                         android:background="@drawable/rounded_corner_white"
                         android:elevation="4dp"
+                        android:imeOptions="actionNext"
                         android:lines="1"
-                        android:padding="10dp">
+                        android:padding="10dp"
+                        android:singleLine="true">
 
                     </EditText>
 
@@ -434,53 +430,52 @@ android:singleLine="true"
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
+                        android:background="@drawable/rounded_corner_white"
+                        android:elevation="4dp"
+                        android:imeOptions="actionNext"
+                        android:lines="1"
+                        android:singleLine="true"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="10dp"
                         app:boxCornerRadiusTopStart="10dp"
-                        app:passwordToggleEnabled="true"
-                        android:elevation="4dp"
-                        android:background="@drawable/rounded_corner_white"
-                        android:imeOptions="actionNext"
-android:singleLine="true"
-                        android:lines="1"
-                        android:layout_height="50dp">
+                        app:passwordToggleEnabled="true">
 
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/passwordET"
                             android:layout_width="match_parent"
-                            android:password="true"
-                             android:layout_margin="10dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:background="@color/transparent"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"
-                             android:background="@color/transparent"
-                            android:layout_height="match_parent">
+                            android:password="true"
+                            android:singleLine="true">
 
                         </com.google.android.material.textfield.TextInputEditText>
 
 
-
                     </com.google.android.material.textfield.TextInputLayout>
 
-<!--                    <EditText-->
-<!--                        android:id="@+id/passwordET"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="30dp"-->
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/passwordET"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginLeft="30dp"-->
 
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:layout_marginRight="10dp"-->
+                    <!--                        android:layout_marginTop="5dp"-->
+                    <!--                        android:layout_marginRight="10dp"-->
 
-<!--                         android:background="@drawable/rounded_corner_white"-->
-<!--                        android:elevation="4dp"-->
-<!--                        android:lines="1"-->
-<!--                        android:padding="10dp">-->
+                    <!--                         android:background="@drawable/rounded_corner_white"-->
+                    <!--                        android:elevation="4dp"-->
+                    <!--                        android:lines="1"-->
+                    <!--                        android:padding="10dp">-->
 
-<!--                    </EditText>-->
+                    <!--                    </EditText>-->
 
                     <TextView
                         android:layout_width="match_parent"
@@ -495,51 +490,50 @@ android:singleLine="true"
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
+                        android:background="@drawable/rounded_corner_white"
+                        android:elevation="4dp"
+                        android:lines="1"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="10dp"
-                        app:boxCornerRadiusTopStart="10dp"
-                        app:passwordToggleEnabled="true"
-                        android:elevation="4dp"
-                        android:background="@drawable/rounded_corner_white"
 
-                        android:lines="1"
-                        android:layout_height="50dp">
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:passwordToggleEnabled="true">
 
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/confirm_passwordET"
                             android:layout_width="match_parent"
-                            android:password="true"
+                            android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                             android:background="@color/transparent"
+                            android:background="@color/transparent"
 
-                            android:paddingBottom="7dp"
                             android:imeOptions="actionNext"
-android:singleLine="true"
-                            android:layout_height="match_parent">
+                            android:paddingBottom="7dp"
+                            android:password="true"
+                            android:singleLine="true">
 
                         </com.google.android.material.textfield.TextInputEditText>
 
 
-
                     </com.google.android.material.textfield.TextInputLayout>
 
-<!--                    <EditText-->
-<!--                        android:id="@+id/confirm_passwordET"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="30dp"-->
-<!--                        android:layout_marginTop="5dp"-->
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/confirm_passwordET"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginLeft="30dp"-->
+                    <!--                        android:layout_marginTop="5dp"-->
 
-<!--                        android:layout_marginRight="@dimen/marginRight"-->
-<!--                        android:background="@drawable/rounded_corner_white"-->
-<!--                        android:elevation="4dp"-->
-<!--                        android:lines="1"-->
-<!--                        android:padding="10dp"></EditText>-->
+                    <!--                        android:layout_marginRight="@dimen/marginRight"-->
+                    <!--                        android:background="@drawable/rounded_corner_white"-->
+                    <!--                        android:elevation="4dp"-->
+                    <!--                        android:lines="1"-->
+                    <!--                        android:padding="10dp"></EditText>-->
 
                     <!--                    <TextView-->
                     <!--                        android:layout_width="wrap_content"-->
@@ -643,8 +637,8 @@ android:singleLine="true"
                                 android:background="@color/transparent"
                                 android:drawableStart="@drawable/snapchat"
                                 android:imeOptions="actionNext"
-android:singleLine="true"
                                 android:lines="1"
+                                android:singleLine="true"
                                 android:textSize="15sp"></EditText>
 
 
@@ -680,8 +674,8 @@ android:singleLine="true"
                                 android:background="@color/transparent"
                                 android:drawableStart="@drawable/ic_instaaaaaaaaaaaaaa"
                                 android:imeOptions="actionNext"
-android:singleLine="true"
                                 android:lines="1"
+                                android:singleLine="true"
                                 android:textSize="15sp"></EditText>
 
                         </RelativeLayout>
@@ -768,25 +762,20 @@ android:singleLine="true"
                             <ImageView
                                 android:id="@+id/wtsap_IMg"
                                 android:layout_width="50dp"
-                                android:layout_marginEnd="1dp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="center"
-
+                                android:layout_marginEnd="1dp"
                                 android:elevation="@dimen/elevation"
                                 android:src="@drawable/ic_whastapp">
-
                             </ImageView>
 
                             <RelativeLayout
                                 android:id="@+id/spinnerBottom_RL"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                 android:layout_gravity="center"
-
-
+                                android:layout_gravity="center"
                                 android:layout_marginLeft="20dp"
                                 android:background="@drawable/country_code_bg"
-
                                 android:elevation="4dp">
 
                                 <ImageView
@@ -808,78 +797,79 @@ android:singleLine="true"
                                     android:maxLength="6"
                                     android:text="+965"
                                     android:textColor="@color/black"></TextView>
+
                                 <ImageView
                                     android:layout_width="wrap_content"
-                                    android:src="@drawable/ic_down_arrow_spinner"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
                                     android:layout_marginStart="90dp"
                                     android:layout_marginRight="10dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_height="wrap_content"></ImageView>
+                                    android:src="@drawable/ic_down_arrow_spinner"></ImageView>
                             </RelativeLayout>
 
 
-<!--                            <RelativeLayout-->
-<!--                                android:id="@+id/spinnerBottom_RL"-->
-<!--                                android:layout_width="105dp"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_gravity="center"-->
+                            <!--                            <RelativeLayout-->
+                            <!--                                android:id="@+id/spinnerBottom_RL"-->
+                            <!--                                android:layout_width="105dp"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:layout_gravity="center"-->
 
 
-<!--                                android:layout_marginLeft="20dp"-->
-<!--                                android:background="@drawable/country_code_bg"-->
+                            <!--                                android:layout_marginLeft="20dp"-->
+                            <!--                                android:background="@drawable/country_code_bg"-->
 
-<!--                                android:elevation="4dp">-->
+                            <!--                                android:elevation="4dp">-->
 
-<!--                                <ImageView-->
-<!--                                    android:layout_width="wrap_content"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:layout_alignParentRight="true"-->
-<!--                                    android:layout_centerVertical="true"-->
-<!--                                    android:layout_marginRight="15dp"-->
-<!--                                    android:src="@drawable/ic_down_arrow_spinner"></ImageView>-->
-
-
-<!--                                <TextView-->
-<!--                                    android:id="@+id/country_spinner_ET"-->
-<!--                                    android:layout_width="wrap_content"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:layout_gravity="center"-->
-<!--                                    android:background="@color/transparent"-->
-<!--                                    android:focusable="false"-->
-
-<!--                                    android:hint="+965"-->
+                            <!--                                <ImageView-->
+                            <!--                                    android:layout_width="wrap_content"-->
+                            <!--                                    android:layout_height="wrap_content"-->
+                            <!--                                    android:layout_alignParentRight="true"-->
+                            <!--                                    android:layout_centerVertical="true"-->
+                            <!--                                    android:layout_marginRight="15dp"-->
+                            <!--                                    android:src="@drawable/ic_down_arrow_spinner"></ImageView>-->
 
 
-<!--                                    android:inputType="number"-->
-<!--                                    android:lines="1"-->
-<!--                                    android:padding="15dp"-->
+                            <!--                                <TextView-->
+                            <!--                                    android:id="@+id/country_spinner_ET"-->
+                            <!--                                    android:layout_width="wrap_content"-->
+                            <!--                                    android:layout_height="wrap_content"-->
+                            <!--                                    android:layout_gravity="center"-->
+                            <!--                                    android:background="@color/transparent"-->
+                            <!--                                    android:focusable="false"-->
 
-<!--                                    android:textColor="@color/black"-->
-<!--                                    android:textSize="15sp">-->
-
-<!--                                </TextView>-->
+                            <!--                                    android:hint="+965"-->
 
 
-<!--                            </RelativeLayout>-->
+                            <!--                                    android:inputType="number"-->
+                            <!--                                    android:lines="1"-->
+                            <!--                                    android:padding="15dp"-->
+
+                            <!--                                    android:textColor="@color/black"-->
+                            <!--                                    android:textSize="15sp">-->
+
+                            <!--                                </TextView>-->
+
+
+                            <!--                            </RelativeLayout>-->
 
 
                             <EditText
                                 android:id="@+id/mobile__ET"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:imeOptions="actionNext"
-android:singleLine="true"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="1dp"
                                 android:background="@drawable/mob_bg"
-
                                 android:elevation="4dp"
                                 android:hint="34324324"
 
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
+
                                 android:lines="1"
                                 android:padding="15dp"
+                                android:singleLine="true"
 
                                 android:textSize="15sp">
 
@@ -946,10 +936,10 @@ android:singleLine="true"
                                 android:layout_gravity="center"
                                 android:background="@color/transparent"
                                 android:focusable="false"
-                                android:text="+965"
                                 android:inputType="number"
                                 android:lines="1"
                                 android:padding="15dp"
+                                android:text="+965"
 
                                 android:textColor="@color/black"
                                 android:textSize="15sp">
@@ -969,14 +959,14 @@ android:singleLine="true"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="1dp"
                             android:background="@drawable/mob_bg"
-                            android:imeOptions="actionNext"
-android:singleLine="true"
                             android:elevation="4dp"
                             android:hint="34324324"
-
+                            android:imeOptions="actionNext"
                             android:inputType="number"
+
                             android:lines="1"
                             android:padding="15dp"
+                            android:singleLine="true"
 
                             android:textSize="15sp">
 
