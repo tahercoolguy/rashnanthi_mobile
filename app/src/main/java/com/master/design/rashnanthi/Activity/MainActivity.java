@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         eventcreator = getIntent().getStringExtra("chirag1");
         coachcreator = getIntent().getStringExtra("chirag2");
 
-        addFragment(new Calender_Fragment(), false);
+        addFragment(new Calender_Fragment(), true);
 
         calenderTxt = findViewById(R.id.calenderTxt);
         coachTxt = findViewById(R.id.coachTxt);
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifCalenderClicked = true;
 
-                addFragment(new Calender_Fragment(), false);
+                addFragment(new Calender_Fragment(), true);
                 CalenderVisibilityFunction();
 
             }
@@ -265,6 +266,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     public void addFragment(Fragment fragment, boolean addToStack) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

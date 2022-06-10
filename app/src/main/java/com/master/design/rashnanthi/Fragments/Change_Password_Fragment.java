@@ -26,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.ChangePasswordRootDM;
 import com.master.design.rashnanthi.Helper.DialogUtil;
@@ -82,50 +83,57 @@ public class Change_Password_Fragment extends Fragment {
 
 
     @OnClick(R.id.backImg)
-    public void Back(){
-        ((MainActivity)context).addFragment(new My_Account_Fragment(),false);
+    public void Back() {
+        ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
 
     }
 
     @OnClick(R.id.change_password_Btn)
-    public void ChangePasswordBtn(){
+    public void ChangePasswordBtn() {
 
-        if(connectionDetector.isConnectingToInternet())
-        {
+        if (connectionDetector.isConnectingToInternet()) {
 
 //            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
+            boolean correct = true;
+            if (old_password_ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(getActivity(), getString(R.string.enter_old_password));
+            }   else if (new_password_ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(getActivity(), getString(R.string.enter_new_password));
+            }else if (confirm_password_ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(getActivity(), getString(R.string.enter_confirm_password));
+            } else if (correct) {
 
+                appController.paServices.ChangePassword(String.valueOf(user.getId()), old_password_ET.getText().toString(), new_password_ET.getText().toString(), confirm_password_ET.getText().toString(), new Callback<ChangePasswordRootDM>() {
+                    @Override
 
-            appController.paServices.ChangePassword(String.valueOf(user.getId()),old_password_ET.getText().toString(),new_password_ET.getText().toString(),confirm_password_ET.getText().toString(), new Callback<ChangePasswordRootDM>() {
-                @Override
-
-                public void success ( ChangePasswordRootDM changePasswordRootDM, Response response )
-                {
+                    public void success(ChangePasswordRootDM changePasswordRootDM, Response response) {
 //                    progress.dismiss();
-                    if(changePasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1"))
-                    {
-                        Helper.showToast(getActivity(),"password successfully changed");
+                        if (changePasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                            Helper.showToast(getActivity(), "password successfully changed");
 
-                    }else{
-                        Helper.showToast(getActivity(),"something wrong");
+                        } else {
+                            Helper.showToast(getActivity(), "something wrong");
+
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError retrofitError) {
+//                    progress.dismiss();
+                        Log.e("error", retrofitError.toString());
 
                     }
-                }
-
-                @Override
-                public void failure ( RetrofitError retrofitError ) {
-//                    progress.dismiss();
-                    Log.e("error",retrofitError.toString());
-
-                }
-            });
-        }else
-            Helper.showToast(context,getString(R.string.no_internet_connection));
-     }
-
+                });
+            }
+        } else
+            Helper.showToast(context, getString(R.string.no_internet_connection));
+    }
 
 
     @Nullable

@@ -63,7 +63,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="vertical">
 
 
@@ -152,7 +151,6 @@
                             android:layout_gravity="center"
                             android:background="@color/transparent"
 
-                            android:hint="+965"
 
 
                             android:inputType="number"
@@ -451,13 +449,14 @@
                     <EditText
                         android:id="@+id/snapET"
                         android:layout_width="match_parent"
+                        android:drawablePadding="10dp"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        android:background="@color/transparent"
-                        android:imeOptions="actionNext"
-                         android:singleLine="true"
+                         android:background="@color/transparent"
                         android:drawableStart="@drawable/snapchat"
+                        android:imeOptions="actionNext"
                         android:lines="1"
+                        android:singleLine="true"
                         android:textSize="15sp"></EditText>
 
 
@@ -492,6 +491,8 @@
                         android:layout_centerInParent="true"
                         android:imeOptions="actionNext"
                          android:singleLine="true"
+                        android:drawablePadding="10dp"
+
                         android:background="@color/transparent"
                         android:drawableStart="@drawable/ic_instaaaaaaaaaaaaaa"
                         android:lines="1"

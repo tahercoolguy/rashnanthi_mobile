@@ -95,6 +95,20 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
             holder.insta_img.setVisibility(View.VISIBLE);
         }
 
+        if(whatsapp != null)
+            if (whatsapp.equalsIgnoreCase("")) {
+                holder.whatsapp_IMg.setVisibility(View.GONE);
+            } else {
+                holder.whatsapp_IMg.setVisibility(View.VISIBLE);
+            }
+
+        if(snapcahat != null)
+            if (snapcahat.equalsIgnoreCase("")) {
+                holder.snapchaht_Img.setVisibility(View.GONE);
+            } else {
+                holder.snapchaht_Img.setVisibility(View.VISIBLE);
+            }
+
         ArrayList<String> km = new ArrayList<>();
 
         if(mList.get(position).getPostsdata()!=null)

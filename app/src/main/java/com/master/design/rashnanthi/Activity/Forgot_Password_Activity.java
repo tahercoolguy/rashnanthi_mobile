@@ -38,37 +38,43 @@ public class Forgot_Password_Activity extends AppCompatActivity {
     EditText email_ET11;
 
     @OnClick(R.id.submitB)
-    public void submit()
-    {
+    public void submit() {
         if (connectionDetector.isConnectingToInternet()) {
+            boolean correct = true;
 
-            progress = dialogUtil.showProgressDialog(Forgot_Password_Activity.this, getString(R.string.please_wait));
 
-            String   email11= user.getEmail();
-            appController.paServices.ForgotPassword(email_ET11.getText().toString(), new Callback<ForgotPasswordRootDM>() {
-                @Override
+            if (email_ET11.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(Forgot_Password_Activity.this, getString(R.string.enter_email));
+            } else if (correct) {
 
-                public void success(ForgotPasswordRootDM forgotPasswordRootDM, Response response) {
-                    progress.dismiss();
-                    if (forgotPasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        Helper.showToast(Forgot_Password_Activity.this, "password sent on registered email");
 
-                    } else
-                        Helper.showToast(Forgot_Password_Activity.this, "password did not sent on registered email");
-                }
+                progress = dialogUtil.showProgressDialog(Forgot_Password_Activity.this, getString(R.string.please_wait));
 
-                @Override
-                public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
-                    Log.e("error", retrofitError.toString());
+                String email11 = user.getEmail();
+                appController.paServices.ForgotPassword(email_ET11.getText().toString(), new Callback<ForgotPasswordRootDM>() {
+                    @Override
 
-                }
-            });
+                    public void success(ForgotPasswordRootDM forgotPasswordRootDM, Response response) {
+                        progress.dismiss();
+                        if (forgotPasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                            Helper.showToast(Forgot_Password_Activity.this, "password sent on registered email");
+
+                        } else
+                            Helper.showToast(Forgot_Password_Activity.this, "password did not sent on registered email");
+                    }
+
+                    @Override
+                    public void failure(RetrofitError retrofitError) {
+                        progress.dismiss();
+                        Log.e("error", retrofitError.toString());
+
+                    }
+                });
+            }
         } else
             Helper.showToast(Forgot_Password_Activity.this, getString(R.string.no_internet_connection));
     }
-
-
 
 
     @Override

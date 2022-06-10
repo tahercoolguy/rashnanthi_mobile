@@ -98,18 +98,18 @@ public class Edit_Profile_Fragment extends Fragment {
 
     @OnClick(R.id.backImg)
     public void Back() {
-        ((MainActivity)context).addFragment(new My_Account_Fragment(),false);
+        ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
     }
 
     BottomForAll bottomForAll;
 
-    ArrayList<CountryData> approvalOne=new ArrayList<>();
-    ArrayList<String> approvalTwo=new ArrayList<>();
+    ArrayList<CountryData> approvalOne = new ArrayList<>();
+    ArrayList<String> approvalTwo = new ArrayList<>();
 
     @OnClick(R.id.spinnerBottomRL)
     public void Spinner_Country() {
-        bottomForAll= new BottomForAll();
-        bottomForAll.arrayList=approvalOne;
+        bottomForAll = new BottomForAll();
+        bottomForAll.arrayList = approvalOne;
 
         bottomForAll.setResponseListener(new ResponseListener() {
             @Override
@@ -130,76 +130,87 @@ public class Edit_Profile_Fragment extends Fragment {
         });
 
 
-        bottomForAll.show(getParentFragmentManager(),"bottomSheetCountry");
+        bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
 
 //        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
     }
 
 
-    ArrayList<CountryData> data=new ArrayList<>();
-    public void Binding()
-    {
-        if(connectionDetector.isConnectingToInternet())
-        {
+    ArrayList<CountryData> data = new ArrayList<>();
+
+    public void Binding() {
+        if (connectionDetector.isConnectingToInternet()) {
             appController.paServices.Countries(new Callback<CountryRootDM>() {
                 @Override
                 public void success(CountryRootDM countryRootDM, Response response) {
-                    if(countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1"))
-                    {
+                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         data = countryRootDM.getOutput().getData();
-                        for (CountryData area:countryRootDM.getOutput().getData()
+                        for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
                             approvalOne.add(area);
                         }
-                    }else
-                        Helper.showToast(context,"Some network happened ..");
+                    } else
+                        Helper.showToast(context, "Some network happened ..");
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Log.e("String",error.toString());
+                    Log.e("String", error.toString());
                 }
             });
         }
     }
 
-        @OnClick(R.id.update_Btn)
+    @OnClick(R.id.update_Btn)
     public void Update_profile() {
 
-            if(connectionDetector.isConnectingToInternet())
-            {
+        if (connectionDetector.isConnectingToInternet()) {
 
 //            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
-                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
 
+            boolean correct = true;
+            if (name_ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(getActivity(), getString(R.string.enter_name));
+            } else if (email_ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(getActivity(), getString(R.string.enter_email));
+            }else if (country_spinnerET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(getActivity(), getString(R.string.enter_mobile_code));
+            }else if (mobileET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(getActivity(), getString(R.string.kindly_enter_mobile));
+            } else if (correct) {
 
-                appController.paServices.UpdateProfile(String.valueOf(user.getId()),name_ET.getText().toString(),email_ET.getText().toString(),mobileET.getText().toString(),country_spinnerET.getText().toString(), new Callback<UpdateProfileRootDM>() {
+
+                appController.paServices.UpdateProfile(String.valueOf(user.getId()), name_ET.getText().toString(), email_ET.getText().toString(), mobileET.getText().toString(), country_spinnerET.getText().toString(), new Callback<UpdateProfileRootDM>() {
                     @Override
 
-                    public void success ( UpdateProfileRootDM updateProfileRootDM, Response response )
-                    {
+                    public void success(UpdateProfileRootDM updateProfileRootDM, Response response) {
 //                    progress.dismiss();
-                        if(updateProfileRootDM.getOutput().getSuccess().equalsIgnoreCase("1"))
-                        {
-                            Helper.showToast(getActivity(),"Updated Profile Successfully");
+                        if (updateProfileRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                            Helper.showToast(getActivity(), "Updated Profile Successfully");
 
-                        }else{
-                            Helper.showToast(getActivity(),"Updated Profile Not Successfully");
+                        } else {
+                            Helper.showToast(getActivity(), "Updated Profile Not Successfully");
 
                         }
                     }
 
                     @Override
-                    public void failure ( RetrofitError retrofitError ) {
+                    public void failure(RetrofitError retrofitError) {
 //                    progress.dismiss();
-                        Log.e("error",retrofitError.toString());
+                        Log.e("error", retrofitError.toString());
 
                     }
                 });
-            }else
-                Helper.showToast(context,getString(R.string.no_internet_connection));
+            }
+        } else
+            Helper.showToast(context, getString(R.string.no_internet_connection));
 
     }
 

@@ -232,7 +232,7 @@ public class Coach_Account_Fragment extends Fragment {
                     fos.flush();
                     fos.close();
                     File resizedImage = new Resizer(context)
-                            .setTargetLength(200)
+                            .setTargetLength(512)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image1")

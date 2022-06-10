@@ -68,8 +68,6 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout spinnerBottomRL;
 
 
-
-
     @BindView(R.id.passwordET)
     EditText passwordET;
 
@@ -102,39 +100,55 @@ public class LoginActivity extends AppCompatActivity {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
 
-            progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
+            boolean correct = true;
+            if (country_spinnerET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(LoginActivity.this, getString(R.string.enter_mobile_code));
+            }
+            if (mobileET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(LoginActivity.this, getString(R.string.kindly_enter_mobile));
+            }
+            if (passwordET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(LoginActivity.this, getString(R.string.enter_password));
+            } else if (correct) {
 
-            appController.paServices.Login(country_spinnerET.getText().toString(), mobileET.getText().toString(),
-                    passwordET.getText().toString(), new Callback<LoginRootDM>() {
-                        @Override
-                        public void success(LoginRootDM loginRootDM, Response response) {
-                            progress.dismiss();
-                            if (loginRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                progress = dialogUtil.showProgressDialog(LoginActivity.this, getString(R.string.please_wait));
+
+                appController.paServices.Login(country_spinnerET.getText().toString(), mobileET.getText().toString(),
+                        passwordET.getText().toString(), new Callback<LoginRootDM>() {
+                            @Override
+                            public void success(LoginRootDM loginRootDM, Response response) {
+                                progress.dismiss();
+                                if (loginRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        Helper.shwToast(LoginActivity.this,customerRegisterDM.getMessage());
 
-                                user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
-                                user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
-                                user.setCreatorcoach(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
-                                user.setCountryid(loginRootDM.getOutput().getData().get(0).getCountryid());
-                                 String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
-                                user.setEmail(neemail);
+                                    user.setId(Integer.parseInt(loginRootDM.getOutput().getData().get(0).getId()));
+                                    user.setName(loginRootDM.getOutput().getData().get(0).getFullname());
+                                    user.setCreatorcoach(loginRootDM.getOutput().getData().get(0).getCreatorcoach());
+                                    user.setCountryid(loginRootDM.getOutput().getData().get(0).getCountryid());
+                                    String neemail = loginRootDM.getOutput().getData().get(0).getEmail();
+                                    user.setEmail(neemail);
 
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
-                            } else
-                                 Helper.showToast(LoginActivity.this, getString(R.string.login_messesge));
+                                } else
+                                    Helper.showToast(LoginActivity.this, getString(R.string.login_messesge));
 
-                        }
+                            }
 
-                        @Override
-                        public void failure(RetrofitError retrofitError) {
-                            progress.dismiss();
+                            @Override
+                            public void failure(RetrofitError retrofitError) {
+                                progress.dismiss();
 
-                            Log.e("error", retrofitError.toString());
+                                Log.e("error", retrofitError.toString());
 
-                        }
-                    });
+                            }
+                        });
 
+            }
         } else
             Helper.showToast(LoginActivity.this, getString(R.string.no_internet_connection));
 

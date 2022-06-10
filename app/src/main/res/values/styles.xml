@@ -76,4 +76,17 @@
         <item name="android:dropDownSelector">@drawable/ic_down_arrow_spinner</item>
     </style>
 
+
+    <style name="mytransparent1.windowNoTitle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+
+
+    </style>
+
 </resources>

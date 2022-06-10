@@ -62,7 +62,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="change_pass"> Change Password</string>
 
     <string name="add_new_event">Add New Event</string>
-     <string name="view_post">View Post</string>
+    <string name="view_post">View Post</string>
     <string name="view_event">View Event</string>
 
     <string name="edit_pro">Edit Profile</string>
@@ -181,5 +181,22 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="login_messesge">entered mobile,password or country code incorrect</string>
     <string name="story">Story</string>
     <string name="no_package">No package available</string>
+    <string name="enter_name">kindly enter your name</string>
+    <string name="enter_email">kindly enter your email</string>
+    <string name="enter_password">kindly enter your password</string>
+    <string name="enter_confirmpassword">kindly enter your confirmpassword</string>
+    <string name="enter_mobile_code">kindly select your mobile countrycode</string>
+    <string name="enter_mobile">kindly enter your mobile number</string>
+    <string name="enter_whatsapp">kindly enter your whatsapp number</string>
+    <string name="enter_whatsap_code">kindly select your whatsapp countrycode</string>
+    <string name="enter_main_country">kindly select your main countrycode</string>
+    <string name="enter_insta">kindly enter your instagram account</string>
+    <string name="enter_snapchat">kindly enter your snapchat account</string>
+    <string name="enter_website">kindly enter your website</string>
+    <string name="select_date">kindly select your event date</string>
+    <string name="enter_old_password">kindly enter old password</string>
+    <string name="enter_new_password">kindly enter new password</string>
+    <string name="enter_confirm_password">kindly enter confirm password</string>
+
 
 </resources>

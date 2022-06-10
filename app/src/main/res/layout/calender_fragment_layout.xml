@@ -86,7 +86,6 @@
             </LinearLayout>
 
 
-
             <RelativeLayout
                 android:id="@+id/spinnerCountryBottomRL"
                 android:layout_width="170dp"
@@ -124,15 +123,15 @@
                     android:id="@+id/country_spinner_Txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
                     android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="5dp"
                     android:background="@color/transparent"
                     android:focusable="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:lines="2"
-                    android:maxLength="6"
 
+                    android:maxLength="6"
                     android:padding="15dp"
                     android:text="@string/kuwait"
                     android:textColor="@color/black"
@@ -166,6 +165,7 @@
 
 
             </RelativeLayout>
+
 
 
         </RelativeLayout>
@@ -371,6 +371,5 @@
     </LinearLayout>
 
     <include layout="@layout/layout_error" />
-
 
 </RelativeLayout>

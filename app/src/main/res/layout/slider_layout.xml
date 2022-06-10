@@ -41,16 +41,17 @@
 
         <ImageView
             android:id="@+id/wtsapImg"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="10dp"
             android:visibility="gone"
+
             android:src="@drawable/ic_whastapp"></ImageView>
 
         <ImageView
             android:id="@+id/instaImg"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="10dp"
             android:visibility="gone"
 
@@ -58,8 +59,8 @@
 
         <ImageView
             android:id="@+id/webImg"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="10dp"
             android:visibility="gone"
 
@@ -67,8 +68,8 @@
 
         <ImageView
             android:id="@+id/snapImg"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="10dp"
             android:visibility="gone"
 

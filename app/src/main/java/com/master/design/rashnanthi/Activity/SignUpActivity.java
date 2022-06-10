@@ -139,7 +139,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     LinearLayout testing, testing1;
     TextView event, coach;
-     TextInputEditText passwordET, confirm_passwordET;
+    TextInputEditText passwordET, confirm_passwordET;
     Button register_NowBtn;
     EditText snap_id_ET, insta_id_ET, mobile__ET, emailET, nameET, mobileET;
 
@@ -190,9 +190,6 @@ public class SignUpActivity extends AppCompatActivity {
         VisibilityFunction();
 
 
-
-
-
 //                Intent i = new Intent(getApplicationContext(),Menu_1_Fragment.class);
 //
 
@@ -230,7 +227,7 @@ public class SignUpActivity extends AppCompatActivity {
         cameraImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                img1Sel=true;
+                img1Sel = true;
                 OpenImage();
             }
         });
@@ -239,11 +236,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     boolean img1Sel = false;
+
     public void EventsCreatorAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
             String countryspinnercodeET = country_spinnerET.getText().toString();
-            progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
 //Remove first character
             countryspinnercodeET.substring(1); //ello World
 
@@ -293,41 +290,64 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
 
+            boolean correct = true;
+            if (nameET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));
+            } else if (emailET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_email));
+            } else if (passwordET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_password));
+            } else if (confirm_passwordET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_confirm_password));
+            } else if (country_spinnerET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_mobile_code));
+            } else if (mobileET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.kindly_enter_mobile));
+            } else if (correct) {
 
-            appController.paServices.EventCreatorReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
-                @Override
-                public void success(EventRegisterDM eventRegisterDM, Response response) {
-                    progress.dismiss();
+                progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
+
+                appController.paServices.EventCreatorReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
+                    @Override
+                    public void success(EventRegisterDM eventRegisterDM, Response response) {
+                        progress.dismiss();
 
 
-                    if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                         user.setEmail(emailET.getText().toString());
-                        user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
+                            user.setEmail(emailET.getText().toString());
+                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
-                         //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                            //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
 
-                        Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
-                        intent.putExtra("EventCreator", eventRegisterDM.getOutput().getCreatorcoach());
-                        intent.putExtra("chirag1", "1");
-                        intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
-                        startActivity(intent);
+                            Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
+                            intent.putExtra("EventCreator", eventRegisterDM.getOutput().getCreatorcoach());
+                            intent.putExtra("chirag1", "1");
+                            intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
+                            startActivity(intent);
 
 //                        startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
 //                        finish();
 
 
-                    } else
-                        Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
-                }
+                        } else
+                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                    }
 
-                @Override
-                public void failure(RetrofitError error) {
-                    progress.dismiss();
+                    @Override
+                    public void failure(RetrofitError error) {
+                        progress.dismiss();
 
-                    Log.e("Error", error.toString());
-                }
-            });
+                        Log.e("Error", error.toString());
+                    }
+                });
+            }
         } else
             Helper.showToast(SignUpActivity.this, getString(R.string.no_internet_connection));
 
@@ -387,38 +407,76 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.e("Error", e.toString());
             }
 
-            progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
-            appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
-                @Override
-                public void success(EventRegisterDM eventRegisterDM, Response response) {
-                    progress.dismiss();
 
-                    if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+            boolean correct = true;
+            if (nameET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));
+            }else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_main_country));
+            } else if (emailET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_email));
+            } else if (passwordET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_password));
+            } else if (confirm_passwordET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_confirm_password));
+            }
+            else if (snap_id_ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_snapchat));
+            } else if (insta_id_ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_insta));
+            } else if (country_spinnerET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_whatsap_code));
+            } else if (mobile__ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_whatsapp));
+            } else if (country_spinnerET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.enter_mobile_code));
+            } else if (mobileET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, getString(R.string.kindly_enter_mobile));
+            } else if (correct) {
+
+                progress = dialogUtil.showProgressDialog(SignUpActivity.this, getString(R.string.please_wait));
+                appController.paServices.CoachReg(multipartTypedOutput, new Callback<EventRegisterDM>() {
+                    @Override
+                    public void success(EventRegisterDM eventRegisterDM, Response response) {
+                        progress.dismiss();
+
+                        if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
-                        user.setEmail(emailET.getText().toString());
-                        user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
+                            user.setEmail(emailET.getText().toString());
+                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
 
-                        Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
-                        intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());
-                        intent.putExtra("chirag2", "2");
-                        intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
-                        startActivity(intent);
-                        finish();
+                            Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
+                            intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());
+                            intent.putExtra("chirag2", "2");
+                            intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
+                            startActivity(intent);
+                            finish();
 
-//                            startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
-//                            finish();
-                    } else
-                        Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
-                }
+//
+                        } else
+                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                    }
 
-                @Override
-                public void failure(RetrofitError error) {
-                    progress.dismiss();
+                    @Override
+                    public void failure(RetrofitError error) {
+                        progress.dismiss();
 
-                    Log.e("String", error.toString());
-                }
-            });
+                        Log.e("String", error.toString());
+                    }
+                });
+            }
         } else
             Helper.showToast(SignUpActivity.this, getString(R.string.no_internet_connection));
 
@@ -569,7 +627,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void OpenImage() {
-        Dexter.withActivity( SignUpActivity.this)
+        Dexter.withActivity(SignUpActivity.this)
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
@@ -602,8 +660,8 @@ public class SignUpActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(SignUpActivity.this.getContentResolver(), uri);
 
 
-                        profile_RoundedImgView.setImageBitmap(bitmap);
-                        img1Sel=true;
+                    profile_RoundedImgView.setImageBitmap(bitmap);
+                    img1Sel = true;
 
                     // loading profile image from local cache
 
@@ -621,15 +679,17 @@ public class SignUpActivity extends AppCompatActivity {
             public void onTakeCameraSelected() {
                 launchCameraIntent();
             }
+
             @Override
             public void onTakeCameraSelectedVideo() {
 
             }
+
             @Override
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
-        },false);
+        }, false);
     }
 
     private void launchCameraIntent() {
@@ -650,6 +710,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     int REQUEST_IMAGE = 999;
+
     private void launchGalleryIntent() {
         Intent intent = new Intent(SignUpActivity.this, ImagePickerActivity.class);
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
@@ -660,7 +721,6 @@ public class SignUpActivity extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
         startActivityForResult(intent, REQUEST_IMAGE);
     }
-
 
 
     /**

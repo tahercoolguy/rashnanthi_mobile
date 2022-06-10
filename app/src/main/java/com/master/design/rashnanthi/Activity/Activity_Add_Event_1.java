@@ -109,7 +109,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     String image1, image2, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
 
     MyEventData myEventData1;
-    String CountryId="1", Free, Paid;
+    String CountryId = "1", Free, Paid;
 
     ArrayList<String> arrayList = new ArrayList<>(Arrays.asList("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"));
     int index = 0;
@@ -533,7 +533,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.flush();
                     fos.close();
                     File resizedImage = new Resizer(Activity_Add_Event_1.this)
-                            .setTargetLength(200)
+                            .setTargetLength(512)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image1")
@@ -558,7 +558,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.flush();
                     fos.close();
                     File resizedImage1 = new Resizer(Activity_Add_Event_1.this)
-                            .setTargetLength(200)
+                            .setTargetLength(512)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image2")
@@ -583,7 +583,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.flush();
                     fos.close();
                     File resizedImage2 = new Resizer(Activity_Add_Event_1.this)
-                            .setTargetLength(200)
+                            .setTargetLength(512)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image3")
@@ -609,7 +609,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.flush();
                     fos.close();
                     File resizedImage3 = new Resizer(Activity_Add_Event_1.this)
-                            .setTargetLength(200)
+                            .setTargetLength(512)
                             .setQuality(80)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image4")
@@ -730,7 +730,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         fos.flush();
                         fos.close();
                         File resizedImage = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(200)
+                                .setTargetLength(512)
                                 .setQuality(80)
                                 .setOutputFormat("JPEG")
                                 .setOutputFilename("resized_image1")
@@ -764,7 +764,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         fos.flush();
                         fos.close();
                         File resizedImage1 = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(200)
+                                .setTargetLength(512)
                                 .setQuality(80)
                                 .setOutputFormat("JPEG")
                                 .setOutputFilename("resized_image2")
@@ -798,7 +798,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         fos.flush();
                         fos.close();
                         File resizedImage2 = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(200)
+                                .setTargetLength(512)
                                 .setQuality(80)
                                 .setOutputFormat("JPEG")
                                 .setOutputFilename("resized_image3")
@@ -832,7 +832,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         fos.flush();
                         fos.close();
                         File resizedImage3 = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(200)
+                                .setTargetLength(512)
                                 .setQuality(80)
                                 .setOutputFormat("JPEG")
                                 .setOutputFilename("resized_image4")
@@ -851,43 +851,72 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 }
 
 
-                progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
+                boolean correct = true;
+                if (dateTxt.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.select_date));
+                }
+                else if (wtspcodeTxt.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsap_code));
+                } else if (mobile__ET.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsapp));
+                } else if (snap_ET.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_snapchat));
+                } else if (insta_ET.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_insta));
+                } else if (wesite_ET.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_website));
+                } else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
+                } else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
+                    correct = false;
+                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
+                }   else if (correct) {
 
-                appController.paServices.AddEventByCreator(multipartTypedOutput, new Callback<AddEventByCreatorRootDM>() {
-                    @Override
-                    public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
-                        progress.dismiss();
-                        if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                    progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
+
+                    appController.paServices.AddEventByCreator(multipartTypedOutput, new Callback<AddEventByCreatorRootDM>() {
+                        @Override
+                        public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
+                            progress.dismiss();
+                            if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
 
-                            //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
-                            EventId = addEventByCreatorRootDM.getOutput().getEventid();
+                                //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
+                                EventId = addEventByCreatorRootDM.getOutput().getEventid();
 
 
-                            if (iffree != false) {
+                                if (iffree != false) {
+                                    Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+
+                                }
+                                if (ifpaid != false) {
+                                    Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
+                                    intent.putExtra("eventid", EventId);
+                                    startActivity(intent);
+                                }
+
+
+                            } else
                                 Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
-                            }
-                            if (ifpaid != false) {
-                                Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-                                intent.putExtra("eventid", EventId);
-                                startActivity(intent);
-                            }
+                        }
 
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            progress.dismiss();
+                            Log.e("error", retrofitError.toString());
 
-                        } else
-                            Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                        }
+                    });
 
-                    }
-
-                    @Override
-                    public void failure(RetrofitError retrofitError) {
-                        progress.dismiss();
-                        Log.e("error", retrofitError.toString());
-
-                    }
-                });
-
+                }
             } else
                 Helper.showToast(Activity_Add_Event_1.this, getString(R.string.no_internet_connection));
 
@@ -1024,7 +1053,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     }
 
 
-    String CountryId1="1";
+    String CountryId1 = "1";
+
     @OnClick(R.id.spinnerCountryBottomRL1)
     public void SpinnerCountry1() {
         bottomForAll = new BottomForAll();
