@@ -116,6 +116,9 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.spinnerBottom_RL)
     RelativeLayout spinnerBottom_RL;
 
+    @BindView(R.id.imgbgRL)
+    RelativeLayout imgbgRL;
+
 
     @BindView(R.id.spinnerCountryBottomRL)
     RelativeLayout spinnerCountryBottomRL;
@@ -291,7 +294,10 @@ public class SignUpActivity extends AppCompatActivity {
 
 
             boolean correct = true;
-            if (nameET.getText().toString().equalsIgnoreCase("")) {
+            if (profile_RoundedImgView.getDrawable() == null) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, "kindly choose any profile pic");
+            } else if (nameET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));
             } else if (emailET.getText().toString().equalsIgnoreCase("")) {
@@ -409,10 +415,13 @@ public class SignUpActivity extends AppCompatActivity {
 
 
             boolean correct = true;
-            if (nameET.getText().toString().equalsIgnoreCase("")) {
+            if (profile_RoundedImgView.getDrawable() == null) {
+                correct = false;
+                Helper.showToast(SignUpActivity.this, "kindly choose any profile pic");
+            } else if (nameET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));
-            }else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
+            } else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_main_country));
             } else if (emailET.getText().toString().equalsIgnoreCase("")) {
@@ -424,8 +433,7 @@ public class SignUpActivity extends AppCompatActivity {
             } else if (confirm_passwordET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_confirm_password));
-            }
-            else if (snap_id_ET.getText().toString().equalsIgnoreCase("")) {
+            } else if (snap_id_ET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_snapchat));
             } else if (insta_id_ET.getText().toString().equalsIgnoreCase("")) {

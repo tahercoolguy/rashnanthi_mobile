@@ -11,7 +11,7 @@
 <ImageView
     android:layout_width="match_parent"
     android:id="@+id/bckgrd"
-    android:scaleType="fitXY"
+     android:scaleType="fitXY"
     android:layout_height="match_parent"></ImageView>
 
     <!--below is the image view where we will

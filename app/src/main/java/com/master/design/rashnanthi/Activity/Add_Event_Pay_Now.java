@@ -192,7 +192,7 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
 
 
                     } else
-                        Helper.showToast(Add_Event_Pay_Now.this, "something wrong ");
+                        Helper.showToast(Add_Event_Pay_Now.this, getString(R.string.payment_details_does_not_exist));
 
                 }
 
@@ -243,21 +243,23 @@ public class Add_Event_Pay_Now extends AppCompatActivity {
                             intent.putExtra("invoiceid", invoiceid);
                             intent.putExtra("PaymentUrl", paymentlink);
                             startActivity(intent);
-                        } else {
-                            Helper.showToast(Add_Event_Pay_Now.this, "kindly select any one  payment method");
                         }
+//                        } else {
+//                            Helper.showToast(Add_Event_Pay_Now.this, "kindly select any one  payment method");
+//                        }
 
                         if (ifVisa_Mastercard != false) {
                             Intent intent = new Intent(Add_Event_Pay_Now.this, PayNowActivity.class);
                             intent.putExtra("invoiceid", invoiceid);
                             intent.putExtra("PaymentUrl", paymentlink);
                             startActivity(intent);
-                        } else {
-                            Helper.showToast(Add_Event_Pay_Now.this, "kindly select any one  payment method");
                         }
+//                        } else {
+//                            Helper.showToast(Add_Event_Pay_Now.this, "kindly select any one  payment method");
+//                        }
 
                     } else
-                        Helper.showToast(Add_Event_Pay_Now.this, "Something Wrong");
+                        Helper.showToast(Add_Event_Pay_Now.this, getString(R.string.something_wrong));
 
                 }
 

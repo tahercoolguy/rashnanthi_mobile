@@ -132,17 +132,24 @@
                         <!--                                app:riv_corner_radius="1000dp"-->
                         <!--                                app:riv_oval="false"></com.makeramen.roundedimageview.RoundedImageView>-->
 
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:id="@+id/imgbgRL"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_coach_people">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/profile_RoundedImgView"
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/splash_screen_logo"
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/profile_RoundedImgView"
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:scaleType="centerCrop"
 
-                            app:civ_border_color="@color/white"
-                            app:civ_border_overlay="true"
-                            app:civ_border_width="3dp" />
+                                app:civ_border_color="@color/white"
+                                app:civ_border_overlay="true"
+                                app:civ_border_width="3dp" />
+
+
+                        </RelativeLayout>
 
 
                         <ImageView
@@ -325,7 +332,7 @@
                                     android:lines="1"
 
                                     android:padding="15dp"
-                                     android:textColor="@color/black"
+                                    android:textColor="@color/black"
                                     android:textSize="15sp">
 
                                 </TextView>
@@ -635,8 +642,8 @@
                                 android:layout_centerInParent="true"
                                 android:background="@color/transparent"
                                 android:drawableStart="@drawable/snapchat"
-                                android:imeOptions="actionNext"
                                 android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
 
                                 android:lines="1"
                                 android:singleLine="true"
@@ -673,9 +680,9 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerInParent="true"
                                 android:background="@color/transparent"
-                                android:drawablePadding="10dp"
-
                                 android:drawableStart="@drawable/ic_instaaaaaaaaaaaaaa"
+
+                                android:drawablePadding="10dp"
                                 android:imeOptions="actionNext"
                                 android:lines="1"
                                 android:singleLine="true"
@@ -764,13 +771,12 @@
 
                             <ImageView
                                 android:id="@+id/wtsap_IMg"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="1dp"
                                 android:elevation="@dimen/elevation"
-                                android:src="@drawable/ic_whastapp">
-                            </ImageView>
+                                android:src="@drawable/ic_whastapp"></ImageView>
 
                             <RelativeLayout
                                 android:id="@+id/spinnerBottom_RL"
@@ -798,7 +804,7 @@
                                     android:layout_marginStart="45dp"
                                     android:lines="1"
                                     android:maxLength="6"
-                                     android:textColor="@color/black"></TextView>
+                                    android:textColor="@color/black"></TextView>
 
                                 <ImageView
                                     android:layout_width="wrap_content"

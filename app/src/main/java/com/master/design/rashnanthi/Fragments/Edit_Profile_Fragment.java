@@ -193,10 +193,10 @@ public class Edit_Profile_Fragment extends Fragment {
                     public void success(UpdateProfileRootDM updateProfileRootDM, Response response) {
 //                    progress.dismiss();
                         if (updateProfileRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                            Helper.showToast(getActivity(), "Updated Profile Successfully");
+                            Helper.showToast(getActivity(), getString(R.string.updated_profile_succesfully));
 
                         } else {
-                            Helper.showToast(getActivity(), "Updated Profile Not Successfully");
+                            Helper.showToast(getActivity(), getString(R.string.something_wrong));
 
                         }
                     }

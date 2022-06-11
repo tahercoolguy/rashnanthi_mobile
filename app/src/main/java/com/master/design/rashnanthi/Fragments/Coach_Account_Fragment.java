@@ -170,10 +170,12 @@ public class Coach_Account_Fragment extends Fragment {
     public void MyProfileAPI() {
 
         if (connectionDetector.isConnectingToInternet()) {
+            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
             appController.paServices.MyProfile(String.valueOf(user.getId()), new Callback<MyProfileRootDM>() {
                 @Override
                 public void success(MyProfileRootDM myProfileRootDM, Response response) {
+                    progress.dismiss();
 
                     if (myProfileRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
@@ -185,11 +187,12 @@ public class Coach_Account_Fragment extends Fragment {
 
 
                     } else
-                        Helper.showToast(getActivity(), "something wrong");
+                        Helper.showToast(getActivity(), getString(R.string.something_wrong));
                 }
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
 
                     Log.e("error", retrofitError.toString());
 

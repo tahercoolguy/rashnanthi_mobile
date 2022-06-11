@@ -87,6 +87,7 @@
         <ImageView
             android:id="@+id/whatsappIMg"
             android:layout_width="25dp"
+            android:visibility="gone"
             android:layout_height="25dp"
             android:layout_weight="1"
             android:src="@drawable/ic_whastapp"></ImageView>
@@ -96,6 +97,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
+            android:visibility="gone"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
 
@@ -106,6 +108,7 @@
         <ImageView
             android:id="@+id/snapchatImg"
             android:layout_width="25dp"
+            android:visibility="gone"
             android:layout_height="25dp"
 
 

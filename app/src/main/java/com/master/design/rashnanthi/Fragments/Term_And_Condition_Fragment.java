@@ -80,7 +80,7 @@ public class Term_And_Condition_Fragment extends Fragment {
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
                     else
-                        Helper.showToast(context,"Something wrong");
+                        Helper.showToast(context,getString(R.string.something_wrong));
                 }
 
                 @Override

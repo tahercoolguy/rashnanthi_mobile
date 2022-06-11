@@ -115,10 +115,10 @@ public class Change_Password_Fragment extends Fragment {
                     public void success(ChangePasswordRootDM changePasswordRootDM, Response response) {
 //                    progress.dismiss();
                         if (changePasswordRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                            Helper.showToast(getActivity(), "password successfully changed");
+                            Helper.showToast(getActivity(), getString(R.string.password_successfully_changed));
 
                         } else {
-                            Helper.showToast(getActivity(), "something wrong");
+                            Helper.showToast(getActivity(), getString(R.string.something_wrong));
 
                         }
                     }

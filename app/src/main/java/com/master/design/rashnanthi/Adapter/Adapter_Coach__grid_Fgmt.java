@@ -75,12 +75,34 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
         Picasso.get().load(AppController.base_image_url + getCoachsByCountryRootDMArrayList.get(position).getProfilepic()).into(viewHolder.circle_imgview);
 
-        Instagram = getCoachsByCountryRootDMArrayList.get(0).getInstagram();
-        Whatsapp = getCoachsByCountryRootDMArrayList.get(0).getWhatsapnumber();
-        Snapchat = getCoachsByCountryRootDMArrayList.get(0).getSnapchat();
-        WhatsappCountryCode = getCoachsByCountryRootDMArrayList.get(0).getWhatscountrycode();
+        Instagram = getCoachsByCountryRootDMArrayList.get(position).getInstagram();
+        Whatsapp = getCoachsByCountryRootDMArrayList.get(position).getWhatsapnumber();
+        Snapchat = getCoachsByCountryRootDMArrayList.get(position).getSnapchat();
+        WhatsappCountryCode = getCoachsByCountryRootDMArrayList.get(position).getWhatscountrycode();
 
-        viewHolder.whatsappimg.setOnClickListener(new View.OnClickListener() {
+        if(Instagram != null)
+            if (Instagram.equalsIgnoreCase("")) {
+                viewHolder.instaimg.setVisibility(View.GONE);
+            } else {
+                viewHolder.instaimg.setVisibility(View.VISIBLE);
+            }
+
+        if(Whatsapp != null)
+            if (Whatsapp.equalsIgnoreCase("")) {
+                viewHolder.whatsappIMg.setVisibility(View.GONE);
+            } else {
+                viewHolder.whatsappIMg.setVisibility(View.VISIBLE);
+            }
+
+        if(Snapchat != null)
+            if (Snapchat.equalsIgnoreCase("")) {
+                viewHolder.snapchatimg.setVisibility(View.GONE);
+            } else {
+                viewHolder.snapchatimg.setVisibility(View.VISIBLE);
+            }
+
+
+        viewHolder.whatsappIMg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = "https://api.whatsapp.com/send?phone=" + WhatsappCountryCode + Whatsapp;
@@ -142,8 +164,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
                 liked = true;
                 unliked = true;
                 LikedUnliked();
-                //                Intent i = new Intent(context, Story_activity.class);
-//                context.startActivity(i);
+
             }
 
             boolean liked = false;
@@ -182,7 +203,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView1, whatsappimg, snapchatimg, instaimg;
+        ImageView imageView1, whatsappIMg, snapchatimg, instaimg;
         de.hdodenhof.circleimageview.CircleImageView circle_imgview;
 
         public ViewHolder(View itemView) {
@@ -190,7 +211,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
             circle_imgview = itemView.findViewById(R.id.coach_grid_img);
             imageView1 = itemView.findViewById(R.id.like_coach_grid);
-            whatsappimg = itemView.findViewById(R.id.whatsappIMg);
+            whatsappIMg = itemView.findViewById(R.id.whatsappIMg);
             snapchatimg = itemView.findViewById(R.id.snapchatImg);
             instaimg = itemView.findViewById(R.id.instaImg);
 

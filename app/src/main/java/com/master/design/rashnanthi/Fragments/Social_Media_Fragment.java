@@ -226,7 +226,7 @@ public class Social_Media_Fragment extends Fragment {
 
 
                     } else
-                        Helper.showToast(context, "something wrong");
+                        Helper.showToast(context, getString(R.string.something_wrong));
                 }
 
                 @Override

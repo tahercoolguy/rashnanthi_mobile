@@ -148,12 +148,17 @@ public class Notification_Fragment extends Fragment {
                 @Override
                 public void success(MyNotificationRootDM myNotificationRootDM, Response response) {
                     progress.dismiss();
-                    if (myNotificationRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                    try {
+                        if (myNotificationRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        notification_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-                        notification_Rcv.setAdapter(new Adapter_Notification(((MainActivity) context), myNotificationRootDM.getOutput().getData()));
+                            notification_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
+                            notification_Rcv.setAdapter(new Adapter_Notification(((MainActivity) context), myNotificationRootDM.getOutput().getData()));
 
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+
 //                        Helper.showToast(getActivity(), "notification does not exist");
 
                 }

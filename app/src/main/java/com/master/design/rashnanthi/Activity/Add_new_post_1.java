@@ -432,7 +432,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                             }
                         }
                     } else
-                        Helper.showToast(Add_new_post_1.this, "Some network happened ..");
+                        Helper.showToast(Add_new_post_1.this, getString(R.string.something_wrong));
                 }
 
                 @Override
@@ -440,7 +440,8 @@ public class Add_new_post_1 extends AppCompatActivity {
                     Log.e("String", error.toString());
                 }
             });
-        }
+        }else
+            Helper.showToast(Add_new_post_1.this, getString(R.string.no_internet_connection));
     }
 
 
@@ -679,8 +680,9 @@ public class Add_new_post_1 extends AppCompatActivity {
             } else
                 Helper.showToast(Add_new_post_1.this, getString(R.string.no_internet_connection));
         } else {
-            Helper.showToast(Add_new_post_1.this, "kindly accept terms and condition");
+            Helper.showToast(Add_new_post_1.this, getString(R.string.kindly_select_terms));
         }
+
     }
 
     @OnClick(R.id.editpostnowBtn)
@@ -841,7 +843,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         } else {
-                            Helper.showToast(Add_new_post_1.this, "kindly acept terms and condition");
+                            Helper.showToast(Add_new_post_1.this, getString(R.string.kindly_select_terms));
                         }
 
                     } else

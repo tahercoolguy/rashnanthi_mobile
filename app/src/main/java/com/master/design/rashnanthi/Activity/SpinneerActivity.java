@@ -10,24 +10,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
 import com.master.design.rashnanthi.Adapter.Adapter_Spinner_Country;
 import com.master.design.rashnanthi.Controller.AppController;
-import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
-import com.master.design.rashnanthi.DataModel.MyEventData;
-import com.master.design.rashnanthi.Fragments.Calender_Fragment;
 import com.master.design.rashnanthi.Helper.DialogUtil;
-import com.master.design.rashnanthi.Helper.ResponseListener1;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
-import com.squareup.picasso.Picasso;
-
-import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

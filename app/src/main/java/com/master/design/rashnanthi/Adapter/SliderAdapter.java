@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -23,6 +24,7 @@ import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.Helper;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,30 +64,34 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                 if(eventsDetailsData.get(position).getImage().contains(".mp4"))
                 {
 
-                    viewHolder.myVideo.setVisibility(View.VISIBLE);
+                    viewHolder.webView.setVisibility(View.VISIBLE);
                     viewHolder.imageViewBackground.setVisibility(View.GONE);
                     Uri uri = Uri.parse(eventsDetailsData.get(position).getImage());
 
                     // sets the resource from the
                     // videoUrl to the videoView
-                    viewHolder.myVideo.setVideoURI(uri);
+//                    viewHolder.myVideo.setVideoURI(uri);
+                    viewHolder.webView.loadUrl(AppController.base_image_url +uri);
 
-                    // creating object of
-                    // media controller class
-                    MediaController mediaController = new MediaController(context);
+//                    Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage() ).into((Target) viewHolder.myVideo);
 
-                    // sets the anchor view
-                    // anchor view for the videoView
-                    mediaController.setAnchorView(viewHolder.myVideo);
-
-                    // sets the media player to the videoView
-                    mediaController.setMediaPlayer(viewHolder.myVideo);
-
-                    // sets the media controller to the videoView
-                    viewHolder.myVideo.setMediaController(mediaController);
-
-                    // starts the video
-                    viewHolder.myVideo.start();
+//
+//                    // creating object of
+//                    // media controller class
+//                    MediaController mediaController = new MediaController(context);
+//
+//                    // sets the anchor view
+//                    // anchor view for the videoView
+//                    mediaController.setAnchorView(viewHolder.myVideo);
+//
+//                    // sets the media player to the videoView
+//                    mediaController.setMediaPlayer(viewHolder.myVideo);
+//
+//                    // sets the media controller to the videoView
+//                    viewHolder.myVideo.setMediaController(mediaController);
+//
+//                    // starts the video
+//                    viewHolder.myVideo.start();
 
                 }else
                  Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage()).into(viewHolder.imageViewBackground);
@@ -209,6 +215,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         View itemView;
         ImageView imageViewBackground,snap,whts,insta,web ;
         VideoView myVideo;
+        WebView webView;
 
         public SliderAdapterViewHolder(View itemView) {
             super(itemView);
@@ -218,6 +225,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             insta = itemView.findViewById(R.id.instaImg);
             web = itemView.findViewById(R.id.webImg);
             myVideo = itemView.findViewById(R.id.myvideo);
+            webView = itemView.findViewById(R.id.webView);
 
             this.itemView = itemView;
         }

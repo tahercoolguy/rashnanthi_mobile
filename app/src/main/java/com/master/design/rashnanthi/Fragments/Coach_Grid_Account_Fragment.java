@@ -22,26 +22,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.master.design.rashnanthi.Activity.LoginActivity;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_Bottom;
-import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
 import com.master.design.rashnanthi.Adapter.Adapter_Coach__grid_Fgmt;
-import com.master.design.rashnanthi.Adapter.Adapter_Country_Spinner;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachGridDM;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
-import com.master.design.rashnanthi.DataModel.GetCoachByCountryData;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
-import com.master.design.rashnanthi.Helper.ResponseListener1;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
@@ -131,9 +125,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.coach_grid_account_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
             setDetails();
-
             Binding();
-
             my_account_grid_Rcv = rootView.findViewById(R.id.my_account_grid_Rcv);
             coach_menu_Back = rootView.findViewById(R.id.coach_menu_Back);
 
@@ -143,10 +135,6 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                     ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
                 }
             });
-
-
-
-
         }
         return rootView;
     }
@@ -173,13 +161,11 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                             }   catch(Exception error1) {
                                 Log.e(TAG, "The exception caught while executing the process. (error1)");
                                 error1.printStackTrace();
-
                             }
-
                         }
                     } else {
                         my_account_grid_Rcv.setVisibility(View.GONE);
-                        Helper.showToast(getActivity(), "coachs does not exist");
+                        Helper.showToast(getActivity(), getString(R.string.coachs_does_not_exist));
 
                     }
 
@@ -219,7 +205,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                     GetCoachsByCountry(Id);
 
                 } else {
-                    Helper.showToast(context, "Country user does not exist ");
+                    Helper.showToast(context, getString(R.string.country_users_does_not_exist));
 //                    my_account_grid_Rcv.setVisibility(View.GONE);
                 }
                 country_spinner_Txt.setText(data.get(position).getTitle());
@@ -257,7 +243,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
 
 
                     } else
-                        Helper.showToast(getActivity(), "Some network happened ..");
+                        Helper.showToast(getActivity(), getString(R.string.something_wrong));
                 }
 
                 @Override

@@ -156,7 +156,7 @@ public class My_Event_1_Fragment extends Fragment {
                         my_event_Rcv.setAdapter(adapter_my_event_1);
 
                     } else
-                        Helper.showToast(getActivity(), "No posts");
+                        Helper.showToast(getActivity(), getString(R.string.no_posts));
                 }
 
                 @Override

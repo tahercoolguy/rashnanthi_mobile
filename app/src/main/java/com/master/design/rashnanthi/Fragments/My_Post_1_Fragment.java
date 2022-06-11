@@ -137,7 +137,7 @@ public class My_Post_1_Fragment extends Fragment {
                         my_event_Rcv.setAdapter(adapter_my_event_1);
 
                     } else
-                        Helper.showToast(getActivity(), "your post does not exist");
+                        Helper.showToast(getActivity(), getString(R.string.your_post_does_not_exist) );
                 }
 
                 @Override

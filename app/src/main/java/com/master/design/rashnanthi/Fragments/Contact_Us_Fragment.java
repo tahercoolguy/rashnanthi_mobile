@@ -87,6 +87,7 @@ public class Contact_Us_Fragment extends Fragment {
                     Log.e("error", retrofitError.toString());
 
                 }
+
             });
         } else
             Helper.showToast(context, getString(R.string.no_internet_connection));

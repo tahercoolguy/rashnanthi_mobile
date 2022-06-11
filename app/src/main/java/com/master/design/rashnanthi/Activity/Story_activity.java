@@ -62,12 +62,12 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
     // on below line we are creating a int array
     // in which we are storing all our image ids.
     private final int[] resources = new int[]{
-            R.drawable.story_img_1,
-            R.drawable.story_img_2,
-            R.drawable.story_img_3,
-            R.drawable.story_img_1,
-            R.drawable.story_img_2,
-            R.drawable.story_img_3
+//            R.drawable.story_img_1,
+//            R.drawable.story_img_2,
+//            R.drawable.story_img_3,
+//            R.drawable.story_img_1,
+//            R.drawable.story_img_2,
+//            R.drawable.story_img_3
     };
 
 

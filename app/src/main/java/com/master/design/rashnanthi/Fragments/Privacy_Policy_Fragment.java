@@ -79,7 +79,7 @@ public class Privacy_Policy_Fragment extends Fragment {
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
                     else
-                        Helper.showToast(context,aboutUsDM.getOutput().getSuccess());
+                        Helper.showToast(context,getString(R.string.something_wrong));
                 }
 
                 @Override

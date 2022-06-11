@@ -28,6 +28,13 @@
             android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/app_name" />
+    <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name" />
 </RelativeLayout>
     </androidx.cardview.widget.CardView>
     <LinearLayout

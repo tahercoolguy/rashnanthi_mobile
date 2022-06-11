@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,48 +22,35 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SpinneerActivity;
 import com.master.design.rashnanthi.Activity.Story_activity;
-import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
-import com.master.design.rashnanthi.Adapter.Adapter_Spinner_Country;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
-import com.master.design.rashnanthi.DataModel.CountryOutput;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
-import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateData;
-import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventData1;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
-import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
-import com.master.design.rashnanthi.Helper.ResponseListener;
-import com.master.design.rashnanthi.Helper.ResponseListener1;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
-import com.master.design.rashnanthi.views.MySelectorDecorator;
 import com.master.design.rashnanthi.views.RedColorDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,8 +59,6 @@ import it.sephiroth.android.library.widget.HListView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit.mime.MultipartTypedOutput;
-import retrofit.mime.TypedString;
 
 import org.threeten.bp.LocalDate;
 
@@ -431,7 +415,7 @@ public class Calender_Fragment extends Fragment {
 
 
                     } else {
-                        Helper.showToast(getActivity(), "No posts");
+                        Helper.showToast(getActivity(),  getString(R.string.no_posts));
                         List<Event> events = compactCalendar.getEventsForMonth((Calendar.getInstance()).getTime());
                         for (Event e : events
                         ) {
@@ -569,7 +553,7 @@ public class Calender_Fragment extends Fragment {
                             }
                         }
                     } else
-                        Helper.showToast(getActivity(), "Some network happened ..");
+                        Helper.showToast(getActivity(),  getString(R.string.some_netork_happened));
                 }
 
                 @Override

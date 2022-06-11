@@ -76,6 +76,7 @@ public class VerifyActivity extends AppCompatActivity {
     public void SubmitOtp() {
 
         if (!otpTextView.getOTP().equalsIgnoreCase("")) {
+
             VerifyAPI();
         }
 

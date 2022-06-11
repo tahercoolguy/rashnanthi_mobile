@@ -642,7 +642,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
 
                         } else {
-                            Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
+                            Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.kindly_select_terms));
 
                         }
                     } else
@@ -697,20 +697,16 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
                 multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
                 multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
-
                 multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
                 multipartTypedOutput.addPart("postedby", new TypedString(id));
                 multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
 
-
                 if (iffree != false) {
                     multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-
                 }
                 if (ifpaid != false) {
                     multipartTypedOutput.addPart("payorfree", new TypedString("2"));
                 }
-
 
                 try {
                     if (ifimg1) {
@@ -921,7 +917,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 Helper.showToast(Activity_Add_Event_1.this, getString(R.string.no_internet_connection));
 
         } else {
-            Helper.showToast(Activity_Add_Event_1.this, "kindly accept terms and conditon carefully");
+            Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.kindly_select_terms));
 
         }
     }
@@ -1104,7 +1100,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img1);
                         }
                     } else
-                        Helper.showToast(Activity_Add_Event_1.this, "Some network happened ..");
+                        Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.some_netork_happened));
                 }
 
                 @Override

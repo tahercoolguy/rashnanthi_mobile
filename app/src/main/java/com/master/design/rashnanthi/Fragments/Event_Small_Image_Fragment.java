@@ -296,20 +296,18 @@ public void newAPI()
 //                        // to set it scrollable automatically
 //                        // we use below method.
 
-                            slider.setAutoCycle(true);
+//                            slider.setAutoCycle(true);
 //
 //                        // to start autocycle below method is used.
 
-                            slider.startAutoCycle();
-
-
+//                            slider.startAutoCycle();
 
 
                         } else
-                            Helper.showToast(context, "event details does not exist here ");
+                            Helper.showToast(context, getString(R.string.eventdetails_does_not_exist));
 
                     } else
-                        Helper.showToast(getActivity(), "Some network happened ..");
+                        Helper.showToast(getActivity(), getString(R.string.some_netork_happened));
                 }
 
                 @Override
@@ -317,6 +315,9 @@ public void newAPI()
                     Log.e("String", error.toString());
                 }
             });
+        }else{
+            Helper.showToast(context, getString(R.string.no_internet_connection));
+
         }
     }
 //    public void EventDetailsAPI() {

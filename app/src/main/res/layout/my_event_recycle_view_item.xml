@@ -76,7 +76,7 @@
                 android:layout_weight="1"
                 android:elevation="80dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/my_event_img_2">
+                android:src="@drawable/my_event_1_img">
 
             </ImageView>
         </LinearLayout>

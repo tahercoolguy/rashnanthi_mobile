@@ -82,7 +82,7 @@ public class About_App_Fragment extends Fragment {
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
                     else
-                        Helper.showToast(context,"Something Wrong");
+                        Helper.showToast(context, getString(R.string.something_wrong));
                 }
 
                 @Override

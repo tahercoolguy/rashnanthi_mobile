@@ -2,9 +2,6 @@ package com.master.design.rashnanthi.Adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,40 +12,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
-import com.master.design.rashnanthi.Activity.Add_new_post_1;
-import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SpinneerActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CountryData;
-import com.master.design.rashnanthi.DataModel.CountryOutput;
-import com.master.design.rashnanthi.DataModel.DeleteEventRootDM;
-import com.master.design.rashnanthi.DataModel.MyEventData1;
-import com.master.design.rashnanthi.DataModel.MyEventImageData1;
-import com.master.design.rashnanthi.Fragments.Calender_Fragment;
 import com.master.design.rashnanthi.Helper.DialogUtil;
-import com.master.design.rashnanthi.Helper.ResponseListener;
-import com.master.design.rashnanthi.Helper.ResponseListener1;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
-import com.master.design.rashnanthi.Utils.Helper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class Adapter_Spinner_Country extends RecyclerView.Adapter<Adapter_Spinner_Country.ViewHolder> {
     private Activity context;
     private ArrayList<CountryData> countryOutputArrayList;
     Dialog progress;
     DialogUtil dialogUtil;
-    ResponseListener1 responseListener;
-    AppController appController;
+     AppController appController;
     ConnectionDetector connectionDetector;
     User user;
 

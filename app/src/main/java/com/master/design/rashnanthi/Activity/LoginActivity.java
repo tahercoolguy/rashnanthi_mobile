@@ -340,7 +340,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     } else
-                        Helper.showToast(LoginActivity.this, "Some network happened ..");
+                        Helper.showToast(LoginActivity.this, getString(R.string.something_wrong));
                 }
 
                 @Override

@@ -130,7 +130,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                             progress.dismiss();
                             if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                                myEventData.remove(selectedPosition);
+                                myEventData.remove(position);
                                 notifyItemRemoved(position);
                                 notifyDataSetChanged();
                                 Helper.showToast(context, "item deleted succesfully");
