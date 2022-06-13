@@ -103,17 +103,16 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         viewHolder.date_time.setText(myEventData.get(position).getEventdate());
 
         ArrayList<String> img = new ArrayList<>();
-        if(myEventData.get(position).getImagedata()!=null)
-        for (MyEventImageData1 myEventImageData1:myEventData.get(position).getImagedata()
-             ) {
-            img.add(myEventImageData1.getImage());
-        }
+        if (myEventData.get(position).getImagedata() != null)
+            for (MyEventImageData1 myEventImageData1 : myEventData.get(position).getImagedata()
+            ) {
+                img.add(myEventImageData1.getImage());
+            }
 
-        if(img.size()>=2) {
+        if (img.size() >= 2) {
             Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
             Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
-        }else if(img.size()==1)
-        {
+        } else if (img.size() == 1) {
             Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
         }
 
@@ -246,7 +245,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_1);
                 Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
 
-                if(user.getCreatorcoach().equalsIgnoreCase("1")){
+                if (user.getCreatorcoach().equalsIgnoreCase("1")) {
                     Intent intent = new Intent(context, Activity_Add_Event_1.class);
                     intent.putExtra("image1", myEventData.get(position).getImage());
                     intent.putExtra("date", myEventData.get(position).getEventdate());
@@ -262,8 +261,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
                     intent.putExtra("status", myEventData.get(position).getStatus());
                     intent.putExtra("postedby", myEventData.get(position).getPostedby());
-                     context.startActivity(intent);
-                }else{
+                    context.startActivity(intent);
+                } else {
                     Intent intent = new Intent(context, Add_new_post_1.class);
                     intent.putExtra("image1", myEventData.get(position).getImage());
                     intent.putExtra("date", myEventData.get(position).getEventdate());
@@ -283,7 +282,6 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 }
 
 
-
             }
         });
     }
@@ -291,7 +289,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView date_time;
-        private ImageView img_1, img_2, edit_img, delete_Img,delete_Img1,delete_Img2;
+        private ImageView img_1, img_2, edit_img, delete_Img, delete_Img1, delete_Img2;
 
 
         public ViewHolder(View itemView) {

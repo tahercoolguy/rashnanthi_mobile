@@ -1,8 +1,10 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -23,10 +25,13 @@ import com.master.design.rashnanthi.Activity.AdvertiseSelector;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
+import com.master.design.rashnanthi.Helper.Helper;
+import com.master.design.rashnanthi.Helper.Language;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
-import com.master.design.rashnanthi.Utils.Helper;
+import com.master.design.rashnanthi.Utils.Util;
+import com.smarteist.autoimageslider.IndicatorView.utils.IdUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,26 +78,34 @@ public class LanguageFragment extends Fragment {
     @OnClick(R.id.englishTxt)
     public void english()
     {
-//        if(user.getId() == 0){
-//            startActivity(new Intent(getActivity(),MainActivity.class));
-//        }
-//        else{
-//            startActivity(new Intent(getActivity(),MainActivity.class));
-//        }
+            Language language = new Language(1,"Engish","en");
+            user.setLanguage(language);
+
+        Util.setConfigChange(getActivity(),"en");
+
+        restartActivity(getActivity());
+
      }
 
     @OnClick(R.id.arabicTxt)
     public void arabic()
     {
-//        if(user.getId() == 0){
-//            startActivity(new Intent(getActivity(),MainActivity.class));
-//        }
-//        else{
-//            startActivity(new Intent(getActivity(),MainActivity.class));
-//        }
+        Language language = new Language(2,"Arabic","ar");
+        user.setLanguage(language);
 
+
+        Util.setConfigChange(getActivity(),"ar");
+//        getActivity().getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        restartActivity(getActivity());
     }
-
+    public static void restartActivity(Activity activity){
+        if (Build.VERSION.SDK_INT >= 11) {
+            activity.recreate();
+        } else {
+            activity.finish();
+            activity.startActivity(activity.getIntent());
+        }
+    }
 
     @Nullable
     @Override
@@ -113,6 +126,7 @@ public class LanguageFragment extends Fragment {
             rootView = inflater.inflate(R.layout.language_fragment_layout, container, false);
             ButterKnife.bind(this,rootView);
 //            setDetails();
+            user=new User(getActivity());
             contact_menu1 = rootView.findViewById(R.id.contact_menu1);
             contact_menu1.setOnClickListener(new View.OnClickListener() {
                 @Override

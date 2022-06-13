@@ -23,7 +23,8 @@
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
+        tools:replace="android:supportsRtl"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 <!--        <activity-->
@@ -32,13 +33,21 @@
         <activity
             android:name=".Activity.SpinneerActivity"
             android:screenOrientation="portrait"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl"
             android:theme="@style/mytransparent1.windowNoTitle"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".Activity.Thank_you"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl"
             android:exported="false" />
-        <activity android:name=".Activity.ImagePickerActivity" />
-        <activity android:name=".Activity.LoginActivity" /> <!-- <activity -->
+        <activity android:name=".Activity.ImagePickerActivity"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.LoginActivity"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl"/> <!-- <activity -->
         <!-- android:name="com.yalantis.ucrop.UCropActivity" -->
         <!-- android:screenOrientation="portrait" -->
         <!-- android:theme="@style/Theme.Design.NoActionBar" /> &lt;!&ndash; <provider &ndash;&gt; -->
@@ -61,28 +70,48 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.SplashScreen">
+        <activity android:name=".Activity.MainActivity"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.SplashScreen"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.AdvertiseSelector" />
-        <activity android:name=".Activity.AddressSelector" />
-        <activity android:name=".Activity.SignUpActivity" />
-        <activity android:name=".Activity.SignUpActivity2" />
-        <activity android:name=".Activity.VerifyActivity" />
-        <activity android:name=".Activity.Add_new_post_1" />
-        <activity android:name=".Activity.CameraHandling" />
-        <activity android:name=".Activity.Add_Event_Pay_Now" />
-        <activity android:name=".Activity.Add_Event_Bill" />
-        <activity android:name=".Activity.Activity_Add_Event_1" />
-        <activity android:name=".Activity.Story_activity" />
-        <activity android:name=".Activity.ImageActicity" />
-        <activity android:name=".Activity.Forgot_Password_Activity" />
-        <activity android:name=".Activity.PayNowActivity"></activity>
+        <activity android:name=".Activity.AdvertiseSelector"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.AddressSelector"
+            android:supportsRtl="false"
+            tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.SignUpActivity"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.SignUpActivity2"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.VerifyActivity"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.Add_new_post_1"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.CameraHandling"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.Add_Event_Pay_Now"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.Add_Event_Bill"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.Activity_Add_Event_1"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.Story_activity"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.ImageActicity"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.Forgot_Password_Activity"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"/>
+        <activity android:name=".Activity.PayNowActivity"
+            android:supportsRtl="false" tools:replace="android:supportsRtl"></activity>
       </application>
 
 </manifest>

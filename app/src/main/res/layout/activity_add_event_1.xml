@@ -1084,7 +1084,7 @@
                         android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="17dp"
-                        android:text="I accept"
+                        android:text="@string/i_accept"
 
                         >
 

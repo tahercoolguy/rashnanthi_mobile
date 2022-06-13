@@ -120,7 +120,12 @@ public class Adapter_Bottom extends BaseAdapter  {
             countryID.putString("countryID", data.getId());
             }
         else {
-            viewHolder.country_code.setText(String.format("%s", data));
+            viewHolder.country_code.setText(String.format("%s", data.getCallingcode()));
+            viewHolder.CN.setText(arrayList.get(position).getTitlear());
+            Picasso.get().load(AppController.base_image_url +arrayList.get(position).getImage()).into(viewHolder.country_Img);
+            Bundle countryID = new Bundle();
+            countryID.putString("countryID", data.getId());
+//            viewHolder.country_code.setText(String.format("%s", data));
         }
 //        Glide.with(context).load(data.getBrandimagefullurl()).apply(new RequestOptions().placeholder(R.drawable.app_icon)).into(viewHolder.imageView);
 //        viewHolder.imageView.setVisibility(View.GONE);
