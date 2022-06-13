@@ -35,8 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="gone"
-                android:src="@drawable/ic_pen">
+                 android:src="@drawable/ic_pen">
 
             </ImageView>
 
@@ -60,34 +59,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                >
 
-                <ImageView
-                    android:id="@+id/img_1"
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:elevation="80dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/my_event_1_img">
-                </ImageView>
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:gravity="left"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="left"
+                     android:layout_height="200dp">
 
 
-                <ImageView
-                    android:id="@+id/img_2"
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:elevation="80dp"
-                    android:scaleType="fitXY"
+                    <ImageView
+                        android:id="@+id/img_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
 
-                    android:src="@drawable/my_event_1_img">
+                         android:src="@drawable/image"></ImageView>
 
-                </ImageView>
+                    <ImageView
+                        android:id="@+id/delete_Img1"
+                         android:layout_marginEnd="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/full_rounded_grad_with_transparent_background"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete">
+
+                    </ImageView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:gravity="right"
+                    android:layout_gravity="right"
+                     android:layout_height="200dp">
+
+
+                    <ImageView
+                        android:id="@+id/img_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+
+                         android:src="@drawable/image">
+
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/delete_Img2"
+                         android:layout_marginEnd="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/full_rounded_grad_with_transparent_background"                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete">
+
+                    </ImageView>
+                </RelativeLayout>
+
+
+
             </LinearLayout>
 
 

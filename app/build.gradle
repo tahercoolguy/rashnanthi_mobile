@@ -169,6 +169,9 @@ dependencies {
 
     implementation 'com.github.prolificinteractive:material-calendarview:2.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.4.0'
+
+    implementation 'com.brucetoo.pickview:library:1.2.3'
+
 }
 apply plugin: 'com.google.gms.google-services'
 //com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

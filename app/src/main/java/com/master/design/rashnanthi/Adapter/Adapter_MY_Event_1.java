@@ -117,6 +117,85 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
         }
 
+//        viewHolder.delete_Img1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (connectionDetector.isConnectingToInternet()) {
+//                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
+//
+//                    appController.paServices.DeletEvent(myEventData.get(position).getId(), new Callback<DeleteEventRootDM>() {
+//                        @Override
+//                        public void success(DeleteEventRootDM deleteEventRootDM, Response response) {
+//                            progress.dismiss();
+//                            if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//
+//                                myEventData.remove(position);
+//                                notifyItemRemoved(position);
+//                                notifyDataSetChanged();
+//                                Helper.showToast(context, "item deleted succesfully");
+//
+//
+////                                openHelper.deleteProduct(shoppingCart.getId());
+////                                shoppingCartList.remove(position);
+////                                notifyItemRemoved(position);
+//
+//                            } else
+//                                Helper.showToast(context, "item does not deleted");
+//                        }
+//
+//                        @Override
+//                        public void failure(RetrofitError retrofitError) {
+//                            progress.dismiss();
+//                            Log.e("error", retrofitError.toString());
+//
+//                        }
+//                    });
+//                } else
+//                    Helper.showToast(context, String.valueOf(R.string.no_internet_connection));
+//
+//
+//            }
+//        });
+
+
+//        viewHolder.delete_Img2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (connectionDetector.isConnectingToInternet()) {
+//                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
+//
+//                    appController.paServices.DeletEvent(myEventData.get(position).getId(), new Callback<DeleteEventRootDM>() {
+//                        @Override
+//                        public void success(DeleteEventRootDM deleteEventRootDM, Response response) {
+//                            progress.dismiss();
+//                            if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//
+//                                myEventData.remove(position);
+//                                notifyItemRemoved(position);
+//                                notifyDataSetChanged();
+//                                Helper.showToast(context, "item deleted succesfully");
+//
+//
+////                                openHelper.deleteProduct(shoppingCart.getId());
+////                                shoppingCartList.remove(position);
+////                                notifyItemRemoved(position);
+//
+//                            } else
+//                                Helper.showToast(context, "item does not deleted");
+//                        }
+//
+//                        @Override
+//                        public void failure(RetrofitError retrofitError) {
+//                            progress.dismiss();
+//                            Log.e("error", retrofitError.toString());
+//
+//                        }
+//                    });
+//                } else
+//                    Helper.showToast(context, String.valueOf(R.string.no_internet_connection));
+//            }
+//
+//        });
 
         viewHolder.delete_Img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,7 +291,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView date_time;
-        private ImageView img_1, img_2, edit_img, delete_Img;
+        private ImageView img_1, img_2, edit_img, delete_Img,delete_Img1,delete_Img2;
 
 
         public ViewHolder(View itemView) {
@@ -222,6 +301,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             img_2 = itemView.findViewById(R.id.img_2);
             edit_img = itemView.findViewById(R.id.edit_img);
             delete_Img = itemView.findViewById(R.id.delete_Img);
+            delete_Img1 = itemView.findViewById(R.id.delete_Img1);
+            delete_Img2 = itemView.findViewById(R.id.delete_Img2);
 
         }
     }

@@ -104,7 +104,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     DialogUtil dialogUtil;
     AppController appController;
 
-     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
     String currentDateandTime = sdf.format(new Date());
 
     private static final int IMAGE_PICKER_SELECT1 = 1;
@@ -126,6 +126,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.dateRL)
     RelativeLayout dateRL;
+
+    @NotEmpty
+    @BindView(R.id.add_event_pay_back)
+    ImageView add_event_pay_back;
 
 
     @BindView(R.id.vd1)
@@ -179,6 +183,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.img3)
     ImageView img3;
+
+    @NotEmpty
+    @BindView(R.id.edit_post_Btn)
+    Button edit_post_Btn;
 
     @NotEmpty
     @BindView(R.id.img4)
@@ -292,6 +300,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
+    @OnClick(R.id.add_event_pay_back)
+    public void back() {
+
+        Activity_Add_Event_1.this.finish();
+
+    }
 
     boolean ifterm = false;
 
@@ -314,6 +328,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             AddEventByCreatorAPI();
         }
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
+    }
+
+    @OnClick(R.id.edit_post_Btn)
+    public void Edit() {
+        EditAddEventCreatorAPI();
+
     }
 
     @OnClick(R.id.post_for_free_nowBtn)
@@ -474,11 +494,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             country_spinner_Txt.setText(impcountry);
         }
-//        if (status != null) {
-//            continue_Btn.setVisibility(View.VISIBLE);
-//            continue_Btn.setText(getString(R.string.edit_event));
-//            pay_now_Btn.setVisibility(View.GONE);
-//            post_for_free_nowBtn.setVisibility(View.GONE);
+        if (status != null) {
+            pay_now_Btn.setVisibility(View.GONE);
+//            termsRB.setVisibility(View.GONE);
+            edit_post_Btn.setVisibility(View.VISIBLE);
+
+//            your_post_will_beTXt.setVisibility(View.GONE);
+            post_for_free_nowBtn.setVisibility(View.GONE);
+        }
 //        } else {
 //            continue_Btn.setText(getString(R.string.add_event));
 //            pay_now_Btn.setVisibility(View.VISIBLE);
@@ -937,7 +960,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     }
 
 
-    public  void datepick(){
+    public void datepick() {
 
     }
 
@@ -952,18 +975,18 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //                Toast.makeText(Activity_Add_Event_1.this, dateDesc, Toast.LENGTH_SHORT).show();
 
                 if ((year) <= 9) {
-                    dateTxt.setText(year + "-0" + (month ) + "-" + day);
+                    dateTxt.setText(year + "-0" + (month) + "-" + day);
                     if (month <= 9)
-                        dateTxt.setText(year + "-0" + (month ) + "-" + "0" + day);
+                        dateTxt.setText(year + "-0" + (month) + "-" + "0" + day);
 
 
                 } else {
-                    dateTxt.setText(year + "-" + (month ) + "-" + day);
+                    dateTxt.setText(year + "-" + (month) + "-" + day);
                     if (day <= 9)
-                        dateTxt.setText(year + "-0" + (month ) + "-" + "0" + day);
+                        dateTxt.setText(year + "-0" + (month) + "-" + "0" + day);
                 }
             }
-                  }).textConfirm(getString(R.string.done)) //text of confirm button
+        }).textConfirm(getString(R.string.done)) //text of confirm button
                 .textCancel(getString(R.string.cancel)) //text of cancel button
                 .btnTextSize(14) // button text size
                 .viewTextSize(1000) // pick view text size
@@ -1845,14 +1868,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //    }
 
 
-//        add_event_pay_back=findViewById(R.id.add_event_pay_back);
-//
-//        add_event_pay_back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
 //
 //        pay_now_Btn.setOnClickListener(new View.OnClickListener() {
 //            @Override

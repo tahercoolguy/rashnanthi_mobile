@@ -132,7 +132,7 @@ public class Add_new_post_1 extends AppCompatActivity {
 
     @OnClick(R.id.add_new_post_pay_back)
     public void Back() {
-        finish();
+        Add_new_post_1.this.finish();
     }
 
     boolean ifpay, iffree = false;
