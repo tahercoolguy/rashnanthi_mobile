@@ -23,6 +23,7 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.Helper.DialogUtil;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -39,6 +40,7 @@ public class Term_And_Condition_Fragment extends Fragment {
     private View rootView;
     private Context context;
     ImageView my_accountImg;
+    User user;
 
 
     @BindView(R.id.progress_bar)
@@ -75,7 +77,17 @@ public class Term_And_Condition_Fragment extends Fragment {
                     progress.dismiss();
                     if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
 
-                        Terms.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+
+                        if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                            Terms.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+
+                        }
+                        else {
+                            Terms.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContentar()), Html.FROM_HTML_MODE_COMPACT));
+
+                        }
+
+
 
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
@@ -104,6 +116,7 @@ public class Term_And_Condition_Fragment extends Fragment {
         appController = (AppController) getActivity().getApplicationContext();
 
         connectionDetector = new ConnectionDetector(getActivity());
+        user = new User(getContext());
 
         dialogUtil = new DialogUtil();
         progressDialog = new ProgressDialog(getActivity());

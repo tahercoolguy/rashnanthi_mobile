@@ -20,14 +20,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.DataModel.Data;
 import com.master.design.rashnanthi.Helper.DialogUtil;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +45,7 @@ public class About_App_Fragment extends Fragment {
     private Context context;
     ImageView about_appp_menu;
     ImageView back_menu;
+    User user;
 
 
 
@@ -77,7 +81,19 @@ public class About_App_Fragment extends Fragment {
 
                     if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
 
-                        AboutAppTxt.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+
+
+
+                        if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                            AboutAppTxt.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+
+                        }
+                        else {
+                            AboutAppTxt.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContentar()), Html.FROM_HTML_MODE_COMPACT));
+
+                        }
+
+//                        AboutAppTxt.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
 
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
@@ -107,6 +123,8 @@ public class About_App_Fragment extends Fragment {
 
         connectionDetector = new ConnectionDetector(getActivity());
         dialogUtil = new DialogUtil();
+        user = new User(getContext());
+
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
         progressDialog.setIndeterminate(true);

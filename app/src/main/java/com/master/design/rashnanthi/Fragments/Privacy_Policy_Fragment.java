@@ -23,6 +23,7 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AboutUsDM;
 import com.master.design.rashnanthi.Helper.DialogUtil;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
@@ -39,6 +40,7 @@ public class Privacy_Policy_Fragment extends Fragment {
     private View rootView;
     private Context context;
     DialogUtil dialogUtil;
+    User user;
     Dialog progress;
 
     @BindView(R.id.progress_bar)
@@ -74,7 +76,17 @@ public class Privacy_Policy_Fragment extends Fragment {
                     progress.dismiss();
                     if (aboutUsDM.getOutput().getSuccess().equalsIgnoreCase("1"))
 
+
+
+
+                    if (user.getLanguageCode().equalsIgnoreCase("en")) {
                         PrivacyPolicy.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContent()), Html.FROM_HTML_MODE_COMPACT));
+
+                    }
+                    else {
+                        PrivacyPolicy.setText(Html.fromHtml(String.valueOf(aboutUsDM.getOutput().getData().get(0).getContentar()), Html.FROM_HTML_MODE_COMPACT));
+
+                    }
 
                         //termAndCondition.setText(dataTerm.getItem().getDescription());
 
@@ -100,6 +112,7 @@ public class Privacy_Policy_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
+        user = new User(getContext());
 
         connectionDetector = new ConnectionDetector(getActivity());
         dialogUtil = new DialogUtil();
