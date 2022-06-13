@@ -1,7 +1,9 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Activity.SpinneerActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.MyEventData;
@@ -27,15 +31,18 @@ import com.master.design.rashnanthi.DataModel.MyEventImageData;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import it.sephiroth.android.library.widget.HListView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -50,7 +57,8 @@ public class My_Event_1_Fragment extends Fragment {
     RecyclerView my_event_Rcv;
     private ArrayList<My_Event_1DM> my_event_1DMArrayList;
     String countryId;
-
+    DialogUtil dialogUtil;
+    Dialog progress;
 
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
@@ -76,7 +84,7 @@ public class My_Event_1_Fragment extends Fragment {
         context = getActivity();
         user = new User(getActivity());
         appController = (AppController) getActivity().getApplicationContext();
-
+        dialogUtil = new DialogUtil();
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -115,7 +123,7 @@ public class My_Event_1_Fragment extends Fragment {
             my_event_Rcv = rootView.findViewById(R.id.my_event_Rcv);
 
 
-            MyEventAPI();
+            MyEventAPI(countryid);
 //            ArrayList<My_Event_1DM> my_event_1DMArrayList = new ArrayList<>();
 //
 //            my_event_1DMArrayList.add(new My_Event_1DM("3 March 2022", R.drawable.my_event_img_1, R.drawable.my_event_img_2));
@@ -135,32 +143,82 @@ public class My_Event_1_Fragment extends Fragment {
         return rootView;
     }
 
+
+    @BindView(R.id.spinnerCountryBottomRL)
+    RelativeLayout spinnerCountryBottomRL;
+
+    @BindView(R.id.countryImg)
+    ImageView countryImg;
+
+    @BindView(R.id.country_spinner_Txt)
+    TextView country_spinner_Txt;
+
+
+    @OnClick(R.id.spinnerCountryBottomRL)
+    public void SpinnerCountryOpenActivity() {
+
+        startActivityForResult(new Intent(context, SpinneerActivity.class), 48);
+    }
+
+    String countryname;
+    String countryimg;
+    String countryid;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent = data;
+        if (data != null) {
+            countryname = data.getStringExtra("countryname");
+            countryimg = data.getStringExtra("countryimg");
+            countryid = data.getStringExtra("countryid");
+            Picasso.get().load(AppController.base_image_url + countryimg).into(countryImg);
+            country_spinner_Txt.setText(countryname);
+
+            MyEventAPI(countryid);
+        }
+    }
+
+
     ArrayList<MyEventData> myEventData;
 
-    public void MyEventAPI() {
+    public void MyEventAPI(String countryid) {
         if (connectionDetector.isConnectingToInternet()) {
 
-            String countryid=user.getCountryid();
 
-            String userid=String.valueOf(user.getId());
-            //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            String userid = String.valueOf(user.getId());
+            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
+
             appController.paServices.MyEvents(userid, countryid, new Callback<MyEventRootDM1>() {
                 @Override
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
+                    progress.dismiss();
 
                     if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(context, myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
-                        my_event_Rcv.setLayoutManager(linearLayoutManager);
-                        my_event_Rcv.setAdapter(adapter_my_event_1);
+                        if (countryid != null) {
+                            my_event_Rcv.setVisibility(View.VISIBLE);
+                            Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(context, myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+                            my_event_Rcv.setLayoutManager(linearLayoutManager);
+                            my_event_Rcv.setAdapter(adapter_my_event_1);
+                        } else {
+                            Helper.showToast(context, getString(R.string.select_country_for_see_post));
+                            my_event_Rcv.setVisibility(View.GONE);
+                        }
 
-                    } else
-                        Helper.showToast(getActivity(), getString(R.string.no_posts));
+                    } else{
+                        my_event_Rcv.setVisibility(View.GONE);
+                        Helper.showToast(context,getString(R.string.your_post_does_not_exist));
+
+                    }
+
+
                 }
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
                     Log.e("error", retrofitError.toString());
 
                 }

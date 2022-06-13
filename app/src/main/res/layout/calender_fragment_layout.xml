@@ -70,10 +70,10 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/story_viewer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
 
-                    android:src="@drawable/r_icon_new">
+                    android:src="@drawable/rr_img">
 
                 </ImageView>
                 <TextView
@@ -81,6 +81,7 @@
                     android:text="@string/story"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:layout_height="wrap_content"></TextView>
             </LinearLayout>
@@ -129,8 +130,8 @@
                     android:focusable="false"
                     android:gravity="center"
                     android:inputType="number"
-                    android:lines="2"
 
+                    android:lines="2"
                     android:maxLength="6"
                     android:padding="15dp"
                     android:text="@string/kuwait"

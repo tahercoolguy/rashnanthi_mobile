@@ -44,22 +44,12 @@
     <string name="my_account">My Account</string>
     <string name="logout">Logout</string>
     <string name="about_appp">ABOUT APP</string>
-    <string name="about_appp1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
- At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
 
     <string name="united_arab_emirates">United Arab Emirates</string>
     <string name="kuwait">Kuwait</string>
     <string name="bahrain">Bahrain</string>
-    <string name="oman">Oman</string>
-    <string name="qatar">Qatar</string>
-    <string name="saudi_arabia">Saudi Arabia</string>
-    <string name="country">Country</string>
-    <string name="rizana_cader">  RIZANA CADER</string>
-    <string name="iamdavid">iamdavid@gmail.com</string>
-    <string name="change_pass"> Change Password</string>
+     <string name="country">Country</string>
+      <string name="change_pass"> Change Password</string>
 
     <string name="add_new_event">Add New Event</string>
     <string name="view_post">View Post</string>
@@ -138,7 +128,6 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
     <string name="today_6_pm">Today 6:00 pm</string>
 
-    <string name="noticication_messege">The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps.</string>
 
     <string name="notificationn">NOTIFICATION</string>
 
@@ -148,7 +137,6 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="coach.">COACH</string>
     25K Likes
 
-    <string name="likes_25k">25K Likes</string>
 
 
     <string name="add_new_post">Add New Post</string>
@@ -208,6 +196,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <string name="enter_old_password">kindly enter old password</string>
     <string name="enter_new_password">kindly enter new password</string>
     <string name="enter_confirm_password">kindly enter confirm password</string>
+    <string name="select_country_for_see_post">select country to see uploaded posts on country</string>
+
 
 
 </resources>

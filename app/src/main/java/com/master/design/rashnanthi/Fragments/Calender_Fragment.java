@@ -75,8 +75,6 @@ public class Calender_Fragment extends Fragment {
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
 
-    @BindView(R.id.spinnerCountryBottomRL)
-    RelativeLayout spinnerCountryBottomRL;
 
 
     @BindView(R.id.txt_error)
@@ -468,6 +466,8 @@ public class Calender_Fragment extends Fragment {
 //    }
 
 
+    @BindView(R.id.spinnerCountryBottomRL)
+    RelativeLayout spinnerCountryBottomRL;
 
 
 
