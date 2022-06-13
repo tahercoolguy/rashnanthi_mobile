@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -37,6 +38,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bruce.pickerview.popwindow.DatePickerPopWin;
 import com.bumptech.glide.Glide;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.karumi.dexter.Dexter;
@@ -101,6 +103,9 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
+
+     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+    String currentDateandTime = sdf.format(new Date());
 
     private static final int IMAGE_PICKER_SELECT1 = 1;
     private static final int IMAGE_PICKER_SELECT2 = 2;
@@ -642,7 +647,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
 
                         } else {
-                            Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.kindly_select_terms));
+                            Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));
 
                         }
                     } else
@@ -851,8 +856,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 if (dateTxt.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Activity_Add_Event_1.this, getString(R.string.select_date));
-                }
-                else if (wtspcodeTxt.getText().toString().equalsIgnoreCase("")) {
+                } else if (wtspcodeTxt.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsap_code));
                 } else if (mobile__ET.getText().toString().equalsIgnoreCase("")) {
@@ -873,7 +877,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 } else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
-                }   else if (correct) {
+                } else if (correct) {
 
                     progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
 
@@ -917,7 +921,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 Helper.showToast(Activity_Add_Event_1.this, getString(R.string.no_internet_connection));
 
         } else {
-            Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.kindly_select_terms));
+            Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));
 
         }
     }
@@ -927,8 +931,52 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @OnClick(R.id.dateRL)
     public void date() {
-        CalenderDataPicker();
+//        CalenderDataPicker();
+        datePickerCalender();
 
+    }
+
+
+    public  void datepick(){
+
+    }
+
+    public void datePickerCalender() {
+
+        DatePickerPopWin pickerPopWin = new DatePickerPopWin.Builder(Activity_Add_Event_1.this, new DatePickerPopWin.OnDatePickedListener() {
+
+
+            @Override
+            public void onDatePickCompleted(int year, int month, int day, String dateDesc) {
+
+//                Toast.makeText(Activity_Add_Event_1.this, dateDesc, Toast.LENGTH_SHORT).show();
+
+                if ((year) <= 9) {
+                    dateTxt.setText(year + "-0" + (month ) + "-" + day);
+                    if (month <= 9)
+                        dateTxt.setText(year + "-0" + (month ) + "-" + "0" + day);
+
+
+                } else {
+                    dateTxt.setText(year + "-" + (month ) + "-" + day);
+                    if (day <= 9)
+                        dateTxt.setText(year + "-0" + (month ) + "-" + "0" + day);
+                }
+            }
+                  }).textConfirm(getString(R.string.done)) //text of confirm button
+                .textCancel(getString(R.string.cancel)) //text of cancel button
+                .btnTextSize(14) // button text size
+                .viewTextSize(1000) // pick view text size
+                .colorCancel(Color.parseColor("#CE010E")) //color of cancel button
+                .colorConfirm(Color.parseColor("#CE010E"))//color of confirm button
+                .minYear(2021) //min year in loop
+                .maxYear(2550) // max year in loop
+                .showDayMonthYear(true) // shows like dd mm yyyy (default is false)
+                .dateChose(currentDateandTime) // date chose when init popwindow
+                .build();
+
+
+        pickerPopWin.showPopWin(Activity_Add_Event_1.this);
     }
 
 
@@ -1100,7 +1148,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img1);
                         }
                     } else
-                        Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.some_netork_happened));
+                        Helper.showToast(Activity_Add_Event_1.this, getString(R.string.some_netork_happened));
                 }
 
                 @Override
