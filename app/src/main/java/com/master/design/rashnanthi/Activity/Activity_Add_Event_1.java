@@ -111,7 +111,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1, image2, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
+    String image1, image2,image3,image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
 
     MyEventData myEventData1;
     String CountryId = "1", Free, Paid;
@@ -416,12 +416,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             ad_more_eventtLL.setVisibility(View.VISIBLE);
             add_more_eventBtn.setVisibility(View.VISIBLE);
-            your_post_will_beTXt.setVisibility(View.VISIBLE);
-            radioBtn_Term_condition.setVisibility(View.VISIBLE);
+//            your_post_will_beTXt.setVisibility(View.VISIBLE);
+//            radioBtn_Term_condition.setVisibility(View.VISIBLE);
 //            continue_Btn.setVisibility(View.VISIBLE);
-            post_for_free_nowBtn.setVisibility(View.VISIBLE);
-            pay_now_Btn.setVisibility(View.VISIBLE);
-            website_LL.setVisibility(View.VISIBLE);
+//            post_for_free_nowBtn.setVisibility(View.VISIBLE);
+//            pay_now_Btn.setVisibility(View.VISIBLE);
+//            edit_post_Btn.setVisibility(View.GONE);
+//            website_LL.setVisibility(View.VISIBLE);
 
         }
 
@@ -451,6 +452,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         status = getIntent().getStringExtra("status");
         image1 = getIntent().getStringExtra("image1");
         image2 = getIntent().getStringExtra("image2");
+        image3 = getIntent().getStringExtra("image3");
+        image4 = getIntent().getStringExtra("image4");
         date = getIntent().getStringExtra("date");
         eventid = getIntent().getStringExtra("eventid");
         snapchat = getIntent().getStringExtra("snapchat");
@@ -458,12 +461,60 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
         if (image1 != null) {
 //            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
-            Picasso.get().load(AppController.base_image_url + image1).into(img1);
+            if (image1.contains(".mp4")) {
+                 vd1.setVisibility(View.VISIBLE);
+                img1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(image1);
+                vd1.setVideoURI(Uri.parse(AppController.base_image_url + uri));
+                vd1.start();
+//                loadUrl(AppController.base_image_url + uri);
+            }else{
+                Picasso.get().load(AppController.base_image_url + image1).into(img1);
+
+            }
 
         }
         if (image2 != null) {
-//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img2);
-            Picasso.get().load(AppController.base_image_url + image2).into(img2);
+            if (image2.contains(".mp4")) {
+                vd2.setVisibility(View.VISIBLE);
+                img2.setVisibility(View.GONE);
+                Uri uri = Uri.parse(image2);
+                vd2.setVideoURI(Uri.parse(AppController.base_image_url + uri));
+                vd2.start();
+//                loadUrl(AppController.base_image_url + uri);
+            }else{
+                Picasso.get().load(AppController.base_image_url + image2).into(img2);
+
+            }
+        } if (image3 != null) {
+
+            if (image3.contains(".mp4")) {
+                vd3.setVisibility(View.VISIBLE);
+                img3.setVisibility(View.GONE);
+                Uri uri = Uri.parse(image3);
+                vd3.setVideoURI(Uri.parse(AppController.base_image_url + uri));
+                vd3.start();
+//                loadUrl(AppController.base_image_url + uri);
+            }else{
+                Picasso.get().load(AppController.base_image_url + image3).into(img3);
+
+
+            }
+
+        } if (image4 != null) {
+            if (image4.contains(".mp4")) {
+                vd4.setVisibility(View.VISIBLE);
+                img4.setVisibility(View.GONE);
+                Uri uri = Uri.parse(image4);
+                vd4.setVideoURI(Uri.parse(AppController.base_image_url + uri));
+                vd4.start();
+//                loadUrl(AppController.base_image_url + uri);
+            }else{
+                Picasso.get().load(AppController.base_image_url + image4).into(img4);
+
+
+
+            }
 
         }
         if (date != null) {
@@ -724,7 +775,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
                 multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
                 multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
-                multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
+                multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
+                multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
                 multipartTypedOutput.addPart("postedby", new TypedString(id));
                 multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
@@ -836,7 +888,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video3));
 
 
-                        multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("video/mp4", imageFile));
                     }
 
                     if (ifimg4) {
@@ -1198,6 +1250,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     }
 
+
     @OnClick(R.id.img2)
     public void Image1Clicked2() {
         imgClicked = 2;
@@ -1215,7 +1268,28 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         imgClicked = 4;
         OpenImage();
     }
+    @OnClick(R.id.vd1)
+    public void setVd1() {
+        imgClicked = 1;
 
+        OpenImage();
+    } @OnClick(R.id.vd2)
+    public void setVd2() {
+        imgClicked = 2;
+
+        OpenImage();
+    }@OnClick(R.id.vd3)
+    public void setVd3() {
+        imgClicked = 3;
+
+        OpenImage();
+    }
+    @OnClick(R.id.vd4)
+    public void setVd4() {
+        imgClicked = 4;
+
+        OpenImage();
+    }
     public void OpenImage() {
         Dexter.withActivity(Activity_Add_Event_1.this)
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -1435,7 +1509,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
                     } else if (imgClicked == 4) {
                         img4.setImageBitmap(bitmap);
-                        ifimg3 = true;
+                        ifimg4= true;
                     }
                     // loading profile image from local cache
 

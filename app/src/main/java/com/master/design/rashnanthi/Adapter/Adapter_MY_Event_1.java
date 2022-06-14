@@ -3,12 +3,15 @@ package com.master.design.rashnanthi.Adapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -100,8 +103,11 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
 
     private void setDetails(Adapter_MY_Event_1.ViewHolder viewHolder, int position) {
-        viewHolder.date_time.setText(myEventData.get(position).getEventdate());
-
+        if (user.getCreatorcoach().equalsIgnoreCase("1")) {
+            viewHolder.date_time.setText(myEventData.get(position).getEventdate());
+        } else {
+            viewHolder.date_time.setText(myEventData.get(position).getDate());
+        }
         ArrayList<String> img = new ArrayList<>();
         if (myEventData.get(position).getImagedata() != null)
             for (MyEventImageData1 myEventImageData1 : myEventData.get(position).getImagedata()
@@ -109,12 +115,151 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 img.add(myEventImageData1.getImage());
             }
 
-        if (img.size() >= 2) {
-            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
-            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
-        } else if (img.size() == 1) {
-            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+
+//        if (img.size() >= 2) {
+//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+//            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+//        } else if (img.size() == 1) {
+//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+//        }
+//        if(img.get(position)!=null) {
+//
+//            if(img.get(0).contains(".mp4"))
+//            {
+//                viewHolder.webview1.setVisibility(View.VISIBLE);
+//                viewHolder.img_1.setVisibility(View.GONE);
+//                Uri uri = Uri.parse(img.get(0));
+//                viewHolder.webview1.loadUrl(AppController.base_image_url +uri);
+//
+//            }else
+//                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+//        }
+
+
+        if (img.size() >= 4) {
+
+            if (img.get(0).contains(".mp4")) {
+                viewHolder.webview1.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(0));
+                viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+            }
+
+            if (img.get(1).contains(".mp4")) {
+                viewHolder.webview2.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(1));
+                viewHolder.webview2.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+            }
+
+            if (img.get(2).contains(".mp4")) {
+                viewHolder.webview3.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(2));
+                viewHolder.webview3.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
+            }
+
+            if (img.get(3).contains(".mp4")) {
+                viewHolder.webview4.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(3));
+                viewHolder.webview4.loadUrl(AppController.base_image_url + uri);
+
+            } else
+                Picasso.get().load(AppController.base_image_url + img.get(3)).into(viewHolder.img_4);
+
+
+//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+//            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+//            Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
+//            Picasso.get().load(AppController.base_image_url + img.get(3)).into(viewHolder.img_4);
         }
+
+        if (img.size() >= 3) {
+
+            if (img.get(0).contains(".mp4")) {
+                viewHolder.webview1.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(0));
+                viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+            }
+            if (img.get(1).contains(".mp4")) {
+                viewHolder.webview2.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(1));
+                viewHolder.webview2.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+            }
+            if (img.get(2).contains(".mp4")) {
+                viewHolder.webview3.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(2));
+                viewHolder.webview3.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
+            }
+
+
+//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+//            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+//            Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
+        }
+
+        if (img.size() >= 2) {
+
+            if (img.get(0).contains(".mp4")) {
+                viewHolder.webview1.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(0));
+                viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+            }
+            if (img.get(1).contains(".mp4")) {
+                viewHolder.webview2.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(1));
+                viewHolder.webview2.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+            }
+//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+//            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+        }
+
+        if (img.size() == 1) {
+
+            if (img.get(0).contains(".mp4")) {
+                viewHolder.webview1.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(0));
+                viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+            }
+
+//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+        }
+
+//            myEventData.get(position).getImagedata().get(position).getImagevideo();
 
 //        viewHolder.delete_Img1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -241,15 +386,17 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
 //                activity_add_event_1.AddEventByCreatorAPI();
 
-                viewHolder.date_time.setText(myEventData.get(position).getDate());
-                Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_1);
-                Picasso.get().load(AppController.base_image_url + myEventData.get(position).getImage()).into(viewHolder.img_2);
+//                viewHolder.date_time.setText(myEventData.get(position).getDate());
+//                Picasso.get().load(AppController.base_image_url + myEventData.get(0).getImage()).into(viewHolder.img_1);
+//                Picasso.get().load(AppController.base_image_url + myEventData.get(1).getImage()).into(viewHolder.img_2);
 
                 if (user.getCreatorcoach().equalsIgnoreCase("1")) {
                     Intent intent = new Intent(context, Activity_Add_Event_1.class);
-                    intent.putExtra("image1", myEventData.get(position).getImage());
+                    intent.putExtra("image1", img.get(0));
                     intent.putExtra("date", myEventData.get(position).getEventdate());
-                    intent.putExtra("image2", myEventData.get(position).getImage());
+                    intent.putExtra("image2", img.get(1));
+                    intent.putExtra("image3", img.get(2));
+                    intent.putExtra("image4", img.get(3));
                     intent.putExtra("eventid", myEventData.get(position).getId());
                     intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
                     intent.putExtra("instagram", myEventData.get(position).getInstagram());
@@ -267,6 +414,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("image1", myEventData.get(position).getImage());
                     intent.putExtra("date", myEventData.get(position).getEventdate());
                     intent.putExtra("image2", myEventData.get(position).getImage());
+                    intent.putExtra("image3", myEventData.get(position).getImage());
+                    intent.putExtra("image4", myEventData.get(position).getImage());
                     intent.putExtra("eventid", myEventData.get(position).getId());
                     intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
                     intent.putExtra("instagram", myEventData.get(position).getInstagram());
@@ -289,18 +438,28 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView date_time;
-        private ImageView img_1, img_2, edit_img, delete_Img, delete_Img1, delete_Img2;
-
+        private ImageView img_1, img_2, img_3, img_4, edit_img, delete_Img, delete_Img1, delete_Img2, delete_Img3, delete_Img4;
+        private LinearLayout ll;
+        private WebView webview1, webview2, webview3, webview4;
 
         public ViewHolder(View itemView) {
             super(itemView);
             date_time = itemView.findViewById(R.id.date_month_Txt);
             img_1 = itemView.findViewById(R.id.img_1);
             img_2 = itemView.findViewById(R.id.img_2);
+            img_3 = itemView.findViewById(R.id.img_3);
+            img_4 = itemView.findViewById(R.id.img_4);
             edit_img = itemView.findViewById(R.id.edit_img);
             delete_Img = itemView.findViewById(R.id.delete_Img);
             delete_Img1 = itemView.findViewById(R.id.delete_Img1);
             delete_Img2 = itemView.findViewById(R.id.delete_Img2);
+            delete_Img3 = itemView.findViewById(R.id.delete_Img3);
+            delete_Img4 = itemView.findViewById(R.id.delete_Img4);
+            webview1 = itemView.findViewById(R.id.webview1);
+            webview2 = itemView.findViewById(R.id.webview2);
+            webview3 = itemView.findViewById(R.id.webview3);
+            webview4 = itemView.findViewById(R.id.webview4);
+            ll = itemView.findViewById(R.id.LL);
 
         }
     }

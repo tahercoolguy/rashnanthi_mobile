@@ -77,7 +77,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
-    String image1, image2, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
+    String image1, image2,image3,image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
 
     @NotEmpty
     @BindView(R.id.add_new_post_pay_back)
@@ -234,18 +234,25 @@ public class Add_new_post_1 extends AppCompatActivity {
         status = getIntent().getStringExtra("status");
         image1 = getIntent().getStringExtra("image1");
         image2 = getIntent().getStringExtra("image2");
+        image3 = getIntent().getStringExtra("image3");
+        image4 = getIntent().getStringExtra("image4");
         date = getIntent().getStringExtra("date");
         eventid = getIntent().getStringExtra("eventid");
         snapchat = getIntent().getStringExtra("snapchat");
         postedby = getIntent().getStringExtra("postedby");
         if (image1 != null) {
-//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
-            Picasso.get().load(AppController.base_image_url + image1).into(img1);
+             Picasso.get().load(AppController.base_image_url + image1).into(img1);
 
         }
         if (image2 != null) {
-//            Glide.with(Activity_Add_Event_1.this).load(image1).into(img2);
-            Picasso.get().load(AppController.base_image_url + image2).into(img2);
+             Picasso.get().load(AppController.base_image_url + image2).into(img2);
+
+        }if (image3 != null) {
+             Picasso.get().load(AppController.base_image_url + image3).into(img3);
+
+        }
+        if (image4 != null) {
+             Picasso.get().load(AppController.base_image_url + image4).into(img4);
 
         }
 
@@ -499,14 +506,14 @@ public class Add_new_post_1 extends AppCompatActivity {
                                 .setOutputFilename("resized_image1")
                                 .setSourceImage(f)
                                 .getResizedFile();
-                        multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage));
+                        multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("image/jpg", resizedImage));
                     }
 
                     if (v1) {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video1));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("video/mp4", imageFile));
                     }
 
                     if (ifimg2) {
@@ -532,14 +539,14 @@ public class Add_new_post_1 extends AppCompatActivity {
                                 .setOutputFilename("resized_image2")
                                 .setSourceImage(f)
                                 .getResizedFile();
-                        multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage1));
+                        multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("image/jpg", resizedImage1));
                     }
 
                     if (v2) {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video2));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("video/mp4", imageFile));
                     }
 
                     if (ifimg3) {
@@ -565,14 +572,14 @@ public class Add_new_post_1 extends AppCompatActivity {
                                 .setOutputFilename("resized_image3")
                                 .setSourceImage(f)
                                 .getResizedFile();
-                        multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("image/jpg", resizedImage2));
+                        multipartTypedOutput.addPart("storyphotovideo[2]", new TypedFile("image/jpg", resizedImage2));
                     }
 
                     if (v3) {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("storyphotovideo[2]", new TypedFile("video/mp4", imageFile));
                     }
                     if (ifimg4) {
                         File f = new File(Add_new_post_1.this.getCacheDir(), "temp3.jpg");
@@ -597,7 +604,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                                 .setOutputFilename("resized_image4")
                                 .setSourceImage(f)
                                 .getResizedFile();
-                        multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("image/jpg", resizedImage3));
+                        multipartTypedOutput.addPart("storyphotovideo[3]", new TypedFile("image/jpg", resizedImage3));
                     }
 
 
@@ -605,7 +612,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video4));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("storyphotovideo[3]", new TypedFile("video/mp4", imageFile));
                     }
                 } catch (Exception e) {
                     Log.e("Error", e.toString());
@@ -702,7 +709,7 @@ public class Add_new_post_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
             multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
-            multipartTypedOutput.addPart("countryid[]", new TypedString("3"));
+            multipartTypedOutput.addPart("countryid[]", new TypedString(user.getCountryid()));
             multipartTypedOutput.addPart("payorfree", new TypedString("2"));
             multipartTypedOutput.addPart("postedby", new TypedString(id));
             multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
@@ -883,6 +890,30 @@ public class Add_new_post_1 extends AppCompatActivity {
 
     @OnClick(R.id.img4)
     public void Image1Clicked4() {
+        imgClicked = 4;
+        OpenImage();
+    }
+
+    @OnClick(R.id.vd1)
+    public void Vd1() {
+        imgClicked = 1;
+        OpenImage();
+    }
+
+    @OnClick(R.id.vd2)
+    public void Vd2() {
+        imgClicked = 2;
+        OpenImage();
+    }
+
+    @OnClick(R.id.vd3)
+    public void Vd3() {
+        imgClicked = 3;
+        OpenImage();
+    }
+
+    @OnClick(R.id.vd4)
+    public void Vd4() {
         imgClicked = 4;
         OpenImage();
     }
