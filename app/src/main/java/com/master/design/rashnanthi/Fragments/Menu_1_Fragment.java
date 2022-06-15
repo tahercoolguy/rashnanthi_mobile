@@ -63,6 +63,9 @@ public class Menu_1_Fragment extends Fragment {
     @BindView(R.id.privacy_policy_RL)
     RelativeLayout privacy_policy_RL;
 
+   @BindView(R.id.languageTxt)
+    TextView languageTxt;
+
 
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
@@ -101,6 +104,11 @@ public class Menu_1_Fragment extends Fragment {
             myaccount_RL = rootView.findViewById(R.id.myaccount_RL);
             logout_Rl = rootView.findViewById(R.id.logout_Rl);
 
+            if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                languageTxt.setText("(English)");
+            }else{
+                languageTxt.setText("عربى");
+            }
 
             if (user.getId() == 0) {
                 registerRL.setVisibility(View.VISIBLE);

@@ -109,7 +109,7 @@
                     android:layout_marginTop="7dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="7dp"
-                    android:src="@drawable/kuwait_flag"></ImageView>
+                    android:src="@drawable/kuwaitt"></ImageView>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -236,7 +236,7 @@
                  <TextView
                      android:layout_width="0dp"
                      android:layout_weight="1"
-                     android:text="Sun"
+                     android:text="@string/sun"
                      android:layout_marginTop="5dp"
                      android:layout_marginBottom="5dp"
                      android:textSize="@dimen/text_size_title"
@@ -247,7 +247,7 @@
                  <TextView
                      android:layout_width="0dp"
                      android:layout_weight="1"
-                     android:text="Mon"
+                     android:text="@string/mon"
                      android:layout_marginTop="5dp"
                      android:layout_marginBottom="5dp"
                      android:textSize="@dimen/text_size_title"
@@ -258,7 +258,7 @@
                  <TextView
                      android:layout_width="0dp"
                      android:layout_weight="1"
-                     android:text="Tue"
+                     android:text="@string/tue"
                      android:layout_marginTop="5dp"
                      android:layout_marginBottom="5dp"
                      android:textSize="@dimen/text_size_title"
@@ -269,7 +269,7 @@
                  <TextView
                      android:layout_width="0dp"
                      android:layout_weight="1"
-                     android:text="Wed"
+                     android:text="@string/wed"
                      android:layout_marginTop="5dp"
                      android:layout_marginBottom="5dp"
                      android:textSize="@dimen/text_size_title"
@@ -280,7 +280,7 @@
                  <TextView
                      android:layout_width="0dp"
                      android:layout_weight="1"
-                     android:text="Thr"
+                     android:text="@string/thr"
                      android:layout_marginTop="5dp"
                      android:layout_marginBottom="5dp"
                      android:textSize="@dimen/text_size_title"
@@ -291,7 +291,7 @@
                  <TextView
                      android:layout_width="0dp"
                      android:layout_weight="1"
-                     android:text="Fri"
+                     android:text="@string/fri"
                      android:layout_marginTop="5dp"
                      android:layout_marginBottom="5dp"
                      android:textSize="@dimen/text_size_title"
@@ -302,7 +302,7 @@
                  <TextView
                      android:layout_width="0dp"
                      android:layout_weight="1"
-                     android:text="Sat"
+                     android:text="@string/sat"
                      android:layout_marginTop="5dp"
                      android:layout_marginBottom="5dp"
                      android:textSize="@dimen/text_size_title"

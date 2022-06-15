@@ -20,8 +20,8 @@ import androidx.constraintlayout.solver.SolverVariableValues;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
 import com.master.design.rashnanthi.Activity.Add_new_post_1;
 import com.master.design.rashnanthi.Activity.ImageActicity;
@@ -136,6 +136,12 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 //        }
 
 
+
+
+
+
+
+
         if (img.size() >= 4) {
 
             if (img.get(0).contains(".mp4")) {
@@ -186,6 +192,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
         if (img.size() >= 3) {
 
+
             if (img.get(0).contains(".mp4")) {
                 viewHolder.webview1.setVisibility(View.VISIBLE);
                 viewHolder.img_1.setVisibility(View.GONE);
@@ -221,8 +228,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         }
 
         if (img.size() >= 2) {
-
-            if (img.get(0).contains(".mp4")) {
+             if (img.get(0).contains(".mp4")) {
                 viewHolder.webview1.setVisibility(View.VISIBLE);
                 viewHolder.img_1.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(0));
@@ -251,6 +257,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 viewHolder.img_1.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(0));
                 viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
+
 
             } else {
                 Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
@@ -392,11 +399,19 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
                 if (user.getCreatorcoach().equalsIgnoreCase("1")) {
                     Intent intent = new Intent(context, Activity_Add_Event_1.class);
-                    intent.putExtra("image1", img.get(0));
+
+                    try {
+                         intent.putExtra("image1", img.get(0));
+                        intent.putExtra("image2", img.get(1));
+                        intent.putExtra("image3", img.get(2));
+                        intent.putExtra("image4", img.get(3));
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     intent.putExtra("date", myEventData.get(position).getEventdate());
-                    intent.putExtra("image2", img.get(1));
-                    intent.putExtra("image3", img.get(2));
-                    intent.putExtra("image4", img.get(3));
+
                     intent.putExtra("eventid", myEventData.get(position).getId());
                     intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
                     intent.putExtra("instagram", myEventData.get(position).getInstagram());
@@ -408,14 +423,21 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
                     intent.putExtra("status", myEventData.get(position).getStatus());
                     intent.putExtra("postedby", myEventData.get(position).getPostedby());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 } else {
                     Intent intent = new Intent(context, Add_new_post_1.class);
-                    intent.putExtra("image1", myEventData.get(position).getImage());
+
+                    try {
+                        intent.putExtra("image1", myEventData.get(position).getImage());
+                        intent.putExtra("image2", myEventData.get(position).getImage());
+                        intent.putExtra("image3", myEventData.get(position).getImage());
+                        intent.putExtra("image4", myEventData.get(position).getImage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     intent.putExtra("date", myEventData.get(position).getEventdate());
-                    intent.putExtra("image2", myEventData.get(position).getImage());
-                    intent.putExtra("image3", myEventData.get(position).getImage());
-                    intent.putExtra("image4", myEventData.get(position).getImage());
                     intent.putExtra("eventid", myEventData.get(position).getId());
                     intent.putExtra("snapchat", myEventData.get(position).getSnapchat());
                     intent.putExtra("instagram", myEventData.get(position).getInstagram());
@@ -427,6 +449,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
                     intent.putExtra("status", myEventData.get(position).getStatus());
                     intent.putExtra("postedby", myEventData.get(position).getPostedby());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
 
@@ -438,7 +461,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView date_time;
-        private ImageView img_1, img_2, img_3, img_4, edit_img, delete_Img, delete_Img1, delete_Img2, delete_Img3, delete_Img4;
+        private ImageView  edit_img, delete_Img, delete_Img1, delete_Img2, delete_Img3, delete_Img4;
+        private RoundedImageView img_1, img_2, img_3, img_4;
         private LinearLayout ll;
         private WebView webview1, webview2, webview3, webview4;
 

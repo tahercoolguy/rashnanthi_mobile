@@ -163,6 +163,7 @@ public class My_Account_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(((MainActivity) context), Activity_Add_Event_1.class));
+                    ((MainActivity)context).addFragment(new Calender_Fragment(),true);
 
                 }
             });

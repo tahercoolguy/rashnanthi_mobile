@@ -133,6 +133,7 @@ public class Coach_Account_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(((MainActivity) context), Add_new_post_1.class));
+                    ((MainActivity)context).addFragment(new Calender_Fragment(),true);
 
 
                 }

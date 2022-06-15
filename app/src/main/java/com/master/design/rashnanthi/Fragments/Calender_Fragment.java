@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.master.design.rashnanthi.Activity.MainActivity;
@@ -131,6 +132,9 @@ public class Calender_Fragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
+
+
+
             Binding();
             user = new User(getActivity());
             appController = (AppController) getActivity().getApplicationContext();
@@ -140,6 +144,10 @@ public class Calender_Fragment extends Fragment {
             aheadamonthImg = rootView.findViewById(R.id.aheadamonthImg);
             story_viewer = rootView.findViewById(R.id.story_viewer);
 
+            Glide.with(context)
+                    .asGif()
+                    .load(R.raw.icon_2)
+                    .into(story_viewer);
 
 
             if(countryimg!=null){
@@ -291,6 +299,7 @@ public class Calender_Fragment extends Fragment {
                 @NonNull
                 @Override
                 public String toString() {
+
                     moth_year_txt.setText(formatter.format(compactCalendar));
                     return super.toString();
                 }

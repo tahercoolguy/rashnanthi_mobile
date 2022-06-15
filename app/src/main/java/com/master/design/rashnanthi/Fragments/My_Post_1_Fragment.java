@@ -1,5 +1,7 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -27,6 +29,7 @@ import com.master.design.rashnanthi.Activity.SpinneerActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
 import com.master.design.rashnanthi.Adapter.Adapter_My_Event;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_DM;
@@ -90,10 +93,11 @@ public class My_Post_1_Fragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.my_post_1_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
+            binding();
 
             setDetails();
             MyPostAPI(countryid);
-            back_my_event = rootView.findViewById(R.id.back_my_event);
+             back_my_event = rootView.findViewById(R.id.back_my_event);
 
             my_event_Rcv = rootView.findViewById(R.id.my_event_Rcv);
             back_my_event.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +145,7 @@ public class My_Post_1_Fragment extends Fragment {
 
     String countryname;
     String countryimg;
-    String countryid;
+    String countryid="1";
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -163,15 +167,13 @@ public class My_Post_1_Fragment extends Fragment {
     public void MyPostAPI(String countryid) {
         if (connectionDetector.isConnectingToInternet()) {
 
-            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
-            //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+             //                   String refreshedToken = FirebaseInstanceId.getInstance().getToken();
             appController.paServices.MyEvents(String.valueOf(user.getId()),countryid,   new Callback<MyEventRootDM1>() {
 
                 @Override
 
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
-                    progress.dismiss();
-                    if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                      if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                         if(countryid!=null){
                             my_event_Rcv.setVisibility(View.VISIBLE);
@@ -194,15 +196,40 @@ public class My_Post_1_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
-                    Log.e("error", retrofitError.toString());
+                      Log.e("error", retrofitError.toString());
 
                 }
             });
         } else
             Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
     }
+    public void binding() {
+        if (connectionDetector.isConnectingToInternet()) {
 
+            appController.paServices.Countries(new Callback<CountryRootDM>() {
+                @Override
+                public void success(CountryRootDM countryRootDM, Response response) {
+                     if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        context = getApplicationContext();
+                         Picasso.get().load(AppController.base_image_url +countryRootDM.getOutput().getData().get(0).getImage()).into(countryImg);
+
+                         if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                             country_spinner_Txt.setText(countryRootDM.getOutput().getData().get(0).getTitle());
+                         }else{
+                             country_spinner_Txt.setText(countryRootDM.getOutput().getData().get(0).getTitlear());
+                         }
+
+                    } else
+                        Helper.showToast(getActivity(), "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                     Log.e("String", error.toString());
+                }
+            });
+        }
+    }
 
     @Override
     public void onResume() {

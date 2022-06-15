@@ -15,6 +15,7 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
 import com.master.design.rashnanthi.DataModel.EventsDetailsData;
@@ -213,7 +214,8 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         // Adapter class for initializing
         // the views of our slider view.
         View itemView;
-        ImageView imageViewBackground,snap,whts,insta,web ;
+        ImageView  snap,whts,insta,web ;
+        RoundedImageView imageViewBackground;
         VideoView myVideo;
         WebView webView;
 

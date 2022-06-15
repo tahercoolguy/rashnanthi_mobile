@@ -66,7 +66,7 @@ public class SpinneerActivity extends AppCompatActivity {
 
     public String countryID="1";
     public String countryName="Kuwait";
-    public String countryImg= String.valueOf(R.drawable.kuwait_flag);
+    public String countryImg ;
 
     public void FinishThis()
     {

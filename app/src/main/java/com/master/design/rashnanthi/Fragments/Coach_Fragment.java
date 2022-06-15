@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter1;
@@ -88,6 +89,10 @@ public class Coach_Fragment extends Fragment {
     @BindView(R.id.countryImg)
     ImageView countryImg;
 
+
+ @BindView(R.id.coachgridImg)
+    ImageView coachgridImg;
+
     @BindView(R.id.country_spinner_Txt)
     TextView country_spinner_Txt;
 
@@ -131,6 +136,10 @@ public class Coach_Fragment extends Fragment {
 //            coach_menu = rootView.findViewById(R.id.coach_menu);
             coach_grid_account = rootView.findViewById(R.id.coach_grid_account);
 
+            Glide.with(context)
+                    .asGif()
+                    .load(R.raw.icon_1)
+                    .into(coachgridImg);
 
             coach_menu_Back = rootView.findViewById(R.id.coach_menu_Back);
 

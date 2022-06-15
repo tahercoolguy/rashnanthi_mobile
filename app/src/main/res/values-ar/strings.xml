@@ -164,5 +164,13 @@
     <string name="select_country_for_see_post">حدد الدولة لمشاهدة المشاركات التي تم تحميلها على البلد</string>
     <string name="privacy">سياسة الخصوصية</string>
     <string name="i_accept">وافقت</string>
+    <string name="sat">السبت </string>
+    <string name="fri">الجمعة </string>
+    <string name="sun">الأحد </string>
+    <string name="mon">الإثنين </string>
+    <string name="tue">الثلاثاء </string>
+    <string name="wed">الأربعاء  </string>
+    <string name="thr">الخميس </string>
+    <string name="the_post_under_review">الإعلان الآن قيد المراجعة وسيتم تحميله بعد الموافقه عليه</string>
 
 </resources>

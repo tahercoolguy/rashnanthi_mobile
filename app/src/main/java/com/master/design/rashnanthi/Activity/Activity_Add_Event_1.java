@@ -105,7 +105,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     AppController appController;
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
-    String currentDateandTime = sdf.format(new Date());
+    String currentDateandTime ;
 
     private static final int IMAGE_PICKER_SELECT1 = 1;
     private static final int IMAGE_PICKER_SELECT2 = 2;
@@ -416,6 +416,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             ad_more_eventtLL.setVisibility(View.VISIBLE);
             add_more_eventBtn.setVisibility(View.VISIBLE);
+
+            if(status!=null){
+                pay_now_Btn.setVisibility(View.GONE);
+                post_for_free_nowBtn.setVisibility(View.GONE);
+                edit_post_Btn.setVisibility(View.VISIBLE);
+            }
+
+
 //            your_post_will_beTXt.setVisibility(View.VISIBLE);
 //            radioBtn_Term_condition.setVisibility(View.VISIBLE);
 //            continue_Btn.setVisibility(View.VISIBLE);
@@ -968,7 +976,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                                 if (iffree != false) {
-                                    Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                                    Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.the_post_under_review));
+                                    Activity_Add_Event_1.this.finish();
 
                                 }
                                 if (ifpaid != false) {
@@ -1017,26 +1026,28 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     }
 
     public void datePickerCalender() {
-
+        currentDateandTime = sdf.format(Calendar.getInstance().getTime());
         DatePickerPopWin pickerPopWin = new DatePickerPopWin.Builder(Activity_Add_Event_1.this, new DatePickerPopWin.OnDatePickedListener() {
 
 
             @Override
-            public void onDatePickCompleted(int year, int month, int day, String dateDesc) {
+            public void onDatePickCompleted(int year, int monthOfYear, int dayOfMonth, String dateDesc) {
 
 //                Toast.makeText(Activity_Add_Event_1.this, dateDesc, Toast.LENGTH_SHORT).show();
 
-                if ((year) <= 9) {
-                    dateTxt.setText(year + "-0" + (month) + "-" + day);
-                    if (month <= 9)
-                        dateTxt.setText(year + "-0" + (month) + "-" + "0" + day);
+//                if ((monthOfYear + 1) <= 9) {
+//                    dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth);
+//                    if (dayOfMonth <= 9)
+//                        dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+//
+//
+//                } else {
+//                    dateTxt.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+//                    if (dayOfMonth <= 9)
+//                        dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+//                }
 
-
-                } else {
-                    dateTxt.setText(year + "-" + (month) + "-" + day);
-                    if (day <= 9)
-                        dateTxt.setText(year + "-0" + (month) + "-" + "0" + day);
-                }
+                dateTxt.setText(dateDesc);
             }
         }).textConfirm(getString(R.string.done)) //text of confirm button
                 .textCancel(getString(R.string.cancel)) //text of cancel button
@@ -1044,7 +1055,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 .viewTextSize(1000) // pick view text size
                 .colorCancel(Color.parseColor("#CE010E")) //color of cancel button
                 .colorConfirm(Color.parseColor("#CE010E"))//color of confirm button
-                .minYear(2021) //min year in loop
+                .minYear(2022) //min year in loop
                 .maxYear(2550) // max year in loop
                 .showDayMonthYear(true) // shows like dd mm yyyy (default is false)
                 .dateChose(currentDateandTime) // date chose when init popwindow

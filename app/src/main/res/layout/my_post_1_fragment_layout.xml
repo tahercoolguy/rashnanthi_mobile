@@ -5,10 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="90dp"
     android:animateLayoutChanges="true"
-
     android:background="@color/app_bg_color">
-
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -44,7 +41,6 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
-
 
                 <ImageView
                     android:id="@+id/back_my_event"
@@ -86,7 +82,7 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="7dp"
-                android:src="@drawable/kuwait_flag"></ImageView>
+                 ></ImageView>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -108,9 +104,9 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:lines="2"
-                android:maxLength="6"
+                android:maxLength="7"
                 android:padding="15dp"
-                android:text="@string/kuwait"
+                android:text="@string/country"
                 android:textColor="@color/black"
                 android:textSize="15sp">
 
@@ -147,9 +143,7 @@
             android:id="@+id/my_event_Rcv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:layout_marginTop="15dp"
-            >
-
+             android:layout_marginTop="15dp">
         </androidx.recyclerview.widget.RecyclerView>
 
 

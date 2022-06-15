@@ -200,7 +200,14 @@
     <string name="select_country_for_see_post">select country to see uploaded posts on country</string>
     <string name="i_accept">I accept</string>
     <string name="your_post_will_beTXt">your_post_will_beTXt</string>
-
+    <string name="sat">Sat</string>
+    <string name="fri">Fri</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thr">Thr</string>
+    <string name="the_post_under_review">The post is under review and will be live after Approval</string>
 
 
 </resources>

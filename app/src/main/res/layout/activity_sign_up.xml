@@ -794,7 +794,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerInParent="true"
                                     android:layout_marginStart="5dp"
-                                    android:src="@drawable/kuwait_flag"></ImageView>
+                                    ></ImageView>
 
                                 <TextView
                                     android:id="@+id/country_spinner_ET"

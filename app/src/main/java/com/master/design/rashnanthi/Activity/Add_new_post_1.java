@@ -77,7 +77,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
-    String image1, image2,image3,image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
+    String image1, image2, image3, image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
 
     @NotEmpty
     @BindView(R.id.add_new_post_pay_back)
@@ -128,6 +128,14 @@ public class Add_new_post_1 extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.img2)
     ImageView img2;
+
+    @NotEmpty
+    @BindView(R.id.web_RL)
+    RelativeLayout web_RL;
+
+    @NotEmpty
+    @BindView(R.id.webET)
+    EditText webET;
 
 
     @OnClick(R.id.add_new_post_pay_back)
@@ -241,18 +249,19 @@ public class Add_new_post_1 extends AppCompatActivity {
         snapchat = getIntent().getStringExtra("snapchat");
         postedby = getIntent().getStringExtra("postedby");
         if (image1 != null) {
-             Picasso.get().load(AppController.base_image_url + image1).into(img1);
+            Picasso.get().load(AppController.base_image_url + image1).into(img1);
 
         }
         if (image2 != null) {
-             Picasso.get().load(AppController.base_image_url + image2).into(img2);
+            Picasso.get().load(AppController.base_image_url + image2).into(img2);
 
-        }if (image3 != null) {
-             Picasso.get().load(AppController.base_image_url + image3).into(img3);
+        }
+        if (image3 != null) {
+            Picasso.get().load(AppController.base_image_url + image3).into(img3);
 
         }
         if (image4 != null) {
-             Picasso.get().load(AppController.base_image_url + image4).into(img4);
+            Picasso.get().load(AppController.base_image_url + image4).into(img4);
 
         }
 
@@ -447,7 +456,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                     Log.e("String", error.toString());
                 }
             });
-        }else
+        } else
             Helper.showToast(Add_new_post_1.this, getString(R.string.no_internet_connection));
     }
 
@@ -468,6 +477,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
                 multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
                 multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+                multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
 //            multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
                 multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
 
@@ -658,7 +668,8 @@ public class Add_new_post_1 extends AppCompatActivity {
 
 
                                 if (iffree != false) {
-                                    Helper.showToast(Add_new_post_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                                    Helper.showToast(Add_new_post_1.this,  getString(R.string.the_post_under_review));
+                                    Add_new_post_1.this.finish();
 
                                 }
                                 if (ifpay != false) {
@@ -984,8 +995,6 @@ public class Add_new_post_1 extends AppCompatActivity {
 
 
                     if (imgClicked == 1) {
-
-
                         Video1 = Uri.fromFile(new File(data.getStringExtra("uri")));
                         String path = Video1.getPath();
                         CameraUtils.refreshGallery(getApplicationContext(), path);

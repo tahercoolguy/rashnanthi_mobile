@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <!--Image we will display is our slider view-->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="15dp"
-        android:layout_height="375dp">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/myimage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-             android:layout_centerHorizontal="true"
-            android:contentDescription="@string/app_name" />
 
-        <VideoView
-            android:id="@+id/myvideo"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="@string/app_name" />
-    <WebView
-            android:id="@+id/webView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="@string/app_name" />
-</RelativeLayout>
-    </androidx.cardview.widget.CardView>
+             android:background="@drawable/rounded_rectangle_whitee"
+             android:layout_height="375dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/myimage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                 app:riv_corner_radius="15dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/app_name" />
+
+
+            <VideoView
+                android:id="@+id/myvideo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/app_name"
+                android:visibility="gone" />
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_webview"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/app_name"
+                android:visibility="gone" />
+        </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,66 +55,66 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="10dp"
-            android:visibility="gone"
+            android:src="@drawable/ic_whastapp"
 
-            android:src="@drawable/ic_whastapp"></ImageView>
+            android:visibility="gone"></ImageView>
 
         <ImageView
             android:id="@+id/instaImg"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="10dp"
-            android:visibility="gone"
+            android:src="@drawable/insta_logo"
 
-            android:src="@drawable/insta_logo"></ImageView>
+            android:visibility="gone"></ImageView>
 
         <ImageView
             android:id="@+id/webImg"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="10dp"
-            android:visibility="gone"
+            android:src="@drawable/ic_web"
 
-            android:src="@drawable/ic_web"></ImageView>
+            android:visibility="gone"></ImageView>
 
         <ImageView
             android:id="@+id/snapImg"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="10dp"
-            android:visibility="gone"
+            android:src="@drawable/snapchat"
 
-            android:src="@drawable/snapchat"></ImageView>
+            android:visibility="gone"></ImageView>
     </LinearLayout>
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:gravity="center_horizontal"-->
-<!--                     android:layout_marginTop="15dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal">-->
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    android:layout_alignParentEnd="true"-->
+    <!--                    android:gravity="center_horizontal"-->
+    <!--                     android:layout_marginTop="15dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:orientation="horizontal">-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/small_unselect"-->
-<!--                        android:layout_margin="10dp"></ImageView>-->
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:src="@drawable/small_unselect"-->
+    <!--                        android:layout_margin="10dp"></ImageView>-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/big_unselector"-->
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:src="@drawable/big_unselector"-->
 
-<!--                        android:layout_margin="10dp"></ImageView>-->
+    <!--                        android:layout_margin="10dp"></ImageView>-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:src="@drawable/small_unselect"-->
-<!--                        android:layout_height="wrap_content"-->
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:src="@drawable/small_unselect"-->
+    <!--                        android:layout_height="wrap_content"-->
 
-<!--                        android:layout_margin="10dp"></ImageView>-->
-<!--                </LinearLayout>-->
+    <!--                        android:layout_margin="10dp"></ImageView>-->
+    <!--                </LinearLayout>-->
 
 
 </LinearLayout>

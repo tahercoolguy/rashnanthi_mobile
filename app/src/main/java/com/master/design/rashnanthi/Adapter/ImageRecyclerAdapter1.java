@@ -127,7 +127,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
 
         try {
 
-            holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context, km);
+            holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context,km);
             holder.mViewPager.setAdapter(holder.sliderPagerAdapter1);
             holder.dots = new TextView[km.size()];
             addBottomDots(0, holder.dots, holder);
@@ -193,20 +193,20 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
 //        }
 
 
-//        holder.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                addBottomDots(position, holder.dots, holder);
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//            }
-//        });
+        holder.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                addBottomDots(position, holder.dots, holder);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
 
 
         holder.whatsapp_IMg.setOnClickListener(new View.OnClickListener() {

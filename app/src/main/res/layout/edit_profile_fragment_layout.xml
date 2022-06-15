@@ -48,16 +48,14 @@
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:layout_marginTop="60dp"
-         android:orientation="vertical">
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
             android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
-
-
 
 
             <TextView
@@ -80,8 +78,10 @@
                 android:layout_marginRight="25dp"
                 android:background="@drawable/rounded_corner_white"
                 android:elevation="4dp"
+                android:imeOptions="actionNext"
                 android:lines="1"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:singleLine="true">
 
             </EditText>
 
@@ -93,7 +93,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/emails"
 
-                 android:textSize="@dimen/text_size_title">
+                android:textSize="@dimen/text_size_title">
 
             </TextView>
 
@@ -106,12 +106,12 @@
                 android:layout_marginRight="25dp"
                 android:background="@drawable/rounded_corner_white"
                 android:elevation="4dp"
+                android:imeOptions="actionNext"
                 android:lines="1"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:singleLine="true">
 
             </EditText>
-
-
 
 
             <TextView
@@ -171,13 +171,15 @@
                         android:layout_gravity="center"
                         android:background="@color/transparent"
                         android:focusable="false"
-
-                        android:hint="+965"
-
-
+                        android:imeOptions="actionNext"
                         android:inputType="number"
+
                         android:lines="1"
+
+
                         android:padding="15dp"
+                        android:singleLine="true"
+                        android:text="+965"
 
                         android:textColor="@color/black"
                         android:textSize="15sp">
@@ -199,11 +201,12 @@
                     android:background="@drawable/mob_bg"
 
                     android:elevation="4dp"
-                    android:hint="34324324"
 
+                    android:imeOptions="actionNext"
                     android:inputType="number"
                     android:lines="1"
                     android:padding="15dp"
+                    android:singleLine="true"
 
                     android:textSize="15sp">
 
@@ -219,19 +222,19 @@
                 android:layout_marginLeft="65dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="65dp"
-                android:textAllCaps="false"
                 android:layout_marginBottom="40dp"
-
                 android:background="@drawable/button_rounded_primary_color_selector"
+
                 android:gravity="center"
-                 android:text="@string/update_profile"
+                android:text="@string/update_profile"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_title"></Button>
 
 
         </LinearLayout>
 
-     </LinearLayout>
+    </LinearLayout>
 
     <include layout="@layout/layout_error" />
 </RelativeLayout>

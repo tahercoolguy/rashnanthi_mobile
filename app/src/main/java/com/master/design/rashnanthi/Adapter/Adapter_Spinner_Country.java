@@ -74,8 +74,20 @@ public class Adapter_Spinner_Country extends RecyclerView.Adapter<Adapter_Spinne
 
 
     private void setDetails(Adapter_Spinner_Country.ViewHolder viewHolder, int position) {
-        viewHolder.country_name.setText(countryOutputArrayList.get(position).getTitle());
-        Picasso.get().load(AppController.base_image_url + countryOutputArrayList.get(position).getImage()).into(viewHolder.country_flag);
+
+
+        if (user.getLanguageCode().equalsIgnoreCase("en")) {
+
+
+            viewHolder.country_name.setText(countryOutputArrayList.get(position).getTitle());
+            Picasso.get().load(AppController.base_image_url + countryOutputArrayList.get(position).getImage()).into(viewHolder.country_flag);
+
+        }else{
+
+            viewHolder.country_name.setText(countryOutputArrayList.get(position).getTitlear());
+            Picasso.get().load(AppController.base_image_url + countryOutputArrayList.get(position).getImage()).into(viewHolder.country_flag);
+
+        }
 
 
         viewHolder.clickLL.setOnClickListener(new View.OnClickListener() {

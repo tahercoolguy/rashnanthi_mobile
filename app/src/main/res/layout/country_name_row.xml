@@ -12,7 +12,7 @@
 
     <ImageView
         android:id="@+id/country_Img"
-        android:src="@drawable/kuwaitttttt"
+        android:src="@drawable/kuwaitt"
          android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 

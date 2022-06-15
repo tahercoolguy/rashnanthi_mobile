@@ -111,7 +111,7 @@ public class Adapter_Country_Spinner extends ArrayAdapter<County_ItemDM> {
 
         if (position == 0) {
             name.setText("Kuwait");
-            img.setImageResource(R.drawable.kuwait_flag);
+            img.setImageResource(R.drawable.kuwaitt);
 //            line.setVisibility(View.GONE);
         } else {
             // Set values for spinner each row

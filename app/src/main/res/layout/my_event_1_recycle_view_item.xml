@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-     android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
 
         android:orientation="vertical">
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                 android:src="@drawable/ic_pen">
+                android:src="@drawable/ic_pen">
 
             </ImageView>
 
@@ -52,49 +53,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="200dp"
-                    android:gravity="left"
-                    android:layout_marginStart="5dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="left"
-                     android:layout_height="200dp">
+                    android:layout_marginStart="5dp"
+                    android:gravity="left">
 
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/img_1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         android:layout_marginStart="5dp"
+
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
-                        android:src="@drawable/image"></ImageView>
+                        android:src="@drawable/image"
+                        app:riv_corner_radius="25dp"></com.makeramen.roundedimageview.RoundedImageView>
+
                     <WebView
                         android:id="@+id/webview1"
                         android:layout_width="match_parent"
-                        android:visibility="gone"
+                        android:layout_height="match_parent"
                         android:layout_margin="5dp"
-                        android:layout_height="match_parent">
+                        android:visibility="gone">
 
                     </WebView>
 
                     <ImageView
                         android:id="@+id/delete_Img1"
-                         android:layout_marginEnd="10dp"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/full_rounded_grad_with_transparent_background"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/full_rounded_grad_with_transparent_background"
                         android:src="@drawable/ic_delete">
 
                     </ImageView>
@@ -103,39 +105,42 @@
 
                 <RelativeLayout
                     android:layout_width="200dp"
-                    android:gravity="right"
+                    android:layout_height="200dp"
                     android:layout_gravity="right"
-                     android:layout_height="200dp">
+                    android:gravity="right">
 
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/img_2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
+                        android:src="@drawable/image"
 
-                         android:src="@drawable/image">
+                        app:riv_corner_radius="25dp">
 
-                    </ImageView>
+                    </com.makeramen.roundedimageview.RoundedImageView>
+
                     <WebView
                         android:id="@+id/webview2"
                         android:layout_width="match_parent"
-                        android:visibility="gone"
+                        android:layout_height="match_parent"
                         android:layout_margin="5dp"
-                        android:layout_height="match_parent">
+                        android:visibility="gone">
 
                     </WebView>
+
                     <ImageView
                         android:id="@+id/delete_Img2"
-                         android:layout_marginEnd="10dp"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/full_rounded_grad_with_transparent_background"                        android:layout_height="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/full_rounded_grad_with_transparent_background"
                         android:src="@drawable/ic_delete">
 
                     </ImageView>
                 </RelativeLayout>
-
 
 
             </LinearLayout>
@@ -153,43 +158,43 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="200dp"
-                    android:gravity="left"
-                    android:layout_marginStart="5dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="left"
-                    android:layout_height="200dp">
+                    android:layout_marginStart="5dp"
+                    android:gravity="left">
 
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/img_3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
-                        android:src="@drawable/image"></ImageView>
+                        android:src="@drawable/image"
+                        app:riv_corner_radius="25dp"></com.makeramen.roundedimageview.RoundedImageView>
+
                     <WebView
                         android:id="@+id/webview3"
                         android:layout_width="match_parent"
-                        android:visibility="gone"
+                        android:layout_height="match_parent"
                         android:layout_margin="5dp"
-                        android:layout_height="match_parent">
+                        android:visibility="gone">
 
                     </WebView>
 
                     <ImageView
                         android:id="@+id/delete_Img3"
-                        android:layout_marginEnd="10dp"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/full_rounded_grad_with_transparent_background"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/full_rounded_grad_with_transparent_background"
                         android:src="@drawable/ic_delete">
 
                     </ImageView>
@@ -198,39 +203,42 @@
 
                 <RelativeLayout
                     android:layout_width="200dp"
-                    android:gravity="right"
+                    android:layout_height="200dp"
                     android:layout_gravity="right"
-                    android:layout_height="200dp">
+                    android:gravity="right">
 
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/img_4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
+                        app:riv_corner_radius="25dp"
 
                         android:src="@drawable/image">
 
-                    </ImageView>
+                    </com.makeramen.roundedimageview.RoundedImageView>
+
                     <WebView
                         android:id="@+id/webview4"
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_margin="5dp"
-                        android:visibility="gone"
-                        android:layout_height="match_parent">
+                        android:visibility="gone">
 
                     </WebView>
+
                     <ImageView
                         android:id="@+id/delete_Img4"
-                        android:layout_marginEnd="10dp"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/full_rounded_grad_with_transparent_background"                        android:layout_height="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/full_rounded_grad_with_transparent_background"
                         android:src="@drawable/ic_delete">
 
                     </ImageView>
                 </RelativeLayout>
-
 
 
             </LinearLayout>

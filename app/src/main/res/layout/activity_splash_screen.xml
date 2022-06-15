@@ -9,12 +9,22 @@
     tools:context=".Activity.SplashScreen">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/splash_screen_logo"
-        android:layout_height="wrap_content">
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:src="@drawable/splash_screen_logo"-->
+<!--        android:layout_height="wrap_content">-->
 
-    </ImageView>
+<!--    </ImageView>-->
+
+    <com.master.design.rashnanthi.Helper.MyVideoView
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:id="@+id/video_view"/>
 
 </LinearLayout>

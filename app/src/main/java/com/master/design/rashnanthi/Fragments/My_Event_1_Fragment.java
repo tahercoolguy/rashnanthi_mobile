@@ -1,5 +1,7 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -25,7 +27,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SpinneerActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_MY_Event_1;
+import com.master.design.rashnanthi.Adapter.Adapter_Spinner_Country;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventData;
 import com.master.design.rashnanthi.DataModel.MyEventImageData;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
@@ -98,6 +102,7 @@ public class My_Event_1_Fragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.my_event_1_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
+            binding();
 
             my_event_menu_1 = rootView.findViewById(R.id.my_event_menu_1);
             my_event_menu_1_back = rootView.findViewById(R.id.my_event_menu_1_back);
@@ -162,7 +167,7 @@ public class My_Event_1_Fragment extends Fragment {
 
     String countryname;
     String countryimg;
-    String countryid;
+    String countryid = "1";
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -187,12 +192,10 @@ public class My_Event_1_Fragment extends Fragment {
 
 
             String userid = String.valueOf(user.getId());
-            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
 
             appController.paServices.MyEvents(userid, countryid, new Callback<MyEventRootDM1>() {
                 @Override
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
-                    progress.dismiss();
 
                     if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
@@ -207,9 +210,9 @@ public class My_Event_1_Fragment extends Fragment {
                             my_event_Rcv.setVisibility(View.GONE);
                         }
 
-                    } else{
+                    } else {
                         my_event_Rcv.setVisibility(View.GONE);
-                        Helper.showToast(context,getString(R.string.your_post_does_not_exist));
+                        Helper.showToast(context, getString(R.string.your_post_does_not_exist));
 
                     }
 
@@ -218,13 +221,44 @@ public class My_Event_1_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
-                    Log.e("error", retrofitError.toString());
+                     Log.e("error", retrofitError.toString());
 
                 }
             });
         } else
             Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
+    }
+
+
+    public void binding() {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            appController.paServices.Countries(new Callback<CountryRootDM>() {
+                @Override
+                public void success(CountryRootDM countryRootDM, Response response) {
+                    if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                        Picasso.get().load(AppController.base_image_url + countryRootDM.getOutput().getData().get(0).getImage()).into(countryImg);
+
+                        if (user.getLanguageCode().equalsIgnoreCase("en")) {
+
+                            country_spinner_Txt.setText(countryRootDM.getOutput().getData().get(0).getTitle());
+
+                        } else {
+                            country_spinner_Txt.setText(countryRootDM.getOutput().getData().get(0).getTitlear());
+                        }
+
+
+                    } else
+                        Helper.showToast(getActivity(), "Some network happened ..");
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("String", error.toString());
+                }
+            });
+        }
     }
 
 

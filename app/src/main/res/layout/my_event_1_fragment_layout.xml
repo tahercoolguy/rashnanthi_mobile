@@ -93,8 +93,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="7dp"
-                android:src="@drawable/kuwait_flag"></ImageView>
+                android:layout_marginBottom="7dp"></ImageView>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -116,9 +115,9 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:lines="2"
-                android:maxLength="6"
+                android:maxLength="7"
                 android:padding="15dp"
-                android:text="@string/kuwait"
+                android:text="@string/country"
                 android:textColor="@color/black"
                 android:textSize="15sp">
 

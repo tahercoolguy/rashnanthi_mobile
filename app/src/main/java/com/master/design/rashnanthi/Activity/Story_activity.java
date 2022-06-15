@@ -178,7 +178,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                 Picasso.get().load(AppController.base_image_url + array_image.get(counter)).into(image);
                 Picasso.get()
                         .load(AppController.base_image_url + array_image.get(counter))
-                        .transform(new BlurTransformation(Story_activity.this, 25, 1))
+                        .transform(new BlurTransformation(Story_activity.this, 5, 500))
                         .into(backgrd);
             }
         }
@@ -212,7 +212,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                 Picasso.get().load(AppController.base_image_url + array_image.get(counter)).into(image);
                 Picasso.get()
                         .load(AppController.base_image_url + array_image.get(counter))
-                        .transform(new BlurTransformation(Story_activity.this, 25, 1))
+                        .transform(new BlurTransformation(Story_activity.this, 5, 500))
                         .into(backgrd);
             }
 
@@ -292,11 +292,12 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                         } else {
                             webView.setVisibility(View.GONE);
                             image.setVisibility(View.VISIBLE);
-                            Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
                             Picasso.get()
                                     .load(AppController.base_image_url + array_image.get(0))
-                                    .transform(new BlurTransformation(Story_activity.this, 500, 1))
+                                    .transform(new BlurTransformation(Story_activity.this, 5, 500))
                                     .into(backgrd);
+                            Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
+
                         }
                         // below is the view for going to the previous story.
                         // initializing our previous view.
