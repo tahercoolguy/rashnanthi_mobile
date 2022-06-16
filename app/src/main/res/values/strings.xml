@@ -208,6 +208,11 @@
     <string name="wed">Wed</string>
     <string name="thr">Thr</string>
     <string name="the_post_under_review">The post is under review and will be live after Approval</string>
+    <string name="image_deleted">"image item deleted succesfully"</string>
+    <string name="image_does_not_exist">"image data does not exist"</string>
+    <string name="image_does_not_deleted">"image data does not deleted"</string>
+    <string name="you_liked_it">You Liked it</string>
+    <string name="you_unliked_liked_it">You unliked it</string>
 
 
 </resources>

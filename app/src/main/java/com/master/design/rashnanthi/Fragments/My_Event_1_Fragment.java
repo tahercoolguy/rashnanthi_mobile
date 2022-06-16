@@ -201,9 +201,10 @@ public class My_Event_1_Fragment extends Fragment {
 
                         if (countryid != null) {
                             my_event_Rcv.setVisibility(View.VISIBLE);
-                            Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(context, myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+                            Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getActivity(), myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
                             my_event_Rcv.setLayoutManager(linearLayoutManager);
+                            adapter_my_event_1.notifyDataSetChanged();
                             my_event_Rcv.setAdapter(adapter_my_event_1);
                         } else {
                             Helper.showToast(context, getString(R.string.select_country_for_see_post));

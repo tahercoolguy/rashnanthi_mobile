@@ -307,7 +307,7 @@ public class Coach_Fragment extends Fragment {
                         coach_Rcv.setHasFixedSize(true);
                         coach_Rcv.setAdapter(adapter1);
                     } else
-                        Helper.showToast(context, getString(R.string.some_netork_happened));
+                        Helper.showToast(context, "No Post Presents");
                 }
 
                 @Override

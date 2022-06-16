@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Adapter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import com.master.design.rashnanthi.Activity.ImageActicity;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.DeleteEventImageRootDM;
 import com.master.design.rashnanthi.DataModel.DeleteEventRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventData;
 import com.master.design.rashnanthi.DataModel.MyEventData1;
@@ -50,7 +52,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.ViewHolder> {
-    private Context context;
+    private Activity context;
     private ArrayList<MyEventData1> myEventData;
     private ArrayList<MyEventImageData1> myEventImageData1ArrayList;
     Dialog progress;
@@ -63,7 +65,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
     int selectedPosition = 0;
 
-    public Adapter_MY_Event_1(Context context, ArrayList<MyEventData1> myEventData, ArrayList<MyEventImageData1> myEventImageData1ArrayList) {
+    public Adapter_MY_Event_1(Activity context, ArrayList<MyEventData1> myEventData, ArrayList<MyEventImageData1> myEventImageData1ArrayList) {
         this.context = context;
         this.myEventData = myEventData;
         this.myEventImageData1ArrayList = myEventImageData1ArrayList;
@@ -112,6 +114,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         if (myEventData.get(position).getImagedata() != null)
             for (MyEventImageData1 myEventImageData1 : myEventData.get(position).getImagedata()
             ) {
+
                 img.add(myEventImageData1.getImage());
             }
 
@@ -134,12 +137,6 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 //            }else
 //                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
 //        }
-
-
-
-
-
-
 
 
         if (img.size() >= 4) {
@@ -222,13 +219,17 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             }
 
 
+            viewHolder.img_4.setVisibility(View.GONE);
+
+            viewHolder.delete_Img4.setVisibility(View.GONE);
+
 //            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
 //            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
 //            Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
         }
 
         if (img.size() >= 2) {
-             if (img.get(0).contains(".mp4")) {
+            if (img.get(0).contains(".mp4")) {
                 viewHolder.webview1.setVisibility(View.VISIBLE);
                 viewHolder.img_1.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(0));
@@ -246,8 +247,16 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             } else {
                 Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
             }
-//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
-//            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+
+            viewHolder.img_3.setVisibility(View.GONE);
+            viewHolder.img_4.setVisibility(View.GONE);
+
+
+            viewHolder.delete_Img3.setVisibility(View.GONE);
+            viewHolder.delete_Img4.setVisibility(View.GONE);
+
+
+            viewHolder.linearLayout.setVisibility(View.GONE);
         }
 
         if (img.size() == 1) {
@@ -263,90 +272,217 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
             }
 
-//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+            viewHolder.img_2.setVisibility(View.GONE);
+            viewHolder.img_3.setVisibility(View.GONE);
+            viewHolder.img_4.setVisibility(View.GONE);
+
+
+            viewHolder.delete_Img4.setVisibility(View.GONE);
+            viewHolder.delete_Img3.setVisibility(View.GONE);
+            viewHolder.delete_Img2.setVisibility(View.GONE);
+            viewHolder.linearLayout.setVisibility(View.GONE);
+
+            //            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
         }
 
 //            myEventData.get(position).getImagedata().get(position).getImagevideo();
 
-//        viewHolder.delete_Img1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (connectionDetector.isConnectingToInternet()) {
-//                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
-//
-//                    appController.paServices.DeletEvent(myEventData.get(position).getId(), new Callback<DeleteEventRootDM>() {
-//                        @Override
-//                        public void success(DeleteEventRootDM deleteEventRootDM, Response response) {
-//                            progress.dismiss();
-//                            if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//
-//                                myEventData.remove(position);
-//                                notifyItemRemoved(position);
-//                                notifyDataSetChanged();
-//                                Helper.showToast(context, "item deleted succesfully");
-//
-//
-////                                openHelper.deleteProduct(shoppingCart.getId());
-////                                shoppingCartList.remove(position);
-////                                notifyItemRemoved(position);
-//
-//                            } else
-//                                Helper.showToast(context, "item does not deleted");
-//                        }
-//
-//                        @Override
-//                        public void failure(RetrofitError retrofitError) {
-//                            progress.dismiss();
-//                            Log.e("error", retrofitError.toString());
-//
-//                        }
-//                    });
-//                } else
-//                    Helper.showToast(context, String.valueOf(R.string.no_internet_connection));
-//
-//
-//            }
-//        });
+
+        viewHolder.delete_Img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (connectionDetector.isConnectingToInternet()) {
+                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
+                    String imgid1 = myEventData.get(position).getImagedata().get(0).getId();
+
+                    if (imgid1 != null)
+                        appController.paServices.DeleteEventImage(imgid1, new Callback<DeleteEventImageRootDM>() {
+                            @Override
+                            public void success(DeleteEventImageRootDM deleteEventImageRootDM, Response response) {
+                                progress.dismiss();
+                                if (deleteEventImageRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                                    if (viewHolder.img_1 != null) {
 
 
-//        viewHolder.delete_Img2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (connectionDetector.isConnectingToInternet()) {
-//                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
-//
-//                    appController.paServices.DeletEvent(myEventData.get(position).getId(), new Callback<DeleteEventRootDM>() {
-//                        @Override
-//                        public void success(DeleteEventRootDM deleteEventRootDM, Response response) {
-//                            progress.dismiss();
-//                            if (deleteEventRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//
-//                                myEventData.remove(position);
+                                        if (!myEventData.isEmpty()) {
+                                            myEventData.remove(position);
+                                            notifyItemRemoved(position);
+                                            notifyDataSetChanged();
+                                            Helper.showToast(context, context.getString(R.string.image_deleted));
+                                        } else {
+                                            Helper.showToast(context, context.getString(R.string.image_does_not_exist));
+                                        }
+                                    }
+                                    notifyDataSetChanged();
+//                                openHelper.deleteProduct(shoppingCart.getId());
+//                                shoppingCartList.remove(position);
 //                                notifyItemRemoved(position);
-//                                notifyDataSetChanged();
-//                                Helper.showToast(context, "item deleted succesfully");
-//
-//
-////                                openHelper.deleteProduct(shoppingCart.getId());
-////                                shoppingCartList.remove(position);
-////                                notifyItemRemoved(position);
-//
-//                            } else
-//                                Helper.showToast(context, "item does not deleted");
-//                        }
-//
-//                        @Override
-//                        public void failure(RetrofitError retrofitError) {
-//                            progress.dismiss();
-//                            Log.e("error", retrofitError.toString());
-//
-//                        }
-//                    });
-//                } else
-//                    Helper.showToast(context, String.valueOf(R.string.no_internet_connection));
-//            }
-//
-//        });
+
+                                } else
+                                    Helper.showToast(context, context.getString(R.string.image_does_not_deleted));
+                            }
+
+                            @Override
+                            public void failure(RetrofitError retrofitError) {
+                                progress.dismiss();
+                                Log.e("error", retrofitError.toString());
+
+                            }
+                        });
+                } else
+                    Helper.showToast(context, context.getString(R.string.no_internet_connection));
+
+
+            }
+        });
+        viewHolder.delete_Img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (connectionDetector.isConnectingToInternet()) {
+                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
+                    String imgid2 = myEventData.get(position).getImagedata().get(1).getId();
+
+                    if (imgid2 != null)
+                        appController.paServices.DeleteEventImage(imgid2, new Callback<DeleteEventImageRootDM>() {
+                            @Override
+                            public void success(DeleteEventImageRootDM deleteEventImageRootDM, Response response) {
+                                progress.dismiss();
+                                if (deleteEventImageRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                                    if (viewHolder.img_2 != null) {
+                                        if (!myEventData.isEmpty()) {
+                                            myEventData.remove(position);
+                                            notifyItemRemoved(position);
+                                            notifyDataSetChanged();
+                                            Helper.showToast(context, context.getString(R.string.image_deleted));
+                                        } else {
+                                            Helper.showToast(context, context.getString(R.string.image_does_not_exist));
+                                        }
+                                    }
+                                    notifyDataSetChanged();
+
+
+//                                openHelper.deleteProduct(shoppingCart.getId());
+//                                shoppingCartList.remove(position);
+//                                notifyItemRemoved(position);
+
+                                } else
+                                    Helper.showToast(context, context.getString(R.string.image_does_not_deleted));
+                            }
+
+                            @Override
+                            public void failure(RetrofitError retrofitError) {
+                                progress.dismiss();
+                                Log.e("error", retrofitError.toString());
+
+                            }
+                        });
+                } else
+                    Helper.showToast(context, String.valueOf(R.string.no_internet_connection));
+
+
+            }
+        });
+        viewHolder.delete_Img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (connectionDetector.isConnectingToInternet()) {
+                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
+                    String imgid3 = myEventData.get(position).getImagedata().get(2).getId();
+                    if (imgid3 != null)
+                        appController.paServices.DeleteEventImage(imgid3, new Callback<DeleteEventImageRootDM>() {
+                            @Override
+                            public void success(DeleteEventImageRootDM deleteEventImageRootDM, Response response) {
+                                progress.dismiss();
+                                if (deleteEventImageRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                                    if (viewHolder.img_3 != null) {
+
+                                        if (!myEventData.isEmpty()) {
+                                            myEventData.remove(position);
+                                            notifyItemRemoved(position);
+                                            notifyDataSetChanged();
+                                            Helper.showToast(context, context.getString(R.string.image_deleted));
+                                        } else {
+                                            Helper.showToast(context, context.getString(R.string.image_does_not_exist));
+                                        }
+                                    }
+                                    notifyDataSetChanged();
+
+
+//                                openHelper.deleteProduct(shoppingCart.getId());
+//                                shoppingCartList.remove(position);
+//                                notifyItemRemoved(position);
+
+                                } else
+                                    Helper.showToast(context, context.getString(R.string.image_does_not_deleted));
+                            }
+
+                            @Override
+                            public void failure(RetrofitError retrofitError) {
+                                progress.dismiss();
+                                Log.e("error", retrofitError.toString());
+
+                            }
+                        });
+                } else
+                    Helper.showToast(context, String.valueOf(R.string.no_internet_connection));
+
+
+            }
+        });
+        viewHolder.delete_Img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (connectionDetector.isConnectingToInternet()) {
+                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
+                    String imgid4 = myEventData.get(position).getImagedata().get(3).getId();
+
+                    if (imgid4 != null)
+                        appController.paServices.DeleteEventImage(imgid4, new Callback<DeleteEventImageRootDM>() {
+                            @Override
+                            public void success(DeleteEventImageRootDM deleteEventImageRootDM, Response response) {
+                                progress.dismiss();
+                                if (deleteEventImageRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                                    if (viewHolder.img_4 != null) {
+
+
+                                        if (!myEventData.isEmpty()) {
+                                            myEventData.remove(position);
+                                            notifyItemRemoved(position);
+                                            notifyDataSetChanged();
+                                            Helper.showToast(context, context.getString(R.string.image_deleted));
+                                        } else {
+                                            Helper.showToast(context, context.getString(R.string.image_does_not_exist));
+                                        }
+
+                                    }
+                                    notifyDataSetChanged();
+
+
+//                                openHelper.deleteProduct(shoppingCart.getId());
+//                                shoppingCartList.remove(position);
+//                                notifyItemRemoved(position);
+
+                                } else
+                                    Helper.showToast(context, context.getString(R.string.image_does_not_deleted));
+                            }
+
+                            @Override
+                            public void failure(RetrofitError retrofitError) {
+                                progress.dismiss();
+                                Log.e("error", retrofitError.toString());
+
+                            }
+                        });
+                } else
+                    Helper.showToast(context, context.getString(R.string.no_internet_connection));
+
+
+            }
+        });
 
         viewHolder.delete_Img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -363,7 +499,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                                 myEventData.remove(position);
                                 notifyItemRemoved(position);
                                 notifyDataSetChanged();
-                                Helper.showToast(context, "item deleted succesfully");
+                                Helper.showToast(context, context.getString(R.string.image_deleted));
 
 
 //                                openHelper.deleteProduct(shoppingCart.getId());
@@ -371,7 +507,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 //                                notifyItemRemoved(position);
 
                             } else
-                                Helper.showToast(context, "item does not deleted");
+                                Helper.showToast(context, context.getString(R.string.image_does_not_deleted));
                         }
 
                         @Override
@@ -382,7 +518,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                         }
                     });
                 } else
-                    Helper.showToast(context, String.valueOf(R.string.no_internet_connection));
+                    Helper.showToast(context, context.getString(R.string.no_internet_connection));
             }
         });
 
@@ -401,7 +537,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     Intent intent = new Intent(context, Activity_Add_Event_1.class);
 
                     try {
-                         intent.putExtra("image1", img.get(0));
+                        intent.putExtra("image1", img.get(0));
                         intent.putExtra("image2", img.get(1));
                         intent.putExtra("image3", img.get(2));
                         intent.putExtra("image4", img.get(3));
@@ -423,16 +559,19 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
                     intent.putExtra("status", myEventData.get(position).getStatus());
                     intent.putExtra("postedby", myEventData.get(position).getPostedby());
+                    intent.putExtra("editstoryimgid", myEventData.get(position).getImagedata().get(position).getId());
+                    intent.putExtra("editeventimgid", myEventData.get(position).getImagedata().get(position).getId());
+
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 } else {
                     Intent intent = new Intent(context, Add_new_post_1.class);
 
                     try {
-                        intent.putExtra("image1", myEventData.get(position).getImage());
-                        intent.putExtra("image2", myEventData.get(position).getImage());
-                        intent.putExtra("image3", myEventData.get(position).getImage());
-                        intent.putExtra("image4", myEventData.get(position).getImage());
+                        intent.putExtra("image1", myEventData.get(0).getImage());
+                        intent.putExtra("image2", myEventData.get(1).getImage());
+                        intent.putExtra("image3", myEventData.get(2).getImage());
+                        intent.putExtra("image4", myEventData.get(3).getImage());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -449,6 +588,10 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
                     intent.putExtra("status", myEventData.get(position).getStatus());
                     intent.putExtra("postedby", myEventData.get(position).getPostedby());
+
+                    intent.putExtra("editstoryimgid", myEventData.get(position).getImagedata().get(position).getId());
+                    intent.putExtra("editeventimgid", myEventData.get(position).getImagedata().get(position).getId());
+
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
@@ -461,10 +604,11 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView date_time;
-        private ImageView  edit_img, delete_Img, delete_Img1, delete_Img2, delete_Img3, delete_Img4;
+        private ImageView edit_img, delete_Img, delete_Img1, delete_Img2, delete_Img3, delete_Img4;
         private RoundedImageView img_1, img_2, img_3, img_4;
         private LinearLayout ll;
         private WebView webview1, webview2, webview3, webview4;
+        private LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -484,7 +628,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             webview3 = itemView.findViewById(R.id.webview3);
             webview4 = itemView.findViewById(R.id.webview4);
             ll = itemView.findViewById(R.id.LL);
-
+            linearLayout = itemView.findViewById(R.id.lin2);
         }
     }
 }

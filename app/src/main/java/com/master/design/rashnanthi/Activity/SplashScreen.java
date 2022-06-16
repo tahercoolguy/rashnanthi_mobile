@@ -111,18 +111,18 @@ public class SplashScreen extends AppCompatActivity {
         view.setVideoURI(Uri.parse(path));
         view.start();
         connectionDetector = new ConnectionDetector(SplashScreen.this);
-        if (connectionDetector.isConnectingToInternet()) {
-
-        } else {
-//            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
-            DialogUtil.showDialogSingleButton(getApplicationContext(), R.drawable.splash_screen_logo, getString(R.string.are_you_sure_you_want_to_exit_the_app), getString(R.string.no_internet_connection), getString(R.string.ok), new DialogUtil.CallBack() {
-                @Override
-                public void onDismiss(boolean isPressedOK) {
-
-                }
-            });
-
-        }
+//        if (connectionDetector.isConnectingToInternet()) {
+//
+//        } else {
+////            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+//            DialogUtil.showDialogSingleButton(getApplicationContext(), R.drawable.splash_screen_logo, getString(R.string.are_you_sure_you_want_to_exit_the_app), getString(R.string.no_internet_connection), getString(R.string.ok), new DialogUtil.CallBack() {
+//                @Override
+//                public void onDismiss(boolean isPressedOK) {
+//
+//                }
+//            });
+//
+//        }
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("Android Token", "Refreshed token: " + refreshedToken);
         try {

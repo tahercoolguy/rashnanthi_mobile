@@ -1,16 +1,20 @@
 package com.master.design.rashnanthi.Adapter;
 
+import static com.master.design.rashnanthi.Controller.AppController.TAG;
+
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -18,26 +22,35 @@ import com.master.design.rashnanthi.Activity.Story_activity;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.GetCoachByCountryData;
 import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
+import com.master.design.rashnanthi.DataModel.LikeCoachRootDM;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach__grid_Fgmt.ViewHolder> {
     private Context context;
     private ArrayList<GetCoachByCountryData> getCoachsByCountryRootDMArrayList;
     User user;
+    ConnectionDetector connectionDetector;
+    AppController appController;
     String Snapchat, Instagram, Whatsapp, Website, WhatsappCountryCode;
-
+    String likestatus;
     int selectedPosition = 0;
 
     public Adapter_Coach__grid_Fgmt(Context context, ArrayList<GetCoachByCountryData> GetCoachsByCountryRootDMArrayList) {
         this.context = context;
         this.getCoachsByCountryRootDMArrayList = GetCoachsByCountryRootDMArrayList;
         user = new User(context);
-
+        appController = (AppController) context.getApplicationContext();
+        connectionDetector = new ConnectionDetector(context);
     }
 
 
@@ -80,21 +93,21 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
         Snapchat = getCoachsByCountryRootDMArrayList.get(position).getSnapchat();
         WhatsappCountryCode = getCoachsByCountryRootDMArrayList.get(position).getWhatscountrycode();
 
-        if(Instagram != null)
+        if (Instagram != null)
             if (Instagram.equalsIgnoreCase("")) {
                 viewHolder.instaimg.setVisibility(View.GONE);
             } else {
                 viewHolder.instaimg.setVisibility(View.VISIBLE);
             }
 
-        if(Whatsapp != null)
+        if (Whatsapp != null)
             if (Whatsapp.equalsIgnoreCase("")) {
                 viewHolder.whatsappIMg.setVisibility(View.GONE);
             } else {
                 viewHolder.whatsappIMg.setVisibility(View.VISIBLE);
             }
 
-        if(Snapchat != null)
+        if (Snapchat != null)
             if (Snapchat.equalsIgnoreCase("")) {
                 viewHolder.snapchatimg.setVisibility(View.GONE);
             } else {
@@ -154,63 +167,85 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
             }
         });
-
-
-        viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
+        
+        viewHolder.like_coach_grid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
-                liked = true;
-                unliked = true;
-                LikedUnliked();
-
+                 viewHolder.like_coach_grid_red.setVisibility(View.VISIBLE);
+                 viewHolder.like_coach_grid.setVisibility(View.GONE);
+                 likestatus="1";
+                 liKeAPI();
             }
 
-            boolean liked = false;
-            boolean unliked = false;
+        }); viewHolder.like_coach_grid_red.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            public void LikedUnliked() {
-
-                if (liked) {
-                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_red);
-                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
-
-                }
-                if (unliked) {
-                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_black);
-                    viewHolder.imageView1.setImageResource(R.drawable.ic_heart_red);
-
-                }
+               viewHolder.like_coach_grid.setVisibility(View.VISIBLE);
+               viewHolder.like_coach_grid_red.setVisibility(View.GONE);
+               likestatus="0";
+               liKeAPI();
             }
 
         });
 
 
-//        viewHolder.circle_imgview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent i = new Intent(context, Story_activity.class);
-//                context.startActivity(i);
-//            }
-//
-//        });
-
 
     }
 
 
+    public void liKeAPI() {
+        if (connectionDetector.isConnectingToInternet()) {
+//            dialog = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
+
+            String userId = String.valueOf(user.getId());
+            String coachId = user.getCreatorcoach();
+
+            appController.paServices.LikeCoach(coachId, userId, likestatus, new Callback<LikeCoachRootDM>() {
+                @Override
+                public void success(LikeCoachRootDM likeCoachRootDM, Response response) {
+//                    dialog.dismiss();
+                    if (likeCoachRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+//                        if(likestatus.equalsIgnoreCase("1")){
+//                            Helper.showToast(context,context.getString(R.string.you_liked_it));
+//
+//                        }else{
+//                            Helper.showToast(context,context.getString(R.string.you_unliked_liked_it));
+//
+//                        }
+
+
+                    } else {
+
+                    }
+
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+//                    dialog.dismiss();
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(context, context.getString(R.string.no_internet_connection));
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView1, whatsappIMg, snapchatimg, instaimg;
+        ImageView like_coach_grid,like_coach_grid_red, whatsappIMg, snapchatimg, instaimg;
         de.hdodenhof.circleimageview.CircleImageView circle_imgview;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             circle_imgview = itemView.findViewById(R.id.coach_grid_img);
-            imageView1 = itemView.findViewById(R.id.like_coach_grid);
+            like_coach_grid = itemView.findViewById(R.id.like_coach_grid);
+            like_coach_grid_red = itemView.findViewById(R.id.like_coach_grid_red);
             whatsappIMg = itemView.findViewById(R.id.whatsappIMg);
             snapchatimg = itemView.findViewById(R.id.snapchatImg);
             instaimg = itemView.findViewById(R.id.instaImg);

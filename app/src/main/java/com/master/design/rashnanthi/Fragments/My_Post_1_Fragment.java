@@ -2,6 +2,7 @@ package com.master.design.rashnanthi.Fragments;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -53,7 +54,7 @@ import retrofit.client.Response;
 public class My_Post_1_Fragment extends Fragment {
 
     private View rootView;
-    private Context context;
+    private Activity context;
      User user;
     ImageView back_my_event;
     RecyclerView my_event_Rcv;
@@ -103,7 +104,11 @@ public class My_Post_1_Fragment extends Fragment {
             back_my_event.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MainActivity) context).addFragment(new Coach_Account_Fragment(), false);
+                    if(user.getCreatorcoach().equalsIgnoreCase("1"))
+                        ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
+
+                    else
+                        ((MainActivity) context).addFragment(new Coach_Account_Fragment(), false);
 
                 }
             });
@@ -177,9 +182,10 @@ public class My_Post_1_Fragment extends Fragment {
 
                         if(countryid!=null){
                             my_event_Rcv.setVisibility(View.VISIBLE);
-                            Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(context, myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
+                            Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getActivity(), myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
                             my_event_Rcv.setLayoutManager(linearLayoutManager);
+                            adapter_my_event_1.notifyDataSetChanged();
                             my_event_Rcv.setAdapter(adapter_my_event_1);
 
                         }else {
@@ -210,7 +216,7 @@ public class My_Post_1_Fragment extends Fragment {
                 @Override
                 public void success(CountryRootDM countryRootDM, Response response) {
                      if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                        context = getApplicationContext();
+                        context = getActivity();
                          Picasso.get().load(AppController.base_image_url +countryRootDM.getOutput().getData().get(0).getImage()).into(countryImg);
 
                          if (user.getLanguageCode().equalsIgnoreCase("en")) {

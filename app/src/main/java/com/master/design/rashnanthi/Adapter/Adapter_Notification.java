@@ -62,7 +62,15 @@ public class Adapter_Notification extends RecyclerView.Adapter<Adapter_Notificat
     private void setDetails(Adapter_Notification.ViewHolder viewHolder, int position) {
 //        Picasso.with(context).load(arrayList.get(position).getImage_file()).into(viewHolder.img);
         viewHolder.time.setText(myNotificationOutputDataArrayList.get(position).getDate());
-        viewHolder.tittle.setText("");
+
+
+        if(user.getLanguageCode().equalsIgnoreCase("en")){
+            viewHolder.tittle.setText("Rashnanthi");
+
+        }else{
+            viewHolder.tittle.setText(R.string.app_name);
+
+        }
 
         viewHolder.messege.setText(myNotificationOutputDataArrayList.get(position).getMessage());
 

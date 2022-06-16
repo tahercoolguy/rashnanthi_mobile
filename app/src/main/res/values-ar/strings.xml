@@ -172,5 +172,9 @@
     <string name="wed">الأربعاء  </string>
     <string name="thr">الخميس </string>
     <string name="the_post_under_review">الإعلان الآن قيد المراجعة وسيتم تحميله بعد الموافقه عليه</string>
-
+    <string name="image_deleted">"تم حذف عنصر الصورة بنجاح"</string>
+    <string name="image_does_not_exist">"بيانات الصورة غير موجودة"</string>
+    <string name="image_does_not_deleted">"لا يتم حذف بيانات الصورة"</string>
+    <string name="you_liked_it">لقد أحببت ذلك</string>
+    <string name="you_unliked_liked_it">أنت كرهته</string>
 </resources>

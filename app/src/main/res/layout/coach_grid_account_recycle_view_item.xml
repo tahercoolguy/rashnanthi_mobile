@@ -55,15 +55,27 @@
 <!--                app:riv_corner_radius_top_left="100dp"-->
 <!--                app:riv_corner_radius_top_right="100dp" />-->
 
-            <ImageView
-                android:id="@+id/like_coach_grid"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="70dp"
                 android:layout_marginRight="2dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/toggle_like_red_black"></ImageView>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/like_coach_grid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:src="@drawable/ic_heart_black"></ImageView>
+                <ImageView
+                    android:id="@+id/like_coach_grid_red"
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_heart_red"></ImageView>
+
+            </RelativeLayout>
+
 
 
 

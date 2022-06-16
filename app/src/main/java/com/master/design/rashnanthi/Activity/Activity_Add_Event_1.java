@@ -57,6 +57,7 @@ import com.master.design.rashnanthi.DataModel.Country_NameDM;
 import com.master.design.rashnanthi.DataModel.EditEventRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventData;
+import com.master.design.rashnanthi.Fragments.Calender_Fragment;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
@@ -103,15 +104,15 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
-
+Activity context;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
-    String currentDateandTime ;
+    String currentDateandTime;
 
     private static final int IMAGE_PICKER_SELECT1 = 1;
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1, image2,image3,image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
+    String image1, image2, image3, image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
 
     MyEventData myEventData1;
     String CountryId = "1", Free, Paid;
@@ -300,6 +301,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 //        startActivity(new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class));
     }
+
     @OnClick(R.id.add_event_pay_back)
     public void back() {
 
@@ -417,7 +419,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             ad_more_eventtLL.setVisibility(View.VISIBLE);
             add_more_eventBtn.setVisibility(View.VISIBLE);
 
-            if(status!=null){
+            if (status != null) {
                 pay_now_Btn.setVisibility(View.GONE);
                 post_for_free_nowBtn.setVisibility(View.GONE);
                 edit_post_Btn.setVisibility(View.VISIBLE);
@@ -466,17 +468,19 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         eventid = getIntent().getStringExtra("eventid");
         snapchat = getIntent().getStringExtra("snapchat");
         postedby = getIntent().getStringExtra("postedby");
+        editimage0id = getIntent().getStringExtra("editstoryimgid");
+        editimage1id = getIntent().getStringExtra("editeventimgid");
 
         if (image1 != null) {
 //            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
             if (image1.contains(".mp4")) {
-                 vd1.setVisibility(View.VISIBLE);
+                vd1.setVisibility(View.VISIBLE);
                 img1.setVisibility(View.GONE);
                 Uri uri = Uri.parse(image1);
                 vd1.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd1.start();
 //                loadUrl(AppController.base_image_url + uri);
-            }else{
+            } else {
                 Picasso.get().load(AppController.base_image_url + image1).into(img1);
 
             }
@@ -490,11 +494,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 vd2.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd2.start();
 //                loadUrl(AppController.base_image_url + uri);
-            }else{
+            } else {
                 Picasso.get().load(AppController.base_image_url + image2).into(img2);
 
             }
-        } if (image3 != null) {
+        }
+        if (image3 != null) {
 
             if (image3.contains(".mp4")) {
                 vd3.setVisibility(View.VISIBLE);
@@ -503,13 +508,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 vd3.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd3.start();
 //                loadUrl(AppController.base_image_url + uri);
-            }else{
+            } else {
                 Picasso.get().load(AppController.base_image_url + image3).into(img3);
 
 
             }
 
-        } if (image4 != null) {
+        }
+        if (image4 != null) {
             if (image4.contains(".mp4")) {
                 vd4.setVisibility(View.VISIBLE);
                 img4.setVisibility(View.GONE);
@@ -517,9 +523,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 vd4.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd4.start();
 //                loadUrl(AppController.base_image_url + uri);
-            }else{
+            } else {
                 Picasso.get().load(AppController.base_image_url + image4).into(img4);
-
 
 
             }
@@ -580,26 +585,22 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
+            multipartTypedOutput.addPart("eventid", new TypedString(eventid));
+            multipartTypedOutput.addPart("editstoryimgid[0]", new TypedString(editimage0id));
+            multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(editimage1id));
+//            multipartTypedOutput.addPart("editstoryimgid[1]", new TypedString(editimage0id));
+//            multipartTypedOutput.addPart("editeventimgid[1]", new TypedString(editimage1id));
             multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
             multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
             multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
-            multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
-            multipartTypedOutput.addPart("postedby", new TypedString(id));
-            multipartTypedOutput.addPart("creatorcoach", new TypedString(creatorcoach));
+            multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
+            multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
             multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
-            multipartTypedOutput.addPart("status", new TypedString(status));
-            multipartTypedOutput.addPart("eventid", new TypedString(eventid));
-            multipartTypedOutput.addPart("editimageid[]", new TypedString("1"));
-
-//            if (iffree != false) {
-//                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-//
-//            }
-//            if (ifpaid != false) {
-//                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
-//            }
+            multipartTypedOutput.addPart("postedby", new TypedString(id));
+            multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
+            multipartTypedOutput.addPart("payorfree", new TypedString(payorfree));
 
 
             try {
@@ -626,8 +627,17 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image1")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("storyphotovideo[]", new TypedFile("image/jpg", resizedImage));
+                    multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("image/jpg", resizedImage));
                 }
+
+                if (v1) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video1));
+
+
+                    multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                }
+
+
                 if (ifimg2) {
                     File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp1.jpg");
                     f.createNewFile();
@@ -651,8 +661,17 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image2")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[]", new TypedFile("image/jpg", resizedImage1));
+                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage1));
                 }
+
+                if (v2) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video2));
+
+
+                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                }
+
+
                 if (ifimg3) {
                     File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp2.jpg");
                     f.createNewFile();
@@ -676,7 +695,15 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image3")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("storyphotovideo[]", new TypedFile("image/jpg", resizedImage2));
+                    multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("image/jpg", resizedImage2));
+                }
+
+
+                if (v3) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video3));
+
+
+                    multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("video/mp4", imageFile));
                 }
 
                 if (ifimg4) {
@@ -702,9 +729,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setOutputFilename("resized_image4")
                             .setSourceImage(f)
                             .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[]", new TypedFile("image/jpg", resizedImage3));
+                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage3));
                 }
+                if (v4) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video4));
 
+
+                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                }
             } catch (Exception e) {
                 Log.e("Error", e.toString());
             }
@@ -976,7 +1008,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                                 if (iffree != false) {
-                                    Helper.showToast(Activity_Add_Event_1.this,  getString(R.string.the_post_under_review));
+                                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.the_post_under_review));
                                     Activity_Add_Event_1.this.finish();
 
                                 }
@@ -1279,28 +1311,35 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         imgClicked = 4;
         OpenImage();
     }
+
     @OnClick(R.id.vd1)
     public void setVd1() {
         imgClicked = 1;
 
         OpenImage();
-    } @OnClick(R.id.vd2)
+    }
+
+    @OnClick(R.id.vd2)
     public void setVd2() {
         imgClicked = 2;
 
         OpenImage();
-    }@OnClick(R.id.vd3)
+    }
+
+    @OnClick(R.id.vd3)
     public void setVd3() {
         imgClicked = 3;
 
         OpenImage();
     }
+
     @OnClick(R.id.vd4)
     public void setVd4() {
         imgClicked = 4;
 
         OpenImage();
     }
+
     public void OpenImage() {
         Dexter.withActivity(Activity_Add_Event_1.this)
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -1520,7 +1559,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
                     } else if (imgClicked == 4) {
                         img4.setImageBitmap(bitmap);
-                        ifimg4= true;
+                        ifimg4 = true;
                     }
                     // loading profile image from local cache
 

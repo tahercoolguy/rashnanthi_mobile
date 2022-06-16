@@ -98,7 +98,11 @@ public class Edit_Profile_Fragment extends Fragment {
 
     @OnClick(R.id.backImg)
     public void Back() {
-        ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
+        if(user.getCreatorcoach().equalsIgnoreCase("1"))
+            ((MainActivity) context).addFragment(new My_Account_Fragment(), false);
+
+        else
+            ((MainActivity) context).addFragment(new Coach_Account_Fragment(), false);
     }
 
     BottomForAll bottomForAll;
