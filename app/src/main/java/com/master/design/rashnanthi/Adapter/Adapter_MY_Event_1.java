@@ -306,9 +306,11 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
 
                                         if (!myEventData.isEmpty()) {
-                                            myEventData.remove(position);
-                                            notifyItemRemoved(position);
-                                            notifyDataSetChanged();
+//                                            myEventData.remove(position);
+//                                            notifyItemRemoved(position);
+//                                            notifyDataSetChanged();
+                                            viewHolder.img_1.setVisibility(View.GONE);
+                                            viewHolder.delete_Img1.setVisibility(View.GONE);
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
@@ -352,9 +354,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
                                     if (viewHolder.img_2 != null) {
                                         if (!myEventData.isEmpty()) {
-                                            myEventData.remove(position);
-                                            notifyItemRemoved(position);
-                                            notifyDataSetChanged();
+                                            viewHolder.img_2.setVisibility(View.GONE);
+                                            viewHolder.delete_Img2.setVisibility(View.GONE);
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
@@ -400,9 +401,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                                     if (viewHolder.img_3 != null) {
 
                                         if (!myEventData.isEmpty()) {
-                                            myEventData.remove(position);
-                                            notifyItemRemoved(position);
-                                            notifyDataSetChanged();
+                                            viewHolder.img_3.setVisibility(View.GONE);
+                                            viewHolder.delete_Img3.setVisibility(View.GONE);
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
@@ -450,9 +450,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
 
                                         if (!myEventData.isEmpty()) {
-                                            myEventData.remove(position);
-                                            notifyItemRemoved(position);
-                                            notifyDataSetChanged();
+                                            viewHolder.img_4.setVisibility(View.GONE);
+                                            viewHolder.delete_Img4.setVisibility(View.GONE);
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));

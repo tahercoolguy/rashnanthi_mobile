@@ -58,7 +58,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/transparent"
+
             android:orientation="horizontal">
 
             <LinearLayout
@@ -67,11 +69,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/transparent"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/story_viewer"
-                    android:layout_width="95dp"
-                    android:layout_height="95dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
 
                     android:src="@drawable/rr_img">
 
@@ -94,7 +98,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="right"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/spineer_bg"
                 android:elevation="3dp">
 

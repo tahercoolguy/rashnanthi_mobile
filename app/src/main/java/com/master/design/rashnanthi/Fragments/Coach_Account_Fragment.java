@@ -96,6 +96,8 @@ public class Coach_Account_Fragment extends Fragment {
     ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
 
+    TextView likeTxt;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -122,6 +124,8 @@ public class Coach_Account_Fragment extends Fragment {
             change_password_RL = rootView.findViewById(R.id.change_password_RL);
             edit_profile_RL = rootView.findViewById(R.id.edit_profile_RL);
             coach_menu_Back = rootView.findViewById(R.id.coach_menu_Back);
+            likeTxt = rootView.findViewById(R.id.likeTxt);
+
 
             coach_menu_Back.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -183,7 +187,7 @@ public class Coach_Account_Fragment extends Fragment {
                         account_NameTxt.setText(myProfileRootDM.getOutput().getData().get(0).getFullname());
                         Picasso.get().load(AppController.base_image_url + myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into(my_account_Img);
 
-
+                        likeTxt.setText(myProfileRootDM.getOutput().getData().get(0).getLikecount());
 //                         Picasso.get().load(myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into((ImageView) rootView.findViewById(R.id.profileImg));
 
 

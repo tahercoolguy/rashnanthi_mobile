@@ -5,6 +5,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.master.design.rashnanthi.Activity.MainActivity;
+import com.master.design.rashnanthi.Activity.SpinneerActivity;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter1;
 import com.master.design.rashnanthi.Adapter.SliderPagerAdapter1;
@@ -138,7 +140,7 @@ public class Coach_Fragment extends Fragment {
 
             Glide.with(context)
                     .asGif()
-                    .load(R.raw.icon_1)
+                    .load(R.raw.icon_celib)
                     .into(coachgridImg);
 
             coach_menu_Back = rootView.findViewById(R.id.coach_menu_Back);
@@ -290,12 +292,12 @@ public class Coach_Fragment extends Fragment {
         return rootView;
     }
 
-    public  void APIforCoach(String id)
+    public  void APIforCoach(String countryid)
     {
         if (connectionDetector.isConnectingToInternet()) {
            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("countryid", new TypedString(id));
+            multipartTypedOutput.addPart("countryid", new TypedString(countryid));
             appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
                 @Override
                 public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
@@ -322,34 +324,34 @@ public class Coach_Fragment extends Fragment {
 
 
 
-    public void GetAllCoachesWithPosts(){
-
-        if (connectionDetector.isConnectingToInternet()) {
-
-            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("countryid", new TypedString("1"));
-            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
-
-
-            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput,new Callback<CoachesWithPostsRootDM>() {
-                @Override
-                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
-                    progress.dismiss();
-                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-
-                    } else
-                        Helper.showToast(getActivity(), "Some network happened ..");
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    progress.dismiss();
-
-                    Log.e("String", error.toString());
-                }
-            });
-        }
-    }
+//    public void GetAllCoachesWithPosts(){
+//
+//        if (connectionDetector.isConnectingToInternet()) {
+//
+//            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+//            multipartTypedOutput.addPart("countryid", new TypedString("1"));
+//            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
+//
+//
+//            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput,new Callback<CoachesWithPostsRootDM>() {
+//                @Override
+//                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
+//                    progress.dismiss();
+//                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//
+//                    } else
+//                        Helper.showToast(getActivity(), "Some network happened ..");
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError error) {
+//                    progress.dismiss();
+//
+//                    Log.e("String", error.toString());
+//                }
+//            });
+//        }
+//    }
 
 
 
@@ -361,28 +363,55 @@ public class Coach_Fragment extends Fragment {
 
 
     @OnClick(R.id.spinnerCountryBottomRL)
-    public void SpinnerCountry() {
-
-        bottomForAll = new BottomForAll();
-        bottomForAll.arrayList = approvalOne;
-
-        bottomForAll.setResponseListener(new ResponseListener() {
-            @Override
-            public void response(int position, Object object) {
-
-                country_spinner_Txt.setText(data.get(position).getTitle());
-                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
-
-                APIforCoach(data.get(position).getId());
+    public void Spinnercountry() {
 
 
+        startActivityForResult(new Intent(context, SpinneerActivity.class), 48);
 
-            }
-        });
-
-
-        bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
     }
+
+
+    String countryname;
+    String countryimg;
+    String countryid="1";
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent = data;
+        if (data != null) {
+            countryname = data.getStringExtra("countryname");
+            countryimg = data.getStringExtra("countryimg");
+            countryid = data.getStringExtra("countryid");
+            Picasso.get().load(AppController.base_image_url + countryimg).into(countryImg);
+            country_spinner_Txt.setText(countryname);
+
+            APIforCoach(countryid);
+        }
+    }
+//    @OnClick(R.id.spinnerCountryBottomRL)
+//    public void SpinnerCountry() {
+//
+//        bottomForAll = new BottomForAll();
+//        bottomForAll.arrayList = approvalOne;
+//
+//        bottomForAll.setResponseListener(new ResponseListener() {
+//            @Override
+//            public void response(int position, Object object) {
+//
+//                country_spinner_Txt.setText(data.get(position).getTitle());
+//                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
+//
+//                APIforCoach(data.get(position).getId());
+//
+//
+//
+//            }
+//        });
+//
+//
+//        bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
+//    }
 
 
     ArrayList<CountryData> data = new ArrayList<>();

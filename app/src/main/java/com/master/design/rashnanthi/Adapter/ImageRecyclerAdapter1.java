@@ -53,7 +53,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     AppController appController;
     ConnectionDetector connectionDetector;
     DialogUtil dialogUtil;
-    String whatsapp, whatsappcode, instagram, snapcahat;
+    String whatsapp, whatsappcode, instagram, snapcahat,website;
     Dialog progress;
     ArrayList<CoacheswithDatam> mList;
     String id;
@@ -83,11 +83,19 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 //        holder.mName.setText(mList.get(position));
 
-        instagram = mList.get(position).getInstagram();
-        whatsapp = mList.get(position).getWhatsapnumber();
-        whatsappcode = mList.get(position).getWhatscountrycode();
-        snapcahat = mList.get(position).getSnapchat();
-
+        if(mList.get(position).getPostsdata()!=null) {
+            instagram = mList.get(position).getPostsdata().get(0).getInstagram();
+            whatsapp = mList.get(position).getPostsdata().get(0).getWhatsapnumber();
+            whatsappcode = mList.get(position).getPostsdata().get(0).getWhatsapcountrycode();
+            snapcahat = mList.get(position).getPostsdata().get(0).getSnapchat();
+            website = mList.get(position).getPostsdata().get(0).getWebsite();
+        }else {
+            instagram = mList.get(position).getInstagram();
+            whatsapp = mList.get(position).getWhatsapnumber();
+            whatsappcode = mList.get(position).getWhatscountrycode();
+            snapcahat = mList.get(position).getSnapchat();
+            website = mList.get(position).getWebsite();
+        }
         if(instagram != null)
         if (instagram.equalsIgnoreCase("")) {
             holder.insta_img.setVisibility(View.GONE);
@@ -107,6 +115,13 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
                 holder.snapchaht_Img.setVisibility(View.GONE);
             } else {
                 holder.snapchaht_Img.setVisibility(View.VISIBLE);
+            }
+
+        if(website != null)
+            if (website.equalsIgnoreCase("")) {
+                holder.web_Img.setVisibility(View.GONE);
+            } else {
+                holder.web_Img.setVisibility(View.VISIBLE);
             }
 
         ArrayList<String> km = new ArrayList<>();
@@ -265,6 +280,20 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
                 }
 
             }
+        });holder.web_Img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" +website));
+                    context.startActivity(myIntent);
+                } catch (ActivityNotFoundException e) {
+
+                    Helper.showToast(context, "No application can handle this request."
+                            + " Please install a web browser");
+                    e.printStackTrace();
+                }
+
+            }
         });
 
 
@@ -297,7 +326,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
         SliderPagerAdapter sliderPagerAdapter;
         private TextView[] dots;
         private LinearLayout ll_dots;
-        ImageView whatsapp_IMg, insta_img, snapchaht_Img;
+        ImageView whatsapp_IMg, insta_img, snapchaht_Img,web_Img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -306,6 +335,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
             whatsapp_IMg = itemView.findViewById(R.id.whatsapp_IMg);
             insta_img = itemView.findViewById(R.id.insta_img);
             snapchaht_Img = itemView.findViewById(R.id.snapchaht_Img);
+            web_Img = itemView.findViewById(R.id.web_Img);
 
 
             //            mName = itemView.findViewById(R.id.list_name);

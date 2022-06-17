@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
-
+                    android:id="@+id/likeTxt"
                     android:text="0   Like"
                     android:textColor="@color/white">
 

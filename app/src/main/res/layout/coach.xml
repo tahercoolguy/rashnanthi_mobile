@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/app_bg_color">
+    android:background="@color/white">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -120,8 +120,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="7dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="7dp"
                     android:src="@drawable/kuwaitt"></ImageView>
 

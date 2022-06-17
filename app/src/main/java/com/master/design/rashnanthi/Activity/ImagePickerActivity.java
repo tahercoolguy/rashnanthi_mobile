@@ -61,6 +61,7 @@ public class ImagePickerActivity extends AppCompatActivity {
 
         void onChooseGallerySelected();
     }
+    boolean isNotCrop=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,8 @@ public class ImagePickerActivity extends AppCompatActivity {
         setBitmapMaxWidthHeight = intent.getBooleanExtra(INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, false);
         bitmapMaxWidth = intent.getIntExtra(INTENT_BITMAP_MAX_WIDTH, bitmapMaxWidth);
         bitmapMaxHeight = intent.getIntExtra(INTENT_BITMAP_MAX_HEIGHT, bitmapMaxHeight);
+
+        isNotCrop = intent.getBooleanExtra("isNotCrop",false);
 
         int requestCode = intent.getIntExtra(INTENT_IMAGE_PICKER_OPTION, -1);
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
@@ -204,7 +207,11 @@ public class ImagePickerActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
-                    cropImage(getCacheImagePath(fileName));
+                    if(isNotCrop)
+                    {
+                        setResultOk(getCacheImagePath(fileName));
+                    }else
+                        cropImage(getCacheImagePath(fileName));
 //                    setResultOk(getCacheImagePath(fileName));
                 } else {
                     setResultCancelled();
@@ -213,7 +220,12 @@ public class ImagePickerActivity extends AppCompatActivity {
             case REQUEST_GALLERY_IMAGE:
                 if (resultCode == RESULT_OK) {
                     Uri imageUri = data.getData();
-                    cropImage(imageUri);
+//                    cropImage(imageUri);
+                    if(isNotCrop)
+                    {
+                        setResultOk(imageUri);
+                    }else
+                        cropImage(imageUri);
 //                    setResultOk(imageUri);
                 } else {
                     setResultCancelled();

@@ -21,6 +21,16 @@ public class CoacheswithDatam {
     private String snapchat;
     private String instagram;
     private String deviceid;
+    private String website;
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     private String devicetype;
     private ArrayList<CoachesWithPostsDatam> postsdata = new ArrayList<CoachesWithPostsDatam>();
     public String getId() {

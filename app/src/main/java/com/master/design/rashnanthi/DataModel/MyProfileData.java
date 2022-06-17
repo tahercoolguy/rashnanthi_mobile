@@ -21,6 +21,16 @@ public class MyProfileData {
     private String deviceid;
     private String devicetype;
 
+    private String likecount;
+
+    public String getLikecount() {
+        return likecount;
+    }
+
+    public void setLikecount(String likecount) {
+        this.likecount = likecount;
+    }
+
     public String getId() {
         return id;
     }

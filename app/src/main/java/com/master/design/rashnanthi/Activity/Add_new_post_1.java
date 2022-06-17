@@ -1151,7 +1151,7 @@ public class Add_new_post_1 extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
         intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
         intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
-
+        intent.putExtra("isNotCrop",true);
         startActivityForResult(intent, REQUEST_IMAGE);
     }
 
@@ -1165,6 +1165,8 @@ public class Add_new_post_1 extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+        intent.putExtra("isNotCrop",true);
+
         startActivityForResult(intent, REQUEST_IMAGE);
     }
 

@@ -12,7 +12,7 @@
     <string name="events_creater">مقدم الدورة</string>
     <string name="coach">مدرب</string>
     <string name="verification">تَحَقّق</string>
-    <string name="verification_pin">تم إرسال رمز التحقق المكون من 4 أرقام إلى بريدك الإلكتروني المسجل لدينا 0</string>
+    <string name="verification_pin">4 - تم إرسال رقم التعريف الشخصي إلى بريدك الإلكتروني المسجل. أدخله أدناه للمتابعة</string>
     <string name="resend_otp_timer">إعادة الإرسال خلال 00:59 ثانية</string>
     <string name="submit">إرسال</string>
     <string name="edit_number">تعديل الرقم</string>
