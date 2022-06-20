@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.icu.util.TimeZone;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bruce.pickerview.popwindow.DatePickerPopWin;
 import com.bumptech.glide.Glide;
+import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -564,7 +566,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 Dateee.setText(String.valueOf(dd));
                 Montheee.setText(String.valueOf(mth));
                 Yearrr.setText(String.valueOf(yer));
-                dateTxt.setText(yer+mth+dd);
+                dateTxt.setText(yer + mth + dd);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1085,120 +1087,163 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.dateRL)
     public void date() {
 //        CalenderDataPicker();
-        datePickerCalender();
+
 
     }
 
     @OnClick(R.id.datell)
     public void dateLL() {
 //        CalenderDataPicker();
-        datePickerCalender();
-
+//        datePickerCalender();
+        datepick();
     }
 
 
     public void datepick() {
-
-    }
-
-    public void datePickerCalender() {
-        currentDateandTime = sdf.format(Calendar.getInstance().getTime());
-        DatePickerPopWin pickerPopWin = new DatePickerPopWin.Builder(Activity_Add_Event_1.this, new DatePickerPopWin.OnDatePickedListener() {
-
-
-            @Override
-            public void onDatePickCompleted(int year, int monthOfYear, int dayOfMonth, String dateDesc) {
-
-//                Toast.makeText(Activity_Add_Event_1.this, dateDesc, Toast.LENGTH_SHORT).show();
-
-//                if ((monthOfYear + 1) <= 9) {
-//                    dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth);
-//                    if (dayOfMonth <= 9)
-//                        dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
-//
-//
-//                } else {
-//                    dateTxt.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-//                    if (dayOfMonth <= 9)
-//                        dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
-//                }
-
-                String dateeee= String.valueOf(dayOfMonth);
-                String montheeee= String.valueOf(monthOfYear);
-                String yearrrrr= String.valueOf(year);
-
-                Dateee.setText(dateeee);
-                Montheee.setText(montheeee);
-                Yearrr.setText(yearrrrr);
-                dateTxt.setText(dateDesc);
-            }
-        }).textConfirm(getString(R.string.done)) //text of confirm button
-                .textCancel(getString(R.string.cancel)) //text of cancel button
-                .btnTextSize(14) // button text size
-                .viewTextSize(1000) // pick view text size
-                .colorCancel(Color.parseColor("#CE010E")) //color of cancel button
-                .colorConfirm(Color.parseColor("#CE010E"))//color of confirm button
-                .minYear(2022) //min year in loop
-                .maxYear(2550) // max year in loop
-                .showDayMonthYear(true) // shows like dd mm yyyy (default is false)
-                .dateChose(currentDateandTime) // date chose when init popwindow
-                .build();
-
-
-        pickerPopWin.showPopWin(Activity_Add_Event_1.this);
-    }
-
-
-    public void CalenderDataPicker() {
-        // Get Current Date
-        final java.util.Calendar c = java.util.Calendar.getInstance();
-        mYear = c.get(java.util.Calendar.YEAR);
-        mMonth = c.get(java.util.Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(Activity_Add_Event_1.this,
-                new DatePickerDialog.OnDateSetListener() {
-
+        new SingleDateAndTimePickerDialog.Builder(this)
+                .bottomSheet()
+                .curved()
+                .displayMinutes(false)
+                .displayHours(false)
+                .displayDays(false)
+                .displayMonth(true)
+                .mainColor(getColor(R.color.black))
+                 .listener(new SingleDateAndTimePickerDialog.Listener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
+                    public void onDateSelected(Date date) {
+                        String inputPattern = "yyyy-MMM-dd";
+                        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+                        try {
+                            String str = inputFormat.format(date);
+                            dateTxt.setText(str);
 
-                        if ((monthOfYear + 1) <= 9) {
-                            dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth);
-                            if (dayOfMonth <= 9)
-                                dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+                            String Month = "MMM";
+                            inputFormat = new SimpleDateFormat(Month);
+                            String MonthText = inputFormat.format(date);
+                            Montheee.setText(MonthText);
 
-                        } else {
-                            dateTxt.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                            if (dayOfMonth <= 9)
-                                dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+                            String Year = "yyyy";
+                            inputFormat = new SimpleDateFormat(Year);
+                            String YearText = inputFormat.format(date);
+                            Yearrr.setText(YearText);
+
+                            String Day = "dd";
+                            inputFormat = new SimpleDateFormat(Day);
+                            String DateText = inputFormat.format(date);
+                            Dateee.setText(DateText);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
-                }, mYear, mMonth, mDay);
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-        datePickerDialog.show();
-
+                })
+                .displayYears(true)
+                .displayDaysOfMonth(true)
+                .display();
     }
 
-    public String parseDateToddMMyyyy(String time) {
-        String inputPattern = "dd-MM-yyyy";
-        String outputPattern = "dd-MMM-yyyy";
-        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
-        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
 
-        Date date = null;
-        String str = null;
+//    public void datePickerCalender() {
+//        currentDateandTime = sdf.format(Calendar.getInstance().getTime());
+//        DatePickerPopWin pickerPopWin = new DatePickerPopWin.Builder(Activity_Add_Event_1.this, new DatePickerPopWin.OnDatePickedListener() {
+//
+//
+//            @Override
+//            public void onDatePickCompleted(int year, int monthOfYear, int dayOfMonth, String dateDesc) {
+//
+////                Toast.makeText(Activity_Add_Event_1.this, dateDesc, Toast.LENGTH_SHORT).show();
+//
+////                if ((monthOfYear + 1) <= 9) {
+////                    dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth);
+////                    if (dayOfMonth <= 9)
+////                        dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+////
+////
+////                } else {
+////                    dateTxt.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+////                    if (dayOfMonth <= 9)
+////                        dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+////                }
+//
+//                String dateeee = String.valueOf(dayOfMonth);
+//                String montheeee = String.valueOf(monthOfYear);
+//                String yearrrrr = String.valueOf(year);
+//
+//
+//
+//
+//                Dateee.setText(dateeee);
+//                Montheee.setText(montheeee);
+//                Yearrr.setText(yearrrrr);
+//                dateTxt.setText(dateDesc);
+//            }
+//        }).textConfirm(getString(R.string.done)) //text of confirm button
+//                .textCancel(getString(R.string.cancel)) //text of cancel button
+//                .btnTextSize(14) // button text size
+//                .viewTextSize(1000) // pick view text size
+//                .colorCancel(Color.parseColor("#CE010E")) //color of cancel button
+//                .colorConfirm(Color.parseColor("#CE010E"))//color of confirm button
+//                .minYear(2022) //min year in loop
+//                .maxYear(2550) // max year in loop
+//                .showDayMonthYear(false) // shows like dd mm yyyy (default is false)
+//                .dateChose(currentDateandTime) // date chose when init popwindow
+//                .build();
+//
+//
+//        pickerPopWin.showPopWin(Activity_Add_Event_1.this);
+//    }
 
-        try {
-            date = inputFormat.parse(time);
-            str = outputFormat.format(date);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return str;
-    }
+//    public void CalenderDataPicker() {
+//        // Get Current Date
+//        final java.util.Calendar c = java.util.Calendar.getInstance();
+//        mYear = c.get(java.util.Calendar.YEAR);
+//        mMonth = c.get(java.util.Calendar.MONTH);
+//        mDay = c.get(Calendar.DAY_OF_MONTH);
+//
+//
+//        DatePickerDialog datePickerDialog = new DatePickerDialog(Activity_Add_Event_1.this,
+//                new DatePickerDialog.OnDateSetListener() {
+//
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year,
+//                                          int monthOfYear, int dayOfMonth) {
+//
+//                        if ((monthOfYear + 1) <= 9) {
+//                            dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth);
+//                            if (dayOfMonth <= 9)
+//                                dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+//
+//                        } else {
+//                            dateTxt.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+//                            if (dayOfMonth <= 9)
+//                                dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
+//                        }
+//                    }
+//                }, mYear, mMonth, mDay);
+//        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+//        datePickerDialog.show();
+//
+//    }
+
+//    public String parseDateToddMMyyyy(String time) {
+//        String inputPattern = "dd-MM-yyyy";
+//        String outputPattern = "dd-MMM-yyyy";
+//        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+//        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+//
+//        Date date = null;
+//        String str = null;
+//
+//        try {
+//            date = inputFormat.parse(time);
+//            str = outputFormat.format(date);
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return str;
+//    }
 
 
     BottomForAll bottomForAll;

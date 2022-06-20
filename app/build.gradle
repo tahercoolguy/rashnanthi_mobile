@@ -172,6 +172,9 @@ dependencies {
 
     implementation 'com.brucetoo.pickview:library:1.2.3'
 
+    implementation 'com.github.florent37:singledateandtimepicker:2.2.7'
+//compatible with androidX
+
 }
 apply plugin: 'com.google.gms.google-services'
 //com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

@@ -140,7 +140,7 @@ public class Coach_Fragment extends Fragment {
 
             Glide.with(context)
                     .asGif()
-                    .load(R.raw.icon_celib)
+                    .load(R.raw.coach_grid_celib)
                     .into(coachgridImg);
 
             coach_menu_Back = rootView.findViewById(R.id.coach_menu_Back);

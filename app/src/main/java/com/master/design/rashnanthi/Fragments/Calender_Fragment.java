@@ -125,7 +125,7 @@ public class Calender_Fragment extends Fragment {
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
-        ((MainActivity) context).setTitle(getString(R.string.calenderr));
+        ((MainActivity) context).setTitle(getString(R.string.home));
         dialogUtil = new DialogUtil();
 
 
@@ -146,7 +146,7 @@ public class Calender_Fragment extends Fragment {
 
             Glide.with(context)
                     .asGif()
-                    .load(R.raw.icon_2)
+                    .load(R.raw.status_icon)
                     .into(story_viewer);
 
 

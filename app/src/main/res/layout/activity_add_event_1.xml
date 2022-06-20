@@ -292,7 +292,7 @@
                         android:background="@drawable/mob_bg"
 
                         android:elevation="4dp"
-                        android:hint="1234"
+                        android:hint="12345678"
 
                         android:imeOptions="actionNext"
                         android:inputType="number"
