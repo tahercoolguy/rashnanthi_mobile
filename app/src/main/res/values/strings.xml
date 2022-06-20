@@ -77,6 +77,7 @@
     <string name="sign_in_or_sign_up">Sign In Or Sign Up</string>
     <string name="some_netork_happened">"Some network happened .."</string>
     <string name="home">Home</string>
+    <string name="calenderr">الرزنامة</string>
     <string name="no_posts">no posts</string>
     <string name="please_wait">Please Wait</string>
     <string name="done">Done</string>
@@ -178,7 +179,7 @@
 
     <string name="otp_toast">kindly enter valid otp</string>
     <string name="login_messesge">entered mobile,password or country code incorrect</string>
-    <string name="story">Story</string>
+    <string name="story">ستوري.</string>
     <string name="no_package">No package available</string>
     <string name="enter_name">kindly enter your name</string>
     <string name="enter_email">kindly enter your email</string>

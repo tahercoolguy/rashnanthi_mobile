@@ -491,7 +491,7 @@
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
                             android:background="@color/transparent"
-                            android:drawableStart="@drawable/ic_webbbbbb"
+                            android:drawableStart="@drawable/ic_web"
                             android:drawablePadding="10dp"
                             android:hint="@string/enter_website"
                             android:imeOptions="actionNext"

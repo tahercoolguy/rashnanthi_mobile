@@ -125,7 +125,7 @@ public class Calender_Fragment extends Fragment {
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
-        ((MainActivity) context).setTitle(getString(R.string.home));
+        ((MainActivity) context).setTitle(getString(R.string.calenderr));
         dialogUtil = new DialogUtil();
 
 

@@ -75,7 +75,6 @@
             android:id="@+id/snapchaht_Img"
             android:layout_width="35dp"
             android:visibility="gone"
-
             android:layout_height="35dp"
             android:layout_margin="10dp"
             android:src="@drawable/snapchat"></ImageView>
@@ -83,10 +82,9 @@
             android:id="@+id/web_Img"
             android:layout_width="35dp"
             android:visibility="gone"
-
             android:layout_height="35dp"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_webbbbbb"></ImageView>
+            android:src="@drawable/ic_web"></ImageView>
     </LinearLayout>
 
 

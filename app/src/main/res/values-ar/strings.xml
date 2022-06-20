@@ -58,6 +58,8 @@
     <string name="no_posts">ليست هناك أي مشاركات</string>
     <string name="please_wait">أرجو الإنتظار</string>
     <string name="done">تم</string>
+    <string name="calenderr">الرزنامة</string>
+
     <string name="back">خلف</string>
     <string name="are_you_sure_you_want_to_exit_the_app">هل أنت متأكد أنك تريد الخروج من التطبيق؟</string>
     <string name="terms">الشروط والأحكام</string>

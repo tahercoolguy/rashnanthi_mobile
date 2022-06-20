@@ -51,10 +51,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lin1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:id="@+id/lin1"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -75,10 +75,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
-
                         android:layout_marginTop="5dp"
+
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/image"
                         app:riv_corner_radius="5dp"></com.makeramen.roundedimageview.RoundedImageView>
 
@@ -96,7 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="20dp"
 
                         android:src="@drawable/ic_delete">
 
@@ -116,10 +118,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
-
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/image"
                         app:riv_corner_radius="5dp">
 
@@ -139,8 +141,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginEnd="10dp"
-                        
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="20dp"
+
                         android:src="@drawable/ic_delete">
 
                     </ImageView>
@@ -160,9 +163,9 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/lin2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/lin2"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -181,6 +184,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/image"
                         app:riv_corner_radius="5dp"></com.makeramen.roundedimageview.RoundedImageView>
 
@@ -198,8 +202,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginEnd="10dp"
-                        
+
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="20dp"
+
                         android:src="@drawable/ic_delete">
 
                     </ImageView>
@@ -218,10 +224,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
-
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/image"
                         app:riv_corner_radius="5dp">
 
@@ -241,8 +247,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginEnd="10dp"
-                        
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="20dp"
+
                         android:src="@drawable/ic_delete">
 
                     </ImageView>
