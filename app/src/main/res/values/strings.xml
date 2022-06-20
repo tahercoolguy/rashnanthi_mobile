@@ -179,7 +179,7 @@
 
     <string name="otp_toast">kindly enter valid otp</string>
     <string name="login_messesge">entered mobile,password or country code incorrect</string>
-    <string name="story">ستوري.</string>
+    <string name="story">Story</string>
     <string name="no_package">No package available</string>
     <string name="enter_name">kindly enter your name</string>
     <string name="enter_email">kindly enter your email</string>
@@ -214,6 +214,8 @@
     <string name="image_does_not_deleted">"image data does not deleted"</string>
     <string name="you_liked_it">You Liked it</string>
     <string name="you_unliked_liked_it">You unliked it</string>
+     <string name="month">Month</string>
+     <string name="year">Year</string>
 
 
 </resources>

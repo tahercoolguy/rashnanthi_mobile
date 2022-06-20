@@ -77,6 +77,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -104,7 +107,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
-Activity context;
+    Activity context;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
     String currentDateandTime;
 
@@ -123,6 +126,18 @@ Activity context;
     @NotEmpty
     @BindView(R.id.dateTxt)
     TextView dateTxt;
+
+    @NotEmpty
+    @BindView(R.id.dateee)
+    TextView Dateee;
+
+    @NotEmpty
+    @BindView(R.id.montheee)
+    TextView Montheee;
+
+    @NotEmpty
+    @BindView(R.id.yearrr)
+    TextView Yearrr;
 
     @NotEmpty
     @BindView(R.id.dateRL)
@@ -532,6 +547,28 @@ Activity context;
         }
         if (date != null) {
             dateTxt.setText(date);
+            String dob = date;
+
+            int mth = 0, dd = 0, yer = 0;
+
+            try {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                Date d = sdf.parse(dob);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(d);
+                mth = cal.get(Calendar.MONTH);
+                dd = cal.get(Calendar.DATE);
+                yer = cal.get(Calendar.YEAR);
+
+                Dateee.setText(String.valueOf(dd));
+                Montheee.setText(String.valueOf(mth));
+                Yearrr.setText(String.valueOf(yer));
+                dateTxt.setText(yer+mth+dd);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
         if (snapchat != null) {
@@ -1052,6 +1089,13 @@ Activity context;
 
     }
 
+    @OnClick(R.id.datell)
+    public void dateLL() {
+//        CalenderDataPicker();
+        datePickerCalender();
+
+    }
+
 
     public void datepick() {
 
@@ -1079,6 +1123,13 @@ Activity context;
 //                        dateTxt.setText(year + "-0" + (monthOfYear + 1) + "-" + "0" + dayOfMonth);
 //                }
 
+                String dateeee= String.valueOf(dayOfMonth);
+                String montheeee= String.valueOf(monthOfYear);
+                String yearrrrr= String.valueOf(year);
+
+                Dateee.setText(dateeee);
+                Montheee.setText(montheeee);
+                Yearrr.setText(yearrrrr);
                 dateTxt.setText(dateDesc);
             }
         }).textConfirm(getString(R.string.done)) //text of confirm button

@@ -89,29 +89,79 @@
                     android:text="@string/ddmmyy"></TextView>
 
 
-                <RelativeLayout
-                    android:id="@+id/dateRL"
+                <LinearLayout
+                    android:id="@+id/datell"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="23dp"
+                     android:layout_marginLeft="23dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/rounded_corner_white"
-                    android:elevation="4dp"
-                    android:padding="8dp">
+                    android:layout_marginRight="15dp">
 
                     <TextView
-                        android:id="@+id/dateTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="20dp"
-                        android:background="@color/transparent"
-                        android:hint="@string/select_date"
-                        android:lines="1"
-                        android:textSize="15sp"></TextView>
-                </RelativeLayout>
+                        android:id="@+id/dateee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/date"
+                         android:gravity="center"
+                         android:background="@drawable/date_selector_bg"
+                        android:drawableEnd="@drawable/ic_down_arrow_spinner"
+                        android:elevation="4dp"
+                        android:paddingEnd="10dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/montheee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/month"
+                        android:gravity="center"
+                        android:background="@drawable/date_selector_bg"
+                        android:drawableEnd="@drawable/ic_down_arrow_spinner"
+                        android:elevation="4dp"
+                        android:paddingEnd="10dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/yearrr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="@string/year"
+                         android:background="@drawable/date_selector_bg"
+                        android:drawableEnd="@drawable/ic_down_arrow_spinner"
+                        android:elevation="4dp"
+                        android:paddingEnd="10dp"></TextView>
+
+
+                </LinearLayout>
+
+
+                                <RelativeLayout
+                                    android:id="@+id/dateRL"
+                                    android:layout_width="match_parent"
+                                    android:visibility="gone"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="23dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginRight="15dp"
+                                    android:background="@drawable/rounded_corner_white"
+                                    android:elevation="4dp"
+                                    android:padding="8dp">
+
+                                    <TextView
+                                        android:id="@+id/dateTxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginStart="20dp"
+                                        android:background="@color/transparent"
+                                        android:hint="@string/select_date"
+                                        android:lines="1"
+                                        android:textSize="15sp"></TextView>
+                                </RelativeLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -570,7 +620,7 @@
                             android:gravity="center"
 
 
-                             android:inputType="number"
+                            android:inputType="number"
                             android:lines="1"
 
                             android:padding="15dp"
