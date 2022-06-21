@@ -1111,15 +1111,18 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                  .listener(new SingleDateAndTimePickerDialog.Listener() {
                     @Override
                     public void onDateSelected(Date date) {
-                        String inputPattern = "yyyy-MMM-dd";
+                        String inputPattern = "yyyy-MM-dd";
                         SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+                        String inputPattern2 = "yyyy-MMM-dd";
+                        SimpleDateFormat inputFormat2 = new SimpleDateFormat(inputPattern2);
                         try {
                             String str = inputFormat.format(date);
+                            String str1 = inputFormat2.format(date);
                             dateTxt.setText(str);
 
                             String Month = "MMM";
-                            inputFormat = new SimpleDateFormat(Month);
-                            String MonthText = inputFormat.format(date);
+                            inputFormat2 = new SimpleDateFormat(Month);
+                            String MonthText = inputFormat2.format(date);
                             Montheee.setText(MonthText);
 
                             String Year = "yyyy";

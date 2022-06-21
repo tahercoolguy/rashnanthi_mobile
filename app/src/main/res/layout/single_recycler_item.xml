@@ -68,7 +68,7 @@
             android:layout_margin="10dp"
             android:visibility="gone"
 
-            android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>
+            android:src="@drawable/insta_logo"></ImageView>
 
 
         <ImageView
