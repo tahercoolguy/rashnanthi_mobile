@@ -52,6 +52,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -142,7 +144,14 @@ public class Calender_Fragment extends Fragment {
 
             if(user.getLanguageCode().equalsIgnoreCase("ar"))
             {
-                daysLL.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+                ArrayList<View> views = new ArrayList<View>();
+                for(int x = 0; x < daysLL.getChildCount(); x++) {
+                    views.add(daysLL.getChildAt(x));
+                }
+                daysLL.removeAllViews();
+                for(int x = views.size() - 1; x >= 0; x--) {
+                    daysLL.addView(views.get(x));
+                }
             }
 
             appController = (AppController) getActivity().getApplicationContext();
@@ -239,6 +248,33 @@ public class Calender_Fragment extends Fragment {
             compactCalendar.setEventIndicatorStyle(CompactCalendarView.FILL_LARGE_INDICATOR);
 
             compactCalendar.displayOtherMonthDays(true);
+//            TimeZone timeZone=new TimeZone() {
+//                @Override
+//                public int getOffset(int era, int year, int month, int day, int dayOfWeek, int milliseconds) {
+//                    return 0;
+//                }
+//
+//                @Override
+//                public void setRawOffset(int offsetMillis) {
+//
+//                }
+//
+//                @Override
+//                public int getRawOffset() {
+//                    return 0;
+//                }
+//
+//                @Override
+//                public boolean useDaylightTime() {
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean inDaylightTime(Date date) {
+//                    return false;
+//                }
+//            };
+//            compactCalendar.setLocale(timeZone,new Locale( "ar" , "KW" ));
 
             SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
             Date date = new Date();
