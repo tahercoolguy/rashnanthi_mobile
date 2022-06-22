@@ -1,8 +1,10 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,15 +26,20 @@ import com.master.design.rashnanthi.Activity.AdvertiseSelector;
 import com.master.design.rashnanthi.Activity.LoginActivity;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SignUpActivity;
+import com.master.design.rashnanthi.Activity.SplashScreen;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.Helper.DialogUtil;
+import com.master.design.rashnanthi.Helper.Language;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.master.design.rashnanthi.Utils.Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import it.sephiroth.android.library.widget.HListView;
 
 public class Menu_1_Fragment extends Fragment {
@@ -63,8 +71,10 @@ public class Menu_1_Fragment extends Fragment {
     @BindView(R.id.privacy_policy_RL)
     RelativeLayout privacy_policy_RL;
 
-   @BindView(R.id.languageTxt)
+    @BindView(R.id.languageTxt)
     TextView languageTxt;
+
+
 
 
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
@@ -104,11 +114,6 @@ public class Menu_1_Fragment extends Fragment {
             myaccount_RL = rootView.findViewById(R.id.myaccount_RL);
             logout_Rl = rootView.findViewById(R.id.logout_Rl);
 
-            if (user.getLanguageCode().equalsIgnoreCase("en")) {
-                languageTxt.setText("(English)");
-            }else{
-                languageTxt.setText("عربى");
-            }
 
             if (user.getId() == 0) {
                 registerRL.setVisibility(View.VISIBLE);
@@ -120,14 +125,18 @@ public class Menu_1_Fragment extends Fragment {
                 loginRL.setVisibility(View.GONE);
             }
 
+
+
+
+
             myaccount_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    if( user.getCreatorcoach().equalsIgnoreCase("1")){
+                    if (user.getCreatorcoach().equalsIgnoreCase("1")) {
                         ((MainActivity) context).addFragment(new My_Account_Fragment(), true);
 
-                    }else   {
+                    } else {
                         ((MainActivity) context).addFragment(new Coach_Account_Fragment(), true);
 
                     }
@@ -152,20 +161,11 @@ public class Menu_1_Fragment extends Fragment {
                 }
             });
 
-            languageRL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((MainActivity) context).addFragment(new LanguageFragment(), true);
 
-
-                }
-            });
             aboutapp_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     ((MainActivity) context).addFragment(new About_App_Fragment(), true);
-
-
                 }
             });
 
@@ -175,7 +175,6 @@ public class Menu_1_Fragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(((MainActivity) context), LoginActivity.class);
                     startActivity(intent);
-
 //                    ((MainActivity) context).addFragment(new LoginFragment(),true);
                 }
             });
@@ -183,36 +182,66 @@ public class Menu_1_Fragment extends Fragment {
             contact_usRl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     ((MainActivity) context).addFragment(new Contact_Us_Fragment(), true);
-
-
                 }
             });
 
             term_conditionRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     ((MainActivity) context).addFragment(new Term_And_Condition_Fragment(), true);
-
-
                 }
             });
 
             privacy_policy_RL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     ((MainActivity) context).addFragment(new Privacy_Policy_Fragment(), true);
-
-
                 }
             });
 
 
         }
         return rootView;
+    }
+
+    @OnClick(R.id.languageRL)
+    public void language_RL() {
+        if(user.getLanguageCode().equalsIgnoreCase("en")) {
+            Language language = new Language(2, "Arabic", "ar");
+            user.setLanguage(language);
+
+
+            Util.setConfigChange(getActivity(), "ar");
+        }else
+        {
+            Language language = new Language(1, "English", "en");
+            user.setLanguage(language);
+
+
+            Util.setConfigChange(getActivity(), "en");
+        }
+//        getActivity().getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        exitDialog();
+    }
+    private void exitDialog() {
+        DialogUtil.showDialogTwoButton(getActivity(), R.drawable.splash_screen_logo, getString(R.string.app_name), getString(R.string.want_restart), getString(R.string.ok), getString(R.string.cancel), new DialogUtil.CallBack() {
+            @Override
+            public void onDismiss(boolean isPressedOK) {
+                if (isPressedOK) {
+                   restartActivity(getActivity());
+                }
+            }
+        });
+    }
+
+    public static void restartActivity(Activity activity) {
+        if (Build.VERSION.SDK_INT >= 11) {
+            activity.recreate();
+        } else {
+            activity.finish();
+            activity.startActivity(activity.getIntent());
+        }
     }
 
     private void idMapping() {

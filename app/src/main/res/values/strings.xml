@@ -217,5 +217,8 @@
      <string name="month">Month</string>
      <string name="year">Year</string>
 
+    <string name="changer">عربى</string>
+    <string name="want_restart">Are you sure want to restart this app</string>
+
 
 </resources>

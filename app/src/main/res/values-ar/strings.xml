@@ -181,4 +181,8 @@
     <string name="you_unliked_liked_it">أنت كرهته</string>
     <string name="month">شهر</string>
     <string name="year">عام</string>
+
+    <string name="changer">English</string>
+    <string name="want_restart">هل أنت متأكد من أنك تريد إعادة تشغيل هذا التطبيق</string>
+
 </resources>
