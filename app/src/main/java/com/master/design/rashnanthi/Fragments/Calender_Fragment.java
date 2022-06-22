@@ -103,6 +103,9 @@ public class Calender_Fragment extends Fragment {
     LinearLayout layout_parent;
 
 
+    @BindView(R.id.daysLL)
+    LinearLayout daysLL;
+
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
     AppController appController;
     ConnectionDetector connectionDetector;
@@ -136,7 +139,14 @@ public class Calender_Fragment extends Fragment {
 
 
             Binding();
+
             user = new User(getActivity());
+
+            if(user.getLanguageCode().equalsIgnoreCase("ar"))
+            {
+                daysLL.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            }
+
             appController = (AppController) getActivity().getApplicationContext();
 
             //            moth_year_txt = rootView.findViewById(R.id.moth_year_txt);
