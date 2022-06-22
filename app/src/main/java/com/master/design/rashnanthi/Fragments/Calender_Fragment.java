@@ -136,8 +136,6 @@ public class Calender_Fragment extends Fragment {
             rootView = inflater.inflate(R.layout.calender_fragment_layout, container, false);
             ButterKnife.bind(this, rootView);
 
-
-
             Binding();
 
             user = new User(getActivity());
