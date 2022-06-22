@@ -275,8 +275,7 @@ public class Calender_Fragment extends Fragment {
 //                }
 //            };
 //            compactCalendar.setLocale(timeZone,new Locale( "ar" , "KW" ));
-
-            SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
+             SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
             Date date = new Date();
 //            moth_year_txt.setText(formatter.format(date));
 
