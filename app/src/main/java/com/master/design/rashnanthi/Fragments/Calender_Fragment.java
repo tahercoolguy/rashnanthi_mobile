@@ -1,10 +1,12 @@
 package com.master.design.rashnanthi.Fragments;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -600,7 +602,13 @@ public class Calender_Fragment extends Fragment {
                         ) {
                             approvalOne.add(area);
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
-                                country_spinner_Txt.setText(data.get(0).getTitle());
+                                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                    country_spinner_Txt.setText(data.get(0).getTitle());
+
+                                }else{
+                                    country_spinner_Txt.setText(data.get(0).getTitlear());
+
+                                }
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
                             }
                         }

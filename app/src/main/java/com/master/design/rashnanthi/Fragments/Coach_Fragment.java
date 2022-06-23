@@ -427,8 +427,13 @@ public class Coach_Fragment extends Fragment {
                         ) {
                             approvalOne.add(area);
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
-                                country_spinner_Txt.setText(data.get(0).getTitle());
-                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
+                                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                    country_spinner_Txt.setText(data.get(0).getTitle());
+
+                                }else{
+                                    country_spinner_Txt.setText(data.get(0).getTitlear());
+
+                                }                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
                             }
                         }
                     } else

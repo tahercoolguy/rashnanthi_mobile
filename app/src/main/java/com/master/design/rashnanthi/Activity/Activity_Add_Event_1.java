@@ -1108,7 +1108,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 .displayDays(false)
                 .displayMonth(true)
                 .mainColor(getColor(R.color.black))
-                 .listener(new SingleDateAndTimePickerDialog.Listener() {
+                .listener(new SingleDateAndTimePickerDialog.Listener() {
                     @Override
                     public void onDateSelected(Date date) {
                         String inputPattern = "yyyy-MM-dd";
@@ -1294,7 +1294,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                country_spinner_Txt.setText(data.get(position).getTitle());
+                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                    country_spinner_Txt.setText(data.get(position).getTitle());
+
+                }else{
+                    country_spinner_Txt.setText(data.get(position).getTitlear());
+
+                }
 //                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img);
                 CountryId = data.get(position).getId();
@@ -1325,7 +1331,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                country_spinner_Txt1.setText(data.get(position).getTitle());
+                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                    country_spinner_Txt1.setText(data.get(position).getTitle());
+
+                }else{
+                    country_spinner_Txt1.setText(data.get(position).getTitlear());
+
+                }
                 CountryId1 = data.get(position).getId();
 
 //                country_Img1.setImageResource(Integer.parseInt(data.get(position).getImage()));
@@ -1359,9 +1371,21 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             approvalOne.add(area);
                             wtspcodeTxt.setText(data.get(0).getCallingcode());
                             Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(wtspcountryImg);
-                            country_spinner_Txt.setText(data.get(0).getTitle());
+                            if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                                country_spinner_Txt.setText(data.get(0).getTitle());
+
+                            } else {
+                                country_spinner_Txt.setText(data.get(0).getTitlear());
+
+                            }
                             Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
-                            country_spinner_Txt1.setText(data.get(0).getTitle());
+                            if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                                country_spinner_Txt1.setText(data.get(0).getTitle());
+
+                            } else {
+                                country_spinner_Txt1.setText(data.get(0).getTitlear());
+
+                            }
                             Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img1);
                         }
                     } else

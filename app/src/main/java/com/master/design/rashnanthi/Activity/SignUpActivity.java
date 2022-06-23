@@ -496,13 +496,13 @@ public class SignUpActivity extends AppCompatActivity {
     public void VisibilityFunction() {
         if (ifCoach) {
             coach.setBackground(getDrawable(R.drawable.rounded_corner_black_border));
-            event.setBackground(getDrawable(R.drawable.rounded_corner_white));
+            event.setBackground(getDrawable(R.drawable.mob_bg1));
 
             testing.setVisibility(View.VISIBLE);
             testing1.setVisibility(View.VISIBLE);
         } else {
             event.setBackground(getDrawable(R.drawable.rounded_corner_black_border));
-            coach.setBackground(getDrawable(R.drawable.rounded_corner_white));
+            coach.setBackground(getDrawable(R.drawable.mob_bg1));
 
             testing.setVisibility(View.GONE);
             testing1.setVisibility(View.GONE);
@@ -552,7 +552,11 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                country_spinner_Txt.setText(data.get(position).getTitle());
+                if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                    country_spinner_Txt.setText(data.get(position).getTitle());
+                } else {
+                    country_spinner_Txt.setText(data.get(position).getTitlear());
+                }
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img);
 
 //                AreaID = data.get(selected).getId();

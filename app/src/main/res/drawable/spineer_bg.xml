@@ -16,6 +16,7 @@
                 android:width="2dp"
                 android:color="@color/grey_light"
                 android:dashGap="@dimen/elevation"></stroke>
+            <size android:width="170dp" android:height="50dp"></size>
         </shape>
 
     </item>

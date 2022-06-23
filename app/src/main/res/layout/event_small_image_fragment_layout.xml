@@ -39,7 +39,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
                     android:gravity="center"
-                    android:text="@string/event"
+                    android:text="@string/events"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"

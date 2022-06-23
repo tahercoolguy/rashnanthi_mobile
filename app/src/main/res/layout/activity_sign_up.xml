@@ -133,8 +133,8 @@
                         <!--                                app:riv_oval="false"></com.makeramen.roundedimageview.RoundedImageView>-->
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
                             android:id="@+id/imgbgRL"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/ic_coach_people">
 
@@ -176,12 +176,12 @@
 
                         <TextView
                             android:id="@+id/eventTxt"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="@dimen/margin"
                             android:layout_marginTop="5dp"
-                            android:background="@drawable/mob_bg"
+                            android:background="@drawable/mob_bg1"
                             android:elevation="4dp"
                             android:gravity="center"
                             android:padding="10dp"
@@ -191,7 +191,7 @@
 
                         <TextView
                             android:id="@+id/coachTxt"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="@dimen/margin"
@@ -320,18 +320,18 @@
                                     android:id="@+id/country_spinner_Txt"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-
-
                                     android:background="@color/transparent"
 
                                     android:focusable="false"
 
-
                                     android:gravity="center"
+
+
                                     android:inputType="number"
                                     android:lines="1"
-
                                     android:padding="15dp"
+
+                                    android:text="@string/kuwait"
                                     android:textColor="@color/black"
                                     android:textSize="15sp">
 
@@ -793,8 +793,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentStart="true"
                                     android:layout_centerInParent="true"
-                                    android:layout_marginStart="5dp"
-                                    ></ImageView>
+                                    android:layout_marginStart="5dp"></ImageView>
 
                                 <TextView
                                     android:id="@+id/country_spinner_ET"

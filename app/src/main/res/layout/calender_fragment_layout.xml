@@ -91,12 +91,14 @@
             </LinearLayout>
 
 
+
+
             <RelativeLayout
                 android:id="@+id/spinnerCountryBottomRL"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_gravity="right"
+                 android:layout_gravity="right"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/spineer_bg"
@@ -133,8 +135,8 @@
                     android:background="@color/transparent"
                     android:focusable="false"
                     android:gravity="center"
-                    android:inputType="number"
 
+                    android:inputType="number"
                     android:lines="2"
                     android:maxLength="6"
                     android:padding="15dp"
@@ -369,6 +371,8 @@
                 <!--                     android:layout_marginHorizontal="35dp"-->
                 <!--                     android:backgroundTint="@color/grey_light"-->
                 <!--                    android:src="#989898"></ImageView>-->
+
+
             </RelativeLayout>
 
 

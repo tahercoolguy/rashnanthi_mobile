@@ -96,7 +96,13 @@ public class Adapter_Spinner_Country extends RecyclerView.Adapter<Adapter_Spinne
 
                 ((SpinneerActivity)  context).countryID = countryOutputArrayList.get(position).getId();
                 ((SpinneerActivity)  context).countryImg = countryOutputArrayList.get(position).getImage();
-                ((SpinneerActivity)  context).countryName = countryOutputArrayList.get(position).getTitle();
+
+                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                    ((SpinneerActivity)  context).countryName = countryOutputArrayList.get(position).getTitle();
+                }else{
+                    ((SpinneerActivity)  context).countryName = countryOutputArrayList.get(position).getTitlear();
+                }
+
                 ((SpinneerActivity)context).FinishThis();
 
             }

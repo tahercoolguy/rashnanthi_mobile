@@ -208,7 +208,13 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                     Helper.showToast(context, getString(R.string.country_users_does_not_exist));
 //                    my_account_grid_Rcv.setVisibility(View.GONE);
                 }
-                country_spinner_Txt.setText(data.get(position).getTitle());
+                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                    country_spinner_Txt.setText(data.get(position).getTitle());
+
+                }else{
+                    country_spinner_Txt.setText(data.get(position).getTitlear());
+
+                }
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
 
             }
@@ -235,7 +241,14 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                             approvalOne.add(area);
                             GetCoachsByCountry(approvalOne.get(0).getId());
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
-                                country_spinner_Txt.setText(data.get(0).getTitle());
+                                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                    country_spinner_Txt.setText(data.get(0).getTitle());
+
+                                }else{
+                                    country_spinner_Txt.setText(data.get(0).getTitlear());
+
+                                }
+
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
                             }
 

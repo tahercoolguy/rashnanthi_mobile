@@ -331,8 +331,13 @@ public class Add_new_post_1 extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                country_spinner_Txt.setText(data.get(position).getTitle());
-//                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
+                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                    country_spinner_Txt.setText(data.get(position).getTitle());
+
+                }else{
+                    country_spinner_Txt.setText(data.get(position).getTitlear());
+
+                }//                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
                 Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(country_Img);
                 CountryId = data.get(position).getId();
 //                AreaID = data.get(selected).getId();
@@ -444,7 +449,13 @@ public class Add_new_post_1 extends AppCompatActivity {
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
                                 country_spinnerET.setText(data.get(0).getCallingcode());
                                 wtspcodeTxt.setText(data.get(0).getCallingcode());
-                                country_spinner_Txt.setText(data.get(0).getTitle());
+                                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                    country_spinner_Txt.setText(data.get(0).getTitle());
+
+                                }else{
+                                    country_spinner_Txt.setText(data.get(0).getTitlear());
+
+                                }
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(country_Img);
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(wtspcountryImg);

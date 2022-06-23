@@ -141,7 +141,7 @@
     <string name="coachh">حساب المدرب</string>
     <string name="otp_toast">يرجى إدخال كلمة مرور صالحة لمرة واحدة (otp)</string>
     <string name="login_messesge">أدخلت الهاتف المحمول أو كلمة المرور أو رمز الدولة بشكل غير صحيح</string>
-    <string name="story">ستوري</string>
+    <string name="story">القصة</string>
     <string name="no_package">لا توجد حزمة متاحة</string>
     <string name="enter_name">من فضلك ادخل اسمك</string>
     <string name="enter_email">يرجى إدخال البريد الإلكتروني الخاص بك</string>
@@ -181,6 +181,7 @@
     <string name="you_unliked_liked_it">أنت كرهته</string>
     <string name="month">شهر</string>
     <string name="year">عام</string>
+    <string name="events">الدورة</string>
 
     <string name="changer">English</string>
     <string name="want_restart">هل أنت متأكد من أنك تريد إعادة تشغيل هذا التطبيق</string>

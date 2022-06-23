@@ -25,12 +25,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter_Bottom extends BaseAdapter  {
+public class Adapter_Bottom extends BaseAdapter {
     private Context context;
     private ArrayList<CountryData> arrayList;
     private CountryData selected;
     private int position;
-     User user;
+    User user;
     public ArrayList<CountryData> searchResults;
 
     public Adapter_Bottom(Context context, ArrayList<CountryData> arrayList) {
@@ -114,15 +114,21 @@ public class Adapter_Bottom extends BaseAdapter  {
         CountryData data = searchResults.get(position);
         if (user.getLanguageCode().equalsIgnoreCase("en")) {
             viewHolder.country_code.setText(String.format("%s", data.getCallingcode()));
-            viewHolder.CN.setText(arrayList.get(position).getTitle());
-            Picasso.get().load(AppController.base_image_url +arrayList.get(position).getImage()).into(viewHolder.country_Img);
+            if (user.getLanguageCode().equalsIgnoreCase("en")) {
+                viewHolder.CN.setText(arrayList.get(position).getTitle());
+
+            } else {
+                viewHolder.CN.setText(arrayList.get(position).getTitlear());
+
+            }
+
+            Picasso.get().load(AppController.base_image_url + arrayList.get(position).getImage()).into(viewHolder.country_Img);
             Bundle countryID = new Bundle();
             countryID.putString("countryID", data.getId());
-            }
-        else {
+        } else {
             viewHolder.country_code.setText(String.format("%s", data.getCallingcode()));
             viewHolder.CN.setText(arrayList.get(position).getTitlear());
-            Picasso.get().load(AppController.base_image_url +arrayList.get(position).getImage()).into(viewHolder.country_Img);
+            Picasso.get().load(AppController.base_image_url + arrayList.get(position).getImage()).into(viewHolder.country_Img);
             Bundle countryID = new Bundle();
             countryID.putString("countryID", data.getId());
 //            viewHolder.country_code.setText(String.format("%s", data));
@@ -154,14 +160,14 @@ public class Adapter_Bottom extends BaseAdapter  {
     }
 
     private static class ViewHolder {
-        private TextView country_code,CN;
-        private  ImageView  iv_selected,country_Img;
+        private TextView country_code, CN;
+        private ImageView iv_selected, country_Img;
 
         private ViewHolder(View view) {
             country_code = view.findViewById(R.id.country_code);
             CN = view.findViewById(R.id.country_name);
             iv_selected = view.findViewById(R.id.iv_selected);
-            country_Img=view.findViewById(R.id.country_Img);
+            country_Img = view.findViewById(R.id.country_Img);
         }
     }
 }
