@@ -121,6 +121,10 @@ public class Add_new_post_1 extends AppCompatActivity {
     @BindView(R.id.img3)
     ImageView img3;
 
+   @NotEmpty
+    @BindView(R.id.img3_1)
+    ImageView img3_1;
+
     @NotEmpty
     @BindView(R.id.img1)
     ImageView img1;
@@ -151,14 +155,16 @@ public class Add_new_post_1 extends AppCompatActivity {
     VideoView vd2;
     @BindView(R.id.vd3)
     VideoView vd3;
+    @BindView(R.id.vd3_1)
+    VideoView vd3_1;
     @BindView(R.id.vd4)
     VideoView vd4;
 
 
-    Uri Video1, Video2, Video3, Video4;
+    Uri Video1, Video2, Video3,Video3_1, Video4;
 
 
-    boolean v1 = false, v2 = false, v3 = false, v4 = false;
+    boolean v1 = false, v2 = false, v3 = false, v3_1 = false, v4 = false;
     String CountryId = "1";
 
     @OnClick(R.id.pay_now_Btn)
@@ -603,6 +609,37 @@ public class Add_new_post_1 extends AppCompatActivity {
 
 
                         multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
+                    } if (ifimg3_1) {
+                        File f = new File(Add_new_post_1.this.getCacheDir(), "temp2.jpg");
+                        f.createNewFile();
+
+                        Bitmap one = ((BitmapDrawable) img3_1.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                        Bitmap bitmap = one;
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                        byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                        FileOutputStream fos = new FileOutputStream(f);
+                        fos.write(bitmapdata);
+                        fos.flush();
+                        fos.close();
+                        File resizedImage5 = new Resizer(Add_new_post_1.this)
+                                .setTargetLength(512)
+                                .setQuality(80)
+                                .setOutputFormat("JPEG")
+                                .setOutputFilename("resized_image3")
+                                .setSourceImage(f)
+                                .getResizedFile();
+                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("image/jpg", resizedImage5));
+                    }
+
+                    if (v3_1) {
+                        File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
+
+
+                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("video/mp4", imageFile));
                     }
                     if (ifimg4) {
                         File f = new File(Add_new_post_1.this.getCacheDir(), "temp3.jpg");
@@ -943,6 +980,12 @@ public class Add_new_post_1 extends AppCompatActivity {
         OpenImage();
     }
 
+    @OnClick(R.id.img3_1)
+    public void Image1Clicked3_1() {
+        imgClicked = 3_1;
+        OpenImage();
+    }
+
     @OnClick(R.id.img4)
     public void Image1Clicked4() {
         imgClicked = 4;
@@ -966,6 +1009,13 @@ public class Add_new_post_1 extends AppCompatActivity {
         imgClicked = 3;
         OpenImage();
     }
+
+    @OnClick(R.id.vd3_1)
+    public void Vd3_1() {
+        imgClicked = 3_1;
+        OpenImage();
+    }
+
 
     @OnClick(R.id.vd4)
     public void Vd4() {
@@ -1017,7 +1067,12 @@ public class Add_new_post_1 extends AppCompatActivity {
                         img3.setImageBitmap(bitmap);
                         ifimg3 = true;
 
-                    } else if (imgClicked == 4) {
+                    } else if (imgClicked == 3_1) {
+                        img3_1.setImageBitmap(bitmap);
+                        ifimg3_1 = true;
+                    }
+
+                    else if (imgClicked == 4) {
                         img4.setImageBitmap(bitmap);
                         ifimg4 = true;
                     }
@@ -1080,7 +1135,22 @@ public class Add_new_post_1 extends AppCompatActivity {
                         ifimg3 = false;
                         v3 = true;
 
-                    } else if (imgClicked == 4) {
+                    } else if (imgClicked == 3_1) {
+                        Video3_1 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                        String path = Video3_1.getPath();
+                        CameraUtils.refreshGallery(getApplicationContext(), path);
+                        vd3_1.setVisibility(View.VISIBLE);
+
+                        img3_1.setVisibility(View.GONE);
+
+                        vd3_1.setVideoPath(path);
+                        // start playing
+                        vd3_1.start();
+
+                        ifimg3_1 = false;
+                        v3_1 = true;
+
+                    }else if (imgClicked == 4) {
                         Video4 = Uri.fromFile(new File(data.getStringExtra("uri")));
                         String path = Video4.getPath();
                         CameraUtils.refreshGallery(getApplicationContext(), path);
@@ -1203,6 +1273,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     boolean ifimg1 = false;
     boolean ifimg2 = false;
     boolean ifimg3 = false;
+    boolean ifimg3_1 = false;
     boolean ifimg4 = false;
 
 }

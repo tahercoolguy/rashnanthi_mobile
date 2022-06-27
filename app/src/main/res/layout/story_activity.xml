@@ -79,7 +79,7 @@
         android:layout_marginLeft="20dp"
          android:layout_marginRight="20dp"
         android:outlineAmbientShadowColor="@color/black"
-        app:progressCount="4" />
+        app:progressCount="1" />
 
 
 </RelativeLayout>
