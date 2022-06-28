@@ -71,7 +71,7 @@
             android:layout_height="40dp"
             android:layout_margin="10dp"
 
-            android:src="@drawable/ic_instaaaaaaaaaaaaaa"></ImageView>
+            android:src="@drawable/ic_new_insta"></ImageView>
 
 
         <ImageView

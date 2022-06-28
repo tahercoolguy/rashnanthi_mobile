@@ -89,9 +89,9 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
         Picasso.get().load(AppController.base_image_url + getCoachsByCountryRootDMArrayList.get(position).getProfilepic()).into(viewHolder.circle_imgview);
 
         Instagram = getCoachsByCountryRootDMArrayList.get(position).getInstagram();
-        Whatsapp = getCoachsByCountryRootDMArrayList.get(position).getWhatsapnumber();
+        Whatsapp = getCoachsByCountryRootDMArrayList.get(position).getMobile();
         Snapchat = getCoachsByCountryRootDMArrayList.get(position).getSnapchat();
-        WhatsappCountryCode = getCoachsByCountryRootDMArrayList.get(position).getWhatscountrycode();
+        WhatsappCountryCode = getCoachsByCountryRootDMArrayList.get(position).getCountrycode();
 
         if (Instagram != null)
             if (Instagram.equalsIgnoreCase("")) {

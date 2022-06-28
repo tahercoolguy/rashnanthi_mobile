@@ -222,18 +222,18 @@ public class Menu_1_Fragment extends Fragment {
             Util.setConfigChange(getActivity(), "en");
         }
 //        getActivity().getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
-        exitDialog();
+        restartActivity(getActivity());
     }
-    private void exitDialog() {
-        DialogUtil.showDialogTwoButton(getActivity(), R.drawable.splash_screen_logo, getString(R.string.app_name), getString(R.string.want_restart), getString(R.string.ok), getString(R.string.cancel), new DialogUtil.CallBack() {
-            @Override
-            public void onDismiss(boolean isPressedOK) {
-                if (isPressedOK) {
-                   restartActivity(getActivity());
-                }
-            }
-        });
-    }
+//    private void exitDialog() {
+//        DialogUtil.showDialogTwoButton(getActivity(), R.drawable.splash_screen_logo, getString(R.string.app_name), getString(R.string.want_restart), getString(R.string.ok), getString(R.string.cancel), new DialogUtil.CallBack() {
+//            @Override
+//            public void onDismiss(boolean isPressedOK) {
+//                if (isPressedOK) {
+//                   restartActivity(getActivity());
+//                }
+//            }
+//        });
+//    }
 
     public static void restartActivity(Activity activity) {
         if (Build.VERSION.SDK_INT >= 11) {

@@ -458,9 +458,9 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:background="@color/transparent"
-                        android:drawableStart="@drawable/instagran"
-                        android:drawablePadding="10dp"
 
+                        android:drawableStart="@drawable/ic_new_insta"
+                        android:drawablePadding="10dp"
                         android:hint="@string/enter_insta"
                         android:imeOptions="actionNext"
                         android:lines="1"

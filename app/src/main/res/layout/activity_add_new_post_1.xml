@@ -175,7 +175,7 @@
                         android:background="@drawable/mob_bg"
                         android:elevation="4dp"
 
-                        android:hint="123456789"
+                        android:hint="12345678"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:lines="1"
@@ -405,7 +405,7 @@
                         android:layout_marginRight="1dp"
                         android:background="@drawable/mob_bg"
                         android:elevation="4dp"
-                        android:hint="123456789"
+                        android:hint="12345678"
 
                         android:imeOptions="actionNext"
                         android:inputType="number"
@@ -489,10 +489,10 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:background="@color/transparent"
-                        android:drawableStart="@drawable/instagran"
 
+                        android:drawableStart="@drawable/ic_new_insta"
                         android:drawablePadding="10dp"
-                        android:hint="@string/enter_snapchat"
+                        android:hint="@string/enter_insta"
                         android:imeOptions="actionNext"
                         android:lines="1"
                         android:singleLine="true"

@@ -41,6 +41,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bruce.pickerview.popwindow.DatePickerPopWin;
 import com.bumptech.glide.Glide;
+import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.karumi.dexter.Dexter;
@@ -1098,7 +1099,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         datepick();
     }
 
-
     public void datepick() {
         new SingleDateAndTimePickerDialog.Builder(this)
                 .bottomSheet()
@@ -1140,9 +1140,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         }
                     }
                 })
+
                 .displayYears(true)
                 .displayDaysOfMonth(true)
                 .display();
+
     }
 
 
