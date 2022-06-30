@@ -73,9 +73,10 @@
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/Mobile">
 
@@ -192,6 +193,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="10dp"
 
@@ -332,7 +334,8 @@
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="40dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="10dp"
@@ -426,6 +429,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="40dp"
                     android:text="@string/snapchat"
                     android:textSize="@dimen/text_size_title">
 
@@ -464,6 +468,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/instagram"
@@ -504,6 +509,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/website"
                     android:textSize="@dimen/text_size_title">

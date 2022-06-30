@@ -367,6 +367,40 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         }
     }
 
+
+//    @BindView(R.id.spinnerCountryBottomRL)
+//    RelativeLayout spinnerCountryBottomRL;
+//
+//boolean spinnerCountryBottom =false;
+//    @OnClick(R.id.spinnerCountryBottomRL)
+//    public void SpinnerCountryOpenActivity() {
+//        spinnerCountryBottom=true;
+//        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class), 48);
+//    }
+
+    String mycountryname;
+    String mycountryimg;
+    String mycountryid;
+    String mycode;
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Intent intent = data;
+//        if (data != null) {
+//            mycountryname = data.getStringExtra("countryname");
+//            mycountryimg = data.getStringExtra("countryimg");
+//            mycountryid = data.getStringExtra("countryid");
+//            mycode = data.getStringExtra("countrycodee");
+//            Picasso.get().load(AppController.base_image_url + mycountryimg).into(mycountryimg);
+//            country_spinner_Txt.setText(mycountryname);
+//
+//        }
+//
+//
+//    }
+
+
     LinearLayout ad_more_eventtLL, website_LL;
     Button add_more_eventBtn;
     TextView your_post_will_beTXt;
@@ -1256,34 +1290,44 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     ArrayList<CountryData> approvalOne = new ArrayList<>();
     ArrayList<String> approvalTwo = new ArrayList<>();
 
+//    @OnClick(R.id.wtsapRL)
+//    public void WhatsappCodeCountry() {
+//
+//        bottomForAll = new BottomForAll();
+//        bottomForAll.arrayList = approvalOne;
+//
+//        bottomForAll.setResponseListener(new ResponseListener() {
+//            @Override
+//            public void response(int position, Object object) {
+//
+//                wtspcodeTxt.setText(data.get(position).getCallingcode());
+////                wtspcountryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
+//                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(wtspcountryImg);
+////                CountryId = data.get(position).getId();
+//
+////                AreaID = data.get(selected).getId();
+////                for (CountryData s:data
+////                ) {
+////                    if(s.getCallingcode().equals((String) object))
+////                        AreaID = s.getId();
+////                }
+//
+//
+//            }
+//        });
+//
+//
+//        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
+//    }
+
+    boolean wtsapclick=false;
+
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
-
-        bottomForAll = new BottomForAll();
-        bottomForAll.arrayList = approvalOne;
-
-        bottomForAll.setResponseListener(new ResponseListener() {
-            @Override
-            public void response(int position, Object object) {
-
-                wtspcodeTxt.setText(data.get(position).getCallingcode());
-//                wtspcountryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
-                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(wtspcountryImg);
-//                CountryId = data.get(position).getId();
-
-//                AreaID = data.get(selected).getId();
-//                for (CountryData s:data
-//                ) {
-//                    if(s.getCallingcode().equals((String) object))
-//                        AreaID = s.getId();
-//                }
+        wtsapclick=true;
+        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class),48);
 
 
-            }
-        });
-
-
-        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
     }
 
 
@@ -1296,10 +1340,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                if (user.getLanguageCode().equalsIgnoreCase("en")) {
                     country_spinner_Txt.setText(data.get(position).getTitle());
 
-                }else{
+                } else {
                     country_spinner_Txt.setText(data.get(position).getTitlear());
 
                 }
@@ -1320,6 +1364,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
         bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
     }
+//
+//boolean spinnercountry11 = false;
+//    @OnClick(R.id.spinnerCountryBottomRL1)
+//    public void SpinnerCountry1() {
+//        spinnercountry11=true;
+//        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class),48);
+//
+//    }
 
 
     String CountryId1 = "1";
@@ -1333,10 +1385,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                if (user.getLanguageCode().equalsIgnoreCase("en")) {
                     country_spinner_Txt1.setText(data.get(position).getTitle());
 
-                }else{
+                } else {
                     country_spinner_Txt1.setText(data.get(position).getTitlear());
 
                 }
@@ -1665,6 +1717,35 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent = data;
+        if (data != null) {
+            mycountryname = data.getStringExtra("countryname");
+            mycountryimg = data.getStringExtra("countryimg");
+            mycountryid = data.getStringExtra("countryid");
+            mycode = data.getStringExtra("countrycodee");
+//            Picasso.get().load(AppController.base_image_url + mycountryimg).into(mycountryimg);
+//            country_spinner_Txt.setText(mycountryname);
+
+
+            if(wtsapclick==true){
+                Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
+                wtspcodeTxt.setText(mycountryname);
+            }
+//            if(spinnerCountryBottom==true){
+//
+//                    country_spinner_Txt.setText(mycountryname);
+//                Picasso.get().load(AppController.base_image_url + mycountryimg).into(country_Img);
+//                CountryId =  data.getStringExtra("countryid");
+//
+//             }if(spinnercountry11==true){
+//                country_spinner_Txt1.setText(mycountryname);
+//                Picasso.get().load(AppController.base_image_url + mycountryimg).into(country_Img1);
+//
+//             }
+
+        }
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri uri = data.getParcelableExtra("path");

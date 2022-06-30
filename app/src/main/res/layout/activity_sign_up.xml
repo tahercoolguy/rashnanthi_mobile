@@ -267,7 +267,8 @@
                         <!--                            &lt;!&ndash;                            </EditText>&ndash;&gt;-->
                         <!--                        </LinearLayout>-->
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="20dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="25dp"
@@ -373,6 +374,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+
                         android:layout_marginTop="20dp"
 
                         android:text="@string/name"
@@ -401,6 +404,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+
                         android:layout_marginTop="20dp"
                         android:text="@string/email"
                         android:textSize="@dimen/text_size_title">
@@ -426,6 +431,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp"
 
@@ -487,6 +494,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+
                         android:layout_marginTop="20dp"
                         android:text="@string/confirm_password"
                         android:textSize="@dimen/text_size_title">
@@ -614,6 +623,8 @@
 
                         <TextView
                             android:layout_width="match_parent"
+                            android:layout_marginRight="20dp"
+
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
 
@@ -657,6 +668,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+
                             android:text="@string/instagram"
                             android:textSize="@dimen/text_size_title">
 
@@ -679,8 +692,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_centerInParent="true"
-                                android:background="@color/transparent"
 
+                                android:background="@color/transparent"
                                 android:drawableStart="@drawable/instagran"
                                 android:drawablePadding="10dp"
                                 android:imeOptions="actionNext"
@@ -756,7 +769,9 @@
 
                         <!--                        </LinearLayout>-->
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="20dp"
+
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="20dp"
@@ -887,7 +902,9 @@
                     </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="20dp"
+
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
 

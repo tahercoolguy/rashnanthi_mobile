@@ -220,6 +220,7 @@
 
     <string name="changer">عربى</string>
     <string name="want_restart">Are you sure want to restart this app</string>
+    <string name="country_codes">Country Codes</string>
 
 
 </resources>

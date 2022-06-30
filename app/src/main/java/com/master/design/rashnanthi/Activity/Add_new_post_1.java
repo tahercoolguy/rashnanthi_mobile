@@ -77,7 +77,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     User user;
     DialogUtil dialogUtil;
     AppController appController;
-    String image1, image2,editimage0id,editimage1id, image3, image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
+    String image1, image2, editimage0id, editimage1id, image3, image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby;
 
     @NotEmpty
     @BindView(R.id.add_new_post_pay_back)
@@ -121,7 +121,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     @BindView(R.id.img3)
     ImageView img3;
 
-   @NotEmpty
+    @NotEmpty
     @BindView(R.id.img3_1)
     ImageView img3_1;
 
@@ -161,7 +161,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     VideoView vd4;
 
 
-    Uri Video1, Video2, Video3,Video3_1, Video4;
+    Uri Video1, Video2, Video3, Video3_1, Video4;
 
 
     boolean v1 = false, v2 = false, v3 = false, v3_1 = false, v4 = false;
@@ -337,10 +337,10 @@ public class Add_new_post_1 extends AppCompatActivity {
             @Override
             public void response(int position, Object object) {
 
-                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                if (user.getLanguageCode().equalsIgnoreCase("en")) {
                     country_spinner_Txt.setText(data.get(position).getTitle());
 
-                }else{
+                } else {
                     country_spinner_Txt.setText(data.get(position).getTitlear());
 
                 }//                country_Img.setImageResource(Integer.parseInt(data.get(position).getImage()));
@@ -361,32 +361,41 @@ public class Add_new_post_1 extends AppCompatActivity {
         bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
     }
 
+    boolean mbile = false;
+
     @OnClick(R.id.spinnerBottomRL)
     public void SpinnerCountry() {
-        bottomForAll = new BottomForAll();
-        bottomForAll.arrayList = approvalOne;
-
-        bottomForAll.setResponseListener(new ResponseListener() {
-            @Override
-            public void response(int position, Object object) {
-
-                country_spinnerET.setText(data.get(position).getCallingcode());
-                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
-
-//                AreaID = data.get(selected).getId();
-//                for (CountryData s:data
-//                ) {
-//                    if(s.getCallingcode().equals((String) object))
-//                        AreaID = s.getId();
-//                }
+        mbile = true;
+        startActivityForResult(new Intent(Add_new_post_1.this, Country_Spinner_Activity.class), 48);
 
 
-            }
-        });
-
-
-        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
     }
+//@OnClick(R.id.spinnerBottomRL)
+//    public void SpinnerCountry() {
+//        bottomForAll = new BottomForAll();
+//        bottomForAll.arrayList = approvalOne;
+//
+//        bottomForAll.setResponseListener(new ResponseListener() {
+//            @Override
+//            public void response(int position, Object object) {
+//
+//                country_spinnerET.setText(data.get(position).getCallingcode());
+//                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
+//
+////                AreaID = data.get(selected).getId();
+////                for (CountryData s:data
+////                ) {
+////                    if(s.getCallingcode().equals((String) object))
+////                        AreaID = s.getId();
+////                }
+//
+//
+//            }
+//        });
+//
+//
+//        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
+//    }
 
     @NotEmpty
     @BindView(R.id.wtspcodeTxt)
@@ -404,34 +413,44 @@ public class Add_new_post_1 extends AppCompatActivity {
         term = true;
     }
 
+//    @OnClick(R.id.wtsapRL)
+//    public void WhatsappCodeCountry() {
+//
+//        bottomForAll = new BottomForAll();
+//        bottomForAll.arrayList = approvalOne;
+//
+//        bottomForAll.setResponseListener(new ResponseListener() {
+//            @Override
+//            public void response(int position, Object object) {
+//
+//                wtspcodeTxt.setText(data.get(position).getCallingcode());
+////                wtspcountryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
+//                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(wtspcountryImg);
+////                CountryId = data.get(position).getId();
+//
+////                AreaID = data.get(selected).getId();
+////                for (CountryData s:data
+////                ) {
+////                    if(s.getCallingcode().equals((String) object))
+////                        AreaID = s.getId();
+////                }
+//
+//
+//            }
+//        });
+//
+//
+//        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
+//    }
+
+    boolean wtsapclick = false;
+
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
-
-        bottomForAll = new BottomForAll();
-        bottomForAll.arrayList = approvalOne;
-
-        bottomForAll.setResponseListener(new ResponseListener() {
-            @Override
-            public void response(int position, Object object) {
-
-                wtspcodeTxt.setText(data.get(position).getCallingcode());
-//                wtspcountryImg.setImageResource(Integer.parseInt(data.get(position).getImage()));
-                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(wtspcountryImg);
-//                CountryId = data.get(position).getId();
-
-//                AreaID = data.get(selected).getId();
-//                for (CountryData s:data
-//                ) {
-//                    if(s.getCallingcode().equals((String) object))
-//                        AreaID = s.getId();
-//                }
+        wtsapclick = true;
+        startActivityForResult(new Intent(Add_new_post_1.this, Country_Spinner_Activity.class), 48);
 
 
-            }
-        });
-
-
-        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
     }
 
 
@@ -455,10 +474,10 @@ public class Add_new_post_1 extends AppCompatActivity {
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
                                 country_spinnerET.setText(data.get(0).getCallingcode());
                                 wtspcodeTxt.setText(data.get(0).getCallingcode());
-                                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                if (user.getLanguageCode().equalsIgnoreCase("en")) {
                                     country_spinner_Txt.setText(data.get(0).getTitle());
 
-                                }else{
+                                } else {
                                     country_spinner_Txt.setText(data.get(0).getTitlear());
 
                                 }
@@ -609,7 +628,8 @@ public class Add_new_post_1 extends AppCompatActivity {
 
 
                         multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
-                    } if (ifimg3_1) {
+                    }
+                    if (ifimg3_1) {
                         File f = new File(Add_new_post_1.this.getCacheDir(), "temp2.jpg");
                         f.createNewFile();
 
@@ -1046,10 +1066,45 @@ public class Add_new_post_1 extends AppCompatActivity {
     }
 
     int imgClicked;
+    String mycountryname;
+    String mycountryimg;
+    String mycountryid;
+    String mycode;
 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (data != null) {
+            mycountryname = data.getStringExtra("countryname");
+            mycountryimg = data.getStringExtra("countryimg");
+            mycountryid = data.getStringExtra("countryid");
+            mycode = data.getStringExtra("countrycodee");
+//            Picasso.get().load(AppController.base_image_url + mycountryimg).into(mycountryimg);
+//            country_spinner_Txt.setText(mycountryname);
+
+
+            if (wtsapclick == true) {
+                Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
+                wtspcodeTxt.setText(mycountryname);
+            }if(mbile=true){
+                Picasso.get().load(AppController.base_image_url + mycountryimg).into(countryImg);
+                country_spinnerET.setText(mycountryname);
+
+            }
+//            if(spinnerCountryBottom==true){
+//
+//                    country_spinner_Txt.setText(mycountryname);
+//                Picasso.get().load(AppController.base_image_url + mycountryimg).into(country_Img);
+//                CountryId =  data.getStringExtra("countryid");
+//
+//             }if(spinnercountry11==true){
+//                country_spinner_Txt1.setText(mycountryname);
+//                Picasso.get().load(AppController.base_image_url + mycountryimg).into(country_Img1);
+//
+//             }
+
+        }
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri uri = data.getParcelableExtra("path");
@@ -1070,9 +1125,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                     } else if (imgClicked == 3_1) {
                         img3_1.setImageBitmap(bitmap);
                         ifimg3_1 = true;
-                    }
-
-                    else if (imgClicked == 4) {
+                    } else if (imgClicked == 4) {
                         img4.setImageBitmap(bitmap);
                         ifimg4 = true;
                     }
@@ -1150,7 +1203,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                         ifimg3_1 = false;
                         v3_1 = true;
 
-                    }else if (imgClicked == 4) {
+                    } else if (imgClicked == 4) {
                         Video4 = Uri.fromFile(new File(data.getStringExtra("uri")));
                         String path = Video4.getPath();
                         CameraUtils.refreshGallery(getApplicationContext(), path);
@@ -1232,7 +1285,7 @@ public class Add_new_post_1 extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
         intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
         intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
-        intent.putExtra("isNotCrop",true);
+        intent.putExtra("isNotCrop", true);
         startActivityForResult(intent, REQUEST_IMAGE);
     }
 
@@ -1246,7 +1299,7 @@ public class Add_new_post_1 extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
-        intent.putExtra("isNotCrop",true);
+        intent.putExtra("isNotCrop", true);
 
         startActivityForResult(intent, REQUEST_IMAGE);
     }

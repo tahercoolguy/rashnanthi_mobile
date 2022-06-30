@@ -245,9 +245,10 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
             if (backStackEntryCount == 0) {
                 if (fragment != null && fragment instanceof Calender_Fragment) {
-                    exitDialog();
+                    MainActivity.this.finish();
+
                 } else {
-                    addFragment(new Calender_Fragment(), false);
+                    MainActivity.this.finish();
                 }
             } else {
                 super.onBackPressed();
