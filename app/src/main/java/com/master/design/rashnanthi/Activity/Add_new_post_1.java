@@ -366,6 +366,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     @OnClick(R.id.spinnerBottomRL)
     public void SpinnerCountry() {
         mbile = true;
+        wtsapclick=false;
         startActivityForResult(new Intent(Add_new_post_1.this, Country_Spinner_Activity.class), 48);
 
 
@@ -448,6 +449,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
         wtsapclick = true;
+        mbile=false;
         startActivityForResult(new Intent(Add_new_post_1.this, Country_Spinner_Activity.class), 48);
 
 
@@ -1084,18 +1086,21 @@ public class Add_new_post_1 extends AppCompatActivity {
 //            country_spinner_Txt.setText(mycountryname);
 
 
-            if (wtsapclick == true) {
+            if (wtsapclick) {
+                mbile=false;
                 Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
-                wtspcodeTxt.setText(mycountryname);
-            }if(mbile=true){
+                wtspcodeTxt.setText(mycode);
+            }  if(mbile){
+
+                wtsapclick=false;
                 Picasso.get().load(AppController.base_image_url + mycountryimg).into(countryImg);
-                country_spinnerET.setText(mycountryname);
+                country_spinnerET.setText(mycode);
 
             }
 //            if(spinnerCountryBottom==true){
 //
 //                    country_spinner_Txt.setText(mycountryname);
-//                Picasso.get().load(AppController.base_image_url + mycountryimg).into(country_Img);
+//                Picasso.get().load(AppController.base_image_url + mycountryimg).into(countryR_Img);
 //                CountryId =  data.getStringExtra("countryid");
 //
 //             }if(spinnercountry11==true){

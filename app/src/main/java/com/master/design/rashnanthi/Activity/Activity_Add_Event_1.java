@@ -1731,7 +1731,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             if(wtsapclick==true){
                 Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
-                wtspcodeTxt.setText(mycountryname);
+                wtspcodeTxt.setText(mycode);
             }
 //            if(spinnerCountryBottom==true){
 //
