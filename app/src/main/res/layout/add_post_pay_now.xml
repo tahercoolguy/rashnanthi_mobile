@@ -286,7 +286,7 @@
             android:textSize="@dimen/text_size_title"></Button>
     </LinearLayout>
 
-    <include layout="@layout/add_post_pay_now" />
+    <include layout="@layout/add_post_bar_drawer" />
 </RelativeLayout>
 
 

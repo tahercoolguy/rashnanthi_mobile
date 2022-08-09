@@ -14,7 +14,9 @@ android {
             targetCompatibility 1.8
 
         }
-
+        lintOptions {
+            abortOnError false
+        }
         manifestPlaceholders = [
                 facebook_api_key  : '1525531894244683',
                 twitter_api_key   : 'my valid twitter app key',
