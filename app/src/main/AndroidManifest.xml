@@ -72,10 +72,12 @@
 
         <activity android:name=".Activity.MainActivity"
             android:supportsRtl="false"
+            android:exported="true"
             tools:replace="android:supportsRtl"/>
         <activity android:name=".Activity.SplashScreen"
             android:supportsRtl="false"
-            tools:replace="android:supportsRtl">
+            tools:replace="android:supportsRtl"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
