@@ -22,6 +22,8 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.yalantis.ucrop.UCrop;
 
@@ -44,6 +46,9 @@ public class ImagePickerActivity extends AppCompatActivity {
     public static final String INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT = "set_bitmap_max_width_height";
     public static final String INTENT_BITMAP_MAX_WIDTH = "max_width";
     public static final String INTENT_BITMAP_MAX_HEIGHT = "max_height";
+    User user;
+    Activity context;
+    AppController appController;
 
 
     public static final int REQUEST_IMAGE_CAPTURE = 0;
@@ -67,6 +72,8 @@ public class ImagePickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_picker);
+        user = new User(context);
+        appController = (AppController) context.getApplicationContext();
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -100,15 +107,15 @@ public class ImagePickerActivity extends AppCompatActivity {
     public static void showImagePickerOptions(Context context, PickerOptionListener listener,boolean isVideo) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Set image");
+        builder.setTitle(context.getString(R.string.set_image));
         if(isVideo)
-            builder.setTitle("Set image / Video");
+            builder.setTitle(context.getString(R.string.set_image_or_video));
 
         List<String> where = new ArrayList<String>();
-        where.add( "Take a image" );
-        where.add( "Choose from gallery" );
+        where.add(context.getString(R.string.take_image) );
+        where.add( context.getString(R.string.choose_from_gallery) );
         if(isVideo)
-            where.add( "Take a video" );
+            where.add( context.getString(R.string.take_a_video) );
         String[] animals = new String[ where.size() ];
         where.toArray( animals );
         // add a list

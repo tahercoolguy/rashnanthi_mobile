@@ -185,5 +185,13 @@
 
     <string name="changer">English</string>
     <string name="want_restart">هل أنت متأكد من أنك تريد إعادة تشغيل هذا التطبيق</string>
+    <string name="set_image">تعيين الصورة</string>
+    <string name="take_image">التقط صورة</string>
+    <string name="choose_from_gallery">اختر من المعرض</string>
+    <string name="take_a_video">تأخذ شريط فيديو</string>
+    <string name="set_image_or_video">ضبط الصورة / الفيديو</string>
+
+
+
 
 </resources>

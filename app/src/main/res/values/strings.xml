@@ -221,6 +221,11 @@
     <string name="changer">عربى</string>
     <string name="want_restart">Are you sure want to restart this app</string>
     <string name="country_codes">Country Codes</string>
+    <string name="set_image">Set image</string>
+    <string name="take_image">Take a image</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="take_a_video">Take a video</string>
+    <string name="set_image_or_video">Set image / Video</string>
 
 
 </resources>

@@ -81,7 +81,7 @@ public class My_Account_Fragment extends Fragment {
     User user;
     private Context context;
     ImageView my_accountImg;
-    RelativeLayout add_new_event_RL, view_event_RL, change_password_RL, edit_profile_RL;
+    LinearLayout add_new_event_RL, view_event_RL, change_password_RL, edit_profile_RL;
     DialogUtil dialogUtil;
     Dialog progress;
     @BindView(R.id.progress_bar)
@@ -163,7 +163,7 @@ public class My_Account_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(((MainActivity) context), Activity_Add_Event_1.class));
-                    ((MainActivity)context).addFragment(new Calender_Fragment(),true);
+//                    ((MainActivity)context).addFragment(new Calender_Fragment(),true);
 
                 }
             });
