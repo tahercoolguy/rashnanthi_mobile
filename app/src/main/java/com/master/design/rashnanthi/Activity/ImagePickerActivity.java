@@ -47,8 +47,7 @@ public class ImagePickerActivity extends AppCompatActivity {
     public static final String INTENT_BITMAP_MAX_WIDTH = "max_width";
     public static final String INTENT_BITMAP_MAX_HEIGHT = "max_height";
     User user;
-    Activity context;
-    AppController appController;
+    Context context;
 
 
     public static final int REQUEST_IMAGE_CAPTURE = 0;
@@ -72,8 +71,7 @@ public class ImagePickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_picker);
-        user = new User(context);
-        appController = (AppController) context.getApplicationContext();
+        user = new User(ImagePickerActivity.this);
 
         Intent intent = getIntent();
         if (intent == null) {

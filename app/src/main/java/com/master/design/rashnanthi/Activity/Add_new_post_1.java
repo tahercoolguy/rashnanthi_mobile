@@ -181,8 +181,7 @@ public class Add_new_post_1 extends AppCompatActivity {
         AddNewPostByCoach();
     }
 
-
-    RadioButton term_conditionRB;
+     RadioButton term_conditionRB;
     //    Button pay_now_Btn, continue_Btn;
     EditText post_for_free_nowET, add_more_eventET;
     TextView you_will_be_uploaded_withon_24_hours;
@@ -301,13 +300,13 @@ public class Add_new_post_1 extends AppCompatActivity {
             country_spinner_Txt.setText(impcountry);
         }
         if (status != null) {
-            youpostEditTxt.setText("Your Post will be edited within 24 hours");
+            youpostEditTxt.setText(getString(R.string.your_post_will_be_uploaded_within_24_hours));
             editpostnowBtn.setVisibility(View.VISIBLE);
             pay_now_Btn.setVisibility(View.GONE);
             post_for_free_nowBtn.setVisibility(View.GONE);
         } else {
-            youpostEditTxt.setText("Your Post will be uploaded within 24 hours");
-            pay_now_Btn.setVisibility(View.VISIBLE);
+            youpostEditTxt.setText(getString(R.string.your_post_will_be_uploaded_within_24_hours));
+//            pay_now_Btn.setVisibility(View.VISIBLE);
             post_for_free_nowBtn.setVisibility(View.VISIBLE);
             editpostnowBtn.setVisibility(View.GONE);
 
@@ -739,17 +738,19 @@ public class Add_new_post_1 extends AppCompatActivity {
                                 EventId = addEventByCreatorRootDM.getOutput().getEventid();
 
 
-                                if (iffree != false) {
-                                    Helper.showToast(Add_new_post_1.this, getString(R.string.the_post_under_review));
-                                    Add_new_post_1.this.finish();
-
-
-                                }
-                                if (ifpay != false) {
-                                    Intent intent = new Intent(Add_new_post_1.this, Add_Event_Pay_Now.class);
-                                    intent.putExtra("eventid", EventId);
-                                    startActivity(intent);
-                                }
+//                                if (iffree != false) {
+//                                    Helper.showToast(Add_new_post_1.this, getString(R.string.the_post_under_review));
+//                                    Add_new_post_1.this.finish();
+//
+//
+//                                }
+//                                if (ifpay != false) {
+//                                    Intent intent = new Intent(Add_new_post_1.this, Add_Event_Pay_Now.class);
+//                                    intent.putExtra("eventid", EventId);
+//                                    startActivity(intent);
+//                                }
+                                Helper.showToast(Add_new_post_1.this, getString(R.string.the_post_under_review));
+                                Add_new_post_1.this.finish();
 
 
                             } else

@@ -438,6 +438,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         add_img_video_2_RL = findViewById(R.id.add_img_video_2_RL);
         add_img_video_4_RL = findViewById(R.id.add_img_video_4_RL);
 
+
+        if(user.getLanguageCode().equalsIgnoreCase("en")){
+            your_post_will_beTXt.setText(getString(R.string.your_post_will_be_uploaded_within_24_hours));
+        }if(user.getLanguageCode().equalsIgnoreCase("ar")){
+            your_post_will_beTXt.setText(getString(R.string.your_post_will_be_uploaded_within_24_hours));
+
+        }
+
 //        if (user.getCoachOrEvent().equalsIgnoreCase("1")) {
 //            //event
 //        } else if (user.getCoachOrEvent().equalsIgnoreCase("2")) {
@@ -1081,16 +1089,18 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                                 EventId = addEventByCreatorRootDM.getOutput().getEventid();
 
 
-                                if (iffree != false) {
-                                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.the_post_under_review));
-                                    Activity_Add_Event_1.this.finish();
-
-                                }
-                                if (ifpaid != false) {
-                                    Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
-                                    intent.putExtra("eventid", EventId);
-                                    startActivity(intent);
-                                }
+//                                if (iffree != false) {
+//                                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.the_post_under_review));
+//                                    Activity_Add_Event_1.this.finish();
+//
+//                                }
+//                                if (ifpaid != false) {
+//                                    Intent intent = new Intent(Activity_Add_Event_1.this, Add_Event_Pay_Now.class);
+//                                    intent.putExtra("eventid", EventId);
+//                                    startActivity(intent);
+//                                }
+                                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.the_post_under_review));
+                                Activity_Add_Event_1.this.finish();
 
 
                             } else
