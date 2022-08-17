@@ -223,6 +223,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center"
                         android:layout_weight="23"
                         android:text="@string/knet"
                         android:textColor="@color/black">
@@ -297,7 +299,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginHorizontal="20dp"
                         android:layout_weight="23"
+                        android:gravity="center"
                         android:text="@string/visa_mastercard"
                         android:textColor="@color/black">
 

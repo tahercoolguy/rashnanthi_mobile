@@ -65,7 +65,7 @@ public class Adapter_Notification extends RecyclerView.Adapter<Adapter_Notificat
 
 
         if(user.getLanguageCode().equalsIgnoreCase("en")){
-            viewHolder.tittle.setText("Rashnanthi");
+            viewHolder.tittle.setText("Reznamaty");
 
         }else{
             viewHolder.tittle.setText(R.string.app_name);

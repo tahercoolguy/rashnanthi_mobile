@@ -52,7 +52,8 @@ public class Social_Media_Fragment extends Fragment {
     RelativeLayout snapchatRl;
     RelativeLayout youtubeRL;
     RelativeLayout tiktokRl;
-    RelativeLayout telegramRL;RelativeLayout facbookRL;
+    RelativeLayout telegramRL;
+    RelativeLayout facbookRL;
 
 
     @BindView(R.id.progress_bar)
@@ -77,11 +78,10 @@ public class Social_Media_Fragment extends Fragment {
     boolean iftelegram = false;
     boolean iffacebook = false;
 
-
-    public void SocialMediaLink() {
+    public void SocialMediaLinkVisibiity() {
 
         if (connectionDetector.isConnectingToInternet()) {
-            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
+            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
             appController.paServices.SocialMedia(new Callback<SocialMediaDM>() {
                 @Override
 
@@ -89,22 +89,120 @@ public class Social_Media_Fragment extends Fragment {
                     progress.dismiss();
                     if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
-                        if (ifinsta!=false) {
-                             if (socialMediaDM.getOutput().getData().get(0).getInstagram() != null) {
+
+                        if (socialMediaDM.getOutput().getData().get(0).getInstagram() != null) {
+//
+
+                        } else {
+                            instaRL.setVisibility(View.GONE);
+                        }
+
+
+                        if (socialMediaDM.getOutput().getData().get(0).getWhatsapp() != null) {
+//
+
+                        } else {
+                            whatsappRl.setVisibility(View.GONE);
+                        }
+//
+
+
+                        if (socialMediaDM.getOutput().getData().get(0).getTwitter() != null) {
+//
+
+                        } else {
+                            twitterRL.setVisibility(View.GONE);
+                        }
+
+
+                        if (socialMediaDM.getOutput().getData().get(0).getSnapchat() != null) {
+//
+
+                        } else {
+                            snapchatRl.setVisibility(View.GONE);
+                        }
+
+
+                        if (socialMediaDM.getOutput().getData().get(0).getYoutube() != null) {
+//
+
+                        } else {
+                            youtubeRL.setVisibility(View.GONE);
+                        }
+
+
+                        if (socialMediaDM.getOutput().getData().get(0).getTiktok() != null) {
+//
+
+                        } else {
+                            tiktokRl.setVisibility(View.GONE);
+                        }
+
+
+                        if (socialMediaDM.getOutput().getData().get(0).getTelegram() != null) {
+//
+
+                        } else {
+                            telegramRL.setVisibility(View.GONE);
+                        }
+
+
+                        if (socialMediaDM.getOutput().getData().get(0).getFacebook() != null) {
+//
+
+                        } else {
+                            facbookRL.setVisibility(View.GONE);
+                        }
+
+
+                    } else
+                        Helper.showToast(context, getString(R.string.something_wrong));
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    progress.dismiss();
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+        } else
+            Helper.showToast(context,
+
+                    getString(R.string.no_internet_connection));
+    }
+
+
+    public void SocialMediaLink() {
+
+        if (connectionDetector.isConnectingToInternet()) {
+            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
+            appController.paServices.SocialMedia(new Callback<SocialMediaDM>() {
+                @Override
+
+                public void success(SocialMediaDM socialMediaDM, Response response) {
+                    progress.dismiss();
+                    if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                        if (ifinsta != false) {
+                            if (socialMediaDM.getOutput().getData().get(0).getInstagram() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getInstagram();
 //                                Intent intent = new Intent(Intent.ACTION_VIEW);
 //                                intent.setData(Uri.parse(url));
 //                                startActivity(intent);
 //                                Helper.showToast(context, String.valueOf(socialMediaDM.getOutput().getData().get(0).getInstagram()));
 
-                                 String url = socialMediaDM.getOutput().getData().get(0).getInstagram();
+                                String url = socialMediaDM.getOutput().getData().get(0).getInstagram();
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                instaRL.setVisibility(View.GONE);
                             }
 
-                        }     if (ifwhatsapp!=false) {
+                        }
+                        if (ifwhatsapp != false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getWhatsapp() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getWhatsapp();
@@ -118,11 +216,14 @@ public class Social_Media_Fragment extends Fragment {
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                whatsappRl.setVisibility(View.GONE);
                             }
 //
 
 
-                        }    if (iftwitter!=false) {
+                        }
+                        if (iftwitter != false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getTwitter() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getTwitter() ;
@@ -136,10 +237,13 @@ public class Social_Media_Fragment extends Fragment {
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                twitterRL.setVisibility(View.GONE);
                             }
 
 
-                        }    if (ifsnapchat!=false) {
+                        }
+                        if (ifsnapchat != false) {
                             if (socialMediaDM.getOutput().getData().get(0).getSnapchat() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getSnapchat();
 //                                Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -152,10 +256,13 @@ public class Social_Media_Fragment extends Fragment {
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                snapchatRl.setVisibility(View.GONE);
                             }
 
 
-                        }    if (ifyoutube!=false) {
+                        }
+                        if (ifyoutube != false) {
                             if (socialMediaDM.getOutput().getData().get(0).getYoutube() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getYoutube();
 //                                Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -168,9 +275,12 @@ public class Social_Media_Fragment extends Fragment {
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                youtubeRL.setVisibility(View.GONE);
                             }
 
-                        }    if (iftiktok!=false) {
+                        }
+                        if (iftiktok != false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getTiktok() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getTiktok();
@@ -184,13 +294,13 @@ public class Social_Media_Fragment extends Fragment {
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                tiktokRl.setVisibility(View.GONE);
                             }
 
 
-
-
                         }
-                        if (iftelegram!=false) {
+                        if (iftelegram != false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getTelegram() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getTelegram();
@@ -204,9 +314,12 @@ public class Social_Media_Fragment extends Fragment {
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                telegramRL.setVisibility(View.GONE);
                             }
 
-                        }if (iffacebook!=false) {
+                        }
+                        if (iffacebook != false) {
 
                             if (socialMediaDM.getOutput().getData().get(0).getFacebook() != null) {
 //                                String url = socialMediaDM.getOutput().getData().get(0).getTelegram();
@@ -220,6 +333,8 @@ public class Social_Media_Fragment extends Fragment {
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
 
+                            } else {
+                                facbookRL.setVisibility(View.GONE);
                             }
 
                         }
@@ -273,6 +388,7 @@ public class Social_Media_Fragment extends Fragment {
             tiktokRl = rootView.findViewById(R.id.tiktokRl);
             telegramRL = rootView.findViewById(R.id.telegramRL);
             facbookRL = rootView.findViewById(R.id.facbookRL);
+            SocialMediaLinkVisibiity();
 
             social_media_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -285,12 +401,13 @@ public class Social_Media_Fragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     ifinsta = true;
-                       ifwhatsapp = false;
-                      iftwitter = false;
-                      ifsnapchat = false;
-                      ifyoutube = false;
-                      iftiktok = false;
-                      iftelegram = false;iffacebook = false;
+                    ifwhatsapp = false;
+                    iftwitter = false;
+                    ifsnapchat = false;
+                    ifyoutube = false;
+                    iftiktok = false;
+                    iftelegram = false;
+                    iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -301,13 +418,13 @@ public class Social_Media_Fragment extends Fragment {
 
                     ifwhatsapp = true;
                     ifinsta = false;
-                     iftwitter = false;
+                    iftwitter = false;
                     ifsnapchat = false;
                     ifyoutube = false;
                     iftiktok = false;
-                    iftelegram = false;iffacebook = false;
+                    iftelegram = false;
+                    iffacebook = false;
                     SocialMediaLink();
-
 
 
                 }
@@ -319,10 +436,11 @@ public class Social_Media_Fragment extends Fragment {
                     iftwitter = true;
                     ifinsta = false;
                     ifwhatsapp = false;
-                     ifsnapchat = false;
+                    ifsnapchat = false;
                     ifyoutube = false;
                     iftiktok = false;
-                    iftelegram = false;iffacebook = false;
+                    iftelegram = false;
+                    iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -335,9 +453,10 @@ public class Social_Media_Fragment extends Fragment {
                     ifinsta = false;
                     ifwhatsapp = false;
                     iftwitter = false;
-                     ifyoutube = false;
+                    ifyoutube = false;
                     iftiktok = false;
-                    iftelegram = false;iffacebook = false;
+                    iftelegram = false;
+                    iffacebook = false;
                     SocialMediaLink();
 
 
@@ -353,8 +472,9 @@ public class Social_Media_Fragment extends Fragment {
                     ifwhatsapp = false;
                     iftwitter = false;
                     ifsnapchat = false;
-                     iftiktok = false;
-                    iftelegram = false;iffacebook = false;
+                    iftiktok = false;
+                    iftelegram = false;
+                    iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -370,7 +490,8 @@ public class Social_Media_Fragment extends Fragment {
                     iftwitter = false;
                     ifsnapchat = false;
                     ifyoutube = false;
-                     iftelegram = false;iffacebook = false;
+                    iftelegram = false;
+                    iffacebook = false;
                     SocialMediaLink();
 
                 }
@@ -392,11 +513,13 @@ public class Social_Media_Fragment extends Fragment {
                     SocialMediaLink();
 
                 }
-            });  facbookRL.setOnClickListener(new View.OnClickListener() {
+            });
+            facbookRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     iffacebook = true;
-                    iftelegram = false; ifinsta = false;
+                    iftelegram = false;
+                    ifinsta = false;
                     ifwhatsapp = false;
                     iftwitter = false;
                     ifsnapchat = false;

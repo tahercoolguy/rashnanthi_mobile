@@ -9,7 +9,7 @@
         android:id="@+id/notificatiom_messege_RL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+         android:layout_marginBottom="15dp"
 
         android:orientation="vertical"
 
@@ -56,7 +56,7 @@
 
             <TextView
                 android:id="@+id/notificatiom_messege_Txt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="3"
                 android:lines="3"
@@ -65,8 +65,9 @@
 
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
-                android:text=""
+                android:text="This is messege"
                 android:textColor="@color/black">
 
 
