@@ -1,15 +1,23 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -28,7 +36,9 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SignUpActivity;
 import com.master.design.rashnanthi.Activity.SplashScreen;
 import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.DeleteAccountRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.DataModel.MarkNotificationasReadRootDM;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.Language;
 import com.master.design.rashnanthi.Helper.User;
@@ -41,6 +51,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import it.sephiroth.android.library.widget.HListView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Menu_1_Fragment extends Fragment {
 
@@ -55,6 +68,10 @@ public class Menu_1_Fragment extends Fragment {
     RelativeLayout logout_Rl;
     RelativeLayout contact_uRL;
     User user;
+    Dialog progress;
+    ConnectionDetector connectionDetector;
+    DialogUtil dialogUtil;
+    AppController appController;
 
 
     @BindView(R.id.progress_bar)
@@ -70,16 +87,14 @@ public class Menu_1_Fragment extends Fragment {
 
     @BindView(R.id.privacy_policy_RL)
     RelativeLayout privacy_policy_RL;
+    @BindView(R.id.deleteAccountRL)
+    RelativeLayout deleteAccountRL;
 
     @BindView(R.id.languageTxt)
     TextView languageTxt;
 
 
-
-
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
-    AppController appController;
-    ConnectionDetector connectionDetector;
     ProgressDialog progressDialog;
 
     @Nullable
@@ -89,7 +104,8 @@ public class Menu_1_Fragment extends Fragment {
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
         user = new User(getActivity());
-
+        dialogUtil = new DialogUtil();
+        connectionDetector = new ConnectionDetector(getApplicationContext());
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -120,13 +136,11 @@ public class Menu_1_Fragment extends Fragment {
                 loginRL.setVisibility(View.VISIBLE);
                 myaccount_RL.setVisibility(View.GONE);
                 logout_Rl.setVisibility(View.GONE);
+                deleteAccountRL.setVisibility(View.GONE);
             } else {
                 registerRL.setVisibility(View.GONE);
                 loginRL.setVisibility(View.GONE);
             }
-
-
-
 
 
             myaccount_RL.setOnClickListener(new View.OnClickListener() {
@@ -205,16 +219,95 @@ public class Menu_1_Fragment extends Fragment {
         return rootView;
     }
 
+    @OnClick(R.id.deleteAccountRL)
+    public void Delete_Account_RL() {
+        confirmDeleteOpenDialog();
+    }
+    public void confirmDeleteOpenDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        final AlertDialog dialog = builder.setNegativeButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                deleteAccountAPI();
+                dialog.cancel();
+            }
+        }).setPositiveButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        }).create();
+
+//        TextView myMsg = new TextView(getActivity());
+//        myMsg.setText(getString(R.string.are_you_sure_want_to_delete_account));
+//        myMsg.setTextSize(15);
+//        myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
+//        dialog.setView(myMsg);
+
+        dialog.setTitle(getString(R.string.delete_account));
+
+        dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+//                negativeButton.setTextColor(0x000000);
+                negativeButton.setTextColor(0xFFFF0000);
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(0xFFFF0000);
+            }
+        });
+        dialog.show();
+
+    }
+    public void deleteAccountAPI() {
+        if (connectionDetector.isConnectingToInternet()) {
+            String userid = String.valueOf(user.getId());
+            progress = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
+            appController.paServices.Deleteaccount(userid, new Callback<DeleteAccountRootDM>() {
+                @Override
+                public void success(DeleteAccountRootDM deleteAccountRootDM, Response response) {
+                    progress.dismiss();
+                    try {
+                        if (deleteAccountRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                          user.setId(0);
+
+                          Menu_1_Fragment.restartActivity(getActivity());
+
+                           Helper.showToast(getContext(),getString(R.string.your_account_will_be_deleted));
+                         } else {
+
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    progress.dismiss();
+
+                    Log.e("error", error.toString());
+                }
+            });
+
+
+        } else {
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
+        }
+    }
+
+
     @OnClick(R.id.languageRL)
     public void language_RL() {
-        if(user.getLanguageCode().equalsIgnoreCase("en")) {
+        if (user.getLanguageCode().equalsIgnoreCase("en")) {
             Language language = new Language(2, "Arabic", "ar");
             user.setLanguage(language);
 
 
             Util.setConfigChange(getActivity(), "ar");
-        }else
-        {
+        } else {
             Language language = new Language(1, "English", "en");
             user.setLanguage(language);
 

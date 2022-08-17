@@ -1,9 +1,11 @@
 
 package com.master.design.rashnanthi.Activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.master.design.rashnanthi.Controller.AppController;
+import com.master.design.rashnanthi.DataModel.MarkNotificationasReadRootDM;
 import com.master.design.rashnanthi.Fragments.Calender_Fragment;
 import com.master.design.rashnanthi.Fragments.Coach_Account_Fragment;
 import com.master.design.rashnanthi.Fragments.Coach_Fragment;
@@ -26,8 +30,14 @@ import com.master.design.rashnanthi.Helper.ContextWrapper;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
+import com.master.design.rashnanthi.Utils.ConnectionDetector;
+import com.master.design.rashnanthi.Utils.Helper;
 
 import java.util.Locale;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
@@ -50,20 +60,28 @@ public class MainActivity extends AppCompatActivity {
     public static final String VIDEO_EXTENSION = "mp4";
 
     private User user;
-    String coachcreator,eventcreator;
-
+    String coachcreator, eventcreator;
+    TextView notification_countTxt;
 
     TextView calenderTxt, coachTxt, social_mediaTxt, notificationTxt;
 
+    Dialog progress;
+    ConnectionDetector connectionDetector;
+     DialogUtil dialogUtil;
+    AppController appController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        user = new User(this);
+        user = new User(MainActivity.this);
 
-        eventcreator = getIntent().getStringExtra("chirag1");
+        dialogUtil = new DialogUtil();
+        appController = (AppController) getApplicationContext();
+        connectionDetector = new ConnectionDetector(getApplicationContext());
+         eventcreator = getIntent().getStringExtra("chirag1");
         coachcreator = getIntent().getStringExtra("chirag2");
+        notificationMarkAllRead();
 
         addFragment(new Calender_Fragment(), true);
 
@@ -71,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         coachTxt = findViewById(R.id.coachTxt);
         social_mediaTxt = findViewById(R.id.social_mediaTxt);
         notificationTxt = findViewById(R.id.notificationTxt);
+        notification_countTxt = findViewById(R.id.notification_countTxt);
 
         boolean ifcoachselected = false;
 
@@ -114,8 +133,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ifSearchClicked = true;
                 SearchVisibilityFunction();
-               addFragment(new Coach_Fragment(), true);
-
+                addFragment(new Coach_Fragment(), true);
 
 
             }
@@ -145,6 +163,41 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    public void notificationMarkAllRead() {
+        if (connectionDetector.isConnectingToInternet()) {
+            String userid = String.valueOf(user.getId());
+            progress = dialogUtil.showProgressDialog(MainActivity.this, getString(R.string.please_wait));
+            appController.paServices.MarkReadNotification(userid, new Callback<MarkNotificationasReadRootDM>() {
+                @Override
+                public void success(MarkNotificationasReadRootDM markNotificationasReadRootDM, Response response) {
+                    progress.dismiss();
+                    try {
+                        if (markNotificationasReadRootDM.getOutput().getSuccess().equalsIgnoreCase("0")) {
+                            notification_countTxt.setVisibility(View.GONE);
+                        }else{
+                            notification_countTxt.setVisibility(View.VISIBLE);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    progress.dismiss();
+
+                    Log.e("error", error.toString());
+                }
+            });
+
+
+        } else {
+            Helper.showToast(MainActivity.this, getString(R.string.no_internet_connection));
+        }
+    }
+
 
     boolean ifCalenderClicked = false;
     boolean ifSearchClicked = false;

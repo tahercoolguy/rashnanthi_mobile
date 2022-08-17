@@ -58,6 +58,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:paddingBottom="100dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -315,7 +316,6 @@
                         android:textSize="15sp"></TextView>
 
                 </RelativeLayout>
-
                 <RelativeLayout
                     android:id="@+id/privacy_policy_RL"
                     android:layout_width="match_parent"
@@ -345,7 +345,44 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="70dp"
                         android:gravity="center"
-                         android:text="@string/privacy"
+                        android:text="@string/privacy"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"></TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/deleteAccountRL"
+                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginBottom="25dp"
+                     android:layout_marginRight="35dp"
+                    android:background="@drawable/menu_bg"
+                    android:elevation="4dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:elevation=".3dp"
+                        android:padding="7dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/button_rounded_grey_color_selector"
+                        android:src="@drawable/ic_delete">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="70dp"
+                        android:gravity="center"
+                         android:text="@string/delete_account"
                         android:textColor="@color/black"
                         android:textSize="15sp"></TextView>
 

@@ -33,7 +33,7 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
-                    android:text="@string/term_and_condition"
+                    android:text="@string/terms"
                     android:gravity="center"
                     android:textAllCaps="true"
                     android:textColor="@color/white"

@@ -190,7 +190,10 @@
     <string name="choose_from_gallery">اختر من المعرض</string>
     <string name="take_a_video">تأخذ شريط فيديو</string>
     <string name="set_image_or_video">ضبط الصورة / الفيديو</string>
-
+    <string name="kindly_choose_any_profile_pic">يرجى اختيار أي صورة للملف الشخصي</string>
+    <string name="delete_account">حذف الحساب</string>
+    <string name="are_you_sure_want_to_delete_account">هل أنت متأكد أنك تريد حذف الحساب </string>
+    <string name="your_account_will_be_deleted">سيتم حذف حسابك </string>
 
 
 

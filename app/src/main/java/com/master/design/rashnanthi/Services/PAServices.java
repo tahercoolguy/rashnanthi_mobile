@@ -10,6 +10,7 @@ import com.master.design.rashnanthi.DataModel.ChangePasswordRootDM;
 import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
 import com.master.design.rashnanthi.DataModel.ConfirmEventRootDM;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
+import com.master.design.rashnanthi.DataModel.DeleteAccountRootDM;
 import com.master.design.rashnanthi.DataModel.DeleteEventImageRootDM;
 import com.master.design.rashnanthi.DataModel.DeleteEventRootDM;
 import com.master.design.rashnanthi.DataModel.EditEventRootDM;
@@ -20,6 +21,7 @@ import com.master.design.rashnanthi.DataModel.GetCoachsByCountryRootDM;
 import com.master.design.rashnanthi.DataModel.GetEventsByCountryDateRootDM;
 import com.master.design.rashnanthi.DataModel.LikeCoachRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.DataModel.MarkNotificationasReadRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.DataModel.MyNotificationRootDM;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
@@ -226,6 +228,18 @@ public interface PAServices {
                    @Field("userid") String userid,
                    @Field("likestatus") String likestatus,
                          Callback<LikeCoachRootDM> likeCoachRootDMCallback);
+
+    //31
+    @FormUrlEncoded
+    @POST("/marknotificationasread")
+    void MarkReadNotification(@Field("notificationid") String notificationid,
+                          Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
+
+    //32
+    @FormUrlEncoded
+    @POST("/deleteaccount")
+    void Deleteaccount(@Field("userid") String userid,
+                              Callback<DeleteAccountRootDM> deleteAccountRootDMCallback);
 }
 
 

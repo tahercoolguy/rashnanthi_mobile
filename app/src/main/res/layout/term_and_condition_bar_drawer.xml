@@ -31,10 +31,10 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/avenir_light"
-                    android:text="@string/term_and_condition"
                     android:gravity="center"
+                    android:text="@string/terms"
                     android:textAllCaps="true"
-                     android:textColor="@color/white"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 

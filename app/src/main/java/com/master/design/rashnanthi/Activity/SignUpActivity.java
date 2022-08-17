@@ -296,7 +296,7 @@ public class SignUpActivity extends AppCompatActivity {
             boolean correct = true;
             if (profile_RoundedImgView.getDrawable() == null) {
                 correct = false;
-                Helper.showToast(SignUpActivity.this, "kindly choose any profile pic");
+                Helper.showToast(SignUpActivity.this, getString(R.string.kindly_choose_any_profile_pic));
             } else if (nameET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));

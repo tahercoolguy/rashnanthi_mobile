@@ -6,308 +6,337 @@
     android:animateLayoutChanges="true"
     android:background="@color/app_bg_color">
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:visibility="visible"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp">
-
-            <TextView
-                android:id="@+id/txt_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:fontFamily="@font/avenir_light"
-                android:gravity="center"
-                android:text="@string/coachh"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_title"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/coach_menu_Back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_menu_filled"></ImageView>
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:background="@color/colorPrimary">
-
-    </ImageView>
-
-    <LinearLayout
-        android:id="@+id/layout_parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
 
-            <ScrollView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    android:visibility="visible"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp">
+
+                        <TextView
+                            android:id="@+id/txt_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/avenir_light"
+                            android:gravity="center"
+                            android:text="@string/coachh"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/coach_menu_Back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_menu_filled"></ImageView>
+                    </RelativeLayout>
+                </androidx.appcompat.widget.Toolbar>
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/colorPrimary">
+
+                </ImageView>
+
                 <LinearLayout
+                    android:id="@+id/layout_parent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="50dp"
                     android:orientation="vertical">
 
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/my_account_Img"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/my_account_Img"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
 
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:src="@drawable/ic_coach_people"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="2dp">
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="30dp"
+                                android:src="@drawable/ic_coach_people"
+                                app:civ_border_color="@color/white"
+                                app:civ_border_width="2dp">
 
-                </de.hdodenhof.circleimageview.CircleImageView>
+                            </de.hdodenhof.circleimageview.CircleImageView>
 
-                <ImageView
-                    android:id="@+id/edit_ProfileImg"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                            <ImageView
+                                android:id="@+id/edit_ProfileImg"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
 
-                    android:layout_marginHorizontal="215dp"
-                    android:layout_marginTop="95dp"
-                    android:src="@drawable/ic_edit_profile"></ImageView>
+                                android:layout_marginHorizontal="215dp"
+                                android:layout_marginTop="95dp"
+                                android:src="@drawable/ic_edit_profile"></ImageView>
+
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="125dp"
+                            android:layout_marginTop="-120dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic__5k_likes"></ImageView>
+
+                            <TextView
+                                android:id="@+id/likeTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:text="0   Like"
+                                android:textColor="@color/white">
+
+                            </TextView>
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/account_NameTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="80dp"
+                            android:fontFamily="@font/red_hat_isplay_bold"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/login"></TextView>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="40dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/add_new_event_RL"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/my_account_bg"
+                                android:elevation="4dp"
+
+                                android:minWidth="150dp"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/marginLeft"
+                                    android:layout_marginTop="@dimen/marginTop"
+                                    android:src="@drawable/ic_calenderr">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:lines="2"
+                                    android:padding="10dp"
+                                    android:text="@string/add_new_post"
+                                    android:textColor="@color/black"
+                                    android:textSize="17dp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/view_event_RL"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/margin"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/my_account_bg"
+
+                                android:elevation="4dp"
+
+                                android:minWidth="150dp"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/marginLeft"
+                                    android:layout_marginTop="@dimen/marginTop"
+                                    android:src="@drawable/ic_flag_regular">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:lines="2"
+                                    android:padding="10dp"
+                                    android:text="@string/view_post"
+                                    android:textColor="@color/black"
+                                    android:textSize="17dp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+
+                            android:paddingBottom="100dp">
+
+                            <LinearLayout
+                                android:id="@+id/change_password_RL"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/my_account_bg"
+
+                                android:elevation="4dp"
+
+                                android:minWidth="150dp"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/marginLeft"
+                                    android:layout_marginTop="@dimen/marginTop"
+                                    android:src="@drawable/ic_lockkk">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:lines="2"
+                                    android:padding="10dp"
+                                    android:text="@string/change_pass"
+                                    android:textColor="@color/black"
+                                    android:textSize="17dp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/edit_profile_RL"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/margin"
+                                android:layout_weight="1"
+                                android:background="@drawable/my_account_bg"
+                                android:elevation="4dp"
+                                android:minWidth="150dp"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/marginLeft"
+                                    android:layout_marginTop="@dimen/marginTop"
+                                    android:src="@drawable/ic_lockkk">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:lines="2"
+                                    android:padding="10dp"
+                                    android:text="@string/edit_pro"
+                                    android:textColor="@color/black"
+                                    android:textSize="17dp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <include layout="@layout/layout_error" />
 
             </RelativeLayout>
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="125dp"
-                android:layout_marginTop="-120dp"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic__5k_likes"></ImageView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/likeTxt"
-                    android:text="0   Like"
-                    android:textColor="@color/white">
-
-                </TextView>
-            </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/account_NameTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="80dp"
-                android:fontFamily="@font/red_hat_isplay_bold"
-                android:gravity="center"
-                 android:textColor="@color/black"
-                android:textSize="@dimen/login"></TextView>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/add_new_event_RL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-
-
-                    android:background="@drawable/my_account_bg"
-                    android:elevation="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/marginLeft"
-                        android:layout_marginTop="@dimen/marginTop"
-                        android:src="@drawable/ic_calenderr">
-
-                    </ImageView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="50dp"
-                        android:text="@string/add_new_post"
-                        android:textColor="@color/black"
-                        android:textSize="17dp">
-
-                    </TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/view_event_RL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-
-                    android:background="@drawable/my_account_bg"
-                    android:elevation="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/marginLeft"
-                        android:layout_marginTop="@dimen/marginTop"
-                        android:src="@drawable/ic_flag_regular">
-
-                    </ImageView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="50dp"
-                        android:text="@string/view_post"
-                        android:textColor="@color/black"
-                        android:textSize="17dp">
-
-                    </TextView>
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/change_password_RL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-
-                    android:background="@drawable/my_account_bg"
-                    android:elevation="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/marginLeft"
-                        android:layout_marginTop="@dimen/marginTop"
-                        android:src="@drawable/ic_lockkk">
-
-                    </ImageView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="50dp"
-                        android:text="@string/change_pass"
-                        android:textColor="@color/black"
-                        android:textSize="17dp">
-
-                    </TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/edit_profile_RL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/margin"
-                    android:layout_weight="1"
-                    android:background="@drawable/my_account_bg"
-                    android:elevation="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/marginLeft"
-                        android:layout_marginTop="@dimen/marginTop"
-                        android:src="@drawable/ic_lockkk">
-
-                    </ImageView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="50dp"
-                        android:text="@string/edit_pro"
-                        android:textColor="@color/black"
-                        android:textSize="17dp">
-
-                    </TextView>
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-                </LinearLayout>
-
-            </ScrollView>
         </LinearLayout>
-    </LinearLayout>
 
-    <include layout="@layout/layout_error" />
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

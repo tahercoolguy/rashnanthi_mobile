@@ -70,7 +70,7 @@ public class Coach_Account_Fragment extends Fragment {
     private View rootView;
     private Context context;
     User user;
-    RelativeLayout add_new_event_RL, view_event_RL, change_password_RL, edit_profile_RL;
+    LinearLayout add_new_event_RL, view_event_RL, change_password_RL, edit_profile_RL;
     DialogUtil dialogUtil;
     Dialog progress;
 

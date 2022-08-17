@@ -29,6 +29,8 @@ import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.Adapter_Notification;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
+import com.master.design.rashnanthi.DataModel.MarkNotificationasReadOutput;
+import com.master.design.rashnanthi.DataModel.MarkNotificationasReadRootDM;
 import com.master.design.rashnanthi.DataModel.MyNotificationRootDM;
 import com.master.design.rashnanthi.DataModel.NotificationDM;
 import com.master.design.rashnanthi.Helper.DialogUtil;
@@ -135,6 +137,7 @@ public class Notification_Fragment extends Fragment {
         }
         return rootView;
     }
+
 
 
     public void myNotificationAPI() {

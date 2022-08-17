@@ -48,16 +48,18 @@
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-         android:orientation="vertical">
+          android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
+            android:layout_marginTop="70dp"
              android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                  android:paddingBottom="100dp"
                 android:layout_height="match_parent"
                  android:orientation="vertical">
 

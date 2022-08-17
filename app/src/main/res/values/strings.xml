@@ -226,6 +226,10 @@
     <string name="choose_from_gallery">Choose from gallery</string>
     <string name="take_a_video">Take a video</string>
     <string name="set_image_or_video">Set image / Video</string>
+    <string name="kindly_choose_any_profile_pic">kindly choose any profile pic</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="are_you_sure_want_to_delete_account">Are you sure you want to Delete Account </string>
+    <string name="your_account_will_be_deleted">Your Account will be Deleted </string>
 
 
 </resources>
