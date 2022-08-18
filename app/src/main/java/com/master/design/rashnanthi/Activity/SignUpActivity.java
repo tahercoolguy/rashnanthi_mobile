@@ -294,10 +294,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 
             boolean correct = true;
-            if (profile_RoundedImgView.getDrawable() == null) {
-                correct = false;
-                Helper.showToast(SignUpActivity.this, getString(R.string.kindly_choose_any_profile_pic));
-            } else if (nameET.getText().toString().equalsIgnoreCase("")) {
+//            if (profile_RoundedImgView.getDrawable() == null) {
+//                correct = false;
+//                Helper.showToast(SignUpActivity.this, getString(R.string.kindly_choose_any_profile_pic));
+//            } else
+                if (nameET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));
             } else if (emailET.getText().toString().equalsIgnoreCase("")) {
