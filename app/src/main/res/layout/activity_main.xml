@@ -215,7 +215,7 @@
                              android:textColor="@color/white"
                             android:textSize="11dp"
                             android:textStyle="bold"
-                            android:visibility="visible"></TextView>
+                            android:visibility="gone"></TextView>
                     </RelativeLayout>
 
 
