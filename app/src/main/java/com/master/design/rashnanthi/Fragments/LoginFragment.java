@@ -127,7 +127,7 @@ public class LoginFragment extends Fragment {
             progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
 
             appController.paServices.Login(country_spinnerET.getText().toString(), mobileET.getText().toString(),
-                    passwordET.getText().toString(), new Callback<LoginRootDM>() {
+                    passwordET.getText().toString(),refreshedToken,"2", new Callback<LoginRootDM>() {
                         @Override
                         public void success(LoginRootDM loginRootDM, Response response) {
                             progress.dismiss();

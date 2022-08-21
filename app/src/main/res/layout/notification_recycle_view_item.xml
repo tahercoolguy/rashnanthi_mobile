@@ -28,8 +28,8 @@
                 android:id="@+id/notification_title_Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_weight="1"
+                android:layout_marginHorizontal="10dp"
+                 android:layout_weight="1"
                 android:text="@string/title"
                 android:textColor="@color/black"
                 android:textStyle="bold">

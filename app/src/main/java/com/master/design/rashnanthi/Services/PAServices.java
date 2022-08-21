@@ -93,6 +93,8 @@ public interface PAServices {
     void Login(@Field("countrycode") String countrycode,
                @Field("mobile") String mobile,
                @Field("password") String password,
+               @Field("deviceid") String deviceid,
+               @Field("devicetype") String devicetype,
                Callback<LoginRootDM> loginRootDMCallback);
 
     //11             done
