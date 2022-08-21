@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     Dialog progress;
     ConnectionDetector connectionDetector;
-     DialogUtil dialogUtil;
+    DialogUtil dialogUtil;
     AppController appController;
 
     @Override
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         dialogUtil = new DialogUtil();
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());
-         eventcreator = getIntent().getStringExtra("chirag1");
+        eventcreator = getIntent().getStringExtra("chirag1");
         coachcreator = getIntent().getStringExtra("chirag2");
         notificationMarkAllRead();
 
@@ -173,20 +173,14 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void success(MarkNotificationasReadRootDM markNotificationasReadRootDM, Response response) {
                     progress.dismiss();
-                    try {
-                        if (markNotificationasReadRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-                            notification_countTxt.setVisibility(View.VISIBLE);
-                            String count=markNotificationasReadRootDM.getOutput().getCount();
-                            notificationTxt.setText(count);
-                        }else{
-                            notification_countTxt.setVisibility(View.GONE);
-
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    if (markNotificationasReadRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        notification_countTxt.setVisibility(View.VISIBLE);
+                        String count = markNotificationasReadRootDM.getOutput().getCount();
+                        notification_countTxt.setText(count);
+                    } else {
+                        notification_countTxt.setVisibility(View.GONE);
                     }
                 }
-
                 @Override
                 public void failure(RetrofitError error) {
                     progress.dismiss();

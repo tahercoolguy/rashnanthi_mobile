@@ -240,7 +240,7 @@ public interface PAServices {
     //31
     @FormUrlEncoded
     @POST("/getnotificationcount")
-    void MarkReadNotification(@Field("notificationid") String notificationid,
+    void MarkReadNotification(@Field("userid") String userid,
                               Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
 
 
