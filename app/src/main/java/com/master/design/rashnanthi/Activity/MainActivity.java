@@ -174,10 +174,13 @@ public class MainActivity extends AppCompatActivity {
                 public void success(MarkNotificationasReadRootDM markNotificationasReadRootDM, Response response) {
                     progress.dismiss();
                     try {
-                        if (markNotificationasReadRootDM.getOutput().getSuccess().equalsIgnoreCase("0")) {
-                            notification_countTxt.setVisibility(View.GONE);
-                        }else{
+                        if (markNotificationasReadRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
                             notification_countTxt.setVisibility(View.VISIBLE);
+                            String count=markNotificationasReadRootDM.getOutput().getCount();
+                            notificationTxt.setText(count);
+                        }else{
+                            notification_countTxt.setVisibility(View.GONE);
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

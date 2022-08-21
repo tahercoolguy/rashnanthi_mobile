@@ -231,11 +231,18 @@ public interface PAServices {
                    @Field("likestatus") String likestatus,
                          Callback<LikeCoachRootDM> likeCoachRootDMCallback);
 
+//    //31
+//    @FormUrlEncoded
+//    @POST("/marknotificationasread")
+//    void MarkReadNotification(@Field("notificationid") String notificationid,
+//                          Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
+
     //31
     @FormUrlEncoded
-    @POST("/marknotificationasread")
+    @POST("/getnotificationcount")
     void MarkReadNotification(@Field("notificationid") String notificationid,
-                          Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
+                              Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
+
 
     //32
     @FormUrlEncoded
