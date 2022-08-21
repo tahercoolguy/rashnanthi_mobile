@@ -130,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              android:layout_marginBottom="2dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -216,7 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="100dp"
              android:gravity="center"
 
             android:orientation="horizontal">
