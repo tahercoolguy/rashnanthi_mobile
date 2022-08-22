@@ -118,17 +118,26 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
         viewHolder.whatsappIMg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://api.whatsapp.com/send?phone=" + WhatsappCountryCode + Whatsapp;
-                try {
-                    PackageManager pm = context.getPackageManager();
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    context.startActivity(i);
-                } catch (PackageManager.NameNotFoundException e) {
-                    Helper.showToast(context, "Whatsapp app not installed in your phone");
+//                String url = "https://api.whatsapp.com/send?phone=" + WhatsappCountryCode + Whatsapp;
+//                try {
+//                    PackageManager pm = context.getPackageManager();
+//                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+//                    Intent i = new Intent(Intent.ACTION_VIEW);
+//                    i.setData(Uri.parse(url));
+//                    context.startActivity(i);
+//                } catch (PackageManager.NameNotFoundException e) {
+//                    Helper.showToast(context, "Whatsapp app not installed in your phone");
+//
+//                    e.printStackTrace();
+//                }
 
-                    e.printStackTrace();
+                try {
+                    String url = "https://api.whatsapp.com/send?phone=" + WhatsappCountryCode + Whatsapp;
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    context.startActivity(intent);
+                } catch (Exception e) {
+                    Helper.showToast(context,context.getString(R.string.something_wrong));
                 }
             }
         });

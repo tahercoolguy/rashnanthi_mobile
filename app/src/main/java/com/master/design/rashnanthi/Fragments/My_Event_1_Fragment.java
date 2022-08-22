@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -205,6 +207,8 @@ public class My_Event_1_Fragment extends Fragment {
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
                             my_event_Rcv.setLayoutManager(linearLayoutManager);
                             adapter_my_event_1.notifyDataSetChanged();
+                            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                            my_event_Rcv.startAnimation(animation);
                             my_event_Rcv.setAdapter(adapter_my_event_1);
                         } else {
                             Helper.showToast(context, getString(R.string.select_country_for_see_post));

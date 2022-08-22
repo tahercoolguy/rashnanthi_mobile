@@ -301,10 +301,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if (nameET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));
-            } else if (emailET.getText().toString().equalsIgnoreCase("")) {
-                correct = false;
-                Helper.showToast(SignUpActivity.this, getString(R.string.enter_email));
-            } else if (passwordET.getText().toString().equalsIgnoreCase("")) {
+            }
+//                else if (emailET.getText().toString().equalsIgnoreCase("")) {
+//                correct = false;
+//                Helper.showToast(SignUpActivity.this, getString(R.string.enter_email));
+//            }
+                else if (passwordET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_password));
             } else if (confirm_passwordET.getText().toString().equalsIgnoreCase("")) {
@@ -425,10 +427,12 @@ public class SignUpActivity extends AppCompatActivity {
             } else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_main_country));
-            } else if (emailET.getText().toString().equalsIgnoreCase("")) {
-                correct = false;
-                Helper.showToast(SignUpActivity.this, getString(R.string.enter_email));
-            } else if (passwordET.getText().toString().equalsIgnoreCase("")) {
+            }
+//            else if (emailET.getText().toString().equalsIgnoreCase("")) {
+//                correct = false;
+//                Helper.showToast(SignUpActivity.this, getString(R.string.enter_email));
+//            }
+            else if (passwordET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_password));
             } else if (confirm_passwordET.getText().toString().equalsIgnoreCase("")) {

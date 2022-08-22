@@ -1,5 +1,6 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
 import static com.master.design.rashnanthi.Controller.AppController.TAG;
 
 import android.app.Dialog;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -157,6 +160,8 @@ public class Coach_Grid_Account_Fragment extends Fragment {
                                 Adapter_Coach__grid_Fgmt occasionAdapter = new Adapter_Coach__grid_Fgmt(getActivity(), getCoachsByCountryRootDM.getOutput().getData());
                                 GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 3);
                                 my_account_grid_Rcv.setLayoutManager(linearLayoutManager);
+                                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                                my_account_grid_Rcv.startAnimation(animation);
                                 my_account_grid_Rcv.setAdapter(occasionAdapter);
                             }   catch(Exception error1) {
                                 Log.e(TAG, "The exception caught while executing the process. (error1)");

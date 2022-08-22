@@ -117,18 +117,27 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             viewHolder.whts.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String url = "https://api.whatsapp.com/send?phone=" + eventsDetailsData.get(position).getWhatsapcountrycode()+ eventsDetailsData.get(position).getWhatsapnumber();
-                    try {
-                        PackageManager pm = context.getPackageManager();
-                        pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url));
-                        context.startActivity(i);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        Helper.showToast(context, "Whatsapp app not installed in your phone");
+//                    String url = "https://api.whatsapp.com/send?phone=" + eventsDetailsData.get(position).getWhatsapcountrycode()+ eventsDetailsData.get(position).getWhatsapnumber();
+//                    try {
+//                        PackageManager pm = context.getPackageManager();
+//                        pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+//                        Intent i = new Intent(Intent.ACTION_VIEW);
+//                        i.setData(Uri.parse(url));
+//                        context.startActivity(i);
+//                    } catch (PackageManager.NameNotFoundException e) {
+//                        Helper.showToast(context, "Whatsapp app not installed in your phone");
+//
+//                        e.printStackTrace();
+//                    }
 
-                        e.printStackTrace();
-                    }                }
+                    try {
+                        String url = "https://api.whatsapp.com/send?phone=" + eventsDetailsData.get(position).getWhatsapcountrycode() + eventsDetailsData.get(position).getWhatsapnumber();
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        context.startActivity(intent);
+                    } catch (Exception e) {
+                        Helper.showToast(context,context.getString(R.string.something_wrong));
+                    }}
             });
         }
 

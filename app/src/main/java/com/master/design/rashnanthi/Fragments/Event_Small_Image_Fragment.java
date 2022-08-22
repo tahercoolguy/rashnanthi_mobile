@@ -1,5 +1,7 @@
 package com.master.design.rashnanthi.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -14,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -100,17 +104,25 @@ public class Event_Small_Image_Fragment extends Fragment {
 
     @OnClick(R.id.wtsapImg)
     public void whatSapp() {
-        String url = "https://api.whatsapp.com/send?phone=" + WhatsappCountryCode + Whatsapp;
+//        String url = "https://api.whatsapp.com/send?phone=" + WhatsappCountryCode + Whatsapp;
+//        try {
+//            PackageManager pm = context.getPackageManager();
+//            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+//            Intent i = new Intent(Intent.ACTION_VIEW);
+//            i.setData(Uri.parse(url));
+//            context.startActivity(i);
+//        } catch (PackageManager.NameNotFoundException e) {
+//             Helper.showToast(context, "Whatsapp app not installed in your phone");
+//
+//            e.printStackTrace();
+//        }
         try {
-            PackageManager pm = context.getPackageManager();
-            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            context.startActivity(i);
-        } catch (PackageManager.NameNotFoundException e) {
-             Helper.showToast(context, "Whatsapp app not installed in your phone");
-
-            e.printStackTrace();
+            String url = "https://api.whatsapp.com/send?phone=" + WhatsappCountryCode + Whatsapp;
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            context.startActivity(intent);
+        } catch (Exception e) {
+            Helper.showToast(context,context.getString(R.string.something_wrong));
         }
     }
 
@@ -282,6 +294,8 @@ public void newAPI()
 
                             // below method is used to set auto cycle direction in left to
                             // right direction you can change according to requirement.
+                            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                            slider.startAnimation(animation);
                             slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
 
                             // below method is used to

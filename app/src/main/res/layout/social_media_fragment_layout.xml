@@ -68,7 +68,7 @@
                     android:id="@+id/instaRL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_gravity="center"
 
                      android:background="@drawable/social_media_bg"
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
 
                     android:background="@drawable/social_media_bg"
                     android:elevation="4dp">
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
 
                     android:background="@drawable/social_media_bg"
                     android:elevation="4dp">
@@ -166,7 +166,7 @@
                     android:id="@+id/twitterRL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
 
@@ -201,7 +201,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
 
                     android:background="@drawable/social_media_bg"
                     android:elevation="4dp">
@@ -234,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_marginTop="20dp"
 
                     android:background="@drawable/social_media_bg"
@@ -267,7 +267,7 @@
                     android:id="@+id/tiktokRl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
 
@@ -304,7 +304,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="50dp"
                     android:layout_marginTop="20dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
 
                     android:background="@drawable/social_media_bg"
                     android:elevation="4dp">

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -306,6 +308,8 @@ public class Coach_Fragment extends Fragment {
                         context = getActivity();
                         adapter1 =new ImageRecyclerAdapter1(getActivity(),coachesWithPostsRootDM.getOutput().getData() );
                         coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                        coach_Rcv.startAnimation(animation);
                         coach_Rcv.setHasFixedSize(true);
                         coach_Rcv.setAdapter(adapter1);
                     } else

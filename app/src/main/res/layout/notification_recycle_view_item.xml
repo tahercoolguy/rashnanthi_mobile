@@ -30,7 +30,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                  android:layout_weight="1"
-                android:text="@string/title"
+                android:minWidth="100dp"
+                android:maxWidth="100dp"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:text="reznamty"
                 android:textColor="@color/black"
                 android:textStyle="bold">
 
@@ -41,6 +45,8 @@
                 android:id="@+id/notification_time_Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:gravity="end"
                 android:layout_marginRight="20dp"
                 android:text="@string/today_6_pm">
 

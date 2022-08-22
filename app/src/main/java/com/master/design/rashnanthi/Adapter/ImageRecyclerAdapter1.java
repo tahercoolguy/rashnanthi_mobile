@@ -53,14 +53,14 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     AppController appController;
     ConnectionDetector connectionDetector;
     DialogUtil dialogUtil;
-    String whatsapp, whatsappcode, instagram, snapcahat,website;
+    String whatsapp, whatsappcode, instagram, snapcahat, website;
     Dialog progress;
     ArrayList<CoacheswithDatam> mList;
     String id;
 
     ArrayList<String> slider_image_list;
 
-    public ImageRecyclerAdapter1(Activity context,ArrayList<CoacheswithDatam> mList) {
+    public ImageRecyclerAdapter1(Activity context, ArrayList<CoacheswithDatam> mList) {
         this.mList = mList;
         this.context = context;
 
@@ -83,41 +83,41 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 //        holder.mName.setText(mList.get(position));
 
-        if(mList.get(position).getPostsdata()!=null) {
+        if (mList.get(position).getPostsdata() != null) {
             instagram = mList.get(position).getPostsdata().get(0).getInstagram();
             whatsapp = mList.get(position).getPostsdata().get(0).getWhatsapnumber();
             whatsappcode = mList.get(position).getPostsdata().get(0).getWhatsapcountrycode();
             snapcahat = mList.get(position).getPostsdata().get(0).getSnapchat();
             website = mList.get(position).getPostsdata().get(0).getWebsite();
-        }else {
+        } else {
             instagram = mList.get(position).getInstagram();
             whatsapp = mList.get(position).getWhatsapnumber();
             whatsappcode = mList.get(position).getWhatscountrycode();
             snapcahat = mList.get(position).getSnapchat();
             website = mList.get(position).getWebsite();
         }
-        if(instagram != null)
-        if (instagram.equalsIgnoreCase("")) {
-            holder.insta_img.setVisibility(View.GONE);
-        } else {
-            holder.insta_img.setVisibility(View.VISIBLE);
-        }
+        if (instagram != null)
+            if (instagram.equalsIgnoreCase("")) {
+                holder.insta_img.setVisibility(View.GONE);
+            } else {
+                holder.insta_img.setVisibility(View.VISIBLE);
+            }
 
-        if(whatsapp != null)
+        if (whatsapp != null)
             if (whatsapp.equalsIgnoreCase("")) {
                 holder.whatsapp_IMg.setVisibility(View.GONE);
             } else {
                 holder.whatsapp_IMg.setVisibility(View.VISIBLE);
             }
 
-        if(snapcahat != null)
+        if (snapcahat != null)
             if (snapcahat.equalsIgnoreCase("")) {
                 holder.snapchaht_Img.setVisibility(View.GONE);
             } else {
                 holder.snapchaht_Img.setVisibility(View.VISIBLE);
             }
 
-        if(website != null)
+        if (website != null)
             if (website.equalsIgnoreCase("")) {
                 holder.web_Img.setVisibility(View.GONE);
             } else {
@@ -126,23 +126,23 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
 
         ArrayList<String> km = new ArrayList<>();
 
-        if(mList.get(position).getPostsdata()!=null)
-        for (CoachesWithPostsDatam s : mList.get(position).getPostsdata()
-        ) {
-
-            if(s.getImagedata()!=null)
-                for (CoachesWithPostsImageDatam caoch : s.getImagedata()
+        if (mList.get(position).getPostsdata() != null)
+            for (CoachesWithPostsDatam s : mList.get(position).getPostsdata()
             ) {
-//                if (!caoch.getEventimage().equalsIgnoreCase(""))
-                    km.add(caoch.getImage());
 
+                if (s.getImagedata() != null)
+                    for (CoachesWithPostsImageDatam caoch : s.getImagedata()
+                    ) {
+//                if (!caoch.getEventimage().equalsIgnoreCase(""))
+                        km.add(caoch.getImage());
+
+                    }
             }
-        }
 
 
         try {
 
-            holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context,km);
+            holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context, km);
             holder.mViewPager.setAdapter(holder.sliderPagerAdapter1);
             holder.dots = new TextView[km.size()];
             addBottomDots(0, holder.dots, holder);
@@ -228,18 +228,27 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
             @Override
             public void onClick(View v) {
 
-                String url = "https://api.whatsapp.com/send?phone=" + whatsappcode + whatsapp;
                 try {
-                    PackageManager pm = context.getPackageManager();
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    context.startActivity(i);
-                } catch (PackageManager.NameNotFoundException e) {
-                    Helper.showToast(context, "Whatsapp app not installed in your phone");
-
-                    e.printStackTrace();
+                    String url = "https://api.whatsapp.com/send?phone=" + whatsappcode + whatsapp;
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    context.startActivity(intent);
+                } catch (Exception e) {
+                    Helper.showToast(context,context.getString(R.string.something_wrong));
                 }
+
+//                String url = "https://api.whatsapp.com/send?phone=" + whatsappcode + whatsapp;
+//                try {
+//                    PackageManager pm = context.getPackageManager();
+//                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+//                    Intent i = new Intent(Intent.ACTION_VIEW);
+//                    i.setData(Uri.parse(url));
+//                    context.startActivity(i);
+//                } catch (PackageManager.NameNotFoundException e) {
+//                    Helper.showToast(context, "Whatsapp app not installed in your phone");
+//
+//                    e.printStackTrace();
+//                }
             }
         });
 
@@ -280,11 +289,12 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
                 }
 
             }
-        });holder.web_Img.setOnClickListener(new View.OnClickListener() {
+        });
+        holder.web_Img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" +website));
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + website));
                     context.startActivity(myIntent);
                 } catch (ActivityNotFoundException e) {
 
@@ -326,7 +336,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
         SliderPagerAdapter sliderPagerAdapter;
         private TextView[] dots;
         private LinearLayout ll_dots;
-        ImageView whatsapp_IMg, insta_img, snapchaht_Img,web_Img;
+        ImageView whatsapp_IMg, insta_img, snapchaht_Img, web_Img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

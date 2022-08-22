@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -94,7 +96,10 @@ public class Country_Spinner_Activity extends AppCompatActivity {
                         context = getApplicationContext();
                         Adapter_Spinner_Country_Activity adapter_spinner_country = new Adapter_Spinner_Country_Activity(Country_Spinner_Activity.this, countryRootDM.getOutput().getData());
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+
                         Rcv.setLayoutManager(linearLayoutManager);
+                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                        Rcv.startAnimation(animation);
                         Rcv.setAdapter(adapter_spinner_country);
 
                     } else
