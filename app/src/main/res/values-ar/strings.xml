@@ -195,6 +195,8 @@
     <string name="are_you_sure_want_to_delete_account">هل أنت متأكد أنك تريد حذف الحساب </string>
     <string name="your_account_will_be_deleted">سيتم حذف حسابك </string>
 
+    <string name="country_codes">رموز الدول</string>
+
 
 
 </resources>

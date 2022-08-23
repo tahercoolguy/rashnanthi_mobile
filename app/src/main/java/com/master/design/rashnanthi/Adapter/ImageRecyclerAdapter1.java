@@ -28,7 +28,9 @@ import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachesWithPostsDatam;
 import com.master.design.rashnanthi.DataModel.CoachesWithPostsImageDatam;
 import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
-import com.master.design.rashnanthi.DataModel.CoacheswithDatam;
+import com.master.design.rashnanthi.DataModel.NewCoachData;
+import com.master.design.rashnanthi.DataModel.NewCoachData;
+import com.master.design.rashnanthi.DataModel.NewCoachImagData;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -55,12 +57,12 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     DialogUtil dialogUtil;
     String whatsapp, whatsappcode, instagram, snapcahat, website;
     Dialog progress;
-    ArrayList<CoacheswithDatam> mList;
+    ArrayList<NewCoachData> mList;
     String id;
 
     ArrayList<String> slider_image_list;
 
-    public ImageRecyclerAdapter1(Activity context, ArrayList<CoacheswithDatam> mList) {
+    public ImageRecyclerAdapter1(Activity context, ArrayList<NewCoachData> mList) {
         this.mList = mList;
         this.context = context;
 
@@ -83,16 +85,16 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 //        holder.mName.setText(mList.get(position));
 
-        if (mList.get(position).getPostsdata() != null) {
-            instagram = mList.get(position).getPostsdata().get(0).getInstagram();
-            whatsapp = mList.get(position).getPostsdata().get(0).getWhatsapnumber();
-            whatsappcode = mList.get(position).getPostsdata().get(0).getWhatsapcountrycode();
-            snapcahat = mList.get(position).getPostsdata().get(0).getSnapchat();
-            website = mList.get(position).getPostsdata().get(0).getWebsite();
+        if (mList.get(position).getImagedata() != null && mList.get(position).getImagedata().size()!=0) {
+            instagram = mList.get(position).getInstagram();
+            whatsapp = mList.get(position).getWhatsapnumber();
+            whatsappcode = mList.get(position).getWhatsapcountrycode();
+            snapcahat = mList.get(position).getSnapchat();
+            website = mList.get(position).getWebsite();
         } else {
             instagram = mList.get(position).getInstagram();
             whatsapp = mList.get(position).getWhatsapnumber();
-            whatsappcode = mList.get(position).getWhatscountrycode();
+            whatsappcode = mList.get(position).getWhatsapcountrycode();
             snapcahat = mList.get(position).getSnapchat();
             website = mList.get(position).getWebsite();
         }
@@ -126,20 +128,20 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
 
         ArrayList<String> km = new ArrayList<>();
 
-        if (mList.get(position).getPostsdata() != null)
-            for (CoachesWithPostsDatam s : mList.get(position).getPostsdata()
+        if (mList.get(position).getImagedata() != null) {
+            for (NewCoachImagData s : mList.get(position).getImagedata()
             ) {
 
-                if (s.getImagedata() != null)
-                    for (CoachesWithPostsImageDatam caoch : s.getImagedata()
-                    ) {
-//                if (!caoch.getEventimage().equalsIgnoreCase(""))
-                        km.add(caoch.getImage());
 
-                    }
+                        km.add(s.getImage());
+
+
             }
 
-
+        }else
+        {
+            km.add(mList.get(position).getImage());
+        }
         try {
 
             holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context, km);

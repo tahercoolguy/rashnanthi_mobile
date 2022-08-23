@@ -118,7 +118,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1, image2, image3, image4, date, eventid, snapchat, instagram, wtsapcode, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
+    String image1, image2, image3, image4, date, eventid, snapchat, instagram, wtsapcode,contactCC, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
 
     MyEventData myEventData1;
     String CountryId = "1", Free, Paid;
@@ -159,12 +159,24 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     ImageView wtspcountryImg;
 
     @NotEmpty
+    @BindView(R.id.contactcountryImg)
+    ImageView contactcountryImg;
+
+    @NotEmpty
     @BindView(R.id.wtspcodeTxt)
     TextView wtspcodeTxt;
+
+//    @NotEmpty
+    @BindView(R.id.contactCountrycodeTxt)
+    TextView contactCountrycodeTxt;
 
     @NotEmpty
     @BindView(R.id.wtsapRL)
     RelativeLayout wtsapRL;
+
+    @NotEmpty
+    @BindView(R.id.contactRL)
+    RelativeLayout contactRL;
 
     @NotEmpty
     @BindView(R.id.snap_ET)
@@ -181,6 +193,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @NotEmpty
     @BindView(R.id.mobile__ET)
     EditText mobile__ET;
+
+    @NotEmpty
+    @BindView(R.id.contact__ET)
+    EditText contact__ET;
 
     @NotEmpty
     @BindView(R.id.country_Img)
@@ -513,6 +529,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     public void DataGetFromAdapterIntent() {
 
         wtsapcode = getIntent().getStringExtra("whatsappcountrycode");
+        contactCC = getIntent().getStringExtra("countrycode");
+
         wtsapnumber = getIntent().getStringExtra("whatsappnumber");
         instagram = getIntent().getStringExtra("instagram");
         website = getIntent().getStringExtra("website");
@@ -628,9 +646,18 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             wtspcodeTxt.setText(wtsapcode);
         }
+        if (contactCountrycodeTxt != null) {
+
+            contactCountrycodeTxt.setText(contactCC);
+        }
         if (wtsapnumber != null) {
 
             mobile__ET.setText(wtsapnumber);
+        }
+
+        if (wtsapnumber != null) {
+
+            contact__ET.setText(wtsapnumber);
         }
         if (website != null) {
 
@@ -674,6 +701,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //            multipartTypedOutput.addPart("editeventimgid[1]", new TypedString(editimage1id));
             multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
             multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
+            multipartTypedOutput.addPart("mobile", new TypedString(contact__ET.getText().toString()));
+
+            multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
+
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
             multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
@@ -893,7 +924,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
                 multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
                 multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
+                multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
+
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
+                multipartTypedOutput.addPart("mobile", new TypedString(contact__ET.getText().toString()));
+
                 multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
                 multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
                 multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
@@ -1331,10 +1366,19 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //    }
 
     boolean wtsapclick=false;
+    boolean contactClick=false;
 
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
         wtsapclick=true;
+        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class),48);
+
+
+    }
+
+    @OnClick(R.id.contactRL)
+    public void ContactCodeCountry() {
+        contactClick=true;
         startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class),48);
 
 
@@ -1434,7 +1478,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         ) {
                             approvalOne.add(area);
                             wtspcodeTxt.setText(data.get(0).getCallingcode());
+                            contactCountrycodeTxt.setText(data.get(0).getCallingcode());
+
                             Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(wtspcountryImg);
+                            Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(contactcountryImg);
+
                             if (user.getLanguageCode().equalsIgnoreCase("en")) {
                                 country_spinner_Txt.setText(data.get(0).getTitle());
 
@@ -1742,6 +1790,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             if(wtsapclick==true){
                 Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
                 wtspcodeTxt.setText(mycode);
+            }
+
+            if(contactClick==true){
+                Picasso.get().load(AppController.base_image_url + mycountryimg).into(contactcountryImg);
+                contactCountrycodeTxt.setText(mycode);
             }
 //            if(spinnerCountryBottom==true){
 //

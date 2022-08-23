@@ -335,8 +335,10 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 //                        array_image.add(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage());
 //                        mL.add(Integer.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
 
-                    } else
+                    } else {
                         Helper.showToast(Story_activity.this, "no stories present");
+                        finish();
+                    }
                 }
 
                 @Override

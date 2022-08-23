@@ -39,6 +39,7 @@ import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.DataModel.NewCoachDataModel;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
@@ -300,13 +301,37 @@ public class Coach_Fragment extends Fragment {
            progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("countryid", new TypedString(countryid));
-            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
+//            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
+//                @Override
+//                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
+//                    progress.dismiss();
+//                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+//                        context = getActivity();
+//                        adapter1 =new ImageRecyclerAdapter1(getActivity(),coachesWithPostsRootDM.getOutput().getData() );
+//                        coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
+//                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+//                        coach_Rcv.startAnimation(animation);
+//                        coach_Rcv.setHasFixedSize(true);
+//                        coach_Rcv.setAdapter(adapter1);
+//                    } else
+//                        Helper.showToast(context, "No Post Presents");
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError error) {
+//                    progress.dismiss();
+//
+//                    Log.e("String", error.toString());
+//                }
+//            });
+
+            appController.paServices.GetAllCoachesWithPostsNew(multipartTypedOutput, new Callback<NewCoachDataModel>() {
                 @Override
-                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
+                public void success(NewCoachDataModel newCoachDataModel, Response response) {
                     progress.dismiss();
-                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                    if (newCoachDataModel.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         context = getActivity();
-                        adapter1 =new ImageRecyclerAdapter1(getActivity(),coachesWithPostsRootDM.getOutput().getData() );
+                        adapter1 =new ImageRecyclerAdapter1(getActivity(),newCoachDataModel.getOutput().getData() );
                         coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
                         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
                         coach_Rcv.startAnimation(animation);
@@ -319,10 +344,9 @@ public class Coach_Fragment extends Fragment {
                 @Override
                 public void failure(RetrofitError error) {
                     progress.dismiss();
-
-                    Log.e("String", error.toString());
                 }
             });
+
         }
     }
 

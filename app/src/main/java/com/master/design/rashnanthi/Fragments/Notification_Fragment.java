@@ -90,7 +90,7 @@ public class Notification_Fragment extends Fragment {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
-
+        ((MainActivity) getActivity()).notification_countTxt.setVisibility(View.GONE);
 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.notification_fragment_layout, container, false);
@@ -111,103 +111,85 @@ public class Notification_Fragment extends Fragment {
             notificationDMArrayList = new ArrayList<>();
             notification_Rcv = rootView.findViewById(R.id.notification_Rcv);
 
-//            myNotificationAPI();
-//            notificationMarkAllRead();
-//            ArrayList<NotificationDM>notificationDMArrayList =new ArrayList<>();
+            myNotificationAPI();
+            notificationMarkAllRead();
 //
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//            notificationDMArrayList.add(new NotificationDM("Title","Today 6:00 pm","The Quick, Brown Fox Jumps Over A Lazy Dog. Djs Flock By When MTV Ax Quiz Prog. Junk MTV Quiz Graced By Fox Whelps."));
-//
-//            notification_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-//            notification_Rcv.setAdapter(new Adapter_Notification(((MainActivity) context), notificationDMArrayList));
-
             setDetails();
 
         }
         return rootView;
     }
 
-//    public void notificationMarkAllRead() {
-//        if (connectionDetector.isConnectingToInternet()) {
-//            String userid = String.valueOf(user.getId());
+    public void notificationMarkAllRead() {
+        if (connectionDetector.isConnectingToInternet()) {
+            String userid = String.valueOf(user.getId());
 //            progress = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
-//            appController.paServices.MarkReadNotification(userid, new Callback<MarkNotificationasReadRootDM>() {
-//                @Override
-//                public void success(MarkNotificationasReadRootDM markNotificationasReadRootDM, Response response) {
+            appController.paServices.MarkReadNotification(userid, new Callback<MarkNotificationasReadRootDM>() {
+                @Override
+                public void success(MarkNotificationasReadRootDM markNotificationasReadRootDM, Response response) {
 //                    progress.dismiss();
-//                    if (markNotificationasReadRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//                        ((MainActivity)context).notificationMarkAllRead();
-//                     } else {
-//                        ((MainActivity)context).notificationMarkAllRead();
-//
-//                     }
-//                }
-//                @Override
-//                public void failure(RetrofitError error) {
+                    if (markNotificationasReadRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        ((MainActivity)context).notificationMarkAllRead();
+                     } else {
+                        ((MainActivity)context).notificationMarkAllRead();
+
+                     }
+//                    ((MainActivity) getActivity()).notificationMarkAllRead();
+                }
+                @Override
+                public void failure(RetrofitError error) {
 //                    progress.dismiss();
-//
-//                    Log.e("error", error.toString());
-//                }
-//            });
-//
-//
-//        } else {
-//            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
-//        }
-//    }
-//
-//    public void myNotificationAPI() {
-//        if (connectionDetector.isConnectingToInternet()) {
-//
-//            String userid = String.valueOf(user.getId());
-//
+
+                    Log.e("error", error.toString());
+                }
+            });
+
+
+        } else {
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
+        }
+    }
+
+    public void myNotificationAPI() {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            String userid = String.valueOf(user.getId());
+
 //            progress = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
-//
-//            appController.paServices.MyNotifications(userid, new Callback<MyNotificationRootDM>() {
-//                @Override
-//                public void success(MyNotificationRootDM myNotificationRootDM, Response response) {
+
+            appController.paServices.MyNotifications(userid, new Callback<MyNotificationRootDM>() {
+                @Override
+                public void success(MyNotificationRootDM myNotificationRootDM, Response response) {
 //                    progress.dismiss();
-//                    try {
-//                        if (myNotificationRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//
-//                            notification_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-//                            notification_Rcv.setAdapter(new Adapter_Notification(((MainActivity) context), myNotificationRootDM.getOutput().getData()));
-//
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//
-////                        Helper.showToast(getActivity(), "notification does not exist");
-//
-//                }
-//
-//                @Override
-//                public void failure(RetrofitError retrofitError) {
+                    try {
+                        if (myNotificationRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                            notification_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
+                            notification_Rcv.setAdapter(new Adapter_Notification(((MainActivity) context), myNotificationRootDM.getOutput().getData()));
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+//                        Helper.showToast(getActivity(), "notification does not exist");
+
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
 //                    progress.dismiss();
-//
-//                    Log.e("error", retrofitError.toString());
-//
-//                }
-//            });
-//
-//        } else
-//            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
-//
-//
-//    }
+
+                    Log.e("error", retrofitError.toString());
+
+                }
+            });
+
+        } else
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
+
+
+    }
 
 
     @Override

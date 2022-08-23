@@ -631,42 +631,10 @@ public class Add_new_post_1 extends AppCompatActivity {
                         multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
                     }
                     if (ifimg3_1) {
-                        File f = new File(Add_new_post_1.this.getCacheDir(), "temp2.jpg");
-                        f.createNewFile();
-
-                        Bitmap one = ((BitmapDrawable) img3_1.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                        Bitmap bitmap = one;
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                        byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                        FileOutputStream fos = new FileOutputStream(f);
-                        fos.write(bitmapdata);
-                        fos.flush();
-                        fos.close();
-                        File resizedImage5 = new Resizer(Add_new_post_1.this)
-                                .setTargetLength(512)
-                                .setQuality(80)
-                                .setOutputFormat("JPEG")
-                                .setOutputFilename("resized_image3")
-                                .setSourceImage(f)
-                                .getResizedFile();
-                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("image/jpg", resizedImage5));
-                    }
-
-                    if (v3_1) {
-                        File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
-
-
-                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("video/mp4", imageFile));
-                    }
-                    if (ifimg4) {
                         File f = new File(Add_new_post_1.this.getCacheDir(), "temp3.jpg");
                         f.createNewFile();
 
-                        Bitmap one = ((BitmapDrawable) img4.getDrawable()).getBitmap();
+                        Bitmap one = ((BitmapDrawable) img3_1.getDrawable()).getBitmap();
 //Convert bitmap to byte array
                         Bitmap bitmap = one;
                         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -688,12 +656,44 @@ public class Add_new_post_1 extends AppCompatActivity {
                         multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("image/jpg", resizedImage3));
                     }
 
+                    if (v3_1) {
+                        File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
+
+
+                        multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
+                    }
+                    if (ifimg4) {
+                        File f = new File(Add_new_post_1.this.getCacheDir(), "temp4.jpg");
+                        f.createNewFile();
+
+                        Bitmap one = ((BitmapDrawable) img4.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                        Bitmap bitmap = one;
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                        byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                        FileOutputStream fos = new FileOutputStream(f);
+                        fos.write(bitmapdata);
+                        fos.flush();
+                        fos.close();
+                        File resizedImage4 = new Resizer(Add_new_post_1.this)
+                                .setTargetLength(512)
+                                .setQuality(80)
+                                .setOutputFormat("JPEG")
+                                .setOutputFilename("resized_image5")
+                                .setSourceImage(f)
+                                .getResizedFile();
+                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("image/jpg", resizedImage4));
+                    }
+
 
                     if (v4) {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video4));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("video/mp4", imageFile));
                     }
                 } catch (Exception e) {
                     Log.e("Error", e.toString());
@@ -763,7 +763,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                             progress.dismiss();
                             Log.e("error", retrofitError.toString());
 
-                            Helper.showToast(Add_new_post_1.this, getString(R.string.no_package));
+//                            Helper.showToast(Add_new_post_1.this, getString(R.string.no_package));
 
                         }
                     });
@@ -1291,7 +1291,7 @@ public class Add_new_post_1 extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
         intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
         intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000);
-        intent.putExtra("isNotCrop", true);
+//        intent.putExtra("isNotCrop", true);
         startActivityForResult(intent, REQUEST_IMAGE);
     }
 
@@ -1305,7 +1305,7 @@ public class Add_new_post_1 extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
-        intent.putExtra("isNotCrop", true);
+//        intent.putExtra("isNotCrop", true);
 
         startActivityForResult(intent, REQUEST_IMAGE);
     }

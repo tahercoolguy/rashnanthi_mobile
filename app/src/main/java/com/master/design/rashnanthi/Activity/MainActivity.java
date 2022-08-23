@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     private User user;
     String coachcreator, eventcreator;
-    TextView notification_countTxt;
+  public  TextView notification_countTxt;
 
     TextView calenderTxt, coachTxt, social_mediaTxt, notificationTxt;
 
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         if (connectionDetector.isConnectingToInternet()) {
             String userid = String.valueOf(user.getId());
             progress = dialogUtil.showProgressDialog(MainActivity.this, getString(R.string.please_wait));
-            appController.paServices.MarkReadNotification(userid, new Callback<MarkNotificationasReadRootDM>() {
+            appController.paServices.getNotificationCount(userid, new Callback<MarkNotificationasReadRootDM>() {
                 @Override
                 public void success(MarkNotificationasReadRootDM markNotificationasReadRootDM, Response response) {
                     progress.dismiss();

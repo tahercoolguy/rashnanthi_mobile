@@ -25,6 +25,7 @@ import com.master.design.rashnanthi.DataModel.MarkNotificationasReadRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventRootDM1;
 import com.master.design.rashnanthi.DataModel.MyNotificationRootDM;
 import com.master.design.rashnanthi.DataModel.MyProfileRootDM;
+import com.master.design.rashnanthi.DataModel.NewCoachDataModel;
 import com.master.design.rashnanthi.DataModel.OtpScrenRootDM;
 import com.master.design.rashnanthi.DataModel.ProfilePictureRootDM;
 import com.master.design.rashnanthi.DataModel.SocialMediaDM;
@@ -194,6 +195,11 @@ public interface PAServices {
     void GetAllCoachesWithPosts(@Body MultipartTypedOutput multipartTypedOutput, Callback<CoachesWithPostsRootDM> coachesWithPostsRootDMCallback);
 
 
+    @Headers("Cache-Control: no-cache;")
+    @POST("/getallcoacheswithposts")
+    void GetAllCoachesWithPostsNew(@Body MultipartTypedOutput multipartTypedOutput, Callback<NewCoachDataModel> coachesWithPostsRootDMCallback);
+
+
     //    25      running
     @Headers("Cache-Control: no-cache;")
     @POST("/geteventsbycountrydate")
@@ -232,15 +238,15 @@ public interface PAServices {
                          Callback<LikeCoachRootDM> likeCoachRootDMCallback);
 
 //    //31
-//    @FormUrlEncoded
-//    @POST("/marknotificationasread")
-//    void MarkReadNotification(@Field("notificationid") String notificationid,
-//                          Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
+    @FormUrlEncoded
+    @POST("/marknotificationasread")
+    void MarkReadNotification(@Field("notificationid") String notificationid,
+                          Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
 
     //31
     @FormUrlEncoded
     @POST("/getnotificationcount")
-    void MarkReadNotification(@Field("userid") String userid,
+    void getNotificationCount(@Field("userid") String userid,
                               Callback<MarkNotificationasReadRootDM> markNotificationasReadRootDMCallback);
 
 

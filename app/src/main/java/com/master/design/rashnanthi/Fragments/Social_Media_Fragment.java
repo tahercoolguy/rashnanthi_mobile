@@ -261,7 +261,7 @@ public class Social_Media_Fragment extends Fragment {
                                 int n = 2;
                                 String newwhatsappnum = str.substring(n);
                                 System.out.println(str.substring(n));
-                                String url = "https://api.whatsapp.com/send?phone=" + newwhatsappnum;
+                                String url = "https://api.whatsapp.com/send?phone=" + whatsapp;
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
@@ -371,7 +371,7 @@ public class Social_Media_Fragment extends Fragment {
                                 String str = telegram;
                                 int n = 2;
                                 String newtelegram = str.substring(n);
-                                String url = "http://telegram.me/shes_ir" + newtelegram;
+                                String url = "https://t.me/" + telegram;
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse(url));
                                 startActivity(intent);
