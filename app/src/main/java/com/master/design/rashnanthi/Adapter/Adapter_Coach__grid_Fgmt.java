@@ -41,7 +41,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
     User user;
     ConnectionDetector connectionDetector;
     AppController appController;
-    String Snapchat, Instagram, Whatsapp, Website, WhatsappCountryCode;
+//    String Snapchat, Instagram, Whatsapp, Website, WhatsappCountryCode;
     String likestatus;
     int selectedPosition = 0;
 
@@ -88,10 +88,10 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
         Picasso.get().load(AppController.base_image_url + getCoachsByCountryRootDMArrayList.get(position).getProfilepic()).into(viewHolder.circle_imgview);
 
-        Instagram = getCoachsByCountryRootDMArrayList.get(position).getInstagram();
-        Whatsapp = getCoachsByCountryRootDMArrayList.get(position).getMobile();
-        Snapchat = getCoachsByCountryRootDMArrayList.get(position).getSnapchat();
-        WhatsappCountryCode = getCoachsByCountryRootDMArrayList.get(position).getCountrycode();
+       String  Instagram = getCoachsByCountryRootDMArrayList.get(position).getInstagram();
+        String  Whatsapp = getCoachsByCountryRootDMArrayList.get(position).getMobile();
+        String  Snapchat = getCoachsByCountryRootDMArrayList.get(position).getSnapchat();
+        String  WhatsappCountryCode = getCoachsByCountryRootDMArrayList.get(position).getCountrycode();
 
         if (Instagram != null)
             if (Instagram.equalsIgnoreCase("")) {
@@ -245,8 +245,8 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView like_coach_grid,like_coach_grid_red, whatsappIMg, snapchatimg, instaimg;
-        de.hdodenhof.circleimageview.CircleImageView circle_imgview;
+       private  ImageView like_coach_grid,like_coach_grid_red, whatsappIMg, snapchatimg, instaimg;
+        private de.hdodenhof.circleimageview.CircleImageView circle_imgview;
 
 
         public ViewHolder(View itemView) {

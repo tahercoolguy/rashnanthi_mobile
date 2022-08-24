@@ -380,6 +380,8 @@ public class SignUpActivity extends AppCompatActivity {
             multipartTypedOutput.addPart("snapchat", new TypedString(snap_id_ET.getText().toString()));
             multipartTypedOutput.addPart("instagram", new TypedString(insta_id_ET.getText().toString()));
             multipartTypedOutput.addPart("countryid", new TypedString(countryId));
+            multipartTypedOutput.addPart("whatscountrycode", new TypedString(whatsapp_country_spinner_ET.getText().toString()));
+            multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
             multipartTypedOutput.addPart("deviceid", new TypedString(refreshedToken));
             multipartTypedOutput.addPart("devicetype", new TypedString("2"));
@@ -418,10 +420,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 
             boolean correct = true;
-            if (profile_RoundedImgView.getDrawable() == null) {
-                correct = false;
-                Helper.showToast(SignUpActivity.this, "kindly choose any profile pic");
-            } else if (nameET.getText().toString().equalsIgnoreCase("")) {
+//            if (profile_RoundedImgView.getDrawable() == null) {
+//                correct = false;
+//                Helper.showToast(SignUpActivity.this, "kindly choose any profile pic");
+//            } else
+                if (nameET.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(SignUpActivity.this, getString(R.string.enter_name));
             } else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
