@@ -137,9 +137,73 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 //            }else
 //                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
 //        }
+        if (img.size() >= 5) {
+
+            if (img.get(0).contains(".mp4")) {
+                viewHolder.webview1.setVisibility(View.VISIBLE);
+                viewHolder.img_1.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(0));
+                viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                viewHolder.img_1.setVisibility(View.VISIBLE);
+                Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+            }
+
+            if (img.get(1).contains(".mp4")) {
+                viewHolder.webview2.setVisibility(View.VISIBLE);
+                viewHolder.img_2.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(1));
+                viewHolder.webview2.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                viewHolder.img_2.setVisibility(View.VISIBLE);
+
+                Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+            }
+
+            if (img.get(2).contains(".mp4")) {
+                viewHolder.webview3.setVisibility(View.VISIBLE);
+                viewHolder.img_3.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(2));
+                viewHolder.webview3.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                viewHolder.img_3.setVisibility(View.VISIBLE);
+
+                Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
+            }
+
+            if (img.get(3).contains(".mp4")) {
+                viewHolder.webview4.setVisibility(View.VISIBLE);
+                viewHolder.img_4.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(3));
+                viewHolder.webview4.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                viewHolder.img_4.setVisibility(View.VISIBLE);
+                Picasso.get().load(AppController.base_image_url + img.get(3)).into(viewHolder.img_4);
+            }
+
+            if (img.get(4).contains(".mp4")) {
+                viewHolder.webview5.setVisibility(View.VISIBLE);
+                viewHolder.img_5.setVisibility(View.GONE);
+                Uri uri = Uri.parse(img.get(4));
+                viewHolder.webview5.loadUrl(AppController.base_image_url + uri);
+
+            } else {
+                viewHolder.img_5.setVisibility(View.VISIBLE);
+                Picasso.get().load(AppController.base_image_url + img.get(4)).into(viewHolder.img_5);
+            }
+
+//            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+//            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
+//            Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
+//            Picasso.get().load(AppController.base_image_url + img.get(3)).into(viewHolder.img_4);
+        }
 
 
-        if (img.size() >= 4) {
+        if (img.size() == 4) {
 
             if (img.get(0).contains(".mp4")) {
                 viewHolder.webview1.setVisibility(View.VISIBLE);
@@ -281,6 +345,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             viewHolder.img_2.setVisibility(View.GONE);
             viewHolder.img_3.setVisibility(View.GONE);
             viewHolder.img_4.setVisibility(View.GONE);
+            viewHolder.img_5.setVisibility(View.GONE);
 
 
             viewHolder.delete_Img4.setVisibility(View.GONE);
@@ -488,6 +553,57 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
             }
         });
+        viewHolder.delete_Img5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (connectionDetector.isConnectingToInternet()) {
+                    progress = dialogUtil.showProgressDialog(context, context.getString(R.string.please_wait));
+                    String imgid5 = myEventData.get(position).getImagedata().get(4).getId();
+
+                    if (imgid5 != null)
+                        appController.paServices.DeleteEventImage(imgid5, new Callback<DeleteEventImageRootDM>() {
+                            @Override
+                            public void success(DeleteEventImageRootDM deleteEventImageRootDM, Response response) {
+                                progress.dismiss();
+                                if (deleteEventImageRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                                    if (viewHolder.img_5 != null) {
+
+
+                                        if (!myEventData.isEmpty()) {
+                                            viewHolder.img_5.setVisibility(View.GONE);
+                                            viewHolder.delete_Img5.setVisibility(View.GONE);
+                                            Helper.showToast(context, context.getString(R.string.image_deleted));
+                                        } else {
+                                            Helper.showToast(context, context.getString(R.string.image_does_not_exist));
+                                        }
+
+                                    }
+                                    notifyDataSetChanged();
+
+
+//                                openHelper.deleteProduct(shoppingCart.getId());
+//                                shoppingCartList.remove(position);
+//                                notifyItemRemoved(position);
+
+                                } else
+                                    Helper.showToast(context, context.getString(R.string.image_does_not_deleted));
+                            }
+
+                            @Override
+                            public void failure(RetrofitError retrofitError) {
+                                progress.dismiss();
+                                Log.e("error", retrofitError.toString());
+
+                            }
+                        });
+                } else
+                    Helper.showToast(context, context.getString(R.string.no_internet_connection));
+
+
+            }
+        });
+
 
         viewHolder.delete_Img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -609,10 +725,10 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView date_time;
-        private ImageView edit_img, delete_Img, delete_Img1, delete_Img2, delete_Img3, delete_Img4;
-        private RoundedImageView img_1, img_2, img_3, img_4;
+        private ImageView edit_img, delete_Img, delete_Img1, delete_Img2, delete_Img3, delete_Img4,delete_Img5;
+        private RoundedImageView img_1, img_2, img_3, img_4,img_5;
         private LinearLayout ll;
-        private WebView webview1, webview2, webview3, webview4;
+        private WebView webview1, webview2, webview3, webview4,webview5;
         private LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
@@ -622,16 +738,19 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             img_2 = itemView.findViewById(R.id.img_2);
             img_3 = itemView.findViewById(R.id.img_3);
             img_4 = itemView.findViewById(R.id.img_4);
+            img_5 = itemView.findViewById(R.id.img_5);
             edit_img = itemView.findViewById(R.id.edit_img);
             delete_Img = itemView.findViewById(R.id.delete_Img);
             delete_Img1 = itemView.findViewById(R.id.delete_Img1);
             delete_Img2 = itemView.findViewById(R.id.delete_Img2);
             delete_Img3 = itemView.findViewById(R.id.delete_Img3);
             delete_Img4 = itemView.findViewById(R.id.delete_Img4);
+            delete_Img5 = itemView.findViewById(R.id.delete_Img5);
             webview1 = itemView.findViewById(R.id.webview1);
             webview2 = itemView.findViewById(R.id.webview2);
             webview3 = itemView.findViewById(R.id.webview3);
             webview4 = itemView.findViewById(R.id.webview4);
+            webview5 = itemView.findViewById(R.id.webview5);
             ll = itemView.findViewById(R.id.LL);
             linearLayout = itemView.findViewById(R.id.lin2);
         }
