@@ -135,7 +135,7 @@ public class My_Post_1_Fragment extends Fragment {
         return rootView;
     }
     @BindView(R.id.spinnerCountryBottomRL)
-    RelativeLayout spinnerCountryBottomRL;
+    LinearLayout spinnerCountryBottomRL;
 
     @BindView(R.id.countryImg)
     ImageView countryImg;

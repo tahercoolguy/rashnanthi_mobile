@@ -110,7 +110,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/search_red.xml" value="0.1" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/second_gradient_black.xml" value="0.1" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/snapchat.xml" value="0.144" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/spineer_bg.xml" value="0.2105" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/spineer_bg.xml" value="0.13" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/spineer_popup_bg.xml" value="0.2105" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/spinneractivity.xml" value="0.1315" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/toggle_like_red_black.xml" value="0.14" />
@@ -137,7 +137,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_pay_now.xml" value="0.16" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_sign_up_2.xml" value="0.22" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_spinneer.xml" value="0.22" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_spinneer.xml" value="0.2" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.203125" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_story2.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_thank_you.xml" value="0.1675929884566054" />
@@ -147,12 +147,12 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/add_post_pay_now.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/app_bar_drawer.xml" value="0.25" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/bottom_sheet_for_list_view.xml" value="0.22" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/calender_fragment_layout.xml" value="0.17" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/calender_fragment_layout.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/change_password_fragment_layout.xml" value="0.2" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach.xml" value="0.25" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_account_fragment_layout.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_account_logout_fragment_layout.xml" value="0.22" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_grid_account_fragment_layout.xml" value="0.18" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_grid_account_fragment_layout.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_grid_account_recycle_view_item.xml" value="0.5" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_recycle_view_item.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/contact_us_fragment_layout.xml" value="0.203125" />

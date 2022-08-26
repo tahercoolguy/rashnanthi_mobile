@@ -521,7 +521,7 @@ public class Calender_Fragment extends Fragment {
 
 
     @BindView(R.id.spinnerCountryBottomRL)
-    RelativeLayout spinnerCountryBottomRL;
+    LinearLayout spinnerCountryBottomRL;
 
 
 
@@ -543,7 +543,7 @@ public class Calender_Fragment extends Fragment {
             countryimg = data.getStringExtra("countryimg");
             countryid = data.getStringExtra("countryid");
             Picasso.get().load(AppController.base_image_url + countryimg).into(countryImg);
-            country_spinner_Txt.setText(countryname);
+             country_spinner_Txt.setText(countryname);
 
             myEventsApi(countryid);
         }

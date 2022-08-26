@@ -10,13 +10,13 @@
                 android:radius="3dp"
                 android:topLeftRadius="50dp" />
             <size
-                android:width="150dp"
+                android:width="100dp"
                 android:height="50dp"></size>
             <stroke
                 android:width="2dp"
                 android:color="@color/grey_light"
                 android:dashGap="@dimen/elevation"></stroke>
-            <size android:width="170dp" android:height="50dp"></size>
+            <size android:width="130dp" android:height="50dp"></size>
         </shape>
 
     </item>

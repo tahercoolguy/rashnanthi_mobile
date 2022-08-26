@@ -81,21 +81,19 @@ public class Coach_Fragment extends Fragment {
     private List<String> mList;
 
 
-
-
     RecyclerView coach_Rcv;
     RelativeLayout coach_grid_account;
 
 
     @BindView(R.id.spinnerCountryBottomRL)
-    RelativeLayout spinnerCountryBottomRL;
+    LinearLayout spinnerCountryBottomRL;
 
 
     @BindView(R.id.countryImg)
     ImageView countryImg;
 
 
- @BindView(R.id.coachgridImg)
+    @BindView(R.id.coachgridImg)
     ImageView coachgridImg;
 
     @BindView(R.id.country_spinner_Txt)
@@ -112,7 +110,7 @@ public class Coach_Fragment extends Fragment {
     @BindView(R.id.layout_parent)
     LinearLayout layout_parent;
     private HListView lst_latest_profiles, lst_latest_news, lst_featured_video;
-     ProgressDialog progressDialog;
+    ProgressDialog progressDialog;
     ImageView coach_menu_Back;
 
     @Nullable
@@ -123,7 +121,7 @@ public class Coach_Fragment extends Fragment {
         appController = (AppController) getActivity().getApplicationContext();
         user = new User(context);
         appController = (AppController) getApplicationContext();
-         dialogUtil = new DialogUtil();
+        dialogUtil = new DialogUtil();
         connectionDetector = new ConnectionDetector(getActivity());
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -131,7 +129,6 @@ public class Coach_Fragment extends Fragment {
         progressDialog.setCancelable(false);
         ((MainActivity) context).setTitle(getString(R.string.home));
         Binding();
-
 
 
         if (rootView == null) {
@@ -154,7 +151,6 @@ public class Coach_Fragment extends Fragment {
                     ((MainActivity) context).addFragment(new Menu_1_Fragment(), false);
                 }
             });
-
 
 
 //
@@ -228,10 +224,8 @@ public class Coach_Fragment extends Fragment {
 //            coach_Rcv.setAdapter(new Adapter_Coach_Fgmt(((MainActivity) context), coachDMArrayList));
 
 
-
-
-            mList=new ArrayList<>();
-             //get data from backend
+            mList = new ArrayList<>();
+            //get data from backend
             mList.add("one");
             mList.add("two");
             mList.add("three");
@@ -244,7 +238,6 @@ public class Coach_Fragment extends Fragment {
 //            coach_Rcv.setHasFixedSize(true);
 //            coach_Rcv.setAdapter(adapter1);
 //            adapter1.notifyDataSetChanged();
-
 
 
 //            Adapter_Country_Spinner adapter_country_spinner;
@@ -295,10 +288,9 @@ public class Coach_Fragment extends Fragment {
         return rootView;
     }
 
-    public  void APIforCoach(String countryid)
-    {
+    public void APIforCoach(String countryid) {
         if (connectionDetector.isConnectingToInternet()) {
-           progress = dialogUtil.showProgressDialog(context,getString(R.string.please_wait));
+            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("countryid", new TypedString(countryid));
 //            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
@@ -331,7 +323,7 @@ public class Coach_Fragment extends Fragment {
                     progress.dismiss();
                     if (newCoachDataModel.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         context = getActivity();
-                        adapter1 =new ImageRecyclerAdapter1(getActivity(),newCoachDataModel.getOutput().getData() );
+                        adapter1 = new ImageRecyclerAdapter1(getActivity(), newCoachDataModel.getOutput().getData());
                         coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
                         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
                         coach_Rcv.startAnimation(animation);
@@ -349,7 +341,6 @@ public class Coach_Fragment extends Fragment {
 
         }
     }
-
 
 
 //    public void GetAllCoachesWithPosts(){
@@ -382,8 +373,6 @@ public class Coach_Fragment extends Fragment {
 //    }
 
 
-
-
     BottomForAll bottomForAll;
 
     ArrayList<CountryData> approvalOne = new ArrayList<>();
@@ -401,7 +390,7 @@ public class Coach_Fragment extends Fragment {
 
     String countryname;
     String countryimg;
-    String countryid="1";
+    String countryid = "1";
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -455,13 +444,14 @@ public class Coach_Fragment extends Fragment {
                         ) {
                             approvalOne.add(area);
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
-                                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                if (user.getLanguageCode().equalsIgnoreCase("en")) {
                                     country_spinner_Txt.setText(data.get(0).getTitle());
 
-                                }else{
+                                } else {
                                     country_spinner_Txt.setText(data.get(0).getTitlear());
 
-                                }                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
+                                }
+                                Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
                             }
                         }
                     } else

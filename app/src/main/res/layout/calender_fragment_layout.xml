@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app1="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app1="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
 
 
     android:background="@color/white">
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -23,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp">
+
 
             <TextView
                 android:id="@+id/txt_title"
@@ -47,18 +50,19 @@
                 android:src="@drawable/ic_menu_filled"></ImageView>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/layout_parent"
-         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
 
-        android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/layout_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
+            android:orientation="vertical">
 
 
             <LinearLayout
@@ -69,334 +73,388 @@
                 android:orientation="vertical">
 
 
-
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/transparent"
-
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/transparent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/story_viewer"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-
-                     >
-
-                </ImageView>
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:text="@string/story"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                     android:background="@color/transparent"
+
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="20dp"
+
+                        android:background="@color/transparent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/story_viewer"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+
+                            >
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="@string/story"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18dp"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/spinnerCountryBottomRL"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                          android:layout_alignParentEnd="true"
+                        android:background="@drawable/spineer_bg"
+                        android:clickable="true"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/countryImg"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/kuwaitt"></ImageView>
+
+                        <TextView
+                            android:id="@+id/country_spinner_Txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                             android:layout_marginHorizontal="15dp"
+                            android:text="@string/kuwait"
+                            android:textColor="@color/black"></TextView>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/ic_down_arrow_spinner"></ImageView>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/spineer_bg"
+                        android:elevation="3dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="7dp"
+                            android:src="@drawable/kuwaitt"></ImageView>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/ic_down_arrow_spinner"></ImageView>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+
+                            android:layout_marginHorizontal="5dp"
+                            android:background="@color/transparent"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:lines="2"
+                            android:maxLength="6"
+                            android:padding="15dp"
+                            android:text="@string/kuwait"
+                            android:textColor="@color/black"
+                            android:textSize="15sp">
+
+                        </TextView>
+
+                        <!--                                <Spinner-->
+                        <!--                                    android:id="@+id/country_name_spinner"-->
+                        <!--                                    android:layout_width="match_parent"-->
+                        <!--                                    android:layout_height="wrap_content"-->
+                        <!--                                    android:layout_centerInParent="true"-->
+                        <!--                                    android:layout_gravity="center"-->
+                        <!--                                    android:layout_marginLeft="20dp"-->
+                        <!--                                    android:layout_marginRight="5dp"-->
+                        <!--                                    android:elevation="3dp"-->
+                        <!--                                    android:hint="Kuwait"-->
+                        <!--                                    android:textSize="15sp">-->
+
+                        <!--                                </Spinner>-->
+
+
+                        <!--                        <ImageView-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_alignParentRight="true"-->
+                        <!--                            android:layout_centerInParent="true"-->
+                        <!--                            android:src="@drawable/ic_down_arrow_spinner">-->
+
+                        <!--                        </ImageView>-->
+
+
+                    </RelativeLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
                     android:gravity="center"
-                    android:layout_height="wrap_content"></TextView>
-            </LinearLayout>
+                    android:orientation="horizontal">
 
 
+                    <ImageView
+                        android:id="@+id/backmonthImg"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_calender">
+
+                    </ImageView>
 
 
-            <RelativeLayout
-                android:id="@+id/spinnerCountryBottomRL"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                 android:layout_gravity="right"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/spineer_bg"
-                android:elevation="3dp">
+                    <TextView
+                        android:id="@+id/moth_year_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:text="FEBRUARY 2022"
+                        android:textColor="#D51010"
+                        android:textSize="18sp">
 
-                <ImageView
-                    android:id="@+id/countryImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="7dp"
-                    android:src="@drawable/kuwaitt"></ImageView>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_down_arrow_spinner"></ImageView>
+                    </TextView>
 
 
-                <TextView
-                    android:id="@+id/country_spinner_Txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@color/transparent"
-                    android:focusable="false"
-                    android:gravity="center"
+                    <ImageView
+                        android:id="@+id/aheadamonthImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_left_calnder">
 
-                    android:inputType="number"
-                    android:lines="2"
-                    android:maxLength="6"
-                    android:padding="15dp"
-                    android:text="@string/kuwait"
-                    android:textColor="@color/black"
-                    android:textSize="15sp">
+                    </ImageView>
 
-                </TextView>
+                </LinearLayout>
 
-                <!--                                <Spinner-->
-                <!--                                    android:id="@+id/country_name_spinner"-->
-                <!--                                    android:layout_width="match_parent"-->
-                <!--                                    android:layout_height="wrap_content"-->
-                <!--                                    android:layout_centerInParent="true"-->
-                <!--                                    android:layout_gravity="center"-->
-                <!--                                    android:layout_marginLeft="20dp"-->
-                <!--                                    android:layout_marginRight="5dp"-->
-                <!--                                    android:elevation="3dp"-->
-                <!--                                    android:hint="Kuwait"-->
-                <!--                                    android:textSize="15sp">-->
-
-                <!--                                </Spinner>-->
-
-
-                <!--                        <ImageView-->
-                <!--                            android:layout_width="wrap_content"-->
-                <!--                            android:layout_height="wrap_content"-->
-                <!--                            android:layout_alignParentRight="true"-->
-                <!--                            android:layout_centerInParent="true"-->
-                <!--                            android:src="@drawable/ic_down_arrow_spinner">-->
-
-                <!--                        </ImageView>-->
-
-
-            </RelativeLayout>
-
-
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:id="@+id/backmonthImg"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_right_calender">
-
-            </ImageView>
-
-
-            <TextView
-                android:id="@+id/moth_year_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:text="FEBRUARY 2022"
-                android:textColor="#D51010"
-                android:textSize="18sp">
-
-            </TextView>
-
-
-            <ImageView
-                android:id="@+id/aheadamonthImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_left_calnder">
-
-            </ImageView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity=""
-            android:orientation="vertical">
-
-            <!--                        <CalendarView-->
-            <!--                            android:id="@+id/calender_view"-->
-            <!--                            android:layout_width="match_parent"-->
-            <!--                            android:layout_height="wrap_content"-->
-            <!--                            android:layout_marginTop="20dp"></CalendarView>-->
-
-
-             <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_marginLeft="20dp"
-                 android:layout_marginRight="20dp"
-                 android:visibility="visible"
-                 android:id="@+id/daysLL"
-                 android:layout_marginTop="30dp"
-                 android:layout_height="wrap_content">
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_weight="1"
-                     android:text="@string/sun"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:textSize="@dimen/text_size_title"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:layout_height="wrap_content"></TextView>
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_weight="1"
-                     android:text="@string/mon"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:textSize="@dimen/text_size_title"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:layout_height="wrap_content"></TextView>
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_weight="1"
-                     android:text="@string/tue"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:textSize="@dimen/text_size_title"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:layout_height="wrap_content"></TextView>
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_weight="1"
-                     android:text="@string/wed"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:textSize="@dimen/text_size_title"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:layout_height="wrap_content"></TextView>
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_weight="1"
-                     android:text="@string/thr"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:textSize="@dimen/text_size_title"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:layout_height="wrap_content"></TextView>
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_weight="1"
-                     android:text="@string/fri"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:textSize="@dimen/text_size_title"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:layout_height="wrap_content"></TextView>
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_weight="1"
-                     android:text="@string/sat"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:textSize="@dimen/text_size_title"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:layout_height="wrap_content"></TextView>
-             </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_marginLeft="20dp"
-            android:visibility="visible"
-            android:layout_marginRight="20dp"
-            android:layout_height="1dp"></View>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.github.sundeepk.compactcalendarview.CompactCalendarView
-                    android:id="@+id/compactcalendar_view"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="20dp"
-                    app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
-                    app:compactCalendarCurrentDayTextColor="@color/white"
-                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
-                    app:compactCalendarEventIndicatorStyle="small_indicator"
-                    app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
-                    app:compactCalendarOtherMonthDaysTextColor="@color/grey"
-                    app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
-                    app:compactCalendarTargetHeight="250dp"
+                    android:gravity=""
+                    android:orientation="vertical">
 
-                    app:compactCalendarTextColor="#000000"
-                    app:compactCalendarTextSize="14sp" />
-
-                <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="httmas.android.com/apk/res-auto"
-                    android:id="@+id/calendarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="-30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    app1:mcv_arrowColor="@color/colorPrimary"
-                    app1:mcv_selectionMode="single"
-                    app:mcv_showOtherDates="all" />
-                <!--                <ImageView-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="1dp"-->
-                <!--                    android:layout_centerVertical="true"-->
-                <!--                    android:layout_alignParentTop="true"-->
-                <!--                    android:layout_marginTop="60dp"-->
-                <!--                     android:layout_marginHorizontal="35dp"-->
-                <!--                     android:backgroundTint="@color/grey_light"-->
-                <!--                    android:src="#989898"></ImageView>-->
+                    <!--                        <CalendarView-->
+                    <!--                            android:id="@+id/calender_view"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginTop="20dp"></CalendarView>-->
 
 
-            </RelativeLayout>
+                    <LinearLayout
+                        android:id="@+id/daysLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="20dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/sun"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/mon"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/tue"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/wed"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/thr"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/fri"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/sat"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"></TextView>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/black"
+                        android:visibility="visible"></View>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                            android:id="@+id/compactcalendar_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginRight="20dp"
+                            android:visibility="gone"
+                            app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
+                            app:compactCalendarCurrentDayTextColor="@color/white"
+                            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
+                            app:compactCalendarEventIndicatorStyle="small_indicator"
+                            app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
+                            app:compactCalendarOtherMonthDaysTextColor="@color/grey"
+                            app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
+                            app:compactCalendarTargetHeight="250dp"
+
+                            app:compactCalendarTextColor="#000000"
+                            app:compactCalendarTextSize="14sp" />
+
+                        <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="httmas.android.com/apk/res-auto"
+                            android:id="@+id/calendarView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="-30dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            app1:mcv_arrowColor="@color/colorPrimary"
+                            app1:mcv_selectionMode="single"
+                            app:mcv_showOtherDates="all" />
+                        <!--                <ImageView-->
+                        <!--                    android:layout_width="match_parent"-->
+                        <!--                    android:layout_height="1dp"-->
+                        <!--                    android:layout_centerVertical="true"-->
+                        <!--                    android:layout_alignParentTop="true"-->
+                        <!--                    android:layout_marginTop="60dp"-->
+                        <!--                     android:layout_marginHorizontal="35dp"-->
+                        <!--                     android:backgroundTint="@color/grey_light"-->
+                        <!--                    android:src="#989898"></ImageView>-->
 
 
-        </LinearLayout>
+                    </RelativeLayout>
+
+
+                </LinearLayout>
             </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
     <include layout="@layout/layout_error" />

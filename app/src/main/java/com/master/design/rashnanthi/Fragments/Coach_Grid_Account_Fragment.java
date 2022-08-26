@@ -80,7 +80,7 @@ public class Coach_Grid_Account_Fragment extends Fragment {
 
 
     @BindView(R.id.spinnerCountryBottomRL)
-    RelativeLayout spinnerCountryBottomRL;
+    LinearLayout spinnerCountryBottomRL;
 
 
     @BindView(R.id.txt_error)

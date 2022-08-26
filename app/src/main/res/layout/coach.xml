@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
 
@@ -99,87 +99,130 @@
                 </ImageView>
 
             </RelativeLayout>
-
-
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/spinnerCountryBottomRL"
-                android:layout_width="170dp"
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="right"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_alignParentEnd="true"
                 android:background="@drawable/spineer_bg"
-                android:elevation="3dp">
+                android:clickable="true"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/countryImg"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
                     android:src="@drawable/kuwaitt"></ImageView>
+
+                <TextView
+                    android:id="@+id/country_spinner_Txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="15dp"
+                    android:text="@string/kuwait"
+                    android:textColor="@color/black"></TextView>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
+                    android:layout_gravity="center"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_down_arrow_spinner"></ImageView>
 
-
-                <TextView
-                    android:id="@+id/country_spinner_Txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_centerInParent="true"
-                    android:background="@color/transparent"
-                    android:focusable="false"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:lines="2"
-                    android:maxLength="6"
-
-                    android:padding="15dp"
-                    android:text="@string/kuwait"
-                    android:textColor="@color/black"
-                    android:textSize="15sp">
-
-                </TextView>
-
-                <!--                                <Spinner-->
-                <!--                                    android:id="@+id/country_name_spinner"-->
-                <!--                                    android:layout_width="match_parent"-->
-                <!--                                    android:layout_height="wrap_content"-->
-                <!--                                    android:layout_centerInParent="true"-->
-                <!--                                    android:layout_gravity="center"-->
-                <!--                                    android:layout_marginLeft="20dp"-->
-                <!--                                    android:layout_marginRight="5dp"-->
-                <!--                                    android:elevation="3dp"-->
-                <!--                                    android:hint="Kuwait"-->
-                <!--                                    android:textSize="15sp">-->
-
-                <!--                                </Spinner>-->
+            </LinearLayout>
 
 
-                <!--                        <ImageView-->
-                <!--                            android:layout_width="wrap_content"-->
-                <!--                            android:layout_height="wrap_content"-->
-                <!--                            android:layout_alignParentRight="true"-->
-                <!--                            android:layout_centerInParent="true"-->
-                <!--                            android:src="@drawable/ic_down_arrow_spinner">-->
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/spinnerCountryBottomRL"-->
+<!--                android:layout_width="170dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_gravity="right"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/spineer_bg"-->
+<!--                android:elevation="3dp">-->
 
-                <!--                        </ImageView>-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/countryImg"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentLeft="true"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginTop="7dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_marginBottom="7dp"-->
+<!--                    android:src="@drawable/kuwaitt"></ImageView>-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_marginRight="20dp"-->
+<!--                    android:src="@drawable/ic_down_arrow_spinner"></ImageView>-->
 
 
-            </RelativeLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/country_spinner_Txt"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_marginHorizontal="5dp"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:focusable="false"-->
+<!--                    android:gravity="center"-->
+<!--                    android:inputType="number"-->
+<!--                    android:lines="2"-->
+<!--                    android:maxLength="6"-->
+
+<!--                    android:padding="15dp"-->
+<!--                    android:text="@string/kuwait"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="15sp">-->
+
+<!--                </TextView>-->
+
+<!--                &lt;!&ndash;                                <Spinner&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:id="@+id/country_name_spinner"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:layout_centerInParent="true"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:layout_gravity="center"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:layout_marginLeft="20dp"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:elevation="3dp"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:hint="Kuwait"&ndash;&gt;-->
+<!--                &lt;!&ndash;                                    android:textSize="15sp">&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                                </Spinner>&ndash;&gt;-->
+
+
+<!--                &lt;!&ndash;                        <ImageView&ndash;&gt;-->
+<!--                &lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--                &lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--                &lt;!&ndash;                            android:layout_alignParentRight="true"&ndash;&gt;-->
+<!--                &lt;!&ndash;                            android:layout_centerInParent="true"&ndash;&gt;-->
+<!--                &lt;!&ndash;                            android:src="@drawable/ic_down_arrow_spinner">&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                        </ImageView>&ndash;&gt;-->
+
+
+<!--            </RelativeLayout>-->
 
 
         </RelativeLayout>

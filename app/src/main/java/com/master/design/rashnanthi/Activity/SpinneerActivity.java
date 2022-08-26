@@ -40,13 +40,19 @@ public class SpinneerActivity extends AppCompatActivity {
 
 
     @BindView(R.id.backLL)
-    LinearLayout backLL;
+    LinearLayout backLL; @BindView(R.id.back)
+    LinearLayout back;
 
     @BindView(R.id.countryRcv)
     RecyclerView countryRcv;
 
     @OnClick(R.id.backLL)
     public void Back() {
+
+//        ((MainActivity)context).addFragment(new Calender_Fragment(),false);
+        finish();
+    } @OnClick(R.id.back)
+    public void BackK() {
 
 //        ((MainActivity)context).addFragment(new Calender_Fragment(),false);
         finish();

@@ -152,7 +152,7 @@ public class My_Event_1_Fragment extends Fragment {
 
 
     @BindView(R.id.spinnerCountryBottomRL)
-    RelativeLayout spinnerCountryBottomRL;
+    LinearLayout spinnerCountryBottomRL;
 
     @BindView(R.id.countryImg)
     ImageView countryImg;
