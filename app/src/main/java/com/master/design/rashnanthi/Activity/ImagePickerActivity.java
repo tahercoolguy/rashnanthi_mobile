@@ -75,7 +75,7 @@ public class ImagePickerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent == null) {
-            Toast.makeText(getApplicationContext(), "Image picker option is missing", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),getString( R.string.image_picker_option_is_missing), Toast.LENGTH_LONG).show();
             return;
         }
 

@@ -183,7 +183,7 @@
     <string name="year">عام</string>
     <string name="events">الدورة</string>
 
-    <string name="changer">English</string>
+    <string name="changer">إنجليزي</string>
     <string name="want_restart">هل أنت متأكد من أنك تريد إعادة تشغيل هذا التطبيق</string>
     <string name="set_image">تعيين الصورة</string>
     <string name="take_image">التقط صورة</string>
@@ -196,7 +196,19 @@
     <string name="your_account_will_be_deleted">سيتم حذف حسابك </string>
 
     <string name="country_codes">رموز الدول</string>
+    <string name="take_a_picture">التقط صوره</string>
+    <string name="record_a_video">سجل فيديو</string>
 
+    <string name="image_picker_option_is_missing">خيار منتقي الصور مفقود</string>
+    <string name="sorry_your_camera_does_not_support">آسف! جهازك لا يدعم الكاميرا</string>
+    <string name="kindly_capture_some_media">يرجى التقاط بعض الوسائط</string>
+    <string name="user_cancelled_image_capture">ألغى المستخدم التقاط الصورة</string>
+    <string name="sorry_failed_to_capture">آسف! فشل في التقاط الصورة</string>
+    <string name="user_cancelled_video_recording">ألغى المستخدم تسجيل الفيديو</string>
+    <string name="sorry_failed_to_record_video">آسف! فشل تسجيل الفيديو</string>
+    <string name="permission_required">الأذونات المطلوبة!</string>
+    <string name="camera_needs_few_permisson">تحتاج الكاميرا إلى أذونات قليلة للعمل بشكل صحيح. امنحهم في الإعدادات.</string>
+    <string name="goto_settings">اذهب للاعدادات</string>
 
 
 </resources>

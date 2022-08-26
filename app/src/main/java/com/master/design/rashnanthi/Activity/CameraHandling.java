@@ -47,7 +47,7 @@ public class CameraHandling extends AppCompatActivity {
     public static final int BITMAP_SAMPLE_SIZE = 8;
 
     // Gallery directory name to store the images or videos
-    public static final String GALLERY_DIRECTORY_NAME = "Hello Camera";
+    public static final String GALLERY_DIRECTORY_NAME = "Reznamty Camera";
 
     // Image and Video file extensions
     public static final String IMAGE_EXTENSION = "jpg";
@@ -73,7 +73,7 @@ public class CameraHandling extends AppCompatActivity {
         // Checking availability of the camera
         if (!CameraUtils.isDeviceSupportCamera(getApplicationContext())) {
             Toast.makeText(getApplicationContext(),
-                    "Sorry! Your device doesn't support camera",
+                    getString(R.string.sorry_your_camera_does_not_support),
                     Toast.LENGTH_LONG).show();
             // will close the app if the device doesn't have camera
             finish();
@@ -109,7 +109,7 @@ public class CameraHandling extends AppCompatActivity {
             public void onClick(View view) {
                 Intent bd = new Intent();
                 if (imageStoragePath == "" || imageStoragePath == null || imageStoragePath.isEmpty()) {
-                    Toast.makeText(CameraHandling.this, "Kindly Capture some media", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CameraHandling.this, getString(R.string.kindly_capture_some_media), Toast.LENGTH_SHORT).show();
                 } else {
                     bd.putExtra("mode", Open);
                     bd.putExtra("uri", imageStoragePath);
@@ -270,12 +270,12 @@ public class CameraHandling extends AppCompatActivity {
             } else if (resultCode == RESULT_CANCELED) {
                 // user cancelled Image capture
                 Toast.makeText(getApplicationContext(),
-                        "User cancelled image capture", Toast.LENGTH_SHORT)
+                        getString(R.string.user_cancelled_image_capture), Toast.LENGTH_SHORT)
                         .show();
             } else {
                 // failed to capture image
                 Toast.makeText(getApplicationContext(),
-                        "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
+                        getString(R.string.sorry_failed_to_capture), Toast.LENGTH_SHORT)
                         .show();
             }
         } else if (requestCode == CAMERA_CAPTURE_VIDEO_REQUEST_CODE) {
@@ -289,12 +289,12 @@ public class CameraHandling extends AppCompatActivity {
             } else if (resultCode == RESULT_CANCELED) {
                 // user cancelled recording
                 Toast.makeText(getApplicationContext(),
-                        "User cancelled video recording", Toast.LENGTH_SHORT)
+                        getString(R.string.user_cancelled_video_recording), Toast.LENGTH_SHORT)
                         .show();
             } else {
                 // failed to record video
                 Toast.makeText(getApplicationContext(),
-                        "Sorry! Failed to record video", Toast.LENGTH_SHORT)
+                        getString(R.string.sorry_failed_to_record_video), Toast.LENGTH_SHORT)
                         .show();
             }
         }
@@ -344,14 +344,14 @@ public class CameraHandling extends AppCompatActivity {
      */
     private void showPermissionsAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Permissions required!")
-                .setMessage("Camera needs few permissions to work properly. Grant them in settings.")
-                .setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
+        builder.setTitle(getString(R.string.permission_required))
+                .setMessage(getString(R.string.camera_needs_few_permisson))
+                .setPositiveButton(getString(R.string.goto_settings), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         CameraUtils.openSettings(CameraHandling.this);
                     }
                 })
-                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                     }

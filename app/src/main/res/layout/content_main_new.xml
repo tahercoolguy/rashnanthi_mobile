@@ -60,7 +60,7 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:foreground="?attr/selectableItemBackground"
-            android:text="Take a picture"
+            android:text="@string/take_a_picture"
             android:textColor="@android:color/white" />
 
         <!-- Record video button -->
@@ -72,7 +72,7 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:foreground="?attr/selectableItemBackground"
-            android:text="Record a Video"
+            android:text="@string/record_a_video"
             android:textColor="@android:color/white" />
 
         <ImageView
