@@ -331,10 +331,10 @@ public class Calender_Fragment extends Fragment {
                             event_small_image_fragment.setArguments(bd);
                             ((MainActivity) context).addFragment(event_small_image_fragment, true);
                         } else {
-                            Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,getString( R.string.there_is_no_event), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(context, "There is no event ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, getString( R.string.there_is_no_event), Toast.LENGTH_SHORT).show();
 
                     }
 

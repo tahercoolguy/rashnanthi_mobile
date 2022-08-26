@@ -634,7 +634,7 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                     } else
-                        Helper.showToast(SignUpActivity.this, "Some network happened ..");
+                        Helper.showToast(SignUpActivity.this, getString(R.string.some_netork_happened));
                 }
 
                 @Override

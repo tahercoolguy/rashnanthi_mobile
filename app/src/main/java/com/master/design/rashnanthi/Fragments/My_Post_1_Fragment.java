@@ -230,7 +230,7 @@ public class My_Post_1_Fragment extends Fragment {
                          }
 
                     } else
-                        Helper.showToast(getActivity(), "Some network happened ..");
+                        Helper.showToast(getActivity(), getString(R.string.some_netork_happened));
                 }
 
                 @Override

@@ -152,7 +152,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                         intent.setPackage("com.snapchat.android");
                         context.startActivity(intent);
                     } catch (Exception e) {
-                        Helper.showToast(context, "Snapchat app not installed in your phone");
+                        Helper.showToast(context, context.getString(R.string.snapchat_not_installed));
 
 
                         e.printStackTrace();

@@ -106,7 +106,7 @@ public class SpinneerActivity extends AppCompatActivity {
                         countryRcv.setAdapter(adapter_spinner_country);
 
                     } else
-                        Helper.showToast(SpinneerActivity.this, "Some network happened ..");
+                        Helper.showToast(SpinneerActivity.this, getString(R.string.some_netork_happened));
                 }
 
                 @Override

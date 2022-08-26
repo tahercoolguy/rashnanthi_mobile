@@ -330,7 +330,7 @@ public class Coach_Fragment extends Fragment {
                         coach_Rcv.setHasFixedSize(true);
                         coach_Rcv.setAdapter(adapter1);
                     } else
-                        Helper.showToast(context, "No Post Presents");
+                        Helper.showToast(context, getString(R.string.no_posts));
                 }
 
                 @Override
@@ -455,7 +455,7 @@ public class Coach_Fragment extends Fragment {
                             }
                         }
                     } else
-                        Helper.showToast(getActivity(), "Some network happened ..");
+                        Helper.showToast(getActivity(), getString(R.string.something_wrong));
                 }
 
                 @Override

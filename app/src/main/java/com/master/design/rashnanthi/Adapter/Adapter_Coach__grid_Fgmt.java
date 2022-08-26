@@ -168,7 +168,7 @@ public class Adapter_Coach__grid_Fgmt extends RecyclerView.Adapter<Adapter_Coach
                     intent.setPackage("com.snapchat.android");
                     context.startActivity(intent);
                 } catch (Exception e) {
-                    Helper.showToast(context, "Snapchat app not installed in your phone");
+                    Helper.showToast(context, context.getString(R.string.snapchat_not_installed));
 
 
                     e.printStackTrace();

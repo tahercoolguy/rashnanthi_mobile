@@ -195,7 +195,7 @@ public class LoginFragment extends Fragment {
                                 startActivity(new Intent(context, MainActivity.class));
 
                             } else
-                                Helper.showToast(context, "entered mobile,password or country code incorrect");
+                                Helper.showToast(context, getString(R.string.enterd_mobile_password_inccorect));
 
                         }
 
@@ -343,7 +343,7 @@ public class LoginFragment extends Fragment {
                             }
                         }
                     } else
-                        Helper.showToast(context, "Some network happened ..");
+                        Helper.showToast(context, getString(R.string.some_netork_happened));
                 }
 
                 @Override

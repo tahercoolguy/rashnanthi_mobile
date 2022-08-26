@@ -209,6 +209,14 @@
     <string name="permission_required">الأذونات المطلوبة!</string>
     <string name="camera_needs_few_permisson">تحتاج الكاميرا إلى أذونات قليلة للعمل بشكل صحيح. امنحهم في الإعدادات.</string>
     <string name="goto_settings">اذهب للاعدادات</string>
+    <string name="no_stories_present">لا توجد قصص</string>
+    <string name="there_is_no_event">"لا يوجد حدث "</string>
+    <string name="snapchat_not_installed">تطبيق سناب شات غير مثبت في هاتفك</string>
+    <string name="enterd_mobile_password_inccorect">أدخلت الهاتف المحمول أو كلمة المرور أو رمز الدولة بشكل غير صحيح</string>
+
+
+
+
 
 
 </resources>

@@ -103,7 +103,7 @@ public class Country_Spinner_Activity extends AppCompatActivity {
                         Rcv.setAdapter(adapter_spinner_country);
 
                     } else
-                        Helper.showToast(Country_Spinner_Activity.this, "Some network happened ..");
+                        Helper.showToast(Country_Spinner_Activity.this, getString(R.string.some_netork_happened));
                 }
 
                 @Override

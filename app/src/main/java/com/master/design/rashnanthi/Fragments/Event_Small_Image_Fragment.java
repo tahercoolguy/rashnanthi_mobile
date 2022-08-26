@@ -166,7 +166,7 @@ public class Event_Small_Image_Fragment extends Fragment {
             intent.setPackage("com.snapchat.android");
             startActivity(intent);
         } catch (Exception e) {
-            Helper.showToast(context, "Snapchat app not installed in your phone");
+            Helper.showToast(context, getString(R.string.snapchat_not_installed));
 
 
             e.printStackTrace();

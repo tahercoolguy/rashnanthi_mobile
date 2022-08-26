@@ -242,6 +242,10 @@
     <string name="permission_required">Permissions required!</string>
     <string name="camera_needs_few_permisson">Camera needs few permissions to work properly. Grant them in settings.</string>
     <string name="goto_settings">GOTO SETTINGS</string>
+    <string name="no_stories_present">no stories present</string>
+    <string name="there_is_no_event">\"There is no event \"</string>
+    <string name="snapchat_not_installed">Snapchat app not installed in your phone</string>
+    <string name="enterd_mobile_password_inccorect">entered mobile,password or country code incorrect</string>
 
 
 </resources>

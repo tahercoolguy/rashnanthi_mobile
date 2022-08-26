@@ -154,7 +154,7 @@ public class Edit_Profile_Fragment extends Fragment {
                             approvalOne.add(area);
                         }
                     } else
-                        Helper.showToast(context, "Some network happened ..");
+                        Helper.showToast(context, getString(R.string.some_netork_happened));
                 }
 
                 @Override
