@@ -148,38 +148,44 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                 viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
 
             } else {
+                viewHolder.img_1.setVisibility(View.VISIBLE);
                 Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
             }
 
             if (img.get(1).contains(".mp4")) {
                 viewHolder.webview2.setVisibility(View.VISIBLE);
-                viewHolder.img_1.setVisibility(View.GONE);
+                viewHolder.img_2.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(1));
                 viewHolder.webview2.loadUrl(AppController.base_image_url + uri);
 
             } else {
+                viewHolder.img_2.setVisibility(View.VISIBLE);
+
                 Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
             }
 
             if (img.get(2).contains(".mp4")) {
                 viewHolder.webview3.setVisibility(View.VISIBLE);
-                viewHolder.img_1.setVisibility(View.GONE);
+                viewHolder.img_3.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(2));
                 viewHolder.webview3.loadUrl(AppController.base_image_url + uri);
 
             } else {
+                viewHolder.img_3.setVisibility(View.VISIBLE);
+
                 Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
             }
 
             if (img.get(3).contains(".mp4")) {
                 viewHolder.webview4.setVisibility(View.VISIBLE);
-                viewHolder.img_1.setVisibility(View.GONE);
+                viewHolder.img_4.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(3));
                 viewHolder.webview4.loadUrl(AppController.base_image_url + uri);
 
-            } else
+            } else {
+                viewHolder.img_4.setVisibility(View.VISIBLE);
                 Picasso.get().load(AppController.base_image_url + img.get(3)).into(viewHolder.img_4);
-
+            }
 
 //            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
 //            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
@@ -187,7 +193,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 //            Picasso.get().load(AppController.base_image_url + img.get(3)).into(viewHolder.img_4);
         }
 
-        if (img.size() >= 3) {
+        if (img.size() == 3) {
 
 
             if (img.get(0).contains(".mp4")) {
@@ -201,7 +207,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             }
             if (img.get(1).contains(".mp4")) {
                 viewHolder.webview2.setVisibility(View.VISIBLE);
-                viewHolder.img_1.setVisibility(View.GONE);
+                viewHolder.img_2.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(1));
                 viewHolder.webview2.loadUrl(AppController.base_image_url + uri);
 
@@ -210,7 +216,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             }
             if (img.get(2).contains(".mp4")) {
                 viewHolder.webview3.setVisibility(View.VISIBLE);
-                viewHolder.img_1.setVisibility(View.GONE);
+                viewHolder.img_3.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(2));
                 viewHolder.webview3.loadUrl(AppController.base_image_url + uri);
 
@@ -228,10 +234,10 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 //            Picasso.get().load(AppController.base_image_url + img.get(2)).into(viewHolder.img_3);
         }
 
-        if (img.size() >= 2) {
+        if (img.size() == 2) {
             if (img.get(0).contains(".mp4")) {
                 viewHolder.webview1.setVisibility(View.VISIBLE);
-                viewHolder.img_1.setVisibility(View.GONE);
+                viewHolder.img_4.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(0));
                 viewHolder.webview1.loadUrl(AppController.base_image_url + uri);
 
@@ -240,7 +246,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             }
             if (img.get(1).contains(".mp4")) {
                 viewHolder.webview2.setVisibility(View.VISIBLE);
-                viewHolder.img_1.setVisibility(View.GONE);
+                viewHolder.img_2.setVisibility(View.GONE);
                 Uri uri = Uri.parse(img.get(1));
                 viewHolder.webview2.loadUrl(AppController.base_image_url + uri);
 

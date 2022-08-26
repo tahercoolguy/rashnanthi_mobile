@@ -2,8 +2,6 @@
 package com.master.design.rashnanthi.Activity;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -17,13 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.AllStoryImage;
-import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.StoriesByDateData;
 import com.master.design.rashnanthi.DataModel.StoriesByDateRootDM;
-import com.master.design.rashnanthi.DataModel.StoriesByImageData;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -33,7 +28,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.shts.android.storiesprogressview.StoriesProgressView;
 import jp.wasabeef.picasso.transformations.BlurTransformation;
@@ -255,6 +249,9 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                     if (storiesByDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                         for (AllStoryImage story : storiesByDateRootDM.getOutput().getAllimagedata()
+                        ) {
+                            array_image.add(story.getImage());
+                        } for (StoriesByDateData story : storiesByDateRootDM.getOutput().getData()
                         ) {
                             array_image.add(story.getImage());
                         }

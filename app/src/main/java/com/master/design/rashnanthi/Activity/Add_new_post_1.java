@@ -517,6 +517,9 @@ public class Add_new_post_1 extends AppCompatActivity {
                 multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
                 multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
                 multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
+                multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
+                multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
+                multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
 //            multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
                 multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
 
@@ -802,6 +805,8 @@ public class Add_new_post_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("postedby", new TypedString(id));
             multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
             multipartTypedOutput.addPart("posteddate", new TypedString(date));
+            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
+            multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
             multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
 
 

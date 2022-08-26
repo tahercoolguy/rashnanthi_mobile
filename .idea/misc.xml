@@ -123,7 +123,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/active.xml" value="0.17391304347826086" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_add_event_1.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_add_event_bill.xml" value="0.1" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_add_new_post_1.xml" value="0.14" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_add_new_post_1.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_address_selector.xml" value="0.16673792218896966" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_advertise_selector.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/activity_camera_handling.xml" value="0.2" />
@@ -163,6 +163,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/custom_item_for_menu.xml" value="0.16673792218896966" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/custum_item_csa.xml" value="0.33" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/custum_item_for_pay_now_activity.xml" value="0.25" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/custum_item_posts.xml" value="0.33" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/custum_view_layout.xml" value="0.16673792218896966" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/default_fragment_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/dialog_layout_for_alert_message.xml" value="0.22" />
@@ -185,7 +186,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_1_bar_drawer.xml" value="0.1761436511329628" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_1_fragment_layout.xml" value="0.33" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_1_item_item_rcv.xml" value="0.16673792218896966" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_1_recycle_view_item.xml" value="0.33" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_1_recycle_view_item.xml" value="0.2" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_1_recycle_view_item_Item_Rcv.xml" value="0.5" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_1_recycle_view_item_rcv_item.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/my_event_bar_drawer.xml" value="0.1761436511329628" />
