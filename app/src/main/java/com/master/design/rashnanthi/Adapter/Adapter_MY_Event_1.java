@@ -290,6 +290,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
 
             viewHolder.img_4.setVisibility(View.GONE);
+             viewHolder.rl4.setVisibility(View.GONE);
 
             viewHolder.delete_Img4.setVisibility(View.GONE);
 
@@ -320,10 +321,14 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
             viewHolder.img_3.setVisibility(View.GONE);
             viewHolder.img_4.setVisibility(View.GONE);
-
+            viewHolder.img_5.setVisibility(View.GONE);
+            viewHolder.rl3.setVisibility(View.GONE);
+            viewHolder.rl4.setVisibility(View.GONE);
+            viewHolder.rl5.setVisibility(View.GONE);
 
             viewHolder.delete_Img3.setVisibility(View.GONE);
             viewHolder.delete_Img4.setVisibility(View.GONE);
+            viewHolder.delete_Img5.setVisibility(View.GONE);
 
 
             viewHolder.linearLayout.setVisibility(View.GONE);
@@ -346,6 +351,10 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             viewHolder.img_3.setVisibility(View.GONE);
             viewHolder.img_4.setVisibility(View.GONE);
             viewHolder.img_5.setVisibility(View.GONE);
+            viewHolder.rl2.setVisibility(View.GONE);
+            viewHolder.rl3.setVisibility(View.GONE);
+            viewHolder.rl4.setVisibility(View.GONE);
+            viewHolder.rl5.setVisibility(View.GONE);
 
 
             viewHolder.delete_Img4.setVisibility(View.GONE);
@@ -730,6 +739,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         private LinearLayout ll;
         private WebView webview1, webview2, webview3, webview4,webview5;
         private LinearLayout linearLayout;
+        private RelativeLayout rl1,rl2,rl3,rl4,rl5;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -751,6 +761,11 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             webview3 = itemView.findViewById(R.id.webview3);
             webview4 = itemView.findViewById(R.id.webview4);
             webview5 = itemView.findViewById(R.id.webview5);
+            rl1 = itemView.findViewById(R.id.rl1);
+            rl2 = itemView.findViewById(R.id.rl2);
+            rl3 = itemView.findViewById(R.id.rl3);
+            rl4 = itemView.findViewById(R.id.rl4);
+            rl5 = itemView.findViewById(R.id.rl5);
             ll = itemView.findViewById(R.id.LL);
             linearLayout = itemView.findViewById(R.id.lin2);
         }

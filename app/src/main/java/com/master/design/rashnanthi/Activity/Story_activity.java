@@ -250,10 +250,15 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 
                         for (AllStoryImage story : storiesByDateRootDM.getOutput().getAllimagedata()
                         ) {
-                            array_image.add(story.getImage());
+                            if(story!=null){
+                                array_image.add(story.getImage());
+                            }
+
                         } for (StoriesByDateData story : storiesByDateRootDM.getOutput().getData()
                         ) {
-                            array_image.add(story.getImage());
+                            if(story!=null){
+                                array_image.add(story.getImage());
+                            }
                         }
 
 
