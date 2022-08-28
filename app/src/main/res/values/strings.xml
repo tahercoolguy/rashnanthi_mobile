@@ -245,6 +245,7 @@
     <string name="there_is_no_event">\"There is no event \"</string>
     <string name="snapchat_not_installed">Snapchat app not installed in your phone</string>
     <string name="enterd_mobile_password_inccorect">entered mobile,password or country code incorrect</string>
+    <string name="update_post">Update Post</string>
 
 
 </resources>

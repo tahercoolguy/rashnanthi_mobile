@@ -61,6 +61,7 @@ import com.master.design.rashnanthi.DataModel.EditEventRootDM;
 import com.master.design.rashnanthi.DataModel.LoginRootDM;
 import com.master.design.rashnanthi.DataModel.MyEventData;
 import com.master.design.rashnanthi.Fragments.Calender_Fragment;
+import com.master.design.rashnanthi.Fragments.My_Event_1_Fragment;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
@@ -118,7 +119,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1, image2, image3, image4, date, eventid, snapchat, instagram, wtsapcode,contactCC, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
+    String image1, image2, image3, image4, date, eventid, snapchat,
+            editimage0, editimage1, editimage2, editimage3, editimage4,instagram, wtsapcode,contactCC, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
 
     MyEventData myEventData1;
     String CountryId = "1", Free, Paid;
@@ -525,7 +527,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //    String InstaGram = insta_ET.getText().toString();
 //    String WebSite = wesite_ET.getText().toString();
 
-
+String id0,id1;
     public void DataGetFromAdapterIntent() {
 
         wtsapcode = getIntent().getStringExtra("whatsappcountrycode");
@@ -546,63 +548,69 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         eventid = getIntent().getStringExtra("eventid");
         snapchat = getIntent().getStringExtra("snapchat");
         postedby = getIntent().getStringExtra("postedby");
-        editimage0id = getIntent().getStringExtra("editstoryimgid");
-        editimage1id = getIntent().getStringExtra("editeventimgid");
+        id0 = getIntent().getStringExtra("id0");
+        id1 = getIntent().getStringExtra("id1");
 
-        if (image1 != null) {
+        editimage0 = getIntent().getStringExtra("editstoryimg0");
+        editimage1 = getIntent().getStringExtra("editeventimg1");
+        editimage2 = getIntent().getStringExtra("editeventimg2");
+        editimage3 = getIntent().getStringExtra("editeventimg3");
+        editimage4 = getIntent().getStringExtra("editeventimg4");
+
+        if (editimage0 != null) {
 //            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
-            if (image1.contains(".mp4")) {
+            if (editimage1.contains(".mp4")) {
                 vd1.setVisibility(View.VISIBLE);
                 img1.setVisibility(View.GONE);
-                Uri uri = Uri.parse(image1);
+                Uri uri = Uri.parse(editimage0);
                 vd1.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd1.start();
 //                loadUrl(AppController.base_image_url + uri);
             } else {
-                Picasso.get().load(AppController.base_image_url + image1).into(img1);
+                Picasso.get().load(AppController.base_image_url + editimage0).into(img1);
 
             }
 
         }
-        if (image2 != null) {
-            if (image2.contains(".mp4")) {
+        if (editimage1 != null) {
+            if (editimage1.contains(".mp4")) {
                 vd2.setVisibility(View.VISIBLE);
                 img2.setVisibility(View.GONE);
-                Uri uri = Uri.parse(image2);
+                Uri uri = Uri.parse(editimage1);
                 vd2.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd2.start();
 //                loadUrl(AppController.base_image_url + uri);
             } else {
-                Picasso.get().load(AppController.base_image_url + image2).into(img2);
+                Picasso.get().load(AppController.base_image_url + editimage1).into(img2);
 
             }
         }
-        if (image3 != null) {
+        if (editimage2 != null) {
 
-            if (image3.contains(".mp4")) {
+            if (editimage2.contains(".mp4")) {
                 vd3.setVisibility(View.VISIBLE);
                 img3.setVisibility(View.GONE);
-                Uri uri = Uri.parse(image3);
+                Uri uri = Uri.parse(editimage2);
                 vd3.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd3.start();
 //                loadUrl(AppController.base_image_url + uri);
             } else {
-                Picasso.get().load(AppController.base_image_url + image3).into(img3);
+                Picasso.get().load(AppController.base_image_url + editimage2).into(img3);
 
 
             }
 
         }
-        if (image4 != null) {
-            if (image4.contains(".mp4")) {
+        if (editimage3 != null) {
+            if (editimage3.contains(".mp4")) {
                 vd4.setVisibility(View.VISIBLE);
                 img4.setVisibility(View.GONE);
-                Uri uri = Uri.parse(image4);
+                Uri uri = Uri.parse(editimage3);
                 vd4.setVideoURI(Uri.parse(AppController.base_image_url + uri));
                 vd4.start();
 //                loadUrl(AppController.base_image_url + uri);
             } else {
-                Picasso.get().load(AppController.base_image_url + image4).into(img4);
+                Picasso.get().load(AppController.base_image_url + editimage3).into(img4);
 
 
             }
@@ -695,8 +703,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
-            multipartTypedOutput.addPart("editstoryimgid[0]", new TypedString(editimage0id));
-            multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(editimage1id));
+            if(id0!=null){
+                multipartTypedOutput.addPart("editstoryimgid[0]", new TypedString(id0));
+
+            }
+            if(id1!=null){
+                multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(id1));
+            }
+
 //            multipartTypedOutput.addPart("editstoryimgid[1]", new TypedString(editimage0id));
 //            multipartTypedOutput.addPart("editeventimgid[1]", new TypedString(editimage1id));
             multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
@@ -872,6 +886,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                         if (ifterm != false) {
 
                             Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
+                            Activity_Add_Event_1.this.finish();
+
 
                         } else {
                             Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));

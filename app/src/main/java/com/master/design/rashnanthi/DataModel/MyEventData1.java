@@ -9,6 +9,8 @@ public class MyEventData1 {
     private String website;
     private String payorfree;
     private String whatsapnumber;
+    private String mobile;
+    private String countrycode;
     private ArrayList<MyEventImageData1> imagedata;
 //    private ArrayList<Imagedata> imagedata;
     private String instagram;
@@ -31,6 +33,28 @@ public class MyEventData1 {
     public void setDate(String date) {
 
         this.date = date;
+
+    }
+    public String getCountrycode() {
+
+        return countrycode;
+
+    }
+
+    public void setCountrycode(String countrycode) {
+
+        this.date = countrycode;
+
+    }
+    public String getMobile() {
+
+        return mobile;
+
+    }
+
+    public void setMobile(String mobile) {
+
+        this.mobile = mobile;
 
     }
 
