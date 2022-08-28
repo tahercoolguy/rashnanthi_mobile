@@ -57,6 +57,7 @@ public class My_Post_1_Fragment extends Fragment {
 
     private View rootView;
     private Activity context;
+
      User user;
     ImageView back_my_event;
     RecyclerView my_event_Rcv;
@@ -83,10 +84,10 @@ public class My_Post_1_Fragment extends Fragment {
 
         context = getActivity();
         appController = (AppController) getActivity().getApplicationContext();
-        user = new User(getActivity());
+        user = new User(context);
         dialogUtil = new DialogUtil();
-        connectionDetector = new ConnectionDetector(getActivity());
-        progressDialog = new ProgressDialog(getActivity());
+        connectionDetector = new ConnectionDetector(context);
+        progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
@@ -253,7 +254,7 @@ public class My_Post_1_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 1500);
+        }, 10);
 
 
     }

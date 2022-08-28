@@ -5,6 +5,7 @@ import static com.master.design.rashnanthi.Activity.Activity_Add_Event_1.getReal
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -41,6 +42,7 @@ import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.Country_CodeDM;
 import com.master.design.rashnanthi.DataModel.Country_NameDM;
 import com.master.design.rashnanthi.DataModel.EditEventRootDM;
+import com.master.design.rashnanthi.Fragments.My_Post_1_Fragment;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.ResponseListener;
@@ -72,6 +74,8 @@ import retrofit.mime.TypedString;
 
 public class Add_new_post_1 extends AppCompatActivity {
 
+    private Activity context;
+    private Context context1;
 
     Dialog progress;
     ConnectionDetector connectionDetector;
@@ -198,10 +202,10 @@ public class Add_new_post_1 extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-
+         context = Add_new_post_1.this;
         dialogUtil = new DialogUtil();
-        appController = (AppController) getApplicationContext();
-        connectionDetector = new ConnectionDetector(getApplicationContext());
+        appController = (AppController)context. getApplicationContext();
+        connectionDetector = new ConnectionDetector(context.getApplicationContext());
         user = new User(Add_new_post_1.this);
         Binding();
         DataGetFromAdapterIntent();
@@ -357,7 +361,7 @@ public class Add_new_post_1 extends AppCompatActivity {
             webET.setText(website);
         }
         if (impcountry != null) {
-            country_spinner_Txt.setText(impcountry);
+//            country_spinner_Txt.setText(impcountry);
         }
         if (status != null) {
             youpostEditTxt.setText(getString(R.string.your_post_will_be_uploaded_within_24_hours));
@@ -850,7 +854,7 @@ public class Add_new_post_1 extends AppCompatActivity {
     boolean editImage1, editImage2, editImage3, editImage4, editImage5 = false;
 
     public void EditAddEventCreatorAPI() {
-        if (connectionDetector.isConnectingToInternet()) {
+
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
             String id = String.valueOf(user.getId());
@@ -861,17 +865,17 @@ public class Add_new_post_1 extends AppCompatActivity {
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
             if(id0!=null){
                 multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(id0));
-            } if(id1!=null){
+            } else if(id1!=null){
                 multipartTypedOutput.addPart("editeventimgid[1]", new TypedString(id1));
 
             }
-            if(id2!=null){
+            else if(id2!=null){
                 multipartTypedOutput.addPart("editeventimgid[2]", new TypedString(id2));
 
-            }  if(id3!=null){
+            } else  if(id3!=null){
                 multipartTypedOutput.addPart("editeventimgid[3]", new TypedString(id3));
 
-            } if(id4!=null){
+            }else  if(id4!=null){
                 multipartTypedOutput.addPart("editeventimgid[4]", new TypedString(id4));
             }
 
@@ -1067,7 +1071,7 @@ public class Add_new_post_1 extends AppCompatActivity {
 
 
             progress = dialogUtil.showProgressDialog(Add_new_post_1.this, getString(R.string.please_wait));
-
+        if (connectionDetector.isConnectingToInternet()) {
             appController.paServices.EditEvent(multipartTypedOutput, new Callback<EditEventRootDM>() {
 
                 @Override
@@ -1084,6 +1088,7 @@ public class Add_new_post_1 extends AppCompatActivity {
 
                             Helper.showToast(Add_new_post_1.this, editEventRootDM.getOutput().getMessage());
                             Add_new_post_1.this.finish();
+                            ((MainActivity)context).addFragment(new My_Post_1_Fragment(),false);
 
 
                         } else {

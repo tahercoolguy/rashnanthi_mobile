@@ -69,13 +69,14 @@ public class MainActivity extends AppCompatActivity {
     ConnectionDetector connectionDetector;
     DialogUtil dialogUtil;
     AppController appController;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         user = new User(MainActivity.this);
-
+        context = getApplicationContext();
         dialogUtil = new DialogUtil();
         appController = (AppController) getApplicationContext();
         connectionDetector = new ConnectionDetector(getApplicationContext());

@@ -133,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                                     user.setEmail(neemail);
 
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    LoginActivity.this.finish();
 
                                 } else
                                     Helper.showToast(LoginActivity.this, getString(R.string.login_messesge));

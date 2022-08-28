@@ -78,6 +78,8 @@ public class Coach_Account_Fragment extends Fragment {
     ProgressBar progress_bar;
     @BindView(R.id.txt_error)
     TextView txt_error;
+  @BindView(R.id.likeTxttttt)
+    TextView likeTxttttt;
 
     @BindView(R.id.account_NameTxt)
     TextView account_NameTxt;
@@ -188,6 +190,12 @@ public class Coach_Account_Fragment extends Fragment {
                         Picasso.get().load(AppController.base_image_url + myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into(my_account_Img);
 
                         likeTxt.setText(myProfileRootDM.getOutput().getData().get(0).getLikecount());
+                        String like= myProfileRootDM.getOutput().getData().get(0).getLikecount();
+                        if(like.equalsIgnoreCase("0") || like.equalsIgnoreCase("1")){
+                            likeTxttttt.setText(getString(R.string.like));
+                        }else{
+                            likeTxttttt.setText(getString(R.string.likes));
+                        }
 //                         Picasso.get().load(myProfileRootDM.getOutput().getData().get(0).getProfilepic()).into((ImageView) rootView.findViewById(R.id.profileImg));
 
 

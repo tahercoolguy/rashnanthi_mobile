@@ -112,6 +112,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     DialogUtil dialogUtil;
     AppController appController;
     Activity context;
+    Context context1;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
     String currentDateandTime;
 
@@ -119,7 +120,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1, image2, image3, image4, date, eventid, snapchat,
+    String image1,mobile, image2, image3, image4, date, eventid, snapchat,
             editimage0, editimage1, editimage2, editimage3, editimage4,instagram, wtsapcode,contactCC, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
 
     MyEventData myEventData1;
@@ -433,9 +434,9 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event_1);
         ButterKnife.bind(this);
-
-        dialogUtil = new DialogUtil();
-        appController = (AppController) getApplicationContext();
+       context=Activity_Add_Event_1.this;
+         dialogUtil = new DialogUtil();
+        appController = (AppController)context. getApplicationContext();
         myEventData1 = new MyEventData();
 
         connectionDetector = new ConnectionDetector(getApplicationContext());
@@ -548,6 +549,7 @@ String id0,id1;
         eventid = getIntent().getStringExtra("eventid");
         snapchat = getIntent().getStringExtra("snapchat");
         postedby = getIntent().getStringExtra("postedby");
+        mobile = getIntent().getStringExtra("mobile");
         id0 = getIntent().getStringExtra("id0");
         id1 = getIntent().getStringExtra("id1");
 
@@ -559,7 +561,7 @@ String id0,id1;
 
         if (editimage0 != null) {
 //            Glide.with(Activity_Add_Event_1.this).load(image1).into(img1);
-            if (editimage1.contains(".mp4")) {
+            if (editimage0.contains(".mp4")) {
                 vd1.setVisibility(View.VISIBLE);
                 img1.setVisibility(View.GONE);
                 Uri uri = Uri.parse(editimage0);
@@ -663,9 +665,9 @@ String id0,id1;
             mobile__ET.setText(wtsapnumber);
         }
 
-        if (wtsapnumber != null) {
+        if (mobile != null) {
 
-            contact__ET.setText(wtsapnumber);
+            contact__ET.setText(mobile);
         }
         if (website != null) {
 
@@ -673,7 +675,7 @@ String id0,id1;
         }
         if (impcountry != null) {
 
-            country_spinner_Txt.setText(impcountry);
+//            country_spinner_Txt.setText(impcountry);
         }
         if (status != null) {
             pay_now_Btn.setVisibility(View.GONE);
@@ -705,9 +707,8 @@ String id0,id1;
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
             if(id0!=null){
                 multipartTypedOutput.addPart("editstoryimgid[0]", new TypedString(id0));
-
             }
-            if(id1!=null){
+              if(id1!=null){
                 multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(id1));
             }
 
@@ -887,6 +888,7 @@ String id0,id1;
 
                             Helper.showToast(Activity_Add_Event_1.this, editEventRootDM.getOutput().getMessage());
                             Activity_Add_Event_1.this.finish();
+
 
 
                         } else {

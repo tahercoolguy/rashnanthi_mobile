@@ -38,6 +38,8 @@ import com.master.design.rashnanthi.DataModel.MyEventImageData;
 import com.master.design.rashnanthi.DataModel.MyEventImageData1;
 import com.master.design.rashnanthi.DataModel.MyEventsRootDM;
 import com.master.design.rashnanthi.DataModel.My_Event_1DM;
+import com.master.design.rashnanthi.Fragments.My_Event_1_Fragment;
+import com.master.design.rashnanthi.Fragments.My_Post_1_Fragment;
 import com.master.design.rashnanthi.Helper.DialogUtil;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
@@ -58,7 +60,6 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
     private ArrayList<MyEventImageData1> myEventImageData1ArrayList;
     Dialog progress;
     DialogUtil dialogUtil;
-
     AppController appController;
     ConnectionDetector connectionDetector;
     User user;
@@ -73,9 +74,9 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         dialogUtil = new DialogUtil();
 
         user = new User(context.getApplicationContext());
-        appController = (AppController) context.getApplicationContext();
+        appController = (AppController)context.getApplicationContext();
 
-        connectionDetector = new ConnectionDetector(context);
+        connectionDetector = new ConnectionDetector(context.getApplicationContext());
 
     }
 
@@ -393,8 +394,10 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 //                                            myEventData.remove(position);
 //                                            notifyItemRemoved(position);
 //                                            notifyDataSetChanged();
+
                                             viewHolder.img_1.setVisibility(View.GONE);
                                             viewHolder.delete_Img1.setVisibility(View.GONE);
+                                            viewHolder.rl1.setVisibility(View.GONE);
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
@@ -440,6 +443,9 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                                         if (!myEventData.isEmpty()) {
                                             viewHolder.img_2.setVisibility(View.GONE);
                                             viewHolder.delete_Img2.setVisibility(View.GONE);
+                                            viewHolder.rl2.setVisibility(View.GONE);
+
+
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
@@ -487,7 +493,10 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                                         if (!myEventData.isEmpty()) {
                                             viewHolder.img_3.setVisibility(View.GONE);
                                             viewHolder.delete_Img3.setVisibility(View.GONE);
+                                            viewHolder.rl3.setVisibility(View.GONE);
+
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
+
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
                                         }
@@ -536,6 +545,9 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                                         if (!myEventData.isEmpty()) {
                                             viewHolder.img_4.setVisibility(View.GONE);
                                             viewHolder.delete_Img4.setVisibility(View.GONE);
+                                            viewHolder.rl4.setVisibility(View.GONE);
+
+
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
@@ -586,6 +598,9 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                                         if (!myEventData.isEmpty()) {
                                             viewHolder.img_5.setVisibility(View.GONE);
                                             viewHolder.delete_Img5.setVisibility(View.GONE);
+                                            viewHolder.rl5.setVisibility(View.GONE);
+
+
                                             Helper.showToast(context, context.getString(R.string.image_deleted));
                                         } else {
                                             Helper.showToast(context, context.getString(R.string.image_does_not_exist));
@@ -633,6 +648,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                                 myEventData.remove(position);
                                 notifyItemRemoved(position);
                                 notifyDataSetChanged();
+
                                 Helper.showToast(context, context.getString(R.string.image_deleted));
 
 
@@ -740,7 +756,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("website", myEventData.get(position).getWebsite());
                     intent.putExtra("whatsappcountrycode", myEventData.get(position).getWhatsapcountrycode());
                     intent.putExtra("whatsappnumber", myEventData.get(position).getWhatsapnumber());
-                    intent.putExtra("countries", myEventData.get(position).getImpcountries());
+                    intent.putExtra("countries", myEventData.get(position).getCountrycode());
                     intent.putExtra("creatorcoach", myEventData.get(position).getCreatorcoach());
                     intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
                     intent.putExtra("status", myEventData.get(position).getStatus());
@@ -811,7 +827,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
                     intent.putExtra("website", myEventData.get(position).getWebsite());
                     intent.putExtra("whatsappcountrycode", myEventData.get(position).getWhatsapcountrycode());
                     intent.putExtra("whatsappnumber", myEventData.get(position).getWhatsapnumber());
-                    intent.putExtra("countries", myEventData.get(position).getImpcountries());
+                    intent.putExtra("countries", myEventData.get(position).getCountrycode());
                     intent.putExtra("creatorcoach", myEventData.get(position).getCreatorcoach());
                     intent.putExtra("payorfree", myEventData.get(position).getPayorfree());
                     intent.putExtra("status", myEventData.get(position).getStatus());

@@ -2,6 +2,7 @@ package com.master.design.rashnanthi.Fragments;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -58,7 +59,7 @@ public class My_Event_1_Fragment extends Fragment {
 
     private View rootView;
     User user;
-    private Context context;
+    private Activity context;
     ImageView my_event_menu_1, my_event_menu_1_back;
     RecyclerView my_event_Rcv;
     private ArrayList<My_Event_1DM> my_event_1DMArrayList;
@@ -88,11 +89,11 @@ public class My_Event_1_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         context = getActivity();
-        user = new User(getActivity());
+        user = new User(context);
         appController = (AppController) getActivity().getApplicationContext();
         dialogUtil = new DialogUtil();
         connectionDetector = new ConnectionDetector(getActivity());
-        progressDialog = new ProgressDialog(getActivity());
+        progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(getResources().getString(R.string.please_wait));
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
@@ -204,7 +205,7 @@ public class My_Event_1_Fragment extends Fragment {
                         if (countryid != null) {
                             my_event_Rcv.setVisibility(View.VISIBLE);
                             Adapter_MY_Event_1 adapter_my_event_1 = new Adapter_MY_Event_1(getActivity(), myEventRootDM1.getOutput().getData(), myEventRootDM1.getOutput().getData().get(0).getImagedata());
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
                             my_event_Rcv.setLayoutManager(linearLayoutManager);
                             adapter_my_event_1.notifyDataSetChanged();
                             Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
@@ -279,7 +280,7 @@ public class My_Event_1_Fragment extends Fragment {
             public void run() {
                 DismissProgress();
             }
-        }, 1500);
+        }, 10);
 
 
     }

@@ -214,6 +214,8 @@
     <string name="snapchat_not_installed">تطبيق سناب شات غير مثبت في هاتفك</string>
     <string name="enterd_mobile_password_inccorect">أدخلت الهاتف المحمول أو كلمة المرور أو رمز الدولة بشكل غير صحيح</string>
     <string name="update_post">آخر تحديث</string>
+    <string name="like">مثل</string>
+    <string name="likes">الإعجابات</string>
 
 
 
