@@ -121,8 +121,7 @@ dependencies {
     implementation 'com.nex3z:notification-badge:1.0.2'
     implementation 'com.barryzhang:temptyview:0.0.1'
     implementation 'com.google.android.gms:play-services-wallet:16.0.0'
-    //Billing Library
-//    implementation 'com.github.uthayacloud:AndroidInAppBilling:0.1.2'
+
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
 //    implementation "com.karumi:dexter:5.0.0"
     implementation 'com.github.yalantis:ucrop:2.2.2'
