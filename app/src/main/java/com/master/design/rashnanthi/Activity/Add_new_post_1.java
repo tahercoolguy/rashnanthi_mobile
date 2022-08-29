@@ -202,9 +202,9 @@ public class Add_new_post_1 extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-         context = Add_new_post_1.this;
+        context = this;
         dialogUtil = new DialogUtil();
-        appController = (AppController)context. getApplicationContext();
+        appController = (AppController) context.getApplicationContext();
         connectionDetector = new ConnectionDetector(context.getApplicationContext());
         user = new User(Add_new_post_1.this);
         Binding();
@@ -571,10 +571,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
                 String id = String.valueOf(user.getId());
-
-
                 MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-
 //            multipartTypedOutput.addPart("eventdate", new TypedString("2022-06-06"));
                 multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
@@ -724,7 +721,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                     }
 
                     if (v3_1) {
-                        File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
+                        File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3_1));
 
 
                         multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
@@ -855,222 +852,240 @@ public class Add_new_post_1 extends AppCompatActivity {
 
     public void EditAddEventCreatorAPI() {
 
-            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-            String id = String.valueOf(user.getId());
+        String id = String.valueOf(user.getId());
 
 
-            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+        MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
 //            multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
-            multipartTypedOutput.addPart("eventid", new TypedString(eventid));
-            if(id0!=null){
-                multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(id0));
-            } else if(id1!=null){
-                multipartTypedOutput.addPart("editeventimgid[1]", new TypedString(id1));
+        multipartTypedOutput.addPart("eventid", new TypedString(eventid));
+        String editedImages="";
+        if (id0 != null) { //editeventimgid : 120,205,220
+            if(editImage1!=false)
+//            multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(id0));
+                editedImages = editedImages+id0;
+        }
+        if (id1 != null) {
+            if(editImage2!=false)
+//            multipartTypedOutput.addPart("editeventimgid[1]", new TypedString(id1));
+                editedImages = editedImages+","+id1;
 
-            }
-            else if(id2!=null){
-                multipartTypedOutput.addPart("editeventimgid[2]", new TypedString(id2));
+        }
+        if (id2 != null) {
+            if(editImage3!=false)
+//            multipartTypedOutput.addPart("editeventimgid[2]", new TypedString(id2));
+            editedImages = editedImages+","+id2;
 
-            } else  if(id3!=null){
-                multipartTypedOutput.addPart("editeventimgid[3]", new TypedString(id3));
 
-            }else  if(id4!=null){
-                multipartTypedOutput.addPart("editeventimgid[4]", new TypedString(id4));
-            }
+        }
+        if (id3 != null) {
+            if(editImage4!=false)
+//            multipartTypedOutput.addPart("editeventimgid[3]", new TypedString(id3));
+                editedImages = editedImages+","+id3;
+
+        }
+        if (id4 != null) {
+            if(editImage5!=false)
+//            multipartTypedOutput.addPart("editeventimgid[4]", new TypedString(id4));
+                editedImages = editedImages+","+id4;
+
+        }
+
+        multipartTypedOutput.addPart("editeventimgid", new TypedString((editedImages)));
 
 //            multipartTypedOutput.addPart("editstoryimgid[1]", new TypedString(editimage0id));
 //            multipartTypedOutput.addPart("editeventimgid[1]", new TypedString(editimage1id));
-            multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
-            multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
-            multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
+        multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
+        multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
+        multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
 
-            multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
+        multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
 
-            multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
-            multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
-            multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
-            multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
+        multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
+        multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+        multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
+        multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
 //            multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
-            multipartTypedOutput.addPart("posteddate", new TypedString(date));
-            multipartTypedOutput.addPart("postedby", new TypedString(id));
-            multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
-            multipartTypedOutput.addPart("payorfree", new TypedString(payorfree));
-             multipartTypedOutput.addPart("eventdate", new TypedString(date));
+        multipartTypedOutput.addPart("posteddate", new TypedString(date));
+        multipartTypedOutput.addPart("postedby", new TypedString(id));
+        multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
+        multipartTypedOutput.addPart("payorfree", new TypedString(payorfree));
+        multipartTypedOutput.addPart("eventdate", new TypedString(date));
 
 
-            try {
-                if (ifimg1) {
-                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp.jpg");
-                    f.createNewFile();
+        try {
+            if (ifimg1) {
+                File f = new File(Add_new_post_1.this.getCacheDir(), "temp.jpg");
+                f.createNewFile();
 
-                    Bitmap one = ((BitmapDrawable) img1.getDrawable()).getBitmap();
+                Bitmap one = ((BitmapDrawable) img1.getDrawable()).getBitmap();
 //Convert bitmap to byte array
-                    Bitmap bitmap = one;
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                    byte[] bitmapdata = bos.toByteArray();
+                Bitmap bitmap = one;
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
 
 //write the bytes in file
-                    FileOutputStream fos = new FileOutputStream(f);
-                    fos.write(bitmapdata);
-                    fos.flush();
-                    fos.close();
-                    File resizedImage = new Resizer(Add_new_post_1.this)
-                            .setTargetLength(512)
-                            .setQuality(80)
-                            .setOutputFormat("JPEG")
-                            .setOutputFilename("resized_image1")
-                            .setSourceImage(f)
-                            .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage));
-                }
-
-                if (v1) {
-                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video1));
-
-
-                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
-                }
-
-                if (ifimg2) {
-                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp1.jpg");
-                    f.createNewFile();
-
-                    Bitmap one = ((BitmapDrawable) img2.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                    Bitmap bitmap = one;
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                    byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                    FileOutputStream fos = new FileOutputStream(f);
-                    fos.write(bitmapdata);
-                    fos.flush();
-                    fos.close();
-                    File resizedImage1 = new Resizer(Add_new_post_1.this)
-                            .setTargetLength(512)
-                            .setQuality(80)
-                            .setOutputFormat("JPEG")
-                            .setOutputFilename("resized_image2")
-                            .setSourceImage(f)
-                            .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage1));
-                }
-
-                if (v2) {
-                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video2));
-
-
-                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
-                }
-
-                if (ifimg3) {
-                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp2.jpg");
-                    f.createNewFile();
-
-                    Bitmap one = ((BitmapDrawable) img3.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                    Bitmap bitmap = one;
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                    byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                    FileOutputStream fos = new FileOutputStream(f);
-                    fos.write(bitmapdata);
-                    fos.flush();
-                    fos.close();
-                    File resizedImage2 = new Resizer(Add_new_post_1.this)
-                            .setTargetLength(512)
-                            .setQuality(80)
-                            .setOutputFormat("JPEG")
-                            .setOutputFilename("resized_image3")
-                            .setSourceImage(f)
-                            .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("image/jpg", resizedImage2));
-                }
-
-                if (v3) {
-                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
-
-
-                    multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
-                }
-
-                if (ifimg3_1) {
-                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp3.jpg");
-                    f.createNewFile();
-
-                    Bitmap one = ((BitmapDrawable) img3_1.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                    Bitmap bitmap = one;
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                    byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                    FileOutputStream fos = new FileOutputStream(f);
-                    fos.write(bitmapdata);
-                    fos.flush();
-                    fos.close();
-                    File resizedImage3 = new Resizer(Add_new_post_1.this)
-                            .setTargetLength(512)
-                            .setQuality(80)
-                            .setOutputFormat("JPEG")
-                            .setOutputFilename("resized_image4")
-                            .setSourceImage(f)
-                            .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("image/jpg", resizedImage3));
-                }
-
-                if (v3_1) {
-                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
-
-
-                    multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
-                }
-
-                if (ifimg4) {
-                    File f = new File(Add_new_post_1.this.getCacheDir(), "temp4.jpg");
-                    f.createNewFile();
-
-                    Bitmap one = ((BitmapDrawable) img4.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                    Bitmap bitmap = one;
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                    byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                    FileOutputStream fos = new FileOutputStream(f);
-                    fos.write(bitmapdata);
-                    fos.flush();
-                    fos.close();
-                    File resizedImage4 = new Resizer(Add_new_post_1.this)
-                            .setTargetLength(512)
-                            .setQuality(80)
-                            .setOutputFormat("JPEG")
-                            .setOutputFilename("resized_image5")
-                            .setSourceImage(f)
-                            .getResizedFile();
-                    multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("image/jpg", resizedImage4));
-                }
-
-                if (v4) {
-                    File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video4));
-
-
-                    multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("video/mp4", imageFile));
-                }
-
-            } catch (Exception e) {
-                Log.e("Error", e.toString());
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                File resizedImage = new Resizer(Add_new_post_1.this)
+                        .setTargetLength(512)
+                        .setQuality(80)
+                        .setOutputFormat("JPEG")
+                        .setOutputFilename("resized_image1")
+                        .setSourceImage(f)
+                        .getResizedFile();
+                multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage));
             }
 
+            if (v1) {
+                File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video1));
 
-            progress = dialogUtil.showProgressDialog(Add_new_post_1.this, getString(R.string.please_wait));
+
+                multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+            }
+
+            if (ifimg2) {
+                File f = new File(Add_new_post_1.this.getCacheDir(), "temp1.jpg");
+                f.createNewFile();
+
+                Bitmap one = ((BitmapDrawable) img2.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                Bitmap bitmap = one;
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                File resizedImage1 = new Resizer(Add_new_post_1.this)
+                        .setTargetLength(512)
+                        .setQuality(80)
+                        .setOutputFormat("JPEG")
+                        .setOutputFilename("resized_image2")
+                        .setSourceImage(f)
+                        .getResizedFile();
+                multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage1));
+            }
+
+            if (v2) {
+                File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video2));
+
+
+                multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+            }
+
+            if (ifimg3) {
+                File f = new File(Add_new_post_1.this.getCacheDir(), "temp2.jpg");
+                f.createNewFile();
+
+                Bitmap one = ((BitmapDrawable) img3.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                Bitmap bitmap = one;
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                File resizedImage2 = new Resizer(Add_new_post_1.this)
+                        .setTargetLength(512)
+                        .setQuality(80)
+                        .setOutputFormat("JPEG")
+                        .setOutputFilename("resized_image3")
+                        .setSourceImage(f)
+                        .getResizedFile();
+                multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("image/jpg", resizedImage2));
+            }
+
+            if (v3) {
+                File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
+
+
+                multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
+            }
+
+            if (ifimg3_1) {
+                File f = new File(Add_new_post_1.this.getCacheDir(), "temp3.jpg");
+                f.createNewFile();
+
+                Bitmap one = ((BitmapDrawable) img3_1.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                Bitmap bitmap = one;
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                File resizedImage3 = new Resizer(Add_new_post_1.this)
+                        .setTargetLength(512)
+                        .setQuality(80)
+                        .setOutputFormat("JPEG")
+                        .setOutputFilename("resized_image4")
+                        .setSourceImage(f)
+                        .getResizedFile();
+                multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("image/jpg", resizedImage3));
+            }
+
+            if (v3_1) {
+                File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
+
+
+                multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
+            }
+
+            if (ifimg4) {
+                File f = new File(Add_new_post_1.this.getCacheDir(), "temp4.jpg");
+                f.createNewFile();
+
+                Bitmap one = ((BitmapDrawable) img4.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                Bitmap bitmap = one;
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                File resizedImage4 = new Resizer(Add_new_post_1.this)
+                        .setTargetLength(512)
+                        .setQuality(80)
+                        .setOutputFormat("JPEG")
+                        .setOutputFilename("resized_image5")
+                        .setSourceImage(f)
+                        .getResizedFile();
+                multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("image/jpg", resizedImage4));
+            }
+
+            if (v4) {
+                File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video4));
+
+
+                multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("video/mp4", imageFile));
+            }
+
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
+        }
+
+
+        progress = dialogUtil.showProgressDialog(Add_new_post_1.this, getString(R.string.please_wait));
         if (connectionDetector.isConnectingToInternet()) {
             appController.paServices.EditEvent(multipartTypedOutput, new Callback<EditEventRootDM>() {
 
@@ -1088,7 +1103,6 @@ public class Add_new_post_1 extends AppCompatActivity {
 
                             Helper.showToast(Add_new_post_1.this, editEventRootDM.getOutput().getMessage());
                             Add_new_post_1.this.finish();
-                            ((MainActivity)context).addFragment(new My_Post_1_Fragment(),false);
 
 
                         } else {
@@ -1619,72 +1633,81 @@ public class Add_new_post_1 extends AppCompatActivity {
     @OnClick(R.id.img1)
     public void Image1Clicked() {
         imgClicked = 1;
-        editImage1=true;
+        editImage1 = true;
         OpenImage();
+
     }
 
     @OnClick(R.id.img2)
     public void Image1Clicked2() {
         imgClicked = 2;
-        editImage2=true;
+        editImage2 = true;
         OpenImage();
+
     }
 
     @OnClick(R.id.img3)
     public void Image1Clicked3() {
         imgClicked = 3;
-        editImage3=true;
+        editImage3 = true;
         OpenImage();
+
     }
 
     @OnClick(R.id.img3_1)
     public void Image1Clicked3_1() {
         imgClicked = 3_1;
-        editImage4=true;
+        editImage4 = true;
         OpenImage();
+
     }
 
     @OnClick(R.id.img4)
     public void Image1Clicked4() {
         imgClicked = 4;
-        editImage5=true;
+        editImage5 = true;
         OpenImage();
+
     }
 
     @OnClick(R.id.vd1)
     public void Vd1() {
         imgClicked = 1;
-        editImage1=true;
-         OpenImage();
+        editImage1 = true;
+        OpenImage();
+
     }
 
     @OnClick(R.id.vd2)
     public void Vd2() {
         imgClicked = 2;
-        editImage2=true;
+        editImage2 = true;
         OpenImage();
+
     }
 
     @OnClick(R.id.vd3)
     public void Vd3() {
         imgClicked = 3;
-        editImage3=true;
+        editImage3 = true;
         OpenImage();
+
     }
 
     @OnClick(R.id.vd3_1)
     public void Vd3_1() {
         imgClicked = 3_1;
-        editImage4=true;
+        editImage4 = true;
         OpenImage();
+
     }
 
 
     @OnClick(R.id.vd4)
     public void Vd4() {
         imgClicked = 4;
-        editImage5=true;
-        OpenImage();
+        editImage5 = true;
+
     }
 
     public void OpenImage() {

@@ -36,6 +36,7 @@ import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,6 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     AppController appController;
     ConnectionDetector connectionDetector;
     DialogUtil dialogUtil;
-    String whatsapp, whatsappcode, instagram, snapcahat, website;
     Dialog progress;
     ArrayList<NewCoachData> mList;
     String id;
@@ -84,8 +84,9 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 //        holder.mName.setText(mList.get(position));
+        String whatsapp, whatsappcode, instagram, snapcahat, website;
 
-        if (mList.get(position).getImagedata() != null && mList.get(position).getImagedata().size()!=0) {
+        if (mList.get(position).getImagedata() != null && mList.get(position).getImagedata().size() != 0) {
             instagram = mList.get(position).getInstagram();
             whatsapp = mList.get(position).getWhatsapnumber();
             whatsappcode = mList.get(position).getWhatsapcountrycode();
@@ -131,15 +132,10 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
         if (mList.get(position).getImagedata() != null) {
             for (NewCoachImagData s : mList.get(position).getImagedata()
             ) {
-
-
-                        km.add(s.getImage());
-
-
+                km.add(s.getImage());
             }
 
-        }else
-        {
+        } else {
             km.add(mList.get(position).getImage());
         }
         try {
@@ -236,7 +232,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
                     intent.setData(Uri.parse(url));
                     context.startActivity(intent);
                 } catch (Exception e) {
-                    Helper.showToast(context,context.getString(R.string.something_wrong));
+                    Helper.showToast(context, context.getString(R.string.something_wrong));
                 }
 
 //                String url = "https://api.whatsapp.com/send?phone=" + whatsappcode + whatsapp;
@@ -263,7 +259,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
                     intent.setPackage("com.snapchat.android");
                     context.startActivity(intent);
                 } catch (Exception e) {
-                    Helper.showToast(context, "Snapchat app not installed in your phone");
+                    Helper.showToast(context, context.getString(R.string.snapchat_not_installed));
 
 
                     e.printStackTrace();

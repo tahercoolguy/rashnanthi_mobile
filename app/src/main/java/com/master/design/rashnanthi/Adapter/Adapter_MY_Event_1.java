@@ -264,8 +264,6 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         }
 
         if (img.size() == 3) {
-
-
             if (img.get(0).contains(".mp4")) {
                 viewHolder.webview1.setVisibility(View.VISIBLE);
                 viewHolder.img_1.setVisibility(View.GONE);
@@ -296,10 +294,11 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
 
             viewHolder.img_4.setVisibility(View.GONE);
-            viewHolder.rl5.setVisibility(View.GONE);
+             viewHolder.rl5.setVisibility(View.GONE);
             viewHolder.rl4.setVisibility(View.GONE);
 
             viewHolder.delete_Img4.setVisibility(View.GONE);
+            viewHolder.delete_Img3.setVisibility(View.GONE);
 
 //            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
 //            Picasso.get().load(AppController.base_image_url + img.get(1)).into(viewHolder.img_2);
@@ -338,7 +337,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             viewHolder.delete_Img5.setVisibility(View.GONE);
 
 
-            viewHolder.linearLayout.setVisibility(View.GONE);
+            viewHolder.lin2.setVisibility(View.GONE);
+            viewHolder.rl5.setVisibility(View.GONE);
         }
 
         if (img.size() == 1) {
@@ -367,9 +367,13 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             viewHolder.delete_Img4.setVisibility(View.GONE);
             viewHolder.delete_Img3.setVisibility(View.GONE);
             viewHolder.delete_Img2.setVisibility(View.GONE);
-            viewHolder.linearLayout.setVisibility(View.GONE);
+            viewHolder.lin2.setVisibility(View.GONE);
 
             //            Picasso.get().load(AppController.base_image_url + img.get(0)).into(viewHolder.img_1);
+        }
+
+        if(img.size()==0){
+            viewHolder.mainLL.setVisibility(View.GONE);
         }
 
 
@@ -705,8 +709,6 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
 
                     if (index >= 0 && 0 < img.size()) {
                         intent.putExtra("id0", myEventData.get(position).getImagedata().get(0).getId());
-
-
                     }
                     if (index >= 1 && 1 < img.size()) {
                         intent.putExtra("id1", myEventData.get(position).getImagedata().get(1).getId());
@@ -854,7 +856,7 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
         private RoundedImageView img_1, img_2, img_3, img_4, img_5;
         private LinearLayout ll;
         private WebView webview1, webview2, webview3, webview4, webview5;
-        private LinearLayout linearLayout;
+        private LinearLayout lin2,mainLL;
         private RelativeLayout rl1, rl2, rl3, rl4, rl5;
 
         public ViewHolder(View itemView) {
@@ -883,7 +885,8 @@ public class Adapter_MY_Event_1 extends RecyclerView.Adapter<Adapter_MY_Event_1.
             rl4 = itemView.findViewById(R.id.rl4);
             rl5 = itemView.findViewById(R.id.rl5);
             ll = itemView.findViewById(R.id.LL);
-            linearLayout = itemView.findViewById(R.id.lin2);
+            lin2 = itemView.findViewById(R.id.lin2);
+            mainLL = itemView.findViewById(R.id.mainLL);
         }
     }
 }

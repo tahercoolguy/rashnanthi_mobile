@@ -13,4 +13,11 @@
 
         app:riv_corner_radius="15dp" />
 
+
+    <WebView
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:id="@+id/webView"></WebView>
+
 </LinearLayout>

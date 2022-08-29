@@ -694,6 +694,7 @@ String id0,id1;
 //        }
     }
 
+    boolean idOne,idTwo=false;
 
     public void EditAddEventCreatorAPI() {
         if (connectionDetector.isConnectingToInternet()) {
@@ -706,10 +707,16 @@ String id0,id1;
             multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
             if(id0!=null){
-                multipartTypedOutput.addPart("editstoryimgid[0]", new TypedString(id0));
+                if(idOne){
+                    multipartTypedOutput.addPart("editstoryimgid[1]", new TypedString(id0));
+                }
+
             }
               if(id1!=null){
-                multipartTypedOutput.addPart("editeventimgid[0]", new TypedString(id1));
+                  if(idTwo){
+                      multipartTypedOutput.addPart("editeventimgid[2]", new TypedString(id1));
+                  }
+
             }
 
 //            multipartTypedOutput.addPart("editstoryimgid[1]", new TypedString(editimage0id));
@@ -1535,6 +1542,7 @@ String id0,id1;
     @OnClick(R.id.img1)
     public void Image1Clicked() {
         imgClicked = 1;
+        idOne=true;
 
         OpenImage();
 //            Intent intent = new Intent();
@@ -1550,6 +1558,7 @@ String id0,id1;
     @OnClick(R.id.img2)
     public void Image1Clicked2() {
         imgClicked = 2;
+        idTwo=true;
         OpenImage();
     }
 
@@ -1568,6 +1577,7 @@ String id0,id1;
     @OnClick(R.id.vd1)
     public void setVd1() {
         imgClicked = 1;
+        idOne=true;
 
         OpenImage();
     }
@@ -1575,6 +1585,7 @@ String id0,id1;
     @OnClick(R.id.vd2)
     public void setVd2() {
         imgClicked = 2;
+        idTwo=true;
 
         OpenImage();
     }
