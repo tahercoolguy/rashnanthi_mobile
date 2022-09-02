@@ -415,12 +415,13 @@
                             android:visibility="gone"
                             app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
                             app:compactCalendarCurrentDayTextColor="@color/white"
-                            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
+                            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/transparent"
                             app:compactCalendarEventIndicatorStyle="small_indicator"
                             app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
                             app:compactCalendarOtherMonthDaysTextColor="@color/grey"
                             app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
                             app:compactCalendarTargetHeight="250dp"
+                            app:compactCalendarCurrentSelectedDayTextColor="@color/transparent"
 
                             app:compactCalendarTextColor="#000000"
                             app:compactCalendarTextSize="14sp" />

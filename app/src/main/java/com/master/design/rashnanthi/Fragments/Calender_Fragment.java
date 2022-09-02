@@ -42,7 +42,11 @@ import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
 import com.master.design.rashnanthi.Utils.Helper;
+import com.master.design.rashnanthi.views.EventDecorator;
+import com.master.design.rashnanthi.views.MySelectorDecorator;
+import com.master.design.rashnanthi.views.PrimaryColorDecorator;
 import com.master.design.rashnanthi.views.RedColorDecorator;
+import com.master.design.rashnanthi.views.YellowColorDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -79,7 +83,6 @@ public class Calender_Fragment extends Fragment {
     ImageView story_viewer;
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
-
 
 
     @BindView(R.id.txt_error)
@@ -144,14 +147,13 @@ public class Calender_Fragment extends Fragment {
 
             user = new User(getActivity());
 
-            if(user.getLanguageCode().equalsIgnoreCase("ar"))
-            {
+            if (user.getLanguageCode().equalsIgnoreCase("ar")) {
                 ArrayList<View> views = new ArrayList<View>();
-                for(int x = 0; x < daysLL.getChildCount(); x++) {
+                for (int x = 0; x < daysLL.getChildCount(); x++) {
                     views.add(daysLL.getChildAt(x));
                 }
                 daysLL.removeAllViews();
-                for(int x = views.size() - 1; x >= 0; x--) {
+                for (int x = views.size() - 1; x >= 0; x--) {
                     daysLL.addView(views.get(x));
                 }
             }
@@ -169,15 +171,14 @@ public class Calender_Fragment extends Fragment {
                     .into(story_viewer);
 
 
-            if(countryimg!=null){
+            if (countryimg != null) {
 
                 Picasso.get().load(AppController.base_image_url + countryimg).into(countryImg);
 
             }
-            if(countryname!=null){
+            if (countryname != null) {
                 country_spinner_Txt.setText(countryname);
             }
-
 
 
 //            SetCOuntryNameAndImage();
@@ -277,7 +278,7 @@ public class Calender_Fragment extends Fragment {
 //                }
 //            };
 //            compactCalendar.setLocale(timeZone,new Locale( "ar" , "KW" ));
-             SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
             Date date = new Date();
 //            moth_year_txt.setText(formatter.format(date));
 
@@ -331,10 +332,10 @@ public class Calender_Fragment extends Fragment {
                             event_small_image_fragment.setArguments(bd);
                             ((MainActivity) context).addFragment(event_small_image_fragment, true);
                         } else {
-                            Toast.makeText(context,getString( R.string.there_is_no_event), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, getString(R.string.there_is_no_event), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(context, getString( R.string.there_is_no_event), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, getString(R.string.there_is_no_event), Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -448,6 +449,7 @@ public class Calender_Fragment extends Fragment {
                                 ///This is mine
                                 try {
                                     LocalDate km1 = LocalDate.parse(dm.getEventdate());
+
                                     Appointment.add(CalendarDay.from(km1));
                                 } catch (Exception e) {
                                     e.toString();
@@ -464,10 +466,32 @@ public class Calender_Fragment extends Fragment {
                         //this is mine
                         RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
                         calendarView.addDecorator(redColorDecorator);
+                        Date c = Calendar.getInstance().getTime();
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        String formattedDate = simpleDateFormat.format(c);
+
+                        //For current date event decoretor
+                        final ArrayList<CalendarDay> Appointments = new ArrayList<>();
+                        Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
+                        if (Appointments != null) {
+                            PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+                            calendarView.addDecorator(primaryColorDecorator);
+
+//                            int[] threeColors = {
+//                                    Color.rgb(0, 0, 255),
+//                                    Color.rgb(0, 255, 0),
+//                                    Color.rgb(255, 0, 0)};
+
+                            calendarView.addDecorator(new EventDecorator(Color.YELLOW,Appointments));
+
+                        }
+
+//                        YellowColorDecorator yellowColorDecorator = new YellowColorDecorator(getActivity(),Appointments);
+//                        calendarView.addDecorator(yellowColorDecorator);
 
 
                     } else {
-                        Helper.showToast(getActivity(),  getString(R.string.no_posts));
+                        Helper.showToast(getActivity(), getString(R.string.no_posts));
                         List<Event> events = compactCalendar.getEventsForMonth((Calendar.getInstance()).getTime());
                         for (Event e : events
                         ) {
@@ -524,30 +548,29 @@ public class Calender_Fragment extends Fragment {
     LinearLayout spinnerCountryBottomRL;
 
 
-
     @OnClick(R.id.spinnerCountryBottomRL)
     public void SpinnerCountryOpenActivity() {
 
-       startActivityForResult(new Intent(context, SpinneerActivity.class),48);
+        startActivityForResult(new Intent(context, SpinneerActivity.class), 48);
     }
 
-    String countryname  ;
-    String countryimg  ;
+    String countryname;
+    String countryimg;
     String countryid;
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Intent intent=data;
-        if(data!=null){
+        Intent intent = data;
+        if (data != null) {
             countryname = data.getStringExtra("countryname");
             countryimg = data.getStringExtra("countryimg");
             countryid = data.getStringExtra("countryid");
             Picasso.get().load(AppController.base_image_url + countryimg).into(countryImg);
-             country_spinner_Txt.setText(countryname);
+            country_spinner_Txt.setText(countryname);
 
             myEventsApi(countryid);
         }
-
 
 
     }
@@ -602,10 +625,10 @@ public class Calender_Fragment extends Fragment {
                         ) {
                             approvalOne.add(area);
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
-                                if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                if (user.getLanguageCode().equalsIgnoreCase("en")) {
                                     country_spinner_Txt.setText(data.get(0).getTitle());
 
-                                }else{
+                                } else {
                                     country_spinner_Txt.setText(data.get(0).getTitlear());
 
                                 }
@@ -613,7 +636,7 @@ public class Calender_Fragment extends Fragment {
                             }
                         }
                     } else
-                        Helper.showToast(getActivity(),  getString(R.string.some_netork_happened));
+                        Helper.showToast(getActivity(), getString(R.string.some_netork_happened));
                 }
 
                 @Override

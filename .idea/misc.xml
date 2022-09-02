@@ -77,6 +77,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable-v24/toggle_event_creator.xml" value="0.123" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable-v24/toggle_payment_caard_selecter.xml" value="0.14" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/button_rounded_black_grad.xml" value="0.133" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/circle_yellow.xml" value="0.2115" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/country_code_bg.xml" value="0.2025" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/date_selector_bg.xml" value="0.14" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/ic_down_arrow_spinner.xml" value="0.2105" />
@@ -100,6 +101,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/notification_bg.xml" value="0.2025" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/padding_gradient_calendar.xml" value="0.133" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/padding_my_selector.xml" value="0.133" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/padding_my_yellow.xml" value="0.2115" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/password_bg.xml" value="0.14" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/rounded_corner_black_border.xml" value="0.128" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/drawable/rounded_corner_red_border.xml" value="0.128" />
@@ -147,7 +149,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/add_post_pay_now.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/app_bar_drawer.xml" value="0.25" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/bottom_sheet_for_list_view.xml" value="0.22" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/calender_fragment_layout.xml" value="0.22" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/calender_fragment_layout.xml" value="0.33" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/change_password_fragment_layout.xml" value="0.2" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach.xml" value="0.25" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_account_fragment_layout.xml" value="0.25" />
