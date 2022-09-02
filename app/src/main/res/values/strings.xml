@@ -248,6 +248,7 @@
     <string name="update_post">Update Post</string>
     <string name="like">Like</string>
     <string name="likes">Likes</string>
+    <string name="user_already_exist">User already exists</string>
 
 
 </resources>

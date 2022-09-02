@@ -331,7 +331,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                             user.setEmail(emailET.getText().toString());
-                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
+//                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
                             //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
 
@@ -346,7 +346,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                         } else
-                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                            Helper.showToast(SignUpActivity.this,  getString(R.string.user_already_exist));
                     }
 
                     @Override
@@ -470,7 +470,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 //                        user.setId(Integer.parseInt(eventRegisterDM.getOutput().getUserid()));
                             user.setEmail(emailET.getText().toString());
-                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
+//                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
 
                             Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
@@ -482,7 +482,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 //
                         } else
-                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
+                            Helper.showToast(SignUpActivity.this,  getString(R.string.user_already_exist));
                     }
 
                     @Override
