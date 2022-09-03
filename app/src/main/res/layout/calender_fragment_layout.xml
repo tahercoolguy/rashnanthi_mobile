@@ -413,17 +413,7 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginRight="20dp"
                             android:visibility="gone"
-                            app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimary"
-                            app:compactCalendarCurrentDayTextColor="@color/white"
-                            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/transparent"
-                            app:compactCalendarEventIndicatorStyle="small_indicator"
-                            app:compactCalendarMultiEventIndicatorColor="#FFFF0A"
-                            app:compactCalendarOtherMonthDaysTextColor="@color/grey"
-                            app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
-                            app:compactCalendarTargetHeight="250dp"
-                            app:compactCalendarCurrentSelectedDayTextColor="@color/transparent"
 
-                            app:compactCalendarTextColor="#000000"
                             app:compactCalendarTextSize="14sp" />
 
                         <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="httmas.android.com/apk/res-auto"
@@ -435,8 +425,7 @@
                             android:layout_marginRight="20dp"
                             android:layout_weight="1"
                             android:background="@color/white"
-                            app1:mcv_arrowColor="@color/colorPrimary"
-                            app1:mcv_selectionMode="single"
+                             app1:mcv_selectionMode="single"
                             app:mcv_showOtherDates="all" />
                         <!--                <ImageView-->
                         <!--                    android:layout_width="match_parent"-->

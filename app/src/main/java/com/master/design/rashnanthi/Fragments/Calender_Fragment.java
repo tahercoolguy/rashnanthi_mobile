@@ -451,6 +451,28 @@ public class Calender_Fragment extends Fragment {
                                     LocalDate km1 = LocalDate.parse(dm.getEventdate());
 
                                     Appointment.add(CalendarDay.from(km1));
+                                    //this is mine
+                                    RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
+                                    calendarView.addDecorator(redColorDecorator);
+                                    Date c = Calendar.getInstance().getTime();
+                                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                    String formattedDate = simpleDateFormat.format(c);
+//
+//                                    //For current date event decoretor
+                                    final ArrayList<CalendarDay> Appointments = new ArrayList<>();
+                                    Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
+                                    PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+                                        calendarView.addDecorator(primaryColorDecorator);
+//                                        if(LocalDate.parse(dm.getEventdate())==LocalDate.parse(formattedDate)){
+                                            calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows),Appointments));
+
+//                                        }
+//                                    if (Appointments != null) {
+//                                        PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+//                                        calendarView.addDecorator(primaryColorDecorator);
+//                                    }
+
+
                                 } catch (Exception e) {
                                     e.toString();
                                 }
@@ -463,28 +485,6 @@ public class Calender_Fragment extends Fragment {
 
                         }
 
-                        //this is mine
-                        RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
-                        calendarView.addDecorator(redColorDecorator);
-                        Date c = Calendar.getInstance().getTime();
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                        String formattedDate = simpleDateFormat.format(c);
-
-                        //For current date event decoretor
-                        final ArrayList<CalendarDay> Appointments = new ArrayList<>();
-                        Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
-                        if (Appointments != null) {
-                            PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
-                            calendarView.addDecorator(primaryColorDecorator);
-
-//                            int[] threeColors = {
-//                                    Color.rgb(0, 0, 255),
-//                                    Color.rgb(0, 255, 0),
-//                                    Color.rgb(255, 0, 0)};
-
-                            calendarView.addDecorator(new EventDecorator(Color.YELLOW,Appointments));
-
-                        }
 
 //                        YellowColorDecorator yellowColorDecorator = new YellowColorDecorator(getActivity(),Appointments);
 //                        calendarView.addDecorator(yellowColorDecorator);
@@ -496,9 +496,23 @@ public class Calender_Fragment extends Fragment {
                         for (Event e : events
                         ) {
                             compactCalendar.removeEvent(e, true);
+
+                            Date c = Calendar.getInstance().getTime();
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            String formattedDate = simpleDateFormat.format(c);
+//
+//                            //For current date event decoretor
+                            final ArrayList<CalendarDay> Appointments = new ArrayList<>();
+                            Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
+//                            if (Appointments != null) {
+                                PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+                                calendarView.addDecorator(primaryColorDecorator);
+//                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows),Appointments));
+//                            }
+
                         }
 
-                        calendarView.removeDecorators();
+//                        calendarView.removeDecorators();
                     }
                 }
 
