@@ -254,12 +254,13 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                                 array_image.add(story.getImage());
                             }
 
-                        } for (StoriesByDateData story : storiesByDateRootDM.getOutput().getData()
-                        ) {
-                            if(story!=null){
-                                array_image.add(story.getImage());
-                            }
                         }
+//                        for (StoriesByDateData story : storiesByDateRootDM.getOutput().getData()
+//                        ) {
+//                            if(story!=null){
+//                                array_image.add(story.getImage());
+//                            }
+//                        }
 
 
 //                        array_image_count.add(String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size()));

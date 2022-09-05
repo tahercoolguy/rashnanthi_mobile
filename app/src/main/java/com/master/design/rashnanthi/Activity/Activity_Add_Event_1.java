@@ -89,6 +89,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,8 +121,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     private static final int IMAGE_PICKER_SELECT2 = 2;
     private static final int IMAGE_PICKER_SELECT3 = 3;
     private static final int IMAGE_PICKER_SELECT4 = 4;
-    String image1,mobile, image2, image3, image4, date, eventid, snapchat,
-            editimage0, editimage1, editimage2, editimage3, editimage4,instagram, wtsapcode,contactCC, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
+    String image1, mobile, image2, image3, image4, date, eventid, snapchat,
+            editimage0, editimage1, editimage2, editimage3, editimage4, instagram, wtsapcode, contactCC, wtsapnumber, website, impcountry, creatorcoach, payorfree, status, postedby, editimage0id, editimage1id;
 
     MyEventData myEventData1;
     String CountryId = "1", Free, Paid;
@@ -169,7 +170,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @BindView(R.id.wtspcodeTxt)
     TextView wtspcodeTxt;
 
-//    @NotEmpty
+    //    @NotEmpty
     @BindView(R.id.contactCountrycodeTxt)
     TextView contactCountrycodeTxt;
 
@@ -434,9 +435,9 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event_1);
         ButterKnife.bind(this);
-       context=Activity_Add_Event_1.this;
-         dialogUtil = new DialogUtil();
-        appController = (AppController)context. getApplicationContext();
+        context = Activity_Add_Event_1.this;
+        dialogUtil = new DialogUtil();
+        appController = (AppController) context.getApplicationContext();
         myEventData1 = new MyEventData();
 
         connectionDetector = new ConnectionDetector(getApplicationContext());
@@ -458,9 +459,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         add_img_video_4_RL = findViewById(R.id.add_img_video_4_RL);
 
 
-        if(user.getLanguageCode().equalsIgnoreCase("en")){
+        if (user.getLanguageCode().equalsIgnoreCase("en")) {
             your_post_will_beTXt.setText(getString(R.string.your_post_will_be_uploaded_within_24_hours));
-        }if(user.getLanguageCode().equalsIgnoreCase("ar")){
+        }
+        if (user.getLanguageCode().equalsIgnoreCase("ar")) {
             your_post_will_beTXt.setText(getString(R.string.your_post_will_be_uploaded_within_24_hours));
 
         }
@@ -528,7 +530,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //    String InstaGram = insta_ET.getText().toString();
 //    String WebSite = wesite_ET.getText().toString();
 
-String id0,id1;
+    String id0, id1;
+
     public void DataGetFromAdapterIntent() {
 
         wtsapcode = getIntent().getStringExtra("whatsappcountrycode");
@@ -643,6 +646,7 @@ String id0,id1;
                 e.printStackTrace();
             }
 
+
         }
         if (snapchat != null) {
 
@@ -694,28 +698,37 @@ String id0,id1;
 //        }
     }
 
-    boolean idOne,idTwo=false;
+    boolean idOne, idTwo = false;
 
     public void EditAddEventCreatorAPI() {
         if (connectionDetector.isConnectingToInternet()) {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
             String id = String.valueOf(user.getId());
-
+            String newdate = dateTxt.getText().toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null;
+            try {
+                date = sdf.parse(newdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            String finalDate = finalDateFormat.format(date);
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
+            multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
-            if(id0!=null){
-                if(idOne){
+            if (id0 != null) {
+                if (idOne) {
                     multipartTypedOutput.addPart("editstoryimgid[1]", new TypedString(id0));
                 }
 
             }
-              if(id1!=null){
-                  if(idTwo){
-                      multipartTypedOutput.addPart("editeventimgid[2]", new TypedString(id1));
-                  }
+            if (id1 != null) {
+                if (idTwo) {
+                    multipartTypedOutput.addPart("editeventimgid[2]", new TypedString(id1));
+                }
 
             }
 
@@ -897,7 +910,6 @@ String id0,id1;
                             Activity_Add_Event_1.this.finish();
 
 
-
                         } else {
                             Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));
 
@@ -947,19 +959,28 @@ String id0,id1;
                 String id = String.valueOf(user.getId());
 
                 MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-                multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
+
+                String newdate = dateTxt.getText().toString();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                try {
+                    date = sdf.parse(newdate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                String finalDate = finalDateFormat.format(date);
+                multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
                 multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
-
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
                 multipartTypedOutput.addPart("mobile", new TypedString(contact__ET.getText().toString()));
-
                 multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
                 multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
                 multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
                 multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
-                multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
+                multipartTypedOutput.addPart("posteddate", new TypedString(finalDate));
                 multipartTypedOutput.addPart("postedby", new TypedString(id));
                 multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
 
@@ -1390,21 +1411,21 @@ String id0,id1;
 //        bottomForAll.show(getSupportFragmentManager(), "bottomSheetCountry");
 //    }
 
-    boolean wtsapclick=false;
-    boolean contactClick=false;
+    boolean wtsapclick = false;
+    boolean contactClick = false;
 
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
-        wtsapclick=true;
-        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class),48);
+        wtsapclick = true;
+        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class), 48);
 
 
     }
 
     @OnClick(R.id.contactRL)
     public void ContactCodeCountry() {
-        contactClick=true;
-        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class),48);
+        contactClick = true;
+        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class), 48);
 
 
     }
@@ -1542,7 +1563,7 @@ String id0,id1;
     @OnClick(R.id.img1)
     public void Image1Clicked() {
         imgClicked = 1;
-        idOne=true;
+        idOne = true;
 
         OpenImage();
 //            Intent intent = new Intent();
@@ -1558,7 +1579,7 @@ String id0,id1;
     @OnClick(R.id.img2)
     public void Image1Clicked2() {
         imgClicked = 2;
-        idTwo=true;
+        idTwo = true;
         OpenImage();
     }
 
@@ -1577,7 +1598,7 @@ String id0,id1;
     @OnClick(R.id.vd1)
     public void setVd1() {
         imgClicked = 1;
-        idOne=true;
+        idOne = true;
 
         OpenImage();
     }
@@ -1585,7 +1606,7 @@ String id0,id1;
     @OnClick(R.id.vd2)
     public void setVd2() {
         imgClicked = 2;
-        idTwo=true;
+        idTwo = true;
 
         OpenImage();
     }
@@ -1816,12 +1837,12 @@ String id0,id1;
 //            country_spinner_Txt.setText(mycountryname);
 
 
-            if(wtsapclick==true){
+            if (wtsapclick == true) {
                 Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
                 wtspcodeTxt.setText(mycode);
             }
 
-            if(contactClick==true){
+            if (contactClick == true) {
                 Picasso.get().load(AppController.base_image_url + mycountryimg).into(contactcountryImg);
                 contactCountrycodeTxt.setText(mycode);
             }

@@ -280,7 +280,6 @@ public void newAPI()
 
 //                        EventDate = getEventsByCountryDateRootDM.getOutput().getData().get(0).getEventdate();
 
-                        if (getEventsByCountryDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
 //                            Instagram = getEventsByCountryDateRootDM.getOutput().getData().get(0).getInstagram();
 //                            Whatsapp = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapnumber();
@@ -317,8 +316,7 @@ public void newAPI()
 //                            slider.startAutoCycle();
 
 
-                        } else
-                            Helper.showToast(context, getString(R.string.eventdetails_does_not_exist));
+
 
                     } else
                         Helper.showToast(getActivity(), getString(R.string.some_netork_happened));
