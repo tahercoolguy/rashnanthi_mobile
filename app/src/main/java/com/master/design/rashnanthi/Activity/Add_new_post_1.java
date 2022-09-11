@@ -1204,11 +1204,11 @@ public class Add_new_post_1 extends AppCompatActivity {
                         multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage));
                     }
 
-                    if (v1) {
+                    else {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video1));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("mp4", imageFile));
                     }
 
                     if (ifimg2) {
@@ -1237,11 +1237,11 @@ public class Add_new_post_1 extends AppCompatActivity {
                         multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage1));
                     }
 
-                    if (v2) {
+                   else {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video2));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("mp4", imageFile));
                     }
 
                     if (ifimg3) {
@@ -1270,11 +1270,11 @@ public class Add_new_post_1 extends AppCompatActivity {
                         multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("image/jpg", resizedImage2));
                     }
 
-                    if (v3) {
+                   else {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("eventphotovideo[2]", new TypedFile("mp4", imageFile));
                     }
 
                     if (ifimg3_1) {
@@ -1303,11 +1303,11 @@ public class Add_new_post_1 extends AppCompatActivity {
                         multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("image/jpg", resizedImage3));
                     }
 
-                    if (v3_1) {
-                        File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3));
+                    else {
+                        File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video3_1));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("eventphotovideo[3]", new TypedFile("mp4", imageFile));
                     }
 
                     if (ifimg4) {
@@ -1336,11 +1336,11 @@ public class Add_new_post_1 extends AppCompatActivity {
                         multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("image/jpg", resizedImage4));
                     }
 
-                    if (v4) {
+                   else {
                         File imageFile = new File(getRealPathFromUri(Add_new_post_1.this, Video4));
 
 
-                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("video/mp4", imageFile));
+                        multipartTypedOutput.addPart("eventphotovideo[4]", new TypedFile("mp4", imageFile));
                     }
 
                 } catch (Exception e) {

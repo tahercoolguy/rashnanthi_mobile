@@ -968,9 +968,9 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                String finalDate = finalDateFormat.format(date);
-                multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
+//                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+//                String finalDate = finalDateFormat.format(date);
+                multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
                 multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
@@ -980,7 +980,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
                 multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
-                multipartTypedOutput.addPart("posteddate", new TypedString(finalDate));
+                multipartTypedOutput.addPart("posteddate", new TypedString(
+                        dateTxt.getText().toString()));
                 multipartTypedOutput.addPart("postedby", new TypedString(id));
                 multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
 
