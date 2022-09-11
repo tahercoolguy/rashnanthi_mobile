@@ -204,25 +204,6 @@ public class Coach_Fragment extends Fragment {
 
             coachDMArrayList = new ArrayList<>();
 
-//
-//            ArrayList<CoachDM> coachDMArrayList = new ArrayList<>();
-//
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//            coachDMArrayList.add(new CoachDM(R.drawable.coach_slider_img));
-//
-//
-//            coach_Rcv.setLayoutManager(new LinearLayoutManager((MainActivity) context));
-//            coach_Rcv.setAdapter(new Adapter_Coach_Fgmt(((MainActivity) context), coachDMArrayList));
-
 
             mList = new ArrayList<>();
             //get data from backend
@@ -232,55 +213,6 @@ public class Coach_Fragment extends Fragment {
 
 
             APIforCoach("1");
-
-//            adapter1 =new ImageRecyclerAdapter1(mList,getContext(), "1");
-//            coach_Rcv.setLayoutManager(new LinearLayoutManager(getContext()));
-//            coach_Rcv.setHasFixedSize(true);
-//            coach_Rcv.setAdapter(adapter1);
-//            adapter1.notifyDataSetChanged();
-
-
-//            Adapter_Country_Spinner adapter_country_spinner;
-//
-//            adapter_country_spinner = new Adapter_Country_Spinner(context, county_itemDMS);
-//
-//
-//            calender_page_country_spinner.setAdapter(adapter_country_spinner);
-
-
-//
-//
-//            // we are creating array list for storing our image urls.
-//            ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
-//
-//            // initializing the slider view.
-//            SliderView sliderView = rootView.findViewById(R.id.slider);
-//
-//            // adding the urls inside array list
-//            sliderDataArrayList.add(new SliderData(R.drawable.images));
-//            sliderDataArrayList.add(new SliderData(R.drawable.images));
-//            sliderDataArrayList.add(new SliderData(R.drawable.images));
-//            // passing this array list inside our adapter class.
-//            SliderAdapter adapter = new SliderAdapter(context, sliderDataArrayList);
-//
-//            // below method is used to set auto cycle direction in left to
-//            // right direction you can change according to requirement.
-//            sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
-//
-//            // below method is used to
-//            // setadapter to sliderview.
-//            sliderView.setSliderAdapter(adapter);
-//
-//            // below method is use to set
-//            // scroll time in seconds.
-//            sliderView.setScrollTimeInSec(3);
-//
-//            // to set it scrollable automatically
-//            // we use below method.
-//            sliderView.setAutoCycle(true);
-//
-//            // to start autocycle below method is used.
-//            sliderView.startAutoCycle();
 
             setDetails();
 
@@ -293,29 +225,7 @@ public class Coach_Fragment extends Fragment {
             progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("countryid", new TypedString(countryid));
-//            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput, new Callback<CoachesWithPostsRootDM>() {
-//                @Override
-//                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
-//                    progress.dismiss();
-//                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//                        context = getActivity();
-//                        adapter1 =new ImageRecyclerAdapter1(getActivity(),coachesWithPostsRootDM.getOutput().getData() );
-//                        coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
-//                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
-//                        coach_Rcv.startAnimation(animation);
-//                        coach_Rcv.setHasFixedSize(true);
-//                        coach_Rcv.setAdapter(adapter1);
-//                    } else
-//                        Helper.showToast(context, "No Post Presents");
-//                }
 //
-//                @Override
-//                public void failure(RetrofitError error) {
-//                    progress.dismiss();
-//
-//                    Log.e("String", error.toString());
-//                }
-//            });
 
             appController.paServices.GetAllCoachesWithPostsNew(multipartTypedOutput, new Callback<NewCoachDataModel>() {
                 @Override
@@ -342,35 +252,6 @@ public class Coach_Fragment extends Fragment {
         }
     }
 
-
-//    public void GetAllCoachesWithPosts(){
-//
-//        if (connectionDetector.isConnectingToInternet()) {
-//
-//            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-//            multipartTypedOutput.addPart("countryid", new TypedString("1"));
-//            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
-//
-//
-//            appController.paServices.GetAllCoachesWithPosts(multipartTypedOutput,new Callback<CoachesWithPostsRootDM>() {
-//                @Override
-//                public void success(CoachesWithPostsRootDM coachesWithPostsRootDM, Response response) {
-//                    progress.dismiss();
-//                    if (coachesWithPostsRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-//
-//                    } else
-//                        Helper.showToast(getActivity(), "Some network happened ..");
-//                }
-//
-//                @Override
-//                public void failure(RetrofitError error) {
-//                    progress.dismiss();
-//
-//                    Log.e("String", error.toString());
-//                }
-//            });
-//        }
-//    }
 
 
     BottomForAll bottomForAll;
@@ -406,30 +287,6 @@ public class Coach_Fragment extends Fragment {
             APIforCoach(countryid);
         }
     }
-//    @OnClick(R.id.spinnerCountryBottomRL)
-//    public void SpinnerCountry() {
-//
-//        bottomForAll = new BottomForAll();
-//        bottomForAll.arrayList = approvalOne;
-//
-//        bottomForAll.setResponseListener(new ResponseListener() {
-//            @Override
-//            public void response(int position, Object object) {
-//
-//                country_spinner_Txt.setText(data.get(position).getTitle());
-//                Picasso.get().load(AppController.base_image_url + data.get(position).getImage()).into(countryImg);
-//
-//                APIforCoach(data.get(position).getId());
-//
-//
-//
-//            }
-//        });
-//
-//
-//        bottomForAll.show(getParentFragmentManager(), "bottomSheetCountry");
-//    }
-
 
     ArrayList<CountryData> data = new ArrayList<>();
 

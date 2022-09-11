@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -39,7 +40,19 @@ public class SliderPagerAdapter1 extends PagerAdapter {
 
         View view = LayoutInflater.from(context).inflate(R.layout.layout_slider, container, false);
         ImageView im_slider = view.findViewById(R.id.im_slider);
-        Picasso.get().load(AppController.base_image_url + coachesWithPostsImageDatamArrayList.get(position)).into(im_slider);
+        WebView webView = view.findViewById(R.id.webView);
+
+        if(coachesWithPostsImageDatamArrayList.get(position).contains("mp4")){
+            webView.setVisibility(View.VISIBLE);
+            im_slider.setVisibility(View.GONE);
+            webView.loadUrl(AppController.base_image_url +coachesWithPostsImageDatamArrayList.get(position));
+
+        }else{
+            webView.setVisibility(View.GONE);
+            im_slider.setVisibility(View.VISIBLE);
+            Picasso.get().load(AppController.base_image_url + coachesWithPostsImageDatamArrayList.get(position)).into(im_slider);
+
+        }
 
 //        Glide.with(context).load(image_arraylist.get(position)).into(im_slider);
         //For Picasso user
@@ -49,14 +62,14 @@ public class SliderPagerAdapter1 extends PagerAdapter {
                 .error(R.mipmap.ic_launcher)         // optional
                 .into(im_slider);*/
         container.addView(view);
-        im_slider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 Intent intent = new Intent(context, ImageActicity.class);
-                intent.putExtra("url", AppController.base_image_url+coachesWithPostsImageDatamArrayList.get(position));
-                context.startActivity(intent);
-            }
-        });
+//        im_slider.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                 Intent intent = new Intent(context, ImageActicity.class);
+//                intent.putExtra("url", AppController.base_image_url+coachesWithPostsImageDatamArrayList.get(position));
+//                context.startActivity(intent);
+//            }
+//        });
         return view;
     }
 

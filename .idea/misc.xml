@@ -156,6 +156,8 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_account_logout_fragment_layout.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_grid_account_fragment_layout.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_grid_account_recycle_view_item.xml" value="0.5" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_post_single_recycler_item.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_post_slider.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/coach_recycle_view_item.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/contact_us_fragment_layout.xml" value="0.203125" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/content_main_new.xml" value="0.22" />
@@ -177,7 +179,7 @@
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/home_fragment.xml" value="0.1" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/language_fragment_layout.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/layout_error.xml" value="0.203125" />
-        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/layout_slider.xml" value="0.16673792218896966" />
+        <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/layout_slider.xml" value="0.18" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/login_fragment_layout.xml" value="0.16673792218896966" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/menu_1_fragment_layout.xml" value="0.22" />
         <entry key="..\:/Users/gc9584767352/AndroidStudioProjects/rashnanthi_mobile/app/src/main/res/layout/menu_2_fragment_layout.xml" value="0.33" />
