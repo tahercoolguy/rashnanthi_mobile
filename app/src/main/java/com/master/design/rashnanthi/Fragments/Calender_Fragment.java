@@ -433,15 +433,15 @@ public class Calender_Fragment extends Fragment {
         cal.setTime(date);
         return cal;
     }
-
-    public void myEventsApi(String countryid) {
+    String countryid="1";
+    public void myEventsApi(String countryidMain) {
         if (connectionDetector.isConnectingToInternet()) {
-            progress = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
+//            progress = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
 
-            appController.paServices.AllEvent(countryid, "2022-01-01", "2040-01-01", new Callback<MyEventRootDM1>() {
+            appController.paServices.AllEvent(countryidMain, "2022-01-01", "2040-01-01", new Callback<MyEventRootDM1>() {
                 @Override
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
-                    progress.dismiss();
+//                    progress.dismiss();
 
                     Appointment.clear();
 
@@ -470,11 +470,27 @@ public class Calender_Fragment extends Fragment {
                                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                                     String formattedDate = simpleDateFormat.format(c);
 //
-//                                    //For current date event decoretor
-                                    Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
-                                    PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
-                                    calendarView.addDecorator(primaryColorDecorator);
+                                    if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                        //For current date event decoretor
+                                        Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
+                                        PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+                                        calendarView.addDecorator(primaryColorDecorator);
 //                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+                                    }else{
+                                        //For current date event decoretor
+                                        LocalDate km2 = LocalDate.parse(dm.getEventdate());
+
+                                        Appointments.add(CalendarDay.today());
+                                        PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+                                        calendarView.addDecorator(primaryColorDecorator);
+                                        if(CalendarDay.today().isAfter(CalendarDay.from(km2))){
+
+                                        }else{
+                                            calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+                                        }
+//
+                                    }
+//
 
                                     for (CalendarDay calendarDay1 : Appointment) {
                                         SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd");
@@ -492,8 +508,16 @@ public class Calender_Fragment extends Fragment {
                                         String eventDate = Year + "-" + Month + "-" + Date;
 
                                         try {
+
                                             if (eventDate.equals(formattedDate)) {
-                                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+                                                if(user.getLanguageCode().equalsIgnoreCase("ar")){
+
+                                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+
+                                                }else{
+                                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+
+                                                }
                                             }
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -668,7 +692,7 @@ public class Calender_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
+//                    progress.dismiss();
                     Log.e("error", retrofitError.toString());
 
                 }
@@ -722,7 +746,7 @@ public class Calender_Fragment extends Fragment {
 
     String countryname;
     String countryimg;
-    String countryid;
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -731,11 +755,11 @@ public class Calender_Fragment extends Fragment {
         if (data != null) {
             countryname = data.getStringExtra("countryname");
             countryimg = data.getStringExtra("countryimg");
-            countryid = data.getStringExtra("countryid");
+            countryidMain = data.getStringExtra("countryid");
             Picasso.get().load(AppController.base_image_url + countryimg).into(countryImg);
             country_spinner_Txt.setText(countryname);
 
-            myEventsApi(countryid);
+            myEventsApi(countryidMain);
         }
 
 
@@ -786,6 +810,7 @@ public class Calender_Fragment extends Fragment {
                 @Override
                 public void success(CountryRootDM countryRootDM, Response response) {
                     if (countryRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
                         data = countryRootDM.getOutput().getData();
                         for (CountryData area : countryRootDM.getOutput().getData()
                         ) {
@@ -793,14 +818,14 @@ public class Calender_Fragment extends Fragment {
                             if (approvalOne.get(0).getId().equalsIgnoreCase("1")) {
                                 if (user.getLanguageCode().equalsIgnoreCase("en")) {
                                     country_spinner_Txt.setText(data.get(0).getTitle());
-
                                 } else {
                                     country_spinner_Txt.setText(data.get(0).getTitlear());
-
-                                }
+                                 }
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
+
                             }
                         }
+
                     } else
                         Helper.showToast(getActivity(), getString(R.string.some_netork_happened));
                 }

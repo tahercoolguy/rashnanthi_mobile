@@ -2,9 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    app:cardCornerRadius="20dp"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/im_slider"
@@ -15,9 +16,10 @@
 
 
     <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent"
-        android:id="@+id/webView"></WebView>
+         android:layout_height="match_parent"
+        android:visibility="gone"></WebView>
+
 
 </androidx.cardview.widget.CardView>
