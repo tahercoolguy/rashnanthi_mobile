@@ -707,15 +707,15 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             String id = String.valueOf(user.getId());
             String newdate = dateTxt.getText().toString();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = null;
+            String finalDate = null;
             try {
+                Date date;
                 date = sdf.parse(newdate);
+                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                finalDate = finalDateFormat.format(date);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-            String finalDate = finalDateFormat.format(date);
-
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
             multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
@@ -962,15 +962,18 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
                 String newdate = dateTxt.getText().toString();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = null;
+                String finalDate = null;
                 try {
+                    Date date;
                     date = sdf.parse(newdate);
+                    SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                    finalDate = finalDateFormat.format(date);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-//                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-//                String finalDate = finalDateFormat.format(date);
-                multipartTypedOutput.addPart("eventdate", new TypedString(dateTxt.getText().toString()));
+
+
+                multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
                 multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
@@ -980,8 +983,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
                 multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
-                multipartTypedOutput.addPart("posteddate", new TypedString(
-                        dateTxt.getText().toString()));
+                multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
                 multipartTypedOutput.addPart("postedby", new TypedString(id));
                 multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
 
@@ -1821,6 +1823,20 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
     Uri Video1, Video2, Video3, Video4;
 
+//    public String getPath(Uri uri) {
+//        String[] projection = { MediaStore.Video.Media.DATA };
+//        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+//        if (cursor != null) {
+//            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+//            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+//            int column_index = cursor
+//                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+//            cursor.moveToFirst();
+//            return cursor.getString(column_index);
+//        } else{
+//            return null;
+//        }
+//    }
 
     boolean v1 = false, v2 = false, v3 = false, v4 = false;
 
@@ -1860,6 +1876,97 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //             }
 
         }
+//        video adding but not plays
+         if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_VIDEO_REQUEST) {
+                Uri selectedImageUri = data.getData();
+
+//                // OI FILE Manager
+//                filemanagerstring = selectedImageUri.getPath();
+//
+//                // MEDIA GALLERY
+//                selectedImagePath = getPath(selectedImageUri);
+//                if (selectedImagePath != null) {
+
+                    if (data != null) {
+                        {
+                            if (imgClicked == 1) {
+
+
+//                                Video1 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                                Video1=selectedImageUri;
+                                String path = Video1.getPath();
+                                CameraUtils.refreshGallery(getApplicationContext(), path);
+
+                                vd1.setVisibility(View.VISIBLE);
+                                img1.setVisibility(View.GONE);
+                                vd1.setVideoPath(path);
+                                // start playing
+                                vd1.start();
+                                ifimg1 = false;
+                                v1 = true;
+                            } else if (imgClicked == 2) {
+
+//                                Video2 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                                Video2=selectedImageUri;
+
+                                String path = Video2.getPath();
+                                CameraUtils.refreshGallery(getApplicationContext(), path);
+                                vd2.setVisibility(View.VISIBLE);
+
+                                img2.setVisibility(View.GONE);
+
+                                vd2.setVideoPath(path);
+                                // start playing
+                                vd2.start();
+                                ifimg2 = false;
+                                v2 = true;
+
+                            } else if (imgClicked == 3) {
+//                                Video3 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                                Video3=selectedImageUri;
+
+                                String path = Video3.getPath();
+                                CameraUtils.refreshGallery(getApplicationContext(), path);
+                                vd3.setVisibility(View.VISIBLE);
+
+                                img3.setVisibility(View.GONE);
+
+                                vd3.setVideoPath(path);
+                                // start playing
+                                vd3.start();
+
+                                ifimg3 = false;
+                                v3 = true;
+
+                            } else if (imgClicked == 4) {
+//                                Video4 = Uri.fromFile(new File(data.getStringExtra("uri")));
+                                Video4=selectedImageUri;
+
+                                String path = Video4.getPath();
+                                CameraUtils.refreshGallery(getApplicationContext(), path);
+
+                                vd4.setVisibility(View.VISIBLE);
+
+                                img4.setVisibility(View.GONE);
+
+                                vd4.setVideoPath(path);
+                                // start playing
+                                vd4.start();
+
+                                ifimg4 = false;
+                                v4 = true;
+                            }
+
+
+//                    UploadVideo();
+                        }
+                    }
+//                }
+            }
+        }
+
+
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri uri = data.getParcelableExtra("path");
@@ -1904,6 +2011,78 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //                }
 //            }
 //        }
+        if (requestCode == SELECT_VIDEO_REQUEST) {
+//                 if (data != null) {
+//                    {
+//                         if (imgClicked == 1) {
+//
+//
+//                             Video1 = Uri.fromFile(new File(data.getStringExtra("uri")));
+//                             String path = Video1.getPath();
+//                             CameraUtils.refreshGallery(getApplicationContext(), path);
+//
+//                             vd1.setVisibility(View.VISIBLE);
+//                             img1.setVisibility(View.GONE);
+//                             vd1.setVideoPath(path);
+//                             // start playing
+//                             vd1.start();
+//                             ifimg1 = false;
+//                             v1 = true;
+//                         } else if (imgClicked == 2) {
+//
+//                             Video2 = Uri.fromFile(new File(data.getStringExtra("uri")));
+//                             String path = Video2.getPath();
+//                             CameraUtils.refreshGallery(getApplicationContext(), path);
+//                             vd2.setVisibility(View.VISIBLE);
+//
+//                             img2.setVisibility(View.GONE);
+//
+//                             vd2.setVideoPath(path);
+//                             // start playing
+//                             vd2.start();
+//                             ifimg2 = false;
+//                             v2 = true;
+//
+//                         } else if (imgClicked == 3) {
+//                             Video3 = Uri.fromFile(new File(data.getStringExtra("uri")));
+//                             String path = Video3.getPath();
+//                             CameraUtils.refreshGallery(getApplicationContext(), path);
+//                             vd3.setVisibility(View.VISIBLE);
+//
+//                             img3.setVisibility(View.GONE);
+//
+//                             vd3.setVideoPath(path);
+//                             // start playing
+//                             vd3.start();
+//
+//                             ifimg3 = false;
+//                             v3 = true;
+//
+//                         } else if (imgClicked == 4) {
+//                             Video4 = Uri.fromFile(new File(data.getStringExtra("uri")));
+//                             String path = Video4.getPath();
+//                             CameraUtils.refreshGallery(getApplicationContext(), path);
+//
+//                             vd4.setVisibility(View.VISIBLE);
+//
+//                             img4.setVisibility(View.GONE);
+//
+//                             vd4.setVideoPath(path);
+//                             // start playing
+//                             vd4.start();
+//
+//                             ifimg4 = false;
+//                             v4 = true;
+//                         }
+//
+//
+////                    UploadVideo();
+//                     }
+//
+//
+//                 }
+
+        }
 
 
         if (requestCode == IMAGE_VIDEO_ACTIVITY_PICKER) {
@@ -2128,7 +2307,37 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
+
+            @Override
+            public void selectVideoFromGallery() {
+                selectVideoFromGalleryS();
+            }
         }, true);
+    }
+
+    int SELECT_VIDEO_REQUEST = 100;
+    String selectedVideoPath;
+
+    public void selectVideoFromGalleryS() {
+//        Intent intent;
+//        if(android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
+//        {
+//            intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+//        } else {
+//            intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.INTERNAL_CONTENT_URI);
+//        }
+//
+//        intent.setType("video/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        intent.putExtra("return-data", true);
+//        startActivityForResult(intent,SELECT_VIDEO_REQUEST);
+
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("video/*");
+
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, getString(R.string.select_video_from_gallery)), SELECT_VIDEO_REQUEST);
     }
 
     private void launchCameraIntent() {

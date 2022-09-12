@@ -377,6 +377,11 @@ public class My_Account_Fragment extends Fragment {
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
+
+            @Override
+            public void selectVideoFromGallery() {
+
+            }
         },false);
     }
 

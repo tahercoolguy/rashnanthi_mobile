@@ -709,6 +709,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
+
+            @Override
+            public void selectVideoFromGallery() {
+
+            }
         }, false);
     }
 

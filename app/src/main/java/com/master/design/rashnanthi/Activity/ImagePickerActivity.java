@@ -53,19 +53,25 @@ public class ImagePickerActivity extends AppCompatActivity {
     public static final int REQUEST_IMAGE_CAPTURE = 0;
     public static final int REQUEST_GALLERY_IMAGE = 1;
     public static final int REQUEST_IMAGE_CAPTURE_VIDEO = 2;
+    public static final int REQUEST_VIDEO = 3;
 
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
     private int ASPECT_RATIO_X = 16, ASPECT_RATIO_Y = 9, bitmapMaxWidth = 1000, bitmapMaxHeight = 1000;
     private int IMAGE_COMPRESSION = 80;
     public static String fileName;
+    int SELECT_VIDEO_REQUEST = 100;
 
     public interface PickerOptionListener {
         void onTakeCameraSelected();
+
         void onTakeCameraSelectedVideo();
 
         void onChooseGallerySelected();
+
+        void selectVideoFromGallery();
     }
-    boolean isNotCrop=false;
+
+    boolean isNotCrop = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +81,7 @@ public class ImagePickerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent == null) {
-            Toast.makeText(getApplicationContext(),getString( R.string.image_picker_option_is_missing), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.image_picker_option_is_missing), Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -87,35 +93,37 @@ public class ImagePickerActivity extends AppCompatActivity {
         bitmapMaxWidth = intent.getIntExtra(INTENT_BITMAP_MAX_WIDTH, bitmapMaxWidth);
         bitmapMaxHeight = intent.getIntExtra(INTENT_BITMAP_MAX_HEIGHT, bitmapMaxHeight);
 
-        isNotCrop = intent.getBooleanExtra("isNotCrop",false);
+        isNotCrop = intent.getBooleanExtra("isNotCrop", false);
 
         int requestCode = intent.getIntExtra(INTENT_IMAGE_PICKER_OPTION, -1);
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             takeCameraImage();
-        }else if (requestCode == REQUEST_IMAGE_CAPTURE_VIDEO )
-        {
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE_VIDEO) {
             takeCameraImageVideo();
-        }
-            else {
+        } else {
             chooseImageFromGallery();
+        }
+        if (requestCode == SELECT_VIDEO_REQUEST) {
+            selectVideoFromGallery();
         }
     }
 
 
-    public static void showImagePickerOptions(Context context, PickerOptionListener listener,boolean isVideo) {
+    public static void showImagePickerOptions(Context context, PickerOptionListener listener, boolean isVideo) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getString(R.string.set_image));
-        if(isVideo)
+        if (isVideo)
             builder.setTitle(context.getString(R.string.set_image_or_video));
 
         List<String> where = new ArrayList<String>();
-        where.add(context.getString(R.string.take_image) );
-        where.add( context.getString(R.string.choose_from_gallery) );
-        if(isVideo)
-            where.add( context.getString(R.string.take_a_video) );
-        String[] animals = new String[ where.size() ];
-        where.toArray( animals );
+        where.add(context.getString(R.string.take_image));
+        where.add(context.getString(R.string.choose_from_gallery));
+        if (isVideo)
+            where.add(context.getString(R.string.take_a_video));
+            where.add(context.getString(R.string.select_video_from_gallery));
+        String[] animals = new String[where.size()];
+        where.toArray(animals);
         // add a list
 //        String[] animals = {"Take a image", "Choose from gallery","Take a video"};
 
@@ -131,6 +139,9 @@ public class ImagePickerActivity extends AppCompatActivity {
                 case 2:
                     listener.onTakeCameraSelectedVideo();
                     break;
+
+                case 3:
+                    listener.selectVideoFromGallery();
             }
         });
 
@@ -206,36 +217,50 @@ public class ImagePickerActivity extends AppCompatActivity {
 
     }
 
+    public void selectVideoFromGallery() {
+        Intent intent;
+        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+            intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+        } else {
+            intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.INTERNAL_CONTENT_URI);
+        }
+
+        intent.setType("video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, SELECT_VIDEO_REQUEST);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
-                    if(isNotCrop)
-                    {
+                    if (isNotCrop) {
                         setResultOk(getCacheImagePath(fileName));
-                    }else
+                    } else
                         cropImage(getCacheImagePath(fileName));
 //                    setResultOk(getCacheImagePath(fileName));
                 } else {
                     setResultCancelled();
                 }
                 break;
+
             case REQUEST_GALLERY_IMAGE:
                 if (resultCode == RESULT_OK) {
                     Uri imageUri = data.getData();
 //                    cropImage(imageUri);
-                    if(isNotCrop)
-                    {
+                    if (isNotCrop) {
                         setResultOk(imageUri);
-                    }else
+                    } else
                         cropImage(imageUri);
 //                    setResultOk(imageUri);
                 } else {
                     setResultCancelled();
                 }
                 break;
+
             case UCrop.REQUEST_CROP:
                 if (resultCode == RESULT_OK) {
                     handleUCropResult(data);

@@ -1916,6 +1916,11 @@ public class Add_new_post_1 extends AppCompatActivity {
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
+
+            @Override
+            public void selectVideoFromGallery() {
+
+            }
         }, true);
     }
 
