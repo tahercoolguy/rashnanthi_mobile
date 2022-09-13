@@ -52,6 +52,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -509,7 +510,18 @@ public class Calender_Fragment extends Fragment {
 
                                         try {
 
-                                            if (eventDate.equals(formattedDate)) {
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                            String finalDate = null;
+                                            try {
+                                                Date date;
+                                                date = sdf.parse(formattedDate);
+                                                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                                                finalDate = finalDateFormat.format(date);
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            if (eventDate.equals(finalDate)) {
                                                 if(user.getLanguageCode().equalsIgnoreCase("ar")){
 
                                                     calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
@@ -524,126 +536,6 @@ public class Calender_Fragment extends Fragment {
                                         }
 
                                     }
-
-
-//                                    ArrayList<String> thirdList = new ArrayList<String>();
-//                                    for (CalendarDay tempList : Appointment)    //tempList is  a variable
-//                                        thirdList.add(Appointments.contains(tempList) ? "Yes" : "No");
-//                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), thirdList));
-
-
-//                                        if (calendarDay.getDay() == calendarDay.getDay() && date.getMonth() == calendarDay.getMonth() && date.getYear() == calendarDay.getYear()) {
-//                                            String Date = String.valueOf(date.getDay()), Month = String.valueOf(date.getMonth()), Year = String.valueOf(date.getYear());
-//
-//                                            if (calendarDay.getDay() <= 9)
-//                                                Date = "0" + calendarDay.getDay();
-//
-//                                            int monthnew=calendarDay.getMonth() + 1;
-//                                            if ( monthnew <= 10) {
-//                                                Month = "0" + calendarDay.getMonth();
-//                                            }
-//                                            String newDate=Year + "-" + Month + "-" + Date;
-//                                            Date c = Calendar.getInstance().getTime();
-//                                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//                                            String formattedDate = simpleDateFormat.format(c);
-//
-//                                            if(newDate==formattedDate){
-//                                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
-//                                            }else{
-//                                                Helper.showToast(getActivity(),"today no event");
-//                                            }
-//
-//                                        }
-
-
-//                                    if(Appointment==Appointments){
-//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
-//                                    } else {
-//                                        Helper.showToast(getActivity(), "no event today");
-//                                    }
-
-//                                    if (Appointment.containsAll(Appointments)) {
-//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
-//                                    } else {
-//                                        Helper.showToast(getActivity(), "no event today");
-//                                    }
-
-//                                    for (int i = 0; i < Appointment.size(); i++) {
-//
-//                                        for (int j = 0; j < Appointments.size(); j++) {
-//
-//                                            if (Appointment.get(i) == Appointments.get(j)) {
-//                                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows),Appointments));
-//
-//                                            }
-//                                        }
-//                                    }
-
-
-//                                        if(LocalDate.parse(dm.getEventdate())==LocalDate.parse(formattedDate)){
-
-//                                    if (Appointments.containsAll(Appointment)) {
-//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.keySet()));
-//                                    }
-
-//                                    ArrayList<String> stringArrayList = new ArrayList<>();
-//                                    ArrayList<String> stringArrayList2 = new ArrayList<>();
-//                                    stringArrayList.add(dm.getEventdate());
-//                                    stringArrayList2.add(formattedDate);
-//                                    Collections.sort(stringArrayList);
-//                                    Collections.sort(stringArrayList2);
-//                                    if (stringArrayList.equals(stringArrayList2)) {
-//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.values()));
-//                                    }
-//                                    ArrayList<String> stringArrayList = new ArrayList<>();
-//                                    ArrayList<String> stringArrayList2 = new ArrayList<>();
-//                                    stringArrayList.add(dm.getEventdate());
-//                                    stringArrayList2.add(formattedDate);
-//                                    stringArrayList.removeAll(stringArrayList2);
-//                                     if (stringArrayList.equals(formattedDate)) {
-//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.values()));
-//                                    }
-
-//                                    ArrayList<String> stringArrayList = new ArrayList<>();
-//                                    ArrayList<String> stringArrayList2 = new ArrayList<>();
-//                                    stringArrayList.add(dm.getEventdate());
-//                                    stringArrayList2.add(formattedDate);
-//                                    stringArrayList.retainAll(stringArrayList2);
-//                                    if(!stringArrayList.isEmpty()){
-//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
-//                                    }else{
-//                                        Helper.showToast(getActivity(),getString(R.string.there_is_no_event));
-//                                    }
-
-
-//                                    if (!Appointment.contains(Appointments)) {
-//                                        Helper.showToast(getActivity(), "todays no event");
-//                                    } else {
-//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.values()));
-//                                    }
-
-
-//                                    if (Appointment.size() != Appointments.size()) {
-//                                        for (int i = 0; i < Appointment.size(); i++) {
-//                                            String keyVal = String.valueOf(hashMap.get(Appointment.get(i)));
-//                                            if (keyVal == null || keyVal.compareTo(String.valueOf(Appointments.get(i))) > 0) {
-//                                                // second condition ensures value is only replaced if it is a later date
-//                                                hashMap.put(Appointment.get(i), Appointments.get(i));
-//                                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.keySet()));
-//
-//                                            }
-//                                        }
-//                                    }
-
-//                                    }
-
-
-//                                        }
-//                                    if (Appointments != null) {
-//                                        PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
-//                                        calendarView.addDecorator(primaryColorDecorator);
-//                                    }
-
 
                                 } catch (Exception e) {
                                     e.toString();
@@ -675,7 +567,17 @@ public class Calender_Fragment extends Fragment {
 //
 //                            //For current date event decoretor
                             final ArrayList<CalendarDay> Appointments = new ArrayList<>();
-                            Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            String finalDate = null;
+                            try {
+                                Date date;
+                                date = sdf.parse(formattedDate);
+                                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                                finalDate = finalDateFormat.format(date);
+                            } catch (ParseException exception) {
+                                exception.printStackTrace();
+                            }
+                            Appointments.add(CalendarDay.from(LocalDate.parse(finalDate)));
 //                            if (Appointments != null) {
                             PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
                             calendarView.addDecorator(primaryColorDecorator);

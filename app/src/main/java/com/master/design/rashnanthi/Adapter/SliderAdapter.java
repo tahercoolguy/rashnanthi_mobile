@@ -62,8 +62,8 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
             if(eventsDetailsData.get(position).getImage()!=null) {
 
-                viewHolder.webView.setScaleY(2);
-                viewHolder.webView.setScaleX(2);
+//                viewHolder.webView.setScaleY(2);
+//                viewHolder.webView.setScaleX(2);
                 if(eventsDetailsData.get(position).getImage().contains(".mp4"))
                 {
 
