@@ -41,13 +41,12 @@ public class SliderPagerAdapter1 extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_slider, container, false);
         ImageView im_slider = view.findViewById(R.id.im_slider);
         WebView webView = view.findViewById(R.id.webView);
-//        webView.setScaleX(2);
-//        webView.setScaleY(2);
 
         if(coachesWithPostsImageDatamArrayList.get(position).contains("mp4")){
             webView.setVisibility(View.VISIBLE);
             im_slider.setVisibility(View.GONE);
             webView.loadUrl(AppController.base_image_url +coachesWithPostsImageDatamArrayList.get(position));
+
 
         }else{
             webView.setVisibility(View.GONE);

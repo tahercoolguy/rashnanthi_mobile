@@ -2333,22 +2333,21 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //        startActivityForResult(intent,SELECT_VIDEO_REQUEST);
 
 
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("video/*");
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
 
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, getString(R.string.select_video_from_gallery)), SELECT_VIDEO_REQUEST);
+        startActivityForResult(intent , SELECT_VIDEO_REQUEST);
     }
 
     private void launchCameraIntent() {
 //        Intent intent = new Intent(Activity_Add_Event_1.this, ImagePickerActivity.class);
 //        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
 //
+
 //        // setting aspect ratio
 //        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
 //        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
 //        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
-//
+
 //        // setting maximum bitmap width and height
 //        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
 //        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000);
@@ -2399,8 +2398,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     }
 
     private static final int IMAGE_VIDEO_ACTIVITY_PICKER = 4;
-
-
     int REQUEST_IMAGE = 999;
     int REQUEST_IMAGE_VIDEO = 998;
 
@@ -2431,7 +2428,6 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
         });
         builder.setNegativeButton(getString(android.R.string.cancel), (dialog, which) -> dialog.cancel());
         builder.show();
-
     }
 
     boolean ifimg1 = false;
@@ -2461,6 +2457,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //    public void Img4() {
 //        ifimg4 = true;
 //     }
+
 
 
 //    public void ProfileImg() {
