@@ -434,7 +434,9 @@ public class Calender_Fragment extends Fragment {
         cal.setTime(date);
         return cal;
     }
-    String countryid="1";
+
+    String countryid = "1";
+
     public void myEventsApi(String countryidMain) {
         if (connectionDetector.isConnectingToInternet()) {
 //            progress = dialogUtil.showProgressDialog(getActivity(), getString(R.string.please_wait));
@@ -471,22 +473,22 @@ public class Calender_Fragment extends Fragment {
                                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                                     String formattedDate = simpleDateFormat.format(c);
 //
-                                    if(user.getLanguageCode().equalsIgnoreCase("en")){
+                                    if (user.getLanguageCode().equalsIgnoreCase("en")) {
                                         //For current date event decoretor
                                         Appointments.add(CalendarDay.from(LocalDate.parse(formattedDate)));
                                         PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
                                         calendarView.addDecorator(primaryColorDecorator);
 //                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
-                                    }else{
+                                    } else {
                                         //For current date event decoretor
                                         LocalDate km2 = LocalDate.parse(dm.getEventdate());
 
                                         Appointments.add(CalendarDay.today());
                                         PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
                                         calendarView.addDecorator(primaryColorDecorator);
-                                        if(CalendarDay.today().isAfter(CalendarDay.from(km2))){
+                                        if (CalendarDay.today().isAfter(CalendarDay.from(km2))) {
 
-                                        }else{
+                                        } else {
                                             calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
                                         }
 //
@@ -522,11 +524,11 @@ public class Calender_Fragment extends Fragment {
                                             }
 
                                             if (eventDate.equals(finalDate)) {
-                                                if(user.getLanguageCode().equalsIgnoreCase("ar")){
+                                                if (user.getLanguageCode().equalsIgnoreCase("ar")) {
 
                                                     calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
 
-                                                }else{
+                                                } else {
                                                     calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
 
                                                 }
@@ -536,6 +538,126 @@ public class Calender_Fragment extends Fragment {
                                         }
 
                                     }
+
+
+//                                    ArrayList<String> thirdList = new ArrayList<String>();
+//                                    for (CalendarDay tempList : Appointment)    //tempList is  a variable
+//                                        thirdList.add(Appointments.contains(tempList) ? "Yes" : "No");
+//                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), thirdList));
+
+
+//                                        if (calendarDay.getDay() == calendarDay.getDay() && date.getMonth() == calendarDay.getMonth() && date.getYear() == calendarDay.getYear()) {
+//                                            String Date = String.valueOf(date.getDay()), Month = String.valueOf(date.getMonth()), Year = String.valueOf(date.getYear());
+//
+//                                            if (calendarDay.getDay() <= 9)
+//                                                Date = "0" + calendarDay.getDay();
+//
+//                                            int monthnew=calendarDay.getMonth() + 1;
+//                                            if ( monthnew <= 10) {
+//                                                Month = "0" + calendarDay.getMonth();
+//                                            }
+//                                            String newDate=Year + "-" + Month + "-" + Date;
+//                                            Date c = Calendar.getInstance().getTime();
+//                                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//                                            String formattedDate = simpleDateFormat.format(c);
+//
+//                                            if(newDate==formattedDate){
+//                                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+//                                            }else{
+//                                                Helper.showToast(getActivity(),"today no event");
+//                                            }
+//
+//                                        }
+
+
+//                                    if(Appointment==Appointments){
+//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+//                                    } else {
+//                                        Helper.showToast(getActivity(), "no event today");
+//                                    }
+
+//                                    if (Appointment.containsAll(Appointments)) {
+//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+//                                    } else {
+//                                        Helper.showToast(getActivity(), "no event today");
+//                                    }
+
+//                                    for (int i = 0; i < Appointment.size(); i++) {
+//
+//                                        for (int j = 0; j < Appointments.size(); j++) {
+//
+//                                            if (Appointment.get(i) == Appointments.get(j)) {
+//                                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows),Appointments));
+//
+//                                            }
+//                                        }
+//                                    }
+
+
+//                                        if(LocalDate.parse(dm.getEventdate())==LocalDate.parse(formattedDate)){
+
+//                                    if (Appointments.containsAll(Appointment)) {
+//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.keySet()));
+//                                    }
+
+//                                    ArrayList<String> stringArrayList = new ArrayList<>();
+//                                    ArrayList<String> stringArrayList2 = new ArrayList<>();
+//                                    stringArrayList.add(dm.getEventdate());
+//                                    stringArrayList2.add(formattedDate);
+//                                    Collections.sort(stringArrayList);
+//                                    Collections.sort(stringArrayList2);
+//                                    if (stringArrayList.equals(stringArrayList2)) {
+//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.values()));
+//                                    }
+//                                    ArrayList<String> stringArrayList = new ArrayList<>();
+//                                    ArrayList<String> stringArrayList2 = new ArrayList<>();
+//                                    stringArrayList.add(dm.getEventdate());
+//                                    stringArrayList2.add(formattedDate);
+//                                    stringArrayList.removeAll(stringArrayList2);
+//                                     if (stringArrayList.equals(formattedDate)) {
+//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.values()));
+//                                    }
+
+//                                    ArrayList<String> stringArrayList = new ArrayList<>();
+//                                    ArrayList<String> stringArrayList2 = new ArrayList<>();
+//                                    stringArrayList.add(dm.getEventdate());
+//                                    stringArrayList2.add(formattedDate);
+//                                    stringArrayList.retainAll(stringArrayList2);
+//                                    if(!stringArrayList.isEmpty()){
+//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+//                                    }else{
+//                                        Helper.showToast(getActivity(),getString(R.string.there_is_no_event));
+//                                    }
+
+
+//                                    if (!Appointment.contains(Appointments)) {
+//                                        Helper.showToast(getActivity(), "todays no event");
+//                                    } else {
+//                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.values()));
+//                                    }
+
+
+//                                    if (Appointment.size() != Appointments.size()) {
+//                                        for (int i = 0; i < Appointment.size(); i++) {
+//                                            String keyVal = String.valueOf(hashMap.get(Appointment.get(i)));
+//                                            if (keyVal == null || keyVal.compareTo(String.valueOf(Appointments.get(i))) > 0) {
+//                                                // second condition ensures value is only replaced if it is a later date
+//                                                hashMap.put(Appointment.get(i), Appointments.get(i));
+//                                                calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), hashMap.keySet()));
+//
+//                                            }
+//                                        }
+//                                    }
+
+//                                    }
+
+
+//                                        }
+//                                    if (Appointments != null) {
+//                                        PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+//                                        calendarView.addDecorator(primaryColorDecorator);
+//                                    }
+
 
                                 } catch (Exception e) {
                                     e.toString();
@@ -722,7 +844,7 @@ public class Calender_Fragment extends Fragment {
                                     country_spinner_Txt.setText(data.get(0).getTitle());
                                 } else {
                                     country_spinner_Txt.setText(data.get(0).getTitlear());
-                                 }
+                                }
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
 
                             }
