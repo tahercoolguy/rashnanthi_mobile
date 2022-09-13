@@ -415,7 +415,8 @@ public class Calender_Fragment extends Fragment {
 //            MySelectorDecorator mySelectorDecorator = new MySelectorDecorator(getActivity());
 //            calendarView.addDecorator(mySelectorDecorator);
 
-            myEventsApi(countryidMain);
+//            myEventsApi(countryidMain);
+            NewAPI(countryidMain);
 
         }
         return rootView;
@@ -728,6 +729,116 @@ public class Calender_Fragment extends Fragment {
     }
 
 
+    public void NewAPI(String countryidMain) {
+        if (connectionDetector.isConnectingToInternet()) {
+
+            appController.paServices.AllEvent(countryidMain, "2022-01-01", "2040-01-01", new Callback<MyEventRootDM1>() {
+                @Override
+                public void success(MyEventRootDM1 myEventRootDM1, Response response) {
+                    Appointment.clear();
+                    if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+                        //for yellow Gradient circle for event date
+                        for (MyEventData1 dm : myEventRootDM1.getOutput().getData()
+                        ) {
+                            LocalDate km1 = LocalDate.parse(dm.getEventdate());
+                            Appointment.add(CalendarDay.from(km1));
+                            RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
+                            calendarView.addDecorator(redColorDecorator);
+                        }
+
+                        // this for today current date
+                        Date c = Calendar.getInstance().getTime();
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        String formattedDate = simpleDateFormat.format(c);
+
+
+                        // this for chnage date arabic to english
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String finalDate = null;
+                        try {
+                            Date date;
+                            date = sdf.parse(formattedDate);
+                            SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                            finalDate = finalDateFormat.format(date);
+                            //this code for red bg for current date
+                            Appointments.add(CalendarDay.from(LocalDate.parse(finalDate)));
+                            PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+                            calendarView.addDecorator(primaryColorDecorator);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        //for current date show small yellow dot on event
+                        for (CalendarDay calendarDay1 : Appointment) {
+                            String Date = String.valueOf(calendarDay1.getDay()), Month = String.valueOf(calendarDay1.getMonth()),
+                                    Year = String.valueOf(calendarDay1.getYear());
+
+                            if (calendarDay1.getDay() <= 9)
+                                Date = "0" + calendarDay1.getDay();
+
+                            int monthnew = calendarDay1.getMonth() + 1;
+                            if (monthnew <= 10) {
+                                Month = "0" + calendarDay1.getMonth();
+                            }
+
+                            String eventDate = Year + "-" + Month + "-" + Date;
+
+                            try {
+                                //set yellow date on curremt date
+                                if (eventDate.equals(finalDate)) {
+                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+
+                    } else {
+                        Helper.showToast(getActivity(), getString(R.string.no_posts));
+                        calendarView.removeDecorators();
+                        // this for today current date
+                        Date c = Calendar.getInstance().getTime();
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        String formattedDate = simpleDateFormat.format(c);
+
+
+                        // this for chnage date arabic to english
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String finalDate = null;
+                        try {
+                            Date date;
+                            date = sdf.parse(formattedDate);
+                            SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                            finalDate = finalDateFormat.format(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        //this code for red bg for current date
+                        Appointments.add(CalendarDay.from(LocalDate.parse(finalDate)));
+                        PrimaryColorDecorator primaryColorDecorator = new PrimaryColorDecorator(getActivity(), Appointments);
+                        calendarView.addDecorator(primaryColorDecorator);
+                    }
+
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("error", error.toString());
+
+                }
+            });
+
+        } else {
+            Helper.showToast(getActivity(), getString(R.string.no_internet_connection));
+
+        }
+    }
+
 //    public void GeteventsbyCountryDateAPI() {
 //        if (connectionDetector.isConnectingToInternet()) {
 //
@@ -783,7 +894,8 @@ public class Calender_Fragment extends Fragment {
             Picasso.get().load(AppController.base_image_url + countryimg).into(countryImg);
             country_spinner_Txt.setText(countryname);
 
-            myEventsApi(countryidMain);
+//            myEventsApi(countryidMain);
+            NewAPI(countryidMain);
         }
 
 
