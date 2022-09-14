@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -76,6 +77,7 @@ public class Add_new_post_1 extends AppCompatActivity {
 
     private Activity context;
     private Context context1;
+    MediaController mediaController;
 
     Dialog progress;
     ConnectionDetector connectionDetector;
@@ -207,6 +209,12 @@ public class Add_new_post_1 extends AppCompatActivity {
         appController = (AppController) context.getApplicationContext();
         connectionDetector = new ConnectionDetector(context.getApplicationContext());
         user = new User(Add_new_post_1.this);
+        mediaController=new MediaController(Add_new_post_1.this);
+        vd1.setMediaController(mediaController);
+        vd2.setMediaController(mediaController);
+        vd3.setMediaController(mediaController);
+        vd3_1.setMediaController(mediaController);
+        vd4.setMediaController(mediaController);
         Binding();
         DataGetFromAdapterIntent();
 
@@ -1749,7 +1757,7 @@ public class Add_new_post_1 extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
 
-        startActivityForResult(intent, SELECT_VIDEO_REQUEST);
+        startActivityForResult(intent, 1);
     }
 
     @Override
@@ -1795,29 +1803,20 @@ public class Add_new_post_1 extends AppCompatActivity {
 
         //     2   video adding but not plays
         {
-            if (requestCode == SELECT_VIDEO_REQUEST) {
-                Uri selectedImageUri = data.getData();
-
-//                // OI FILE Manager
-//                filemanagerstring = selectedImageUri.getPath();
-//
-//                // MEDIA GALLERY
-//                selectedImagePath = getPath(selectedImageUri);
-//                if (selectedImagePath != null) {
+            if (requestCode == 1) {
 
                 if (data != null) {
                     {
                         if (imgClicked == 1) {
 
-
 //                                Video1 = Uri.fromFile(new File(data.getStringExtra("uri")));
-                            Video1 = selectedImageUri;
-                            String path = Video1.getPath();
-//                            CameraUtils.refreshGallery(getApplicationContext(), path);
+                            Uri videoUri = data.getData();
+                            Video1 = videoUri;
 
+                            vd1.setVideoURI(videoUri);
+                            vd1.requestFocus();
                             vd1.setVisibility(View.VISIBLE);
                             img1.setVisibility(View.GONE);
-                            vd1.setVideoPath(path);
                             // start playing
                             vd1.start();
                             ifimg1 = false;
@@ -1825,15 +1824,15 @@ public class Add_new_post_1 extends AppCompatActivity {
                         } else if (imgClicked == 2) {
 
 //                                Video2 = Uri.fromFile(new File(data.getStringExtra("uri")));
-                            Video2 = selectedImageUri;
+                            Uri videoUri = data.getData();
+                            Video2 = videoUri;
 
-                            String path = Video2.getPath();
-//                            CameraUtils.refreshGallery(getApplicationContext(), path);
+                             vd2.setVideoURI(videoUri);
+                            vd2.requestFocus();
                             vd2.setVisibility(View.VISIBLE);
 
                             img2.setVisibility(View.GONE);
 
-                            vd2.setVideoPath(path);
                             // start playing
                             vd2.start();
                             ifimg2 = false;
@@ -1841,15 +1840,15 @@ public class Add_new_post_1 extends AppCompatActivity {
 
                         } else if (imgClicked == 3) {
 //                                Video3 = Uri.fromFile(new File(data.getStringExtra("uri")));
-                            Video3 = selectedImageUri;
+                            Uri videoUri = data.getData();
+                            Video3 = videoUri;
 
-                            String path = Video3.getPath();
-//                            CameraUtils.refreshGallery(getApplicationContext(), path);
+                            vd3.setVideoURI(videoUri);
+                            vd3.requestFocus();
                             vd3.setVisibility(View.VISIBLE);
 
                             img3.setVisibility(View.GONE);
 
-                            vd3.setVideoPath(path);
                             // start playing
                             vd3.start();
 
@@ -1857,33 +1856,35 @@ public class Add_new_post_1 extends AppCompatActivity {
                             v3 = true;
 
                         } else if (imgClicked == 3_1) {
-                            Video3_1 = selectedImageUri;
+                            Uri videoUri = data.getData();
+
+                            Video3_1 = videoUri;
 //                            Video3_1 = Uri.fromFile(new File(data.getStringExtra("uri")));
-                            String path = Video3_1.getPath();
-//                            CameraUtils.refreshGallery(getApplicationContext(), path);
+                            vd3_1.setVideoURI(videoUri);
+                            vd3_1.requestFocus();
                             vd3_1.setVisibility(View.VISIBLE);
 
                             img3_1.setVisibility(View.GONE);
 
-                            vd3_1.setVideoPath(path);
                             // start playing
                             vd3_1.start();
 
                             ifimg3_1 = false;
                             v3_1 = true;
 
+
                         } else if (imgClicked == 4) {
 //                                Video4 = Uri.fromFile(new File(data.getStringExtra("uri")));
-                            Video4 = selectedImageUri;
+                            Uri videoUri = data.getData();
 
-                            String path = Video4.getPath();
-//                            CameraUtils.refreshGallery(getApplicationContext(), path);
+                            Video4 = videoUri;
 
+                            vd4.setVideoURI(videoUri);
+                            vd4.requestFocus();
                             vd4.setVisibility(View.VISIBLE);
 
                             img4.setVisibility(View.GONE);
 
-                            vd4.setVideoPath(path);
                             // start playing
                             vd4.start();
 
