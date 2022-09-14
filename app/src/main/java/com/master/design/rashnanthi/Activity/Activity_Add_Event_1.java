@@ -972,7 +972,11 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
+                if(finalDate!=null){
+                    multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
+                }else{
+                    Helper.showToast(Activity_Add_Event_1.this,getString(R.string.select_date));
+                }
                 multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
                 multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
