@@ -1813,7 +1813,7 @@ public class Add_new_post_1 extends AppCompatActivity {
 //                                Video1 = Uri.fromFile(new File(data.getStringExtra("uri")));
                             Video1 = selectedImageUri;
                             String path = Video1.getPath();
-                            CameraUtils.refreshGallery(getApplicationContext(), path);
+//                            CameraUtils.refreshGallery(getApplicationContext(), path);
 
                             vd1.setVisibility(View.VISIBLE);
                             img1.setVisibility(View.GONE);
@@ -1828,7 +1828,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                             Video2 = selectedImageUri;
 
                             String path = Video2.getPath();
-                            CameraUtils.refreshGallery(getApplicationContext(), path);
+//                            CameraUtils.refreshGallery(getApplicationContext(), path);
                             vd2.setVisibility(View.VISIBLE);
 
                             img2.setVisibility(View.GONE);
@@ -1844,7 +1844,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                             Video3 = selectedImageUri;
 
                             String path = Video3.getPath();
-                            CameraUtils.refreshGallery(getApplicationContext(), path);
+//                            CameraUtils.refreshGallery(getApplicationContext(), path);
                             vd3.setVisibility(View.VISIBLE);
 
                             img3.setVisibility(View.GONE);
@@ -1860,7 +1860,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                             Video3_1 = selectedImageUri;
 //                            Video3_1 = Uri.fromFile(new File(data.getStringExtra("uri")));
                             String path = Video3_1.getPath();
-                            CameraUtils.refreshGallery(getApplicationContext(), path);
+//                            CameraUtils.refreshGallery(getApplicationContext(), path);
                             vd3_1.setVisibility(View.VISIBLE);
 
                             img3_1.setVisibility(View.GONE);
@@ -1877,7 +1877,7 @@ public class Add_new_post_1 extends AppCompatActivity {
                             Video4 = selectedImageUri;
 
                             String path = Video4.getPath();
-                            CameraUtils.refreshGallery(getApplicationContext(), path);
+//                            CameraUtils.refreshGallery(getApplicationContext(), path);
 
                             vd4.setVisibility(View.VISIBLE);
 
