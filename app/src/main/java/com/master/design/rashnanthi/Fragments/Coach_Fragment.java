@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -30,19 +31,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Activity.SpinneerActivity;
+import com.master.design.rashnanthi.Adapter.Adapter_Coach_Fgmt;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter1;
-import com.master.design.rashnanthi.Adapter.SliderPagerAdapter1;
 import com.master.design.rashnanthi.Controller.AppController;
 import com.master.design.rashnanthi.DataModel.CoachDM;
-import com.master.design.rashnanthi.DataModel.CoachesWithPostsRootDM;
 import com.master.design.rashnanthi.DataModel.CountryData;
 import com.master.design.rashnanthi.DataModel.CountryRootDM;
 import com.master.design.rashnanthi.DataModel.County_ItemDM;
+import com.master.design.rashnanthi.DataModel.NewCoachData;
 import com.master.design.rashnanthi.DataModel.NewCoachDataModel;
 import com.master.design.rashnanthi.Helper.BottomForAll;
 import com.master.design.rashnanthi.Helper.DialogUtil;
-import com.master.design.rashnanthi.Helper.ResponseListener;
 import com.master.design.rashnanthi.Helper.User;
 import com.master.design.rashnanthi.R;
 import com.master.design.rashnanthi.Utils.ConnectionDetector;
@@ -212,7 +212,7 @@ public class Coach_Fragment extends Fragment {
             mList.add("three");
 
 
-            APIforCoach("1");
+            APIforCoach(countryid);
 
             setDetails();
 
@@ -231,27 +231,45 @@ public class Coach_Fragment extends Fragment {
                 @Override
                 public void success(NewCoachDataModel newCoachDataModel, Response response) {
                     progress.dismiss();
+                    ArrayList<NewCoachData> stringArrayList = newCoachDataModel.getOutput().getData();
                     if (newCoachDataModel.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         context = getActivity();
-                        adapter1 = new ImageRecyclerAdapter1(getActivity(), newCoachDataModel.getOutput().getData());
-                        coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
-                        coach_Rcv.startAnimation(animation);
-                        coach_Rcv.setHasFixedSize(true);
-                        coach_Rcv.setAdapter(adapter1);
-                    } else
-                        Helper.showToast(context, getString(R.string.no_posts));
+                        if (stringArrayList != null) {
+                            adapter1 = new ImageRecyclerAdapter1(getActivity(), stringArrayList);
+                            coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                            coach_Rcv.startAnimation(animation);
+                            coach_Rcv.setHasFixedSize(true);
+                            if (!stringArrayList.isEmpty()) {
+                                coach_Rcv.setVisibility(View.VISIBLE);
+                                coach_Rcv.setAdapter(adapter1);
+                            }
+                        } else {
+                            coachDMArrayList.add(new CoachDM(R.drawable.ic_about_app));
+                            Adapter_Coach_Fgmt adapter_coach_fgmt = new Adapter_Coach_Fgmt(getActivity(), coachDMArrayList);
+                            coach_Rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                             coach_Rcv.setForegroundGravity(Gravity.CENTER);
+                            coach_Rcv.setAdapter(adapter_coach_fgmt);
+
+
+                            Helper.showToast(context, getString(R.string.no_posts));
+                        }
+                    } else {
+                        Helper.showToast(context, getString(R.string.something_wrong));
+                    }
+
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     progress.dismiss();
+                    Log.e("error", error.toString());
+
                 }
             });
 
         }
     }
-
 
 
     BottomForAll bottomForAll;
@@ -308,6 +326,8 @@ public class Coach_Fragment extends Fragment {
                                     country_spinner_Txt.setText(data.get(0).getTitlear());
 
                                 }
+                                countryid = data.get(0).getId();
+//                                APIforCoach(countryid);
                                 Picasso.get().load(AppController.base_image_url + data.get(0).getImage()).into(countryImg);
                             }
                         }

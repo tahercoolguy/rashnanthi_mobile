@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -45,8 +48,23 @@ public class SliderPagerAdapter1 extends PagerAdapter {
         if(coachesWithPostsImageDatamArrayList.get(position).contains("mp4")){
             webView.setVisibility(View.VISIBLE);
             im_slider.setVisibility(View.GONE);
-            webView.loadUrl(AppController.base_image_url +coachesWithPostsImageDatamArrayList.get(position));
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+            webView.getSettings().setBuiltInZoomControls(true);
+            webView.getSettings().setDisplayZoomControls(true);
+            webView.getSettings().setUseWideViewPort(true);
+            webView.getSettings().setLoadWithOverviewMode(true);
+            webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
+//            webView.addJavascriptInterface(this, "FBDownloader");
 
+
+            CookieSyncManager.createInstance(context.getApplicationContext());
+            CookieManager cookieManager = CookieManager.getInstance();
+            cookieManager.setAcceptCookie(true);
+            CookieSyncManager.getInstance().startSync();
+
+            webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+            webView.loadUrl(AppController.base_image_url +coachesWithPostsImageDatamArrayList.get(position));
 
         }else{
             webView.setVisibility(View.GONE);

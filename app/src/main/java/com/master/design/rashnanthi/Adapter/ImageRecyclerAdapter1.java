@@ -132,18 +132,27 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
         if (mList.get(position).getImagedata() != null) {
             for (NewCoachImagData s : mList.get(position).getImagedata()
             ) {
-                km.add(s.getImage());
+                if(s.getImage()!=null){
+                    km.add(s.getImage());
+                }
+
             }
 
         } else {
-            km.add(mList.get(position).getImage());
+            if(mList!=null){
+                km.add(mList.get(position).getImage());
+            }
+
         }
         try {
 
             holder.sliderPagerAdapter1 = new SliderPagerAdapter1(context, km);
-            holder.mViewPager.setAdapter(holder.sliderPagerAdapter1);
-            holder.dots = new TextView[km.size()];
-            addBottomDots(0, holder.dots, holder);
+            if(km!=null){
+                holder.mViewPager.setAdapter(holder.sliderPagerAdapter1);
+                holder.dots = new TextView[km.size()];
+                addBottomDots(0, holder.dots, holder);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -323,6 +332,7 @@ public class ImageRecyclerAdapter1 extends RecyclerView.Adapter<ImageRecyclerAda
 
     @Override
     public int getItemCount() {
+
         return mList.size();
     }
 
