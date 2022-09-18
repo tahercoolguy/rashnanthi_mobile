@@ -68,7 +68,7 @@ public class Event_Small_Image_Fragment extends Fragment {
     ImageView even_back_Img, menu_1_menu;
     DialogUtil dialogUtil;
     Dialog dialog;
-    String countryIdMain="1";
+    String countryIdMain = "1";
 
     String Snapchat, Instagram, Whatsapp, Website, WhatsappCountryCode;
 
@@ -122,7 +122,7 @@ public class Event_Small_Image_Fragment extends Fragment {
             intent.setData(Uri.parse(url));
             context.startActivity(intent);
         } catch (Exception e) {
-            Helper.showToast(context,context.getString(R.string.something_wrong));
+            Helper.showToast(context, context.getString(R.string.something_wrong));
         }
     }
 
@@ -202,12 +202,12 @@ public class Event_Small_Image_Fragment extends Fragment {
             setDetails();
             even_back_Img = rootView.findViewById(R.id.even_back_Img);
             menu_1_menu = rootView.findViewById(R.id.menu_1_menu);
-            user =  new User(getActivity());
+            user = new User(getActivity());
             even_back_Img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   ((MainActivity) context).addFragment(new Calender_Fragment(),false);
-                 }
+                    ((MainActivity) context).addFragment(new Calender_Fragment(), false);
+                }
             });
 
             menu_1_menu.setOnClickListener(new View.OnClickListener() {
@@ -216,13 +216,12 @@ public class Event_Small_Image_Fragment extends Fragment {
                     ((MainActivity) context).addFragment(new Menu_1_Fragment(), true);
                 }
             });
-            Bundle bd=getArguments();
+            Bundle bd = getArguments();
             date = bd.getString("date");
             countryIdMain = bd.getString("countryid");
             setClickListeners();
             setDetails();
             newAPI();
-
 
 
         }
@@ -264,8 +263,8 @@ public class Event_Small_Image_Fragment extends Fragment {
         }
 
     }
-public void newAPI()
-    {
+
+    public void newAPI() {
         if (connectionDetector.isConnectingToInternet()) {
 
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
@@ -288,23 +287,23 @@ public void newAPI()
 //                            WhatsappCountryCode = getEventsByCountryDateRootDM.getOutput().getData().get(0).getWhatsapcountrycode();
 //                            DataNUll();
 
-                            // passing this array list inside our adapter class.
-                            SliderAdapter adapter = new SliderAdapter(context, getEventsByCountryDateRootDM.getOutput().getData());
+                        // passing this array list inside our adapter class.
+                        SliderAdapter adapter = new SliderAdapter(context, getEventsByCountryDateRootDM.getOutput().getData());
 
-                            // below method is used to set auto cycle direction in left to
-                            // right direction you can change according to requirement.
-                            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
-                            slider.startAnimation(animation);
-                            slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+                        // below method is used to set auto cycle direction in left to
+                        // right direction you can change according to requirement.
+                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                        slider.startAnimation(animation);
+                        slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
 
-                            // below method is used to
-                            // setadapter to sliderview.
-                            slider.setSliderAdapter(adapter);
+                        // below method is used to
+                        // setadapter to sliderview.
+                        slider.setSliderAdapter(adapter);
+                        slider.setInfiniteAdapterEnabled(false);
+                        // below method is use to set
+                        // scroll time in seconds.
 
-                            // below method is use to set
-                            // scroll time in seconds.
-
-                            slider.setScrollTimeInSec(3);
+                        slider.setScrollTimeInSec(3);
 //
 //                        // to set it scrollable automatically
 //                        // we use below method.
@@ -316,8 +315,6 @@ public void newAPI()
 //                            slider.startAutoCycle();
 
 
-
-
                     } else
                         Helper.showToast(getActivity(), getString(R.string.some_netork_happened));
                 }
@@ -327,7 +324,7 @@ public void newAPI()
                     Log.e("String", error.toString());
                 }
             });
-        }else{
+        } else {
             Helper.showToast(context, getString(R.string.no_internet_connection));
 
         }
