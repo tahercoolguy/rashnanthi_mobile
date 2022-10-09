@@ -335,7 +335,7 @@ public class SignUpActivity extends AppCompatActivity {
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
                             //                            Helper.showToast(SignUpActivity.this, eventRegisterDM.getOutput().getMessage());
 
-                            Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                             intent.putExtra("EventCreator", eventRegisterDM.getOutput().getCreatorcoach());
                             intent.putExtra("chirag1", "1");
                             intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
@@ -473,7 +473,7 @@ public class SignUpActivity extends AppCompatActivity {
 //                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
 
-                            Intent intent = new Intent(SignUpActivity.this, VerifyActivity.class);
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                             intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());
                             intent.putExtra("chirag2", "2");
                             intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
