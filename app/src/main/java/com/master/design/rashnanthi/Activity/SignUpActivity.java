@@ -340,6 +340,7 @@ public class SignUpActivity extends AppCompatActivity {
                             intent.putExtra("chirag1", "1");
                             intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                             startActivity(intent);
+                            Helper.showToast(SignUpActivity.this,getString(R.string.registration_success));
 
 //                        startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
 //                        finish();
@@ -479,6 +480,8 @@ public class SignUpActivity extends AppCompatActivity {
                             intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                             startActivity(intent);
                             finish();
+                            Helper.showToast(SignUpActivity.this,getString(R.string.registration_success));
+
 
 //
                         } else
