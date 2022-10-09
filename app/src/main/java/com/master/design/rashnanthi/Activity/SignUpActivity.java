@@ -329,7 +329,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                         if (eventRegisterDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
-
+                            Helper.showToast(SignUpActivity.this,getString(R.string.registration_success));
                             user.setEmail(emailET.getText().toString());
 //                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
@@ -340,7 +340,7 @@ public class SignUpActivity extends AppCompatActivity {
                             intent.putExtra("chirag1", "1");
                             intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                             startActivity(intent);
-                            Helper.showToast(SignUpActivity.this,getString(R.string.registration_success));
+
 
 //                        startActivity(new Intent(SignUpActivity.this, VerifyActivity.class));
 //                        finish();
@@ -473,14 +473,15 @@ public class SignUpActivity extends AppCompatActivity {
                             user.setEmail(emailET.getText().toString());
 //                            user.setCreatorcoach(eventRegisterDM.getOutput().getCreatorcoach());
 //                        user.setCountryid(eventRegisterDM.getOutput().getData().get(0).getCountryid());
-
+                            Helper.showToast(SignUpActivity.this,getString(R.string.registration_success));
                             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                             intent.putExtra("CoachCreator", eventRegisterDM.getOutput().getCreatorcoach());
                             intent.putExtra("chirag2", "2");
                             intent.putExtra("mobile", eventRegisterDM.getOutput().getMobile());
                             startActivity(intent);
                             finish();
-                            Helper.showToast(SignUpActivity.this,getString(R.string.registration_success));
+
+
 
 
 //
