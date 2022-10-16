@@ -96,7 +96,7 @@ public class Calender_Fragment extends Fragment {
     @BindView(R.id.countryImg)
     ImageView countryImg;
 
-    String countryidMain = "1", storydate;
+    String  storydate;
 
     @BindView(R.id.country_spinner_Txt)
     TextView country_spinner_Txt;
@@ -436,7 +436,7 @@ public class Calender_Fragment extends Fragment {
         return cal;
     }
 
-    String countryid = "1";
+    String countryidMain ="1";
 
     public void myEventsApi(String countryidMain) {
         if (connectionDetector.isConnectingToInternet()) {
@@ -741,10 +741,13 @@ public class Calender_Fragment extends Fragment {
                         //for yellow Gradient circle for event date
                         for (MyEventData1 dm : myEventRootDM1.getOutput().getData()
                         ) {
-                            LocalDate km1 = LocalDate.parse(dm.getEventdate());
-                            Appointment.add(CalendarDay.from(km1));
-                            RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
-                            calendarView.addDecorator(redColorDecorator);
+                            if(dm.getImage()!=null){
+                                LocalDate km1 = LocalDate.parse(dm.getEventdate());
+                                Appointment.add(CalendarDay.from(km1));
+                                RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
+                                calendarView.addDecorator(redColorDecorator);
+                            }
+
                         }
 
                         // this for today current date

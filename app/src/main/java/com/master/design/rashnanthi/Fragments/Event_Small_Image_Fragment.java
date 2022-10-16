@@ -288,22 +288,25 @@ public class Event_Small_Image_Fragment extends Fragment {
 //                            DataNUll();
 
                         // passing this array list inside our adapter class.
-                        SliderAdapter adapter = new SliderAdapter(context, getEventsByCountryDateRootDM.getOutput().getData());
+                        if (getEventsByCountryDateRootDM.getOutput().getData().get(0).getImage() != null ||
+                                getEventsByCountryDateRootDM.getOutput().getData().get(0).getImagedata() != null) {
 
-                        // below method is used to set auto cycle direction in left to
-                        // right direction you can change according to requirement.
-                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
-                        slider.startAnimation(animation);
-                        slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+                            SliderAdapter adapter = new SliderAdapter(context, getEventsByCountryDateRootDM.getOutput().getData());
 
-                        // below method is used to
-                        // setadapter to sliderview.
-                        slider.setSliderAdapter(adapter);
-                        slider.setInfiniteAdapterEnabled(false);
-                        // below method is use to set
-                        // scroll time in seconds.
+                            // below method is used to set auto cycle direction in left to
+                            // right direction you can change according to requirement.
+                            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_anim);
+                            slider.startAnimation(animation);
+                            slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
 
-                        slider.setScrollTimeInSec(3);
+                            // below method is used to
+                            // setadapter to sliderview.
+                            slider.setSliderAdapter(adapter);
+                            slider.setInfiniteAdapterEnabled(false);
+                            // below method is use to set
+                            // scroll time in seconds.
+
+                            slider.setScrollTimeInSec(3);
 //
 //                        // to set it scrollable automatically
 //                        // we use below method.
@@ -314,9 +317,12 @@ public class Event_Small_Image_Fragment extends Fragment {
 
 //                            slider.startAutoCycle();
 
-
-                    } else
+                        } else {
+                            Helper.showToast(getActivity(), getString(R.string.no_posts));
+                        }
+                    } else {
                         Helper.showToast(getActivity(), getString(R.string.some_netork_happened));
+                    }
                 }
 
                 @Override
