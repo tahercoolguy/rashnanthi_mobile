@@ -884,7 +884,7 @@
                                 android:layout_marginRight="1dp"
                                 android:background="@drawable/mob_bg"
                                 android:elevation="4dp"
-                                android:hint="34324324"
+                                android:hint="12345678"
 
                                 android:imeOptions="actionNext"
                                 android:inputType="number"
@@ -983,7 +983,7 @@
                             android:layout_marginRight="1dp"
                             android:background="@drawable/mob_bg"
                             android:elevation="4dp"
-                            android:hint="34324324"
+                            android:hint="12345678"
                             android:imeOptions="actionNext"
                             android:inputType="number"
 
