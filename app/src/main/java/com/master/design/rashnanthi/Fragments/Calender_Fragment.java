@@ -737,6 +737,7 @@ public class Calender_Fragment extends Fragment {
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
                     Appointment.clear();
                     if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        calendarView.removeDecorators();
 
                         //for yellow Gradient circle for event date
                         for (MyEventData1 dm : myEventRootDM1.getOutput().getData()
