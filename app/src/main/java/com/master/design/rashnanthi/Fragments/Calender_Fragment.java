@@ -680,6 +680,7 @@ public class Calender_Fragment extends Fragment {
                     } else {
                         Helper.showToast(getActivity(), getString(R.string.no_posts));
                         List<Event> events = compactCalendar.getEventsForMonth((Calendar.getInstance()).getTime());
+                        calendarView.removeDecorators();
                         for (Event e : events
                         ) {
                             compactCalendar.removeEvent(e, true);
@@ -736,6 +737,7 @@ public class Calender_Fragment extends Fragment {
                 @Override
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
                     Appointment.clear();
+                    calendarView.removeDecorators();
                     if (myEventRootDM1.getOutput().getSuccess().equalsIgnoreCase("1")) {
                         calendarView.removeDecorators();
 
@@ -776,6 +778,7 @@ public class Calender_Fragment extends Fragment {
 
                         //for current date show small yellow dot on event
                         for (CalendarDay calendarDay1 : Appointment) {
+                            Appointment.clear();
                             String Date = String.valueOf(calendarDay1.getDay()), Month = String.valueOf(calendarDay1.getMonth()),
                                     Year = String.valueOf(calendarDay1.getYear());
 
