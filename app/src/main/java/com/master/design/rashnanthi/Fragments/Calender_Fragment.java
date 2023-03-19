@@ -96,7 +96,7 @@ public class Calender_Fragment extends Fragment {
     @BindView(R.id.countryImg)
     ImageView countryImg;
 
-    String  storydate;
+    String storydate;
 
     @BindView(R.id.country_spinner_Txt)
     TextView country_spinner_Txt;
@@ -436,7 +436,7 @@ public class Calender_Fragment extends Fragment {
         return cal;
     }
 
-    String countryidMain ="1";
+    String countryidMain = "1";
 
     public void myEventsApi(String countryidMain) {
         if (connectionDetector.isConnectingToInternet()) {
@@ -744,7 +744,7 @@ public class Calender_Fragment extends Fragment {
                         //for yellow Gradient circle for event date
                         for (MyEventData1 dm : myEventRootDM1.getOutput().getData()
                         ) {
-                            if(dm.getImage()!=null){
+                            if (dm.getImage() != null) {
                                 LocalDate km1 = LocalDate.parse(dm.getEventdate());
                                 Appointment.add(CalendarDay.from(km1));
                                 RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
@@ -775,33 +775,36 @@ public class Calender_Fragment extends Fragment {
                             e.printStackTrace();
                         }
 
+                        try {
+                            //for current date show small yellow dot on event
+                            for (CalendarDay calendarDay1 : Appointment) {
+                                 String Date = String.valueOf(calendarDay1.getDay()), Month = String.valueOf(calendarDay1.getMonth()),
+                                        Year = String.valueOf(calendarDay1.getYear());
 
-                        //for current date show small yellow dot on event
-                        for (CalendarDay calendarDay1 : Appointment) {
-                            Appointment.clear();
-                            String Date = String.valueOf(calendarDay1.getDay()), Month = String.valueOf(calendarDay1.getMonth()),
-                                    Year = String.valueOf(calendarDay1.getYear());
+                                if (calendarDay1.getDay() <= 9)
+                                    Date = "0" + calendarDay1.getDay();
 
-                            if (calendarDay1.getDay() <= 9)
-                                Date = "0" + calendarDay1.getDay();
-
-                            int monthnew = calendarDay1.getMonth() + 1;
-                            if (monthnew <= 10) {
-                                Month = "0" + calendarDay1.getMonth();
-                            }
-
-                            String eventDate = Year + "-" + Month + "-" + Date;
-
-                            try {
-                                //set yellow date on curremt date
-                                if (eventDate.equals(finalDate)) {
-                                    calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+                                int monthnew = calendarDay1.getMonth() + 1;
+                                if (monthnew <= 10) {
+                                    Month = "0" + calendarDay1.getMonth();
                                 }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
 
+                                String eventDate = Year + "-" + Month + "-" + Date;
+
+                                try {
+                                    //set yellow date on curremt date
+                                    if (eventDate.equals(finalDate)) {
+                                        calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
+
 
 
                     } else {
