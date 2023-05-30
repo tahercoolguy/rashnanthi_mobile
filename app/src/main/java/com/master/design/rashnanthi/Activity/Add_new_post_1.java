@@ -583,10 +583,29 @@ public class Add_new_post_1 extends AppCompatActivity {
 //            multipartTypedOutput.addPart("eventdate", new TypedString("2022-06-06"));
                 multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(wtsapMobile__ET.getText().toString()));
-                multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
-                multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+
+
+
+                if(!snapET.getText().toString().equalsIgnoreCase("")){
+                    multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
+
+                }
+
+                if(!instaET.getText().toString().equalsIgnoreCase("")){
+                    multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+
+                }
+                if(!webET.getText().toString().equalsIgnoreCase("")){
+                    multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
+
+                }
+
+
+//
+//                multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
+//                multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+////                multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
 //                multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
-                multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
                 multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
                 multipartTypedOutput.addPart("mobile", new TypedString(mobileET.getText().toString()));
 //            multipartTypedOutput.addPart("countryid[]", new TypedString(data.get(0).getId()));
@@ -787,13 +806,15 @@ public class Add_new_post_1 extends AppCompatActivity {
                 } else if (wtsapMobile__ET.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Add_new_post_1.this, getString(R.string.enter_whatsapp));
-                } else if (snapET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_snapchat));
-                } else if (instaET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_insta));
-                } else if (correct) {
+                }
+//                else if (snapET.getText().toString().equalsIgnoreCase("")) {
+//                    correct = false;
+//                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_snapchat));
+//                } else if (instaET.getText().toString().equalsIgnoreCase("")) {
+//                    correct = false;
+//                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_insta));
+//                }
+                else if (correct) {
 
 
                     progress = dialogUtil.showProgressDialog(Add_new_post_1.this, getString(R.string.please_wait));
@@ -912,9 +933,27 @@ public class Add_new_post_1 extends AppCompatActivity {
 
         multipartTypedOutput.addPart("countrycode", new TypedString(country_spinnerET.getText().toString()));
 
-        multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
-        multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
-        multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
+
+
+        if(!snapET.getText().toString().equalsIgnoreCase("")){
+            multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
+
+        }
+
+        if(!instaET.getText().toString().equalsIgnoreCase("")){
+            multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+
+        }
+        if(!webET.getText().toString().equalsIgnoreCase("")){
+            multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
+
+        }
+
+
+//
+//        multipartTypedOutput.addPart("snapchat", new TypedString(snapET.getText().toString()));
+//        multipartTypedOutput.addPart("instagram", new TypedString(instaET.getText().toString()));
+//        multipartTypedOutput.addPart("website", new TypedString(webET.getText().toString()));
         multipartTypedOutput.addPart("countryid[]", new TypedString(CountryId));
 //            multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
         multipartTypedOutput.addPart("posteddate", new TypedString(date));
@@ -1363,13 +1402,15 @@ public class Add_new_post_1 extends AppCompatActivity {
                 } else if (wtsapMobile__ET.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Add_new_post_1.this, getString(R.string.enter_whatsapp));
-                } else if (snapET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_snapchat));
-                } else if (instaET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_insta));
-                } else if (correct) {
+                }
+//                else if (snapET.getText().toString().equalsIgnoreCase("")) {
+//                    correct = false;
+//                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_snapchat));
+//                } else if (instaET.getText().toString().equalsIgnoreCase("")) {
+//                    correct = false;
+//                    Helper.showToast(Add_new_post_1.this, getString(R.string.enter_insta));
+//                }
+                else if (correct) {
 
 
                     progress = dialogUtil.showProgressDialog(Add_new_post_1.this, getString(R.string.please_wait));

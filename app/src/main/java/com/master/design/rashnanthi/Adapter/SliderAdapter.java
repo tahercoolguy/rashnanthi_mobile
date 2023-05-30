@@ -102,23 +102,32 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
 
 
-        if(!eventsDetailsData.get(position).getInstagram().equalsIgnoreCase(""))
-        {
-            viewHolder.insta.setVisibility(View.VISIBLE);
-            viewHolder.insta.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+//        if(!eventsDetailsData.get(position).getInstagram().equalsIgnoreCase(" ")||!eventsDetailsData.get(position).getInstagram().equalsIgnoreCase(""))
+//        {
+//            viewHolder.insta.setVisibility(View.VISIBLE);
+//            viewHolder.insta.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+//        }else{
+//            viewHolder.insta.setVisibility(View.GONE);
+//        }
+        String whatsappNumber="";
+        whatsappNumber=eventsDetailsData.get(position).getWhatsapnumber();
 
-                }
-            });
+        if(whatsappNumber.equalsIgnoreCase("") ||whatsappNumber.equalsIgnoreCase(" ")||whatsappNumber==null)
+        {
+            viewHolder.whts.setVisibility(View.GONE);
+
+        }else{
+            viewHolder.whts.setVisibility(View.VISIBLE);
         }
 
-        if(!eventsDetailsData.get(position).getWhatsapnumber().equalsIgnoreCase(""))
-        {
-            viewHolder.whts.setVisibility(View.VISIBLE);
-            viewHolder.whts.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        viewHolder.whts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                    String url = "https://api.whatsapp.com/send?phone=" + eventsDetailsData.get(position).getWhatsapcountrycode()+ eventsDetailsData.get(position).getWhatsapnumber();
 //                    try {
 //                        PackageManager pm = context.getPackageManager();
@@ -132,79 +141,100 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 //                        e.printStackTrace();
 //                    }
 
-                    try {
-                        String url = "https://api.whatsapp.com/send?phone=" + eventsDetailsData.get(position).getWhatsapcountrycode() + eventsDetailsData.get(position).getWhatsapnumber();
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(url));
-                        context.startActivity(intent);
-                    } catch (Exception e) {
-                        Helper.showToast(context,context.getString(R.string.something_wrong));
-                    }}
-            });
-        }
+                try {
+                    String url = "https://api.whatsapp.com/send?phone=" + eventsDetailsData.get(position).getWhatsapcountrycode() + eventsDetailsData.get(position).getWhatsapnumber();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    context.startActivity(intent);
+                } catch (Exception e) {
+                    Helper.showToast(context,context.getString(R.string.something_wrong));
+                }}
+        });
+        String snapLink="";
+        snapLink=eventsDetailsData.get(position).getSnapchat();
 
-        if(!eventsDetailsData.get(position).getSnapchat().equalsIgnoreCase(""))
+        if(snapLink.equalsIgnoreCase("") ||snapLink.equalsIgnoreCase(" ")||snapLink==null)
         {
+            viewHolder.snap.setVisibility(View.GONE);
+
+        }else{
             viewHolder.snap.setVisibility(View.VISIBLE);
-            viewHolder.snap.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/" + eventsDetailsData.get(position).getSnapchat()));
-                        intent.setPackage("com.snapchat.android");
-                        context.startActivity(intent);
-                    } catch (Exception e) {
-                        Helper.showToast(context, context.getString(R.string.snapchat_not_installed));
-
-
-                        e.printStackTrace();
-                    }
-                }
-            });
         }
 
-        if(!eventsDetailsData.get(position).getWebsite().equalsIgnoreCase(""))
+        viewHolder.snap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/" + eventsDetailsData.get(position).getSnapchat()));
+                    intent.setPackage("com.snapchat.android");
+                    context.startActivity(intent);
+                } catch (Exception e) {
+                    Helper.showToast(context, context.getString(R.string.snapchat_not_installed));
+
+
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        String websitelink="";
+        websitelink=eventsDetailsData.get(position).getWebsite();
+
+        if(websitelink.equalsIgnoreCase("") ||websitelink.equalsIgnoreCase(" ")||websitelink==null)
         {
+            viewHolder.web.setVisibility(View.GONE);
+
+        }else{
             viewHolder.web.setVisibility(View.VISIBLE);
-            viewHolder.web.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + eventsDetailsData.get(position).getWebsite()));
-                        context.startActivity(myIntent);
-                    } catch (ActivityNotFoundException e) {
-
-                        Helper.showToast(context, "No application can handle this request."
-                                + " Please install a web browser");
-                        e.printStackTrace();
-                    }
-                }
-            });
         }
 
-        if(!eventsDetailsData.get(position).getInstagram().equalsIgnoreCase(""))
+        viewHolder.web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + eventsDetailsData.get(position).getWebsite()));
+                    context.startActivity(myIntent);
+                } catch (ActivityNotFoundException e) {
+
+                    Helper.showToast(context, "No application can handle this request."
+                            + " Please install a web browser");
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        String instagramLink="";
+        instagramLink=eventsDetailsData.get(position).getInstagram();
+
+        if(instagramLink.equalsIgnoreCase("") ||instagramLink.equalsIgnoreCase(" ")||instagramLink==null)
         {
+            viewHolder.insta.setVisibility(View.GONE);
+
+        }else{
             viewHolder.insta.setVisibility(View.VISIBLE);
-            viewHolder.insta.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Uri uri = Uri.parse("http://instagram.com/" + eventsDetailsData.get(position).getInstagram());
-
-
-                    Intent i = new Intent(Intent.ACTION_VIEW, uri);
-
-                    i.setPackage("com.instagram.android");
-
-                    try {
-                        context.startActivity(i);
-                    } catch (ActivityNotFoundException e) {
-
-                         context.startActivity(new Intent(Intent.ACTION_VIEW,
-                                Uri.parse("http://instagram.com/" + eventsDetailsData.get(position).getInstagram())));
-                    }
-                }
-            });
         }
+
+        viewHolder.insta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://instagram.com/" + eventsDetailsData.get(position).getInstagram());
+
+
+                Intent i = new Intent(Intent.ACTION_VIEW, uri);
+
+                i.setPackage("com.instagram.android");
+
+                try {
+                    context.startActivity(i);
+                } catch (ActivityNotFoundException e) {
+
+                    context.startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://instagram.com/" + eventsDetailsData.get(position).getInstagram())));
+                }
+            }
+        });
 
         // Glide is use to load image
         // from url in your imageview.

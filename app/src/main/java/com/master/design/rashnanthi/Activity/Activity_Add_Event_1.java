@@ -745,9 +745,24 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
 
-            multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
-            multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
-            multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
+//            multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
+//            multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
+//            multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
+
+            if(!snap_ET.getText().toString().equalsIgnoreCase("")){
+                multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
+
+            }
+
+            if(!insta_ET.getText().toString().equalsIgnoreCase("")){
+                multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
+
+            }
+            if(!wesite_ET.getText().toString().equalsIgnoreCase("")){
+                multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
+
+            }
+
             multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
             multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
             multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
@@ -987,9 +1002,20 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
                 multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
                 multipartTypedOutput.addPart("mobile", new TypedString(contact__ET.getText().toString()));
-                multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
-                multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
-                multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
+                if(!snap_ET.getText().toString().equalsIgnoreCase("")){
+                    multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
+
+                }
+
+                if(!insta_ET.getText().toString().equalsIgnoreCase("")){
+                    multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
+
+                }
+                if(!wesite_ET.getText().toString().equalsIgnoreCase("")){
+                    multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
+
+                }
+
                 multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
@@ -1152,19 +1178,22 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 } else if (mobile__ET.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsapp));
-                } else if (snap_ET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_snapchat));
-                } else if (insta_ET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_insta));
-                } else if (wesite_ET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_website));
-                } else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
+                }
+//                else if (snap_ET.getText().toString().equalsIgnoreCase("")) {
+//                    correct = false;
+//                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_snapchat));
+//                } else if (insta_ET.getText().toString().equalsIgnoreCase("")) {
+//                    correct = false;
+//                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_insta));
+//                } else if (wesite_ET.getText().toString().equalsIgnoreCase("")) {
+//                    correct = false;
+//                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_website));
+//                }
+                else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
-                } else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
+                }
+                else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
                     correct = false;
                     Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
                 } else if (correct) {

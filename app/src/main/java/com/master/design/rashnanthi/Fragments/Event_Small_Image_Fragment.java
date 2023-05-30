@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.denzcoskun.imageslider.ImageSlider;
+//import com.denzcoskun.imageslider.ImageSlider;
 import com.master.design.rashnanthi.Activity.Activity_Add_Event_1;
 import com.master.design.rashnanthi.Activity.MainActivity;
 import com.master.design.rashnanthi.Adapter.ImageRecyclerAdapter;
@@ -235,28 +235,28 @@ public class Event_Small_Image_Fragment extends Fragment {
 
 
     public void DataNUll() {
-        if (Instagram == null) {
+        if (Instagram == null ||Instagram.equalsIgnoreCase("")) {
             instaImg.setVisibility(View.GONE);
         } else {
             instaImg.setVisibility(View.VISIBLE);
         }
 
 
-        if (Whatsapp == null) {
+        if (Whatsapp == null ||Whatsapp.equalsIgnoreCase("")) {
             wtsapImg.setVisibility(View.GONE);
         } else {
             wtsapImg.setVisibility(View.VISIBLE);
         }
 
 
-        if (Website == null) {
+        if (Website == null||Website.equalsIgnoreCase("")) {
             webImg.setVisibility(View.GONE);
         } else {
             webImg.setVisibility(View.VISIBLE);
         }
 
 
-        if (Snapchat == null) {
+        if (Snapchat == null||Snapchat.equalsIgnoreCase("")) {
             snapImg.setVisibility(View.GONE);
         } else {
             snapImg.setVisibility(View.VISIBLE);
