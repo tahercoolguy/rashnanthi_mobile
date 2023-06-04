@@ -83,12 +83,12 @@ public class Social_Media_Fragment extends Fragment {
     public void SocialMediaLinkVisibiity() {
 
         if (connectionDetector.isConnectingToInternet()) {
-            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
+//            progress = dialogUtil.showProgressDialog(context, getString(R.string.please_wait));
             appController.paServices.SocialMedia(new Callback<SocialMediaDM>() {
                 @Override
 
                 public void success(SocialMediaDM socialMediaDM, Response response) {
-                    progress.dismiss();
+//                    progress.dismiss();
                     if (socialMediaDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
 
                         String insta = socialMediaDM.getOutput().getData().get(0).getInstagram();
@@ -188,7 +188,7 @@ public class Social_Media_Fragment extends Fragment {
 
                 @Override
                 public void failure(RetrofitError retrofitError) {
-                    progress.dismiss();
+//                    progress.dismiss();
                     Log.e("error", retrofitError.toString());
 
                 }
