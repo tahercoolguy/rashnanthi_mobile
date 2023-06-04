@@ -722,7 +722,12 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                 e.printStackTrace();
             }
             MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
-            multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
+//            multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
+            if (finalDate != null) {
+                multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
+            } else {
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.select_date));
+            }
             multipartTypedOutput.addPart("eventid", new TypedString(eventid));
             if (id0 != null) {
                 if (idOne) {
@@ -749,16 +754,16 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //            multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
 //            multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
 
-            if(!snap_ET.getText().toString().equalsIgnoreCase("")){
+            if (!snap_ET.getText().toString().equalsIgnoreCase("")) {
                 multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
 
             }
 
-            if(!insta_ET.getText().toString().equalsIgnoreCase("")){
+            if (!insta_ET.getText().toString().equalsIgnoreCase("")) {
                 multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
 
             }
-            if(!wesite_ET.getText().toString().equalsIgnoreCase("")){
+            if (!wesite_ET.getText().toString().equalsIgnoreCase("")) {
                 multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
 
             }
@@ -970,215 +975,220 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     }
 
     public void AddEventByCreatorAPI() {
-        if (ifterm != false) {
 
 
-            if (connectionDetector.isConnectingToInternet()) {
-                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        if (connectionDetector.isConnectingToInternet()) {
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-                String id = String.valueOf(user.getId());
+            String id = String.valueOf(user.getId());
 
-                MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
+            MultipartTypedOutput multipartTypedOutput = new MultipartTypedOutput();
 
-                String newdate = dateTxt.getText().toString();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String finalDate = null;
-                try {
-                    Date date;
-                    date = sdf.parse(newdate);
-                    SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                    finalDate = finalDateFormat.format(date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+            String newdate = dateTxt.getText().toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String finalDate = "";
+            try {
+                Date date;
+                date = sdf.parse(newdate);
+                SimpleDateFormat finalDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                finalDate = finalDateFormat.format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-                if (finalDate != null) {
-                    multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
-                } else {
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.select_date));
-                }
+            if (finalDate != null) {
                 multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
-                multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
-                multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
-                multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
-                multipartTypedOutput.addPart("mobile", new TypedString(contact__ET.getText().toString()));
-                if(!snap_ET.getText().toString().equalsIgnoreCase("")){
-                    multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
+            } else {
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.select_date));
+            }
+//            multipartTypedOutput.addPart("eventdate", new TypedString(finalDate));
+            multipartTypedOutput.addPart("whatsapcountrycode", new TypedString(wtspcodeTxt.getText().toString()));
+            multipartTypedOutput.addPart("countrycode", new TypedString(contactCountrycodeTxt.getText().toString()));
+            multipartTypedOutput.addPart("whatsapnumber", new TypedString(mobile__ET.getText().toString()));
+            multipartTypedOutput.addPart("mobile", new TypedString(contact__ET.getText().toString()));
+            if (!snap_ET.getText().toString().equalsIgnoreCase("")) {
+                multipartTypedOutput.addPart("snapchat", new TypedString(snap_ET.getText().toString()));
 
-                }
+            }
 
-                if(!insta_ET.getText().toString().equalsIgnoreCase("")){
-                    multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
+            if (!insta_ET.getText().toString().equalsIgnoreCase("")) {
+                multipartTypedOutput.addPart("instagram", new TypedString(insta_ET.getText().toString()));
 
-                }
-                if(!wesite_ET.getText().toString().equalsIgnoreCase("")){
-                    multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
+            }
+            if (!wesite_ET.getText().toString().equalsIgnoreCase("")) {
+                multipartTypedOutput.addPart("website", new TypedString(wesite_ET.getText().toString()));
 
-                }
+            }
 
-                multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
-                multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
-                multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
-                multipartTypedOutput.addPart("postedby", new TypedString(id));
-                multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
+            multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
+            multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
+            multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
+            multipartTypedOutput.addPart("postedby", new TypedString(id));
+            multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
 
-                if (iffree != false) {
-                    multipartTypedOutput.addPart("payorfree", new TypedString("1"));
-                }
-                if (ifpaid != false) {
-                    multipartTypedOutput.addPart("payorfree", new TypedString("2"));
-                }
+            if (iffree != false) {
+                multipartTypedOutput.addPart("payorfree", new TypedString("1"));
+            }
+            if (ifpaid != false) {
+                multipartTypedOutput.addPart("payorfree", new TypedString("2"));
+            }
 
-                try {
-                    if (ifimg1) {
-                        File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp.jpg");
-                        f.createNewFile();
+            try {
+                if (ifimg1) {
+                    File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp.jpg");
+                    f.createNewFile();
 
-                        Bitmap one = ((BitmapDrawable) img1.getDrawable()).getBitmap();
+                    Bitmap one = ((BitmapDrawable) img1.getDrawable()).getBitmap();
 //Convert bitmap to byte array
-                        Bitmap bitmap = one;
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                        byte[] bitmapdata = bos.toByteArray();
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
 
 //write the bytes in file
-                        FileOutputStream fos = new FileOutputStream(f);
-                        fos.write(bitmapdata);
-                        fos.flush();
-                        fos.close();
-                        File resizedImage = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(512)
-                                .setQuality(80)
-                                .setOutputFormat("JPEG")
-                                .setOutputFilename("resized_image1")
-                                .setSourceImage(f)
-                                .getResizedFile();
-                        multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("image/jpg", resizedImage));
-                    }
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage = new Resizer(Activity_Add_Event_1.this)
+                            .setTargetLength(512)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image1")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("image/jpg", resizedImage));
+                }
 
-                    if (v1) {
-                        File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video1));
-
-
-                        multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("video/mp4", imageFile));
-                    }
+                if (v1) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video1));
 
 
-                    if (ifimg2) {
-                        File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp1.jpg");
-                        f.createNewFile();
-
-                        Bitmap one = ((BitmapDrawable) img2.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                        Bitmap bitmap = one;
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                        byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                        FileOutputStream fos = new FileOutputStream(f);
-                        fos.write(bitmapdata);
-                        fos.flush();
-                        fos.close();
-                        File resizedImage1 = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(512)
-                                .setQuality(80)
-                                .setOutputFormat("JPEG")
-                                .setOutputFilename("resized_image2")
-                                .setSourceImage(f)
-                                .getResizedFile();
-                        multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage1));
-                    }
-
-                    if (v2) {
-                        File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video2));
-
-
-                        multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
-                    }
-
-
-                    if (ifimg3) {
-                        File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp2.jpg");
-                        f.createNewFile();
-
-                        Bitmap one = ((BitmapDrawable) img3.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                        Bitmap bitmap = one;
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                        byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                        FileOutputStream fos = new FileOutputStream(f);
-                        fos.write(bitmapdata);
-                        fos.flush();
-                        fos.close();
-                        File resizedImage2 = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(512)
-                                .setQuality(80)
-                                .setOutputFormat("JPEG")
-                                .setOutputFilename("resized_image3")
-                                .setSourceImage(f)
-                                .getResizedFile();
-                        multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("image/jpg", resizedImage2));
-                    }
-
-
-                    if (v3) {
-                        File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video3));
-
-
-                        multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("video/mp4", imageFile));
-                    }
-
-                    if (ifimg4) {
-                        File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp3.jpg");
-                        f.createNewFile();
-
-                        Bitmap one = ((BitmapDrawable) img4.getDrawable()).getBitmap();
-//Convert bitmap to byte array
-                        Bitmap bitmap = one;
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                        byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-                        FileOutputStream fos = new FileOutputStream(f);
-                        fos.write(bitmapdata);
-                        fos.flush();
-                        fos.close();
-                        File resizedImage3 = new Resizer(Activity_Add_Event_1.this)
-                                .setTargetLength(512)
-                                .setQuality(80)
-                                .setOutputFormat("JPEG")
-                                .setOutputFilename("resized_image4")
-                                .setSourceImage(f)
-                                .getResizedFile();
-                        multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage3));
-                    }
-                    if (v4) {
-                        File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video4));
-
-
-                        multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
-                    }
-                } catch (Exception e) {
-                    Log.e("Error", e.toString());
+                    multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("video/mp4", imageFile));
                 }
 
 
-                boolean correct = true;
-                if (dateTxt.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.select_date));
-                } else if (wtspcodeTxt.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsap_code));
-                } else if (mobile__ET.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsapp));
+                if (ifimg2) {
+                    File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp1.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) img2.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage1 = new Resizer(Activity_Add_Event_1.this)
+                            .setTargetLength(512)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image2")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage1));
                 }
+
+                if (v2) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video2));
+
+
+                    multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                }
+
+
+                if (ifimg3) {
+                    File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp2.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) img3.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage2 = new Resizer(Activity_Add_Event_1.this)
+                            .setTargetLength(512)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image3")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("image/jpg", resizedImage2));
+                }
+
+
+                if (v3) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video3));
+
+
+                    multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                }
+
+                if (ifimg4) {
+                    File f = new File(Activity_Add_Event_1.this.getCacheDir(), "temp3.jpg");
+                    f.createNewFile();
+
+                    Bitmap one = ((BitmapDrawable) img4.getDrawable()).getBitmap();
+//Convert bitmap to byte array
+                    Bitmap bitmap = one;
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                    byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(bitmapdata);
+                    fos.flush();
+                    fos.close();
+                    File resizedImage3 = new Resizer(Activity_Add_Event_1.this)
+                            .setTargetLength(512)
+                            .setQuality(80)
+                            .setOutputFormat("JPEG")
+                            .setOutputFilename("resized_image4")
+                            .setSourceImage(f)
+                            .getResizedFile();
+                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage3));
+                }
+                if (v4) {
+                    File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video4));
+
+
+                    multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                }
+            } catch (Exception e) {
+                Log.e("Error", e.toString());
+            }
+
+
+            boolean correct = true;
+            if (finalDate.equalsIgnoreCase("") || finalDate == null) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.select_date));
+            } else if (wtspcodeTxt.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsap_code));
+            } else if (mobile__ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_whatsapp));
+            } else if (contactCountrycodeTxt.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_mobile_code));
+            } else if (contact__ET.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_enter_mobile));
+            }
 //                else if (snap_ET.getText().toString().equalsIgnoreCase("")) {
 //                    correct = false;
 //                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_snapchat));
@@ -1189,26 +1199,30 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //                    correct = false;
 //                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_website));
 //                }
-                else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
-                }
-                else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
-                    correct = false;
-                    Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
-                } else if (correct) {
-
-                    progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
-
-                    appController.paServices.AddEventByCreator(multipartTypedOutput, new Callback<AddEventByCreatorRootDM>() {
-                        @Override
-                        public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
-                            progress.dismiss();
-                            if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+            else if (country_spinner_Txt.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
+            } else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
+            } else if (ifterm== false) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));
 
 
-                                //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
-                                EventId = addEventByCreatorRootDM.getOutput().getEventid();
+            } else if (correct) {
+
+                progress = dialogUtil.showProgressDialog(Activity_Add_Event_1.this, getString(R.string.please_wait));
+
+                appController.paServices.AddEventByCreator(multipartTypedOutput, new Callback<AddEventByCreatorRootDM>() {
+                    @Override
+                    public void success(AddEventByCreatorRootDM addEventByCreatorRootDM, Response response) {
+                        progress.dismiss();
+                        if (addEventByCreatorRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+
+
+                            //                        user.setId(Integer.parseInt(addEventByCreatorRootDM.getOutput().getEventid()));
+                            EventId = addEventByCreatorRootDM.getOutput().getEventid();
 
 
 //                                if (iffree != false) {
@@ -1221,31 +1235,28 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //                                    intent.putExtra("eventid", EventId);
 //                                    startActivity(intent);
 //                                }
-                                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.the_post_under_review));
-                                Activity_Add_Event_1.this.finish();
+                            Helper.showToast(Activity_Add_Event_1.this, getString(R.string.the_post_under_review));
+                            Activity_Add_Event_1.this.finish();
 
 
-                            } else
-                                Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
+                        } else
+                            Helper.showToast(Activity_Add_Event_1.this, addEventByCreatorRootDM.getOutput().getMessage());
 
-                        }
+                    }
 
-                        @Override
-                        public void failure(RetrofitError retrofitError) {
-                            progress.dismiss();
-                            Log.e("error", retrofitError.toString());
+                    @Override
+                    public void failure(RetrofitError retrofitError) {
+                        progress.dismiss();
+                        Log.e("error", retrofitError.toString());
 
-                        }
-                    });
+                    }
+                });
 
-                }
-            } else
-                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.no_internet_connection));
+            }
+        } else
+            Helper.showToast(Activity_Add_Event_1.this, getString(R.string.no_internet_connection));
 
-        } else {
-            Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));
 
-        }
     }
 
 
@@ -1458,7 +1469,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
         wtsapclick = true;
-        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class), 48);
+        Intent intent=new Intent(Activity_Add_Event_1.this,Country_Spinner_Activity.class);
+        intent.putExtra("resultcode","48");
+        startActivityForResult(intent, 2);// Activity is started with requestCode 2
+
 
 
     }
@@ -1466,8 +1480,10 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.contactRL)
     public void ContactCodeCountry() {
         contactClick = true;
-        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class), 48);
-
+//        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class).putExtra("resultcode","49"), 49);
+        Intent intent=new Intent(Activity_Add_Event_1.this,Country_Spinner_Activity.class);
+        intent.putExtra("resultcode","49");
+        startActivityForResult(intent, 2);// Activity is started with requestCode 2
 
     }
 
@@ -1891,15 +1907,21 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 //            Picasso.get().load(AppController.base_image_url + mycountryimg).into(mycountryimg);
 //            country_spinner_Txt.setText(mycountryname);
 
+            if (resultCode == 48) {
 
-            if (wtsapclick == true) {
-                Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
-                wtspcodeTxt.setText(mycode);
+//                if (wtsapclick == true) {
+                    Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
+                    wtspcodeTxt.setText(mycode);
+//                }
+
+
             }
 
-            if (contactClick == true) {
-                Picasso.get().load(AppController.base_image_url + mycountryimg).into(contactcountryImg);
-                contactCountrycodeTxt.setText(mycode);
+            if(resultCode==49){
+//                if (contactClick == true) {
+                    Picasso.get().load(AppController.base_image_url + mycountryimg).into(contactcountryImg);
+                    contactCountrycodeTxt.setText(mycode);
+//                }
             }
 //            if(spinnerCountryBottom==true){
 //

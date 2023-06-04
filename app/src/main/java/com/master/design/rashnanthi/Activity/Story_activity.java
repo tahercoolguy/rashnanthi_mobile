@@ -126,7 +126,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
         mL = new ArrayList<Integer>();
 
         story_back_btn = findViewById(R.id.story_back_btn);
-        backgrd =(ImageView) findViewById(R.id.bckgrd);
+        backgrd = (ImageView) findViewById(R.id.bckgrd);
 
 
         story_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 
         counter = counter + 1;
         if (array_image.get(counter) != null) {
-           String new1= array_image.get(counter);
+            String new1 = array_image.get(counter);
             if (array_image.get(counter).contains(".mp4")) {
                 webView.setVisibility(View.VISIBLE);
                 image.setVisibility(View.GONE);
@@ -247,14 +247,14 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
                 public void success(StoriesByDateRootDM storiesByDateRootDM, Response response) {
                     progress.dismiss();
                     if (storiesByDateRootDM.getOutput().getSuccess().equalsIgnoreCase("1")) {
+                        try {
+                            for (AllStoryImage story : storiesByDateRootDM.getOutput().getAllimagedata()
+                            ) {
+                                if (story != null) {
+                                    array_image.add(story.getImage());
+                                }
 
-                        for (AllStoryImage story : storiesByDateRootDM.getOutput().getAllimagedata()
-                        ) {
-                            if(story!=null){
-                                array_image.add(story.getImage());
                             }
-
-                        }
 //                        for (StoriesByDateData story : storiesByDateRootDM.getOutput().getData()
 //                        ) {
 //                            if(story!=null){
@@ -265,78 +265,85 @@ public class Story_activity extends AppCompatActivity implements StoriesProgress
 
 //                        array_image_count.add(String.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().size()));
 
-                        // on below line we are setting the total count for our stories.
-                        storiesProgressView.setStoriesCount(array_image.size());
+                            // on below line we are setting the total count for our stories.
+                            storiesProgressView.setStoriesCount(array_image.size());
 
-                        // on below line we are setting story duration for each story.
-                        storiesProgressView.setStoryDuration(3000L);
+                            // on below line we are setting story duration for each story.
+                            storiesProgressView.setStoryDuration(3000L);
 
-                        // on below line we are calling a method for set
-                        // on story listener and passing context to it.
-                        storiesProgressView.setStoriesListener(Story_activity.this);
+                            // on below line we are calling a method for set
+                            // on story listener and passing context to it.
+                            storiesProgressView.setStoriesListener(Story_activity.this);
 
-                        // below line is use to start stories progress bar.
-                        storiesProgressView.startStories(counter);
+                            // below line is use to start stories progress bar.
+                            storiesProgressView.startStories(counter);
 
-                        // initializing our image view.
-                        image = (ImageView) findViewById(R.id.image);
-                        backgrd = (ImageView) findViewById(R.id.bckgrd);
-                        // on below line we are setting image to our image view.
+                            // initializing our image view.
+                            image = (ImageView) findViewById(R.id.image);
+                            backgrd = (ImageView) findViewById(R.id.bckgrd);
+                            // on below line we are setting image to our image view.
 //                        image.setImageResource(resources[counter]);
 
-                        if (array_image.get(0).contains(".mp4")) {
-                            webView.setVisibility(View.VISIBLE);
-                            image.setVisibility(View.GONE);
+                            if (array_image.get(0).contains(".mp4")) {
+                                webView.setVisibility(View.VISIBLE);
+                                image.setVisibility(View.GONE);
 //                            webView.setVideoURI(Uri.parse(AppController.base_image_url + array_image.get(counter))); //the string of the URL mentioned above
 //                            webView.requestFocus();
 //                            webView.start();
 
-                            webView.loadUrl(AppController.base_image_url + array_image.get(counter));
-                        } else {
-                            webView.setVisibility(View.GONE);
-                            image.setVisibility(View.VISIBLE);
-                            Picasso.get()
-                                    .load(AppController.base_image_url + array_image.get(0))
-                                    .transform(new BlurTransformation(Story_activity.this, 5, 25))
-                                    .into(backgrd);
-                            Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
+                                webView.loadUrl(AppController.base_image_url + array_image.get(counter));
+                            } else {
+                                webView.setVisibility(View.GONE);
+                                image.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(AppController.base_image_url + array_image.get(0))
+                                        .transform(new BlurTransformation(Story_activity.this, 5, 25))
+                                        .into(backgrd);
+                                Picasso.get().load(AppController.base_image_url + array_image.get(0)).into(image);
 
-                        }
-                        // below is the view for going to the previous story.
-                        // initializing our previous view.
-                        View reverse = findViewById(R.id.reverse);
-
-                        // adding on click listener for our reverse view.
-                        reverse.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // inside on click we are
-                                // reversing our progress view.
-                                storiesProgressView.reverse();
                             }
-                        });
+                            // below is the view for going to the previous story.
+                            // initializing our previous view.
+                            View reverse = findViewById(R.id.reverse);
 
-                        // on below line we are calling a set on touch
-                        // listener method to move towards previous image.
-                        reverse.setOnTouchListener(onTouchListener);
+                            // adding on click listener for our reverse view.
+                            reverse.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // inside on click we are
+                                    // reversing our progress view.
+                                    storiesProgressView.reverse();
+                                }
+                            });
 
-                        // on below line we are initializing
-                        // view to skip a specific story.
-                        View skip = findViewById(R.id.skip);
-                        skip.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // inside on click we are
-                                // skipping the story progress view.
-                                storiesProgressView.skip();
-                            }
-                        });
-                        // on below line we are calling a set on touch
-                        // listener method to move to next story.
-                        skip.setOnTouchListener(onTouchListener);
+                            // on below line we are calling a set on touch
+                            // listener method to move towards previous image.
+                            reverse.setOnTouchListener(onTouchListener);
+
+                            // on below line we are initializing
+                            // view to skip a specific story.
+                            View skip = findViewById(R.id.skip);
+                            skip.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // inside on click we are
+                                    // skipping the story progress view.
+                                    storiesProgressView.skip();
+                                }
+                            });
+                            // on below line we are calling a set on touch
+                            // listener method to move to next story.
+                            skip.setOnTouchListener(onTouchListener);
 
 //                        array_image.add(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage());
 //                        mL.add(Integer.valueOf(storiesByDateRootDM.getOutput().getData().get(0).getImagedata().get(0).getStoryimage()));
+
+                        } catch (Exception e) {
+                            Helper.showToast(Story_activity.this, getString(R.string.no_stories_present));
+                            finish();
+
+                            e.printStackTrace();
+                        }
 
                     } else {
                         Helper.showToast(Story_activity.this, getString(R.string.no_stories_present));

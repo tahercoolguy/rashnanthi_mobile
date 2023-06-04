@@ -52,6 +52,7 @@ public class Country_Spinner_Activity extends AppCompatActivity {
          finish();
     }
 
+    String resultcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,8 @@ public class Country_Spinner_Activity extends AppCompatActivity {
         connectionDetector = new ConnectionDetector(getApplicationContext());
         user = new User(Country_Spinner_Activity.this);
         Binding();
+
+        resultcode=getIntent().getStringExtra("resultcode");
 
     }
 
@@ -79,7 +82,7 @@ public class Country_Spinner_Activity extends AppCompatActivity {
         intent.putExtra("countryimg",countryImg);
         intent.putExtra("countrycodee",countrycodee);
 
-        setResult(89,intent);
+        setResult(Integer.parseInt(resultcode),intent);
         finish();
     }
 
