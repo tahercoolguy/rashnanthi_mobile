@@ -1219,7 +1219,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             } else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
-            }   else if (ifterm == false) {
+            } else if (ifimg1 == false) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_image));
+            } else if (ifimg2 == false) {
+                correct = false;
+                Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_image));
+            } else if (ifterm == false) {
                 correct = false;
                 Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));
 
