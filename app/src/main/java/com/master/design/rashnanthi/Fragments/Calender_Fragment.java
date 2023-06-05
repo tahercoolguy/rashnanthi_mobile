@@ -733,7 +733,7 @@ public class Calender_Fragment extends Fragment {
     public void NewAPI(String countryidMain) {
         if (connectionDetector.isConnectingToInternet()) {
 
-            appController.paServices.AllEvent(countryidMain, "2022-01-01", "2040-01-01", new Callback<MyEventRootDM1>() {
+            appController.paServices.AllEvent(countryidMain, "2023-06-01", "2023-06-30", new Callback<MyEventRootDM1>() {
                 @Override
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
                     Appointment.clear();
@@ -744,12 +744,43 @@ public class Calender_Fragment extends Fragment {
                         //for yellow Gradient circle for event date
                         for (MyEventData1 dm : myEventRootDM1.getOutput().getData()
                         ) {
-                            if (dm.getImage() != null) {
-                                LocalDate km1 = LocalDate.parse(dm.getEventdate());
+
+                            String date = dm.getEventdate();
+
+                            String input = date;
+                            String[] dateEvent = input.split("[-]");
+
+//                                for (CalendarDay calendarDay1 : Appointment) {
+//                                    String Date = String.valueOf(calendarDay1.getDay()), Month = String.valueOf(calendarDay1.getMonth()),
+//                                            Year = String.valueOf(calendarDay1.getYear());
+//
+                            String day = String.valueOf(Integer.parseInt(dateEvent[2]));
+                            String month = String.valueOf(Integer.parseInt(dateEvent[1]));
+                            String year = String.valueOf(Integer.parseInt(dateEvent[0]));
+
+                            if (Integer.valueOf(month) <= 9 || Integer.valueOf(day) <= 9) {
+                                if (Integer.valueOf(day) <= 9)
+                                    day = "0" + day;
+
+//                                    int monthnew = calendarDay1.getMonth() + 1;
+                                if (Integer.valueOf(month) <= 9) {
+                                    month = "0" + month;
+                                }
+//
+                                String eventDate = year + "-" + month + "-" + day;
+
+
+                                LocalDate km1 = LocalDate.parse(eventDate);
+                                Appointment.add(CalendarDay.from(km1));
+                                RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
+                                calendarView.addDecorator(redColorDecorator);
+                            } else {
+                                LocalDate km1 = LocalDate.parse(date);
                                 Appointment.add(CalendarDay.from(km1));
                                 RedColorDecorator redColorDecorator = new RedColorDecorator(getActivity(), Appointment);
                                 calendarView.addDecorator(redColorDecorator);
                             }
+
 
                         }
 
@@ -778,7 +809,7 @@ public class Calender_Fragment extends Fragment {
                         try {
                             //for current date show small yellow dot on event
                             for (CalendarDay calendarDay1 : Appointment) {
-                                 String Date = String.valueOf(calendarDay1.getDay()), Month = String.valueOf(calendarDay1.getMonth()),
+                                String Date = String.valueOf(calendarDay1.getDay()), Month = String.valueOf(calendarDay1.getMonth()),
                                         Year = String.valueOf(calendarDay1.getYear());
 
                                 if (calendarDay1.getDay() <= 9)
@@ -793,7 +824,7 @@ public class Calender_Fragment extends Fragment {
 
                                 try {
                                     //set yellow date on curremt date
-                                    if (eventDate.equals(finalDate)) {
+                                    if (eventDate.contains(finalDate)) {
                                         calendarView.addDecorator(new EventDecorator(getActivity().getColor(R.color.yellows), Appointments));
                                     }
                                 } catch (Exception e) {
@@ -804,7 +835,6 @@ public class Calender_Fragment extends Fragment {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
 
 
                     } else {

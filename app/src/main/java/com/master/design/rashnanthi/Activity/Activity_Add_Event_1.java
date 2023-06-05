@@ -768,8 +768,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             }
 
-            multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
-            multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
+
             multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
             multipartTypedOutput.addPart("postedby", new TypedString(id));
             multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
@@ -801,6 +800,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("image/jpg", resizedImage));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
                 if (v1) {
@@ -808,6 +808,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                     multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
 
@@ -835,6 +836,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage1));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
                 if (v2) {
@@ -842,6 +844,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                     multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
 
@@ -869,6 +872,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("image/jpg", resizedImage2));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
 
 
@@ -877,6 +881,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                     multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
 
                 if (ifimg4) {
@@ -903,12 +908,14 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage3));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
                 if (v4) {
                     File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video4));
 
 
                     multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
             } catch (Exception e) {
                 Log.e("Error", e.toString());
@@ -1020,8 +1027,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
             }
 
-            multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
-            multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
+
             multipartTypedOutput.addPart("posteddate", new TypedString(dateTxt.getText().toString()));
             multipartTypedOutput.addPart("postedby", new TypedString(id));
             multipartTypedOutput.addPart("creatorcoach", new TypedString(user.getCreatorcoach()));
@@ -1052,12 +1058,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.close();
                     File resizedImage = new Resizer(Activity_Add_Event_1.this)
                             .setTargetLength(512)
-                            .setQuality(80)
+                            .setQuality(100)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image1")
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("image/jpg", resizedImage));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
                 if (v1) {
@@ -1065,6 +1072,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                     multipartTypedOutput.addPart("storyphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
 
@@ -1086,12 +1094,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.close();
                     File resizedImage1 = new Resizer(Activity_Add_Event_1.this)
                             .setTargetLength(512)
-                            .setQuality(80)
+                            .setQuality(100)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image2")
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("image/jpg", resizedImage1));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
                 if (v2) {
@@ -1099,6 +1108,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                     multipartTypedOutput.addPart("eventphotovideo[0]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[0]", new TypedString(CountryId));
                 }
 
 
@@ -1120,12 +1130,13 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.close();
                     File resizedImage2 = new Resizer(Activity_Add_Event_1.this)
                             .setTargetLength(512)
-                            .setQuality(80)
+                            .setQuality(100)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image3")
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("image/jpg", resizedImage2));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
 
 
@@ -1134,6 +1145,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
 
 
                     multipartTypedOutput.addPart("storyphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
 
                 if (ifimg4) {
@@ -1154,18 +1166,20 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
                     fos.close();
                     File resizedImage3 = new Resizer(Activity_Add_Event_1.this)
                             .setTargetLength(512)
-                            .setQuality(80)
+                            .setQuality(100)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image4")
                             .setSourceImage(f)
                             .getResizedFile();
                     multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("image/jpg", resizedImage3));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
                 if (v4) {
                     File imageFile = new File(getRealPathFromUri(Activity_Add_Event_1.this, Video4));
 
 
                     multipartTypedOutput.addPart("eventphotovideo[1]", new TypedFile("video/mp4", imageFile));
+                    multipartTypedOutput.addPart("countryid[1]", new TypedString(CountryId1));
                 }
             } catch (Exception e) {
                 Log.e("Error", e.toString());
@@ -1205,7 +1219,7 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             } else if (country_spinner_Txt1.getText().toString().equalsIgnoreCase("")) {
                 correct = false;
                 Helper.showToast(Activity_Add_Event_1.this, getString(R.string.enter_main_country));
-            } else if (ifterm== false) {
+            }   else if (ifterm == false) {
                 correct = false;
                 Helper.showToast(Activity_Add_Event_1.this, getString(R.string.kindly_select_terms));
 
@@ -1469,10 +1483,9 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     @OnClick(R.id.wtsapRL)
     public void WhatsappCodeCountry() {
         wtsapclick = true;
-        Intent intent=new Intent(Activity_Add_Event_1.this,Country_Spinner_Activity.class);
-        intent.putExtra("resultcode","48");
+        Intent intent = new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class);
+        intent.putExtra("resultcode", "48");
         startActivityForResult(intent, 2);// Activity is started with requestCode 2
-
 
 
     }
@@ -1481,8 +1494,8 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
     public void ContactCodeCountry() {
         contactClick = true;
 //        startActivityForResult(new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class).putExtra("resultcode","49"), 49);
-        Intent intent=new Intent(Activity_Add_Event_1.this,Country_Spinner_Activity.class);
-        intent.putExtra("resultcode","49");
+        Intent intent = new Intent(Activity_Add_Event_1.this, Country_Spinner_Activity.class);
+        intent.putExtra("resultcode", "49");
         startActivityForResult(intent, 2);// Activity is started with requestCode 2
 
     }
@@ -1910,17 +1923,17 @@ public class Activity_Add_Event_1 extends AppCompatActivity {
             if (resultCode == 48) {
 
 //                if (wtsapclick == true) {
-                    Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
-                    wtspcodeTxt.setText(mycode);
+                Picasso.get().load(AppController.base_image_url + mycountryimg).into(wtspcountryImg);
+                wtspcodeTxt.setText(mycode);
 //                }
 
 
             }
 
-            if(resultCode==49){
+            if (resultCode == 49) {
 //                if (contactClick == true) {
-                    Picasso.get().load(AppController.base_image_url + mycountryimg).into(contactcountryImg);
-                    contactCountrycodeTxt.setText(mycode);
+                Picasso.get().load(AppController.base_image_url + mycountryimg).into(contactcountryImg);
+                contactCountrycodeTxt.setText(mycode);
 //                }
             }
 //            if(spinnerCountryBottom==true){
