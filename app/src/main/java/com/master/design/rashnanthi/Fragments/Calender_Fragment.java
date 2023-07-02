@@ -733,7 +733,7 @@ public class Calender_Fragment extends Fragment {
     public void NewAPI(String countryidMain) {
         if (connectionDetector.isConnectingToInternet()) {
 
-            appController.paServices.AllEvent(countryidMain, "2023-06-01", "2023-06-30", new Callback<MyEventRootDM1>() {
+            appController.paServices.AllEvent(countryidMain, "2022-01-01", "2040-01-01", new Callback<MyEventRootDM1>() {
                 @Override
                 public void success(MyEventRootDM1 myEventRootDM1, Response response) {
                     Appointment.clear();
