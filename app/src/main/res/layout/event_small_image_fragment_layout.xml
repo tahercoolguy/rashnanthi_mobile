@@ -78,7 +78,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:orientation="vertical">
+            android:orientation="vertical">
 
 
             <!--            <ImageView-->
@@ -106,6 +106,9 @@
                 app:sliderIndicatorSelectedColor="@color/colorPrimary"
                 app:sliderIndicatorUnselectedColor="@color/greyDark"
                 app:sliderScrollTimeInSec="1" />
+
+            <include layout="@layout/slider_layout"
+                android:visibility="gone"/>
 
 
             <!--            <LinearLayout-->
@@ -142,11 +145,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
+                android:orientation="horizontal"
 
-                android:orientation="horizontal">
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/wtsapImg"

@@ -288,8 +288,7 @@ public class Event_Small_Image_Fragment extends Fragment {
 //                            DataNUll();
 
                         // passing this array list inside our adapter class.
-                        if (getEventsByCountryDateRootDM.getOutput().getData().get(0).getImage() != null ||
-                                getEventsByCountryDateRootDM.getOutput().getData().get(0).getImagedata() != null) {
+                        if (getEventsByCountryDateRootDM.getOutput().getData().size()>0) {
 
                             SliderAdapter adapter = new SliderAdapter(context, getEventsByCountryDateRootDM.getOutput().getData());
 

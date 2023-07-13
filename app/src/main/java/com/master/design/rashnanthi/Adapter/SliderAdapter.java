@@ -43,7 +43,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     // Constructor
     public SliderAdapter(Context context, ArrayList<EventsDetailsData> eventsDetailsData) {
         this.eventsDetailsData = eventsDetailsData;
-        this.context=context;
+        this.context = context;
     }
 
     // We are inflating the slider_layout
@@ -59,22 +59,21 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     @Override
     public void onBindViewHolder(SliderAdapterViewHolder viewHolder, int position) {
 
-
-            if(eventsDetailsData.get(position).getImage()!=null) {
-
+        try {
+            if (eventsDetailsData.size() > 0) {
+                if (eventsDetailsData.get(position).getImagedata().size() > 0) {
 //                viewHolder.webView.setScaleY(2);
 //                viewHolder.webView.setScaleX(2);
-                if(eventsDetailsData.get(position).getImage().contains(".mp4"))
-                {
+                    if (eventsDetailsData.get(position).getImagedata().get(position).getImage().contains(".mp4")) {
 
-                    viewHolder.webView.setVisibility(View.VISIBLE);
-                    viewHolder.imageViewBackground.setVisibility(View.GONE);
-                    Uri uri = Uri.parse(eventsDetailsData.get(position).getImage());
+                        viewHolder.webView.setVisibility(View.VISIBLE);
+                        viewHolder.imageViewBackground.setVisibility(View.GONE);
+                        Uri uri = Uri.parse(eventsDetailsData.get(position).getImagedata().get(position).getImage());
 
-                    // sets the resource from the
-                    // videoUrl to the videoView
+                        // sets the resource from the
+                        // videoUrl to the videoView
 //                    viewHolder.myVideo.setVideoURI(uri);
-                    viewHolder.webView.loadUrl(AppController.base_image_url +uri);
+                        viewHolder.webView.loadUrl(AppController.base_image_url + uri);
 
 //                    Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage() ).into((Target) viewHolder.myVideo);
 
@@ -96,10 +95,82 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 //                    // starts the video
 //                    viewHolder.myVideo.start();
 
-                }else
-                 Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage()).into(viewHolder.imageViewBackground);
+                    } else {
+                        Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImagedata().get(position).getImage()).into(viewHolder.imageViewBackground);
+                    }
+                }  if (eventsDetailsData.get(position).getImage().contains(".mp4")) {
+
+                    viewHolder.webView.setVisibility(View.VISIBLE);
+                    viewHolder.imageViewBackground.setVisibility(View.GONE);
+                    Uri uri = Uri.parse(eventsDetailsData.get(position).getImage());
+
+                    // sets the resource from the
+                    // videoUrl to the videoView
+//                    viewHolder.myVideo.setVideoURI(uri);
+                    viewHolder.webView.loadUrl(AppController.base_image_url + uri);
+
+//                    Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage() ).into((Target) viewHolder.myVideo);
+
+//
+//                    // creating object of
+//                    // media controller class
+//                    MediaController mediaController = new MediaController(context);
+//
+//                    // sets the anchor view
+//                    // anchor view for the videoView
+//                    mediaController.setAnchorView(viewHolder.myVideo);
+//
+//                    // sets the media player to the videoView
+//                    mediaController.setMediaPlayer(viewHolder.myVideo);
+//
+//                    // sets the media controller to the videoView
+//                    viewHolder.myVideo.setMediaController(mediaController);
+//
+//                    // starts the video
+//                    viewHolder.myVideo.start();
+
+                } else {
+                    Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage()).into(viewHolder.imageViewBackground);
+                }
+            }
+        } catch (Exception e) {
+            if (eventsDetailsData.get(position).getImage().contains(".mp4")) {
+
+                viewHolder.webView.setVisibility(View.VISIBLE);
+                viewHolder.imageViewBackground.setVisibility(View.GONE);
+                Uri uri = Uri.parse(eventsDetailsData.get(position).getImage());
+
+                // sets the resource from the
+                // videoUrl to the videoView
+//                    viewHolder.myVideo.setVideoURI(uri);
+                viewHolder.webView.loadUrl(AppController.base_image_url + uri);
+
+//                    Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage() ).into((Target) viewHolder.myVideo);
+
+//
+//                    // creating object of
+//                    // media controller class
+//                    MediaController mediaController = new MediaController(context);
+//
+//                    // sets the anchor view
+//                    // anchor view for the videoView
+//                    mediaController.setAnchorView(viewHolder.myVideo);
+//
+//                    // sets the media player to the videoView
+//                    mediaController.setMediaPlayer(viewHolder.myVideo);
+//
+//                    // sets the media controller to the videoView
+//                    viewHolder.myVideo.setMediaController(mediaController);
+//
+//                    // starts the video
+//                    viewHolder.myVideo.start();
+
+            } else {
+                Picasso.get().load(AppController.base_image_url + eventsDetailsData.get(position).getImage()).into(viewHolder.imageViewBackground);
             }
 
+            e.printStackTrace();
+        }
 
 
 //        if(!eventsDetailsData.get(position).getInstagram().equalsIgnoreCase(" ")||!eventsDetailsData.get(position).getInstagram().equalsIgnoreCase(""))
@@ -114,14 +185,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 //        }else{
 //            viewHolder.insta.setVisibility(View.GONE);
 //        }
-        String whatsappNumber="";
-        whatsappNumber=eventsDetailsData.get(position).getWhatsapnumber();
+        String whatsappNumber = "";
+        whatsappNumber = eventsDetailsData.get(position).getWhatsapnumber();
 
-        if(whatsappNumber.equalsIgnoreCase("") ||whatsappNumber.equalsIgnoreCase(" ")||whatsappNumber==null)
-        {
+        if (whatsappNumber.equalsIgnoreCase("") || whatsappNumber.equalsIgnoreCase(" ") || whatsappNumber == null) {
             viewHolder.whts.setVisibility(View.GONE);
 
-        }else{
+        } else {
             viewHolder.whts.setVisibility(View.VISIBLE);
         }
 
@@ -147,17 +217,17 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                     intent.setData(Uri.parse(url));
                     context.startActivity(intent);
                 } catch (Exception e) {
-                    Helper.showToast(context,context.getString(R.string.something_wrong));
-                }}
+                    Helper.showToast(context, context.getString(R.string.something_wrong));
+                }
+            }
         });
-        String snapLink="";
-        snapLink=eventsDetailsData.get(position).getSnapchat();
+        String snapLink = "";
+        snapLink = eventsDetailsData.get(position).getSnapchat();
 
-        if(snapLink.equalsIgnoreCase("") ||snapLink.equalsIgnoreCase(" ")||snapLink==null)
-        {
+        if (snapLink.equalsIgnoreCase("") || snapLink.equalsIgnoreCase(" ") || snapLink == null) {
             viewHolder.snap.setVisibility(View.GONE);
 
-        }else{
+        } else {
             viewHolder.snap.setVisibility(View.VISIBLE);
         }
 
@@ -178,14 +248,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         });
 
 
-        String websitelink="";
-        websitelink=eventsDetailsData.get(position).getWebsite();
+        String websitelink = "";
+        websitelink = eventsDetailsData.get(position).getWebsite();
 
-        if(websitelink.equalsIgnoreCase("") ||websitelink.equalsIgnoreCase(" ")||websitelink==null)
-        {
+        if (websitelink.equalsIgnoreCase("") || websitelink.equalsIgnoreCase(" ") || websitelink == null) {
             viewHolder.web.setVisibility(View.GONE);
 
-        }else{
+        } else {
             viewHolder.web.setVisibility(View.VISIBLE);
         }
 
@@ -205,14 +274,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         });
 
 
-        String instagramLink="";
-        instagramLink=eventsDetailsData.get(position).getInstagram();
+        String instagramLink = "";
+        instagramLink = eventsDetailsData.get(position).getInstagram();
 
-        if(instagramLink.equalsIgnoreCase("") ||instagramLink.equalsIgnoreCase(" ")||instagramLink==null)
-        {
+        if (instagramLink.equalsIgnoreCase("") || instagramLink.equalsIgnoreCase(" ") || instagramLink == null) {
             viewHolder.insta.setVisibility(View.GONE);
 
-        }else{
+        } else {
             viewHolder.insta.setVisibility(View.VISIBLE);
         }
 
@@ -255,7 +323,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         // Adapter class for initializing
         // the views of our slider view.
         View itemView;
-        ImageView  snap,whts,insta,web ;
+        ImageView snap, whts, insta, web;
         RoundedImageView imageViewBackground;
         VideoView myVideo;
         WebView webView;
