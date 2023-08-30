@@ -9,8 +9,10 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -50,11 +53,14 @@ import com.master.design.rashnanthi.views.YellowColorDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -75,7 +81,9 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
 
+//public class Calender_Fragment extends Fragment implements View.OnTouchListener {
 public class Calender_Fragment extends Fragment {
 
 
@@ -88,7 +96,8 @@ public class Calender_Fragment extends Fragment {
     ImageView story_viewer;
     private ArrayList<County_ItemDM> county_itemDMS;
     Spinner calender_page_country_spinner;
-
+    private float initialX;
+    int previousScrollX = 0;
 
     @BindView(R.id.txt_error)
     TextView txt_error;
@@ -126,6 +135,7 @@ public class Calender_Fragment extends Fragment {
 
     @BindView(R.id.calendarView)
     com.prolificinteractive.materialcalendarview.MaterialCalendarView calendarView;
+    String currentMonthDate;
 
     @Nullable
     @Override
@@ -305,6 +315,7 @@ public class Calender_Fragment extends Fragment {
             SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
             String ma = month_date.format(cal.getTime());
             moth_year_txt.setText(ma);
+            currentMonthDate = month_date.format(cal.getTime());
 
 //            String s="1654108200000";
 //            long l=Long.parseLong(s);
@@ -355,9 +366,21 @@ public class Calender_Fragment extends Fragment {
                     return super.toString();
                 }
 
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onMonthScroll(Date firstDayOfNewMonth) {
                     moth_year_txt.setText(formatter.format(firstDayOfNewMonth));
+
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        Instant instant = firstDayOfNewMonth.toInstant();
+                        ZoneId zoneId = ZoneId.systemDefault();
+                        java.time.LocalDate localDate = instant.atZone(zoneId).toLocalDate();
+//                        currentMonthDate = localDate;
+                    }
+                    Calendar cal = Calendar.getInstance();
+                    SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
+                    String formattedDate = month_date.format(firstDayOfNewMonth);
+                    currentMonthDate = formattedDate;
                 }
             });
             setDetails();
@@ -417,6 +440,80 @@ public class Calender_Fragment extends Fragment {
 
 //            myEventsApi(countryidMain);
             NewAPI(countryidMain);
+//            calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+//                @Override
+//                public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+//                    // Compare the new month with the previous month
+//                    Calendar previousMonth = Calendar.getInstance();
+//                    Calendar cal = Calendar.getInstance();
+//                    SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
+//                    if(currentMonthDate==null) {
+//                        previousMonth.setTime(cal.getTime());
+//                    }else{
+//                        previousMonth.setTime(currentMonthDate);
+//                    }
+//                    Calendar currentMonth = Calendar.getInstance();
+//                    currentMonth.setTime(new Date());
+//
+//                    int comparison = currentMonth.compareTo(previousMonth);
+//
+//                    if (comparison < 0) {
+//                        // User scrolled to the right (from a later month to an earlier month)
+//                        // Handle your logic here
+//                        aheadamonthImg.callOnClick();
+//                     } else if (comparison > 0) {
+//                        // User scrolled to the left (from an earlier month to a later month)
+//                        // Handle your logic here
+//                         backmonthImg.callOnClick();
+//                     }
+//                }
+//            });
+
+
+            calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+                @Override
+                public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
+                    // Get the current selected date
+                    LocalDate selectedDate = date.getDate();
+
+
+
+                    // Assuming you have a CalendarDay object for "2023-7-1"
+
+// Convert the CalendarDay to LocalDate
+                            LocalDate localDate = LocalDate.of(date.getYear(), date.getMonth(), date.getDay());
+
+// Format LocalDate to "MMMM yyyy" format
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.getDefault());
+                    String formattedDate = localDate.format(formatter);
+
+                    moth_year_txt.setText(formattedDate);
+// Now formattedDate will be "August 2023"
+
+//                    Calendar cal = Calendar.getInstance();
+//                    SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
+//                    String formattedDate = month_date.format(date);
+
+
+                    // Compare with the previous selected date
+                    if (currentMonthDate != null) {
+                        int comparison = selectedDate.compareTo(selectedDate);
+                        if (comparison < 0) {
+                            // User scrolled to the right (from a later date to an earlier date)
+                            // Handle your logic here
+                            backmonthImg.callOnClick();
+                        } else if (comparison > 0) {
+                            // User scrolled to the left (from an earlier date to a later date)
+                            // Handle your logic here
+                            aheadamonthImg.callOnClick();
+                        }
+                    }
+
+                    // Update the previous selected date
+                    currentMonthDate = formattedDate;
+                }
+            });
 
         }
         return rootView;
@@ -1065,4 +1162,32 @@ public class Calender_Fragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_back).setVisible(false);
     }
+
+//    @Override
+//    public boolean onTouch(View v, MotionEvent event) {
+//        switch (event.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//                initialX = event.getX();
+//                return true;
+//
+//            case MotionEvent.ACTION_UP:
+//                float finalX = event.getX();
+//                float deltaX = finalX - initialX;
+//
+//                if (Math.abs(deltaX) > 50) { // Adjust the threshold as needed
+//                    if (deltaX > 0) {
+//                        // Swiped to the right
+//                        compactCalendar.scrollRight();
+//                        calendarView.goToNext();
+//                    } else {
+//                        // Swiped to the left
+//                        compactCalendar.scrollLeft();
+//                        calendarView.goToPrevious();
+//                    }
+//                }
+//                return true;
+//        }
+//
+//        return false;
+//    }
 }
